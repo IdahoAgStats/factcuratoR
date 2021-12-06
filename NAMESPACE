@@ -2,5 +2,8 @@
 
 export(readin.db)
 import(dplyr)
+import(lubridate)
+import(purrr)
 import(readr)
+import(stringr)
 import(tidyr)
