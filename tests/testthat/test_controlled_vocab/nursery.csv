@@ -1,0 +1,19 @@
+nursery,description_nursery,single_market_class,crop_type
+SWW,Soft White Winter Wheat,TRUE,wheat
+HWW,Hard White Winter Wheat,TRUE,wheat
+HRW,Hard Red Winter Wheat,TRUE,wheat
+SWS,Soft White Spring Wheat,TRUE,wheat
+HWS,Hard White Spring Wheat,TRUE,wheat
+HRS,Hard Red Spring Wheat,TRUE,wheat
+H_W,Hard Winter Wheat,FALSE,wheat
+H_S,Hard Spring Wheat,FALSE,wheat
+WWCL,Winter Wheat Clearfield,FALSE,wheat
+SB,Spring Barley,FALSE,barley
+SB2,2-row Spring Barley,TRUE,barley
+SB6,6-row Spring Barley,TRUE,barley
+SB2malt,2-row Spring Barley Malt,TRUE,barley
+SB2feed,2-row Spring Barley Feed,TRUE,barley
+SB2food,2-row Spring Barley Food,TRUE,barley
+WW,Hard and Soft Winter Wheat,FALSE,wheat
+WB,Winter Barley,TRUE,barley
+SWWCL,Soft White Winter Wheat Clearfield,TRUE,wheat

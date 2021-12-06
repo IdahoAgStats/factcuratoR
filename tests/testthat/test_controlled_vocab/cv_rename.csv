@@ -1,0 +1,147 @@
+correct_variety_name,wrong_name,Program,crop_type
+Menan,01Ab9663,SEIdahoCereals,
+IDN06-03303B,06-03303B,SEIdahoCereals,
+AAC Synergy,ACC Synergy,SEIdahoCereals,
+AAC Wildfire,ACC Wildfire,SEIdahoCereals,
+Agripro Paladin,AgriPro Paladin,SEIdahoCereals,
+Agripro Salute,AgriPro Salute,SEIdahoCereals,
+AP 700 CL,AP 700CL,SEIdahoCereals,
+AP 503 CL2,AP503CL2,SEIdahoCereals,
+AP 700 CL,AP700 CL,SEIdahoCereals,
+LCS Azimut,Azimut,SEIdahoCereals,
+Bruehl,Bruehl (club),SEIdahoCereals,
+Buck,Buck2,SEIdahoCereals,
+Buck Pronto,Buckpronto,SEIdahoCereals,
+Buck Pronto,BuckPronto,SEIdahoCereals,
+CDC Fibar,CDC Fibar2,SEIdahoCereals,
+Charles,Charles (malt),SEIdahoCereals,
+Chukar,Chukar (club),SEIdahoCereals,
+ClearFirst,Clearfirst,SEIdahoCereals,
+Clearwater,Clearwater2,SEIdahoCereals,
+Coda,Coda (club),SEIdahoCereals,
+Earl,Earl (W),SEIdahoCereals,
+Eight-twelve,Eight-Twelve,SEIdahoCereals,
+Endeavor,Endeavor (malt),SEIdahoCereals,
+Gary,Gary (W),SEIdahoCereals,
+LCS Genie,Genie,SEIdahoCereals,
+Golden Spike,Golden Spike (W),SEIdahoCereals,
+Irv,Irv (W),SEIdahoCereals,
+Julie,Julie2,SEIdahoCereals,
+LCS Yeti,LCS Yeti (W),SEIdahoCereals,
+UI LHS,LHS,SEIdahoCereals,
+UI LHS,LHS (UI Leland),SEIdahoCereals,
+UI LHS,LHS (W),SEIdahoCereals,
+Maja,Maja (Winter),SEIdahoCereals,
+Manning,Mannning,SEIdahoCereals,
+MDM,MDM (W),SEIdahoCereals,
+Mel,MEL,SEIdahoCereals,
+Mel,Mel (club),SEIdahoCereals,
+Mel,MEL (Coda) club,SEIdahoCereals,
+Melba,Melba (club wheat),SEIdahoCereals,
+AC Metcalfe,Metcalfe,SEIdahoCereals,
+Millennium,Millennium (6R),SEIdahoCereals,
+NuDakota,NuDakota (W),SEIdahoCereals,
+NuFrontier,NuFrontier (W),SEIdahoCereals,
+NuHills,NuHills  (W),SEIdahoCereals,
+NuHorizon,NuHorizon (W),SEIdahoCereals,
+LCS Odyssey,Odyssey,SEIdahoCereals,
+ORCF 101,ORCF-101,SEIdahoCereals,
+ORCF 102,ORCF-102,SEIdahoCereals,
+ORI2150031CL+,ORI2150031CF+,SEIdahoCereals,
+ORI2150033CL+,ORI2150033CF+,SEIdahoCereals,
+Agripro Paladin,Paladin,SEIdahoCereals,
+Palomino,Palomino (W),SEIdahoCereals,
+Agripro Salute,Salute,SEIdahoCereals,
+Sawtooth,Sawtooth2,SEIdahoCereals,
+Snow Crest,Snowcrest,SEIdahoCereals,
+SY Ovation,SY  Ovation,SEIdahoCereals,
+SY Clearstone 2CL,SY Clearstone CL2,SEIdahoCereals,
+SY Touchstone,SY Touchstone (W),SEIdahoCereals,
+Transit,Transit2,SEIdahoCereals,
+UI Castle CL+,UI Castle,SEIdahoCereals,
+UI Castle CL+,UI Castle CLP,SEIdahoCereals,
+UI Darwin,UI Darwin (W),SEIdahoCereals,
+UI LHS,UI LHS (W),SEIdahoCereals,
+UI Magic CL+,UI Magic,SEIdahoCereals,
+UI Magic CL+,UI Magic CLP,SEIdahoCereals,
+UI Palouse CL+,UI Palouse,SEIdahoCereals,
+UI Palouse CL+,UI Palouse CLP,SEIdahoCereals,
+UI Silver,UI Silver (W),SEIdahoCereals,
+UICF Grace,UICF Grace (W),SEIdahoCereals,
+UICF Grace,UICF-Grace (W),SEIdahoCereals,
+ORCF 101,unknown/ORCF101,SEIdahoCereals,
+LCS Vespa,Vespa,SEIdahoCereals,
+WestBred 936,WB 936,SEIdahoCereals,
+WestBred 528,WB-528,SEIdahoCereals,
+WB-1070CL,WB1070CL,SEIdahoCereals,
+WB3768,WB3768 (W),SEIdahoCereals,
+WB 456,WB456,SEIdahoCereals,
+WestBred 528,WB528,SEIdahoCereals,
+BZ6W07-427,WBEXP-427 (BZ6W07-427),SEIdahoCereals,
+WB1604,WBEXP-458 (BZ6W07-458),SEIdahoCereals,
+WB-Junction,WBJunction,SEIdahoCereals,
+WB 456,WestBred 456,SEIdahoCereals,
+WestBred 470,Westbred 470,SEIdahoCereals,
+WestBred 528,Westbred 528,SEIdahoCereals,
+LCS Artdeco,Artdeco,SWIdahoCereals,
+SY Clearstone 2CL,Clearstone CL2,SWIdahoCereals,
+LCS Drive,Drive,SWIdahoCereals,
+LCS Hulk,Hulk,SWIdahoCereals,
+LCS Jet,Jet,SWIdahoCereals,
+LCS Drive,LCS Drive (LWW12-7105),SWIdahoCereals,
+Agripro Legion,Legion,SWIdahoCereals,
+NSA10-2196,NASA10-2196,SWIdahoCereals,
+Norwest Duet,Norwest Duet (LOR 092),SWIdahoCereals,
+Norwest Tandem,Norwest Tandem (LOR 334),SWIdahoCereals,
+UI Platinum,Platinum,SWIdahoCereals,
+UI Platinum,Platinum ,SWIdahoCereals,
+LCS Rocket,Rocket,SWIdahoCereals,
+LCS Shark,Shark,SWIdahoCereals,
+04PN066-7,SY 04PN066-7 (Exp),SWIdahoCereals,
+09PN005#25,SY 09PN005#25 (Exp),SWIdahoCereals,
+09PN046#16,SY 09PN046#16,SWIdahoCereals,
+09PN062#18,SY 09PN062#18 (Exp),SWIdahoCereals,
+SY Touchstone,SY Touchstone (04PN028B-3),SWIdahoCereals,
+UI Castle CL+,UI Castle,SWIdahoCereals,
+UI Castle CL+,UI CASTLE,SWIdahoCereals,
+UI Magic CL+,UI Magic,SWIdahoCereals,
+UI Magic CL+,UI MAGIC,SWIdahoCereals,
+UI Platinum,UI Platnum,SWIdahoCereals,
+UI Sparrow,UI Sparrow (CK),SWIdahoCereals,
+UI Sparrow,UI Sparrow (IDO 1108),SWIdahoCereals,
+WB7202CLP,WB202CLP,SWIdahoCereals,
+WB7589,WB87589,SWIdahoCereals,
+WB9377,WB89377,SWIdahoCereals,
+AAC Wildfire,Wildfire,SWIdahoCereals,
+Hayes,Hays,SEIdahoCereals,barley
+Hockett,Hocket,SEIdahoCereals,barley
+Idagold II,Idagold II fill 2,SEIdahoCereals,barley
+Imperial,Imperial fill 1,SEIdahoCereals,wheat
+Imperial,Imperial fill 2,SEIdahoCereals,wheat
+HRS 3419,LOL 3419,SEIdahoCereals,wheat
+Melba,Melbacfill,SEIdahoCereals,wheat
+Melba,Melbaclub,SEIdahoCereals,wheat
+CDC Meredith,Meredith,SEIdahoCereals,barley
+CDC Meredith,Meridith,SEIdahoCereals,barley
+Millennium,FILL- Millenium?,SEIdahoCereals,barley
+LCS Overture,Overture,SEIdahoCereals,barley
+UI Pettit,Pettit Fill,SEIdahoCereals,wheat
+Pristine,Pristine dryland fill,SEIdahoCereals,wheat
+03W10348,RSI 03W10348 (W),SEIdahoCereals,wheat
+UI Pettit,UIPetfill,SEIdahoCereals,wheat
+Utopia,Utopia dryland fill,SEIdahoCereals,wheat
+WA007954,WA007954 HRS,SEIdahoCereals,wheat
+WB-1035CL+,WB 1035 CL,SEIdahoCereals,wheat
+Idagold II,idagoldii2,SEIdahoCereals,barley
+Imperial,imperial1,SEIdahoCereals,wheat
+Imperial,imperial2,SEIdahoCereals,wheat
+Melba,melbac,SEIdahoCereals,wheat
+Millennium,millenium,SEIdahoCereals,barley
+UI Pettit,pettit,SEIdahoCereals,wheat
+Pristine,pristinedryland,SEIdahoCereals,wheat
+03W10348,rsi03w10348,SEIdahoCereals,wheat
+UI Pettit,uipet,SEIdahoCereals,wheat
+Utopia,utopiadryland,SEIdahoCereals,wheat
+Melba,melbclub,SEIdahoCereals,wheat
+WestBred 936,wb936dryland,SEIdahoCereals,wheat
+SY Selway,SY3001-2,SEIdahoCereals,wheat
