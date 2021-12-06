@@ -1,14 +1,19 @@
-library(tidyverse)
 #' Read in database control variables
 #'
 #' Note: See read_delim if need to escape backslashes
-readin.db <- function(){
-  db_folder <- here::here("controlled_vocab/")
+#' @param db_folder A string path to the database controlled vocabulary folder
+#' @import dplyr
+#' @import tidyr
+#' @import readr
+#' @import purrr
+#' @export
+readin.db <- function(db_folder){
+
   db_files <- list.files(db_folder, pattern = ".csv")
   db <- as.list(db_files) %>%
-    set_names() %>%
+    purrr::set_names() %>%
     map(., function(x){
-      read_csv(paste0(db_folder, x), col_types = cols())
+      read_csv(paste(db_folder, x, sep = "/"), col_types = cols())
     })
 
   # Bind all crop types together to return one cultivar list
@@ -22,22 +27,24 @@ readin.db <- function(){
 }
 
 #' List the names of the codebooks in the database
-list.db_books <- function(){
+#' @inheritParams readin.db
+list.db_books <- function(db_folder){
 
-  db <- readin.db()
+  db <- readin.db(db_folder)
 
   db$codebooks_all_db.csv %>% select(book) %>% unique(.)
 }
 
 #' List the variables (column names) in a given database codebook
 #'
+#' @inheritParams readin.db
 #' @param codebook_name A string denoting the book name
 #' Use list.db_books() to see options
-list.db_var <- function(codebook_name, required_only = FALSE){
+list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 
-  db <- readin.db()
+  db <- readin.db(db_folder)
 
-  if (!codebook_name %in% list.db_books()$book){
+  if (!codebook_name %in% list.db_books(db_folder)$book){
     stop("'codebook_name' doesn't match a codebook name")
   }
 
@@ -62,13 +69,21 @@ list.db_var <- function(codebook_name, required_only = FALSE){
 #' for curation is to use the current date, so that the curation is reproducible
 #' even as the cultivar list is being continuously updated.
 # edit to filter by crop_type
+#' @inheritParams readin.db
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.
 #' @param select_crops A regular expression of crop types separated by |
-get.variety_db <- function(select_before = "2021-01-01", select_crops = NULL, db = NULL, for_matching = FALSE){
+#' @import lubridate
+#' @import purrr
+#' @import stringr
+get.variety_db <- function(db_folder,
+                           select_before = "2021-01-01",
+                           select_crops = NULL,
+                           db = NULL,
+                           for_matching = FALSE){
 
   if(is.null(db)){
-    db <- readin.db()
+    db <- readin.db(db_folder)
   }
   variety_df1 <- db %>% keep(str_detect(names(.), "cultivar_"))
 
