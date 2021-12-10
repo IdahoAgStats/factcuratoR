@@ -20,8 +20,9 @@ Depends:
     stringr,
     readr,
     tidyr,
-    lubridate, 
-    validate
+    lubridate
 Suggests: 
     testthat (>= 3.0.0)
+Imports:
+    validate
 Config/testthat/edition: 3
