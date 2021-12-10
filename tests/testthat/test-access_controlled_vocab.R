@@ -1,6 +1,20 @@
 controlled_vocab_folder <- testthat::test_path("test_controlled_vocab")
 library(magrittr)
 
+
+test_that("readin_db_init() reads in correct number of files",{
+  test <- readin_db_init(controlled_vocab_folder)
+  expect_equal(length(test), 10)
+
+})
+
+test_that("readin.db() reads in correct number of files",{
+  test <- readin.db(controlled_vocab_folder)
+  expect_equal(length(test), 11)
+})
+
+
+
 test_that("get.variety_db() returns the expected variety names", {
   test <- get.variety_db(controlled_vocab_folder, select_before = "2021-01-01")
   test2 <- test %>% dplyr::select(date_added) %>% unique(.)

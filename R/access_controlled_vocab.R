@@ -1,7 +1,6 @@
-#' Read in database control variables
+#' Read in database control variables and create a combined cultivar file
 #'
-#' Note: See read_delim if need to escape backslashes
-#' @param db_folder A string path to the database controlled vocabulary folder
+#' @inheritParams readin_db_init
 #' @import dplyr
 #' @import tidyr
 #' @import readr
@@ -9,19 +8,31 @@
 #' @export
 readin.db <- function(db_folder){
 
+  db <- readin_db_init(db_folder)
+
+  # Bind all crop types together to return one cultivar list
+  # The variety column = variety_db, which reflects both variety names and aliases
+  variety <- get.variety_db(db_folder,
+                            select_before = NULL,
+                            select_crops = NULL) %>%
+    rename(variety = variety_db)
+
+  db[["cultivar.csv"]] <- variety
+
+  return(db)
+}
+
+#' Read in database control variables
+#'
+#' Note: See read_delim if need to escape backslashes
+#' @param db_folder A string path to the database controlled vocabulary folder
+readin_db_init <- function(db_folder){
   db_files <- list.files(db_folder, pattern = ".csv")
   db <- as.list(db_files) %>%
     purrr::set_names() %>%
     map(., function(x){
       read_csv(paste(db_folder, x, sep = "/"), col_types = cols())
     })
-
-  # Bind all crop types together to return one cultivar list
-  # The variety column = variety_db, which reflects both variety names and aliases
-  variety <- get.variety_db(select_before = NULL, select_crops = NULL, db = db) %>%
-    rename(variety = variety_db)
-
-  db[["cultivar.csv"]] <- variety
 
   return(db)
 }
@@ -76,15 +87,15 @@ list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #' @import lubridate
 #' @import purrr
 #' @import stringr
+#' @export
 get.variety_db <- function(db_folder,
                            select_before = "2021-01-01",
                            select_crops = NULL,
-                           db = NULL,
                            for_matching = FALSE){
 
-  if(is.null(db)){
-    db <- readin.db(db_folder)
-  }
+
+  db <- readin_db_init(db_folder)
+
   variety_df1 <- db %>% keep(str_detect(names(.), "cultivar_"))
 
   variety_df <- imap(variety_df1, function(x, y){
