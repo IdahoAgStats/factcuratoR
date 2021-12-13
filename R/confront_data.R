@@ -10,16 +10,13 @@
 #' @family validation functions
 confront_data <- function(df, df_type, db_folder){
 
-  # The database must be read in order for validate::confront to have access
-  # to the codebook values
-  # The database must be saved to a new environment that is passed to
-  # validate::confront (See ?validate::confront for more details)
-  validation_env <- new.env()
-  validation_env$db <- readin.db(db_folder)
-
   rules <- create.rules(df_type, db_folder)
 
-  validation_output <- validate::confront(df, rules, validation_env)
+  # The database must be read in order for validate::confront to have access
+  # to the codebook values
+  # Pass the db in as a list (See ?validate::confront for more details)
+  # Note: passing in the data in an environment didn't work
+  validation_output <- validate::confront(df, rules, list(db = readin.db(db_folder)))
 
   summary <- validate::summary(validation_output) %>% arrange(error, fails)
 
@@ -42,7 +39,6 @@ confront_data <- function(df, df_type, db_folder){
 #' Return a message regarding the status of the validation
 #'
 #' @param output_confront An object that is returned by validate::confront()
-#' @keyword internal
 return_validate_message <- function(confront_summary){
 
   temp2 <- confront_summary %>%
