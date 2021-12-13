@@ -6,6 +6,8 @@
 #' @param df A data.frame to be validated
 #' @inheritParams create.rules
 #' @importFrom validate confront
+#' @export
+#' @family validation functions
 confront_data <- function(df, df_type, db_folder){
 
   # The database must be read in order for validate::confront to have access
@@ -40,6 +42,7 @@ confront_data <- function(df, df_type, db_folder){
 #' Return a message regarding the status of the validation
 #'
 #' @param output_confront An object that is returned by validate::confront()
+#' @keyword internal
 return_validate_message <- function(confront_summary){
 
   temp2 <- confront_summary %>%

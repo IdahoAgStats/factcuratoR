@@ -12,6 +12,8 @@
 #' rules to generate
 #' @inheritParams readin.db
 #' @importFrom validate validator
+#' @export
+#' @family validation functions
 create.rules <- function(df_type, db_folder){
   db <- readin.db(db_folder)
 

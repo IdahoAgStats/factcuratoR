@@ -5,6 +5,8 @@
 #' @param codebook A string denoting the name of the codebook to check the column
 #' names against e.g. "trial_data", "trials_metadata"
 #' @inheritParams readin.db
+#' @export
+#' @family validation functions
 validate_colnames <- function(df, codebook_name, db_folder){
   db <- readin.db(db_folder)
 

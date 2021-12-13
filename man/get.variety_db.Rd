@@ -38,3 +38,10 @@ If select_before = NULL, then all dates will be returned.  Recommended usage
 for curation is to use the current date, so that the curation is reproducible
 even as the cultivar list is being continuously updated.
 }
+\seealso{
+Other access codebook functions: 
+\code{\link{list.db_books}()},
+\code{\link{list.db_var}()},
+\code{\link{readin.db}()}
+}
+\concept{access codebook functions}

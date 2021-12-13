@@ -15,3 +15,10 @@ Use list.db_books() to see options}
 \description{
 List the variables (column names) in a given database codebook
 }
+\seealso{
+Other access codebook functions: 
+\code{\link{get.variety_db}()},
+\code{\link{list.db_books}()},
+\code{\link{readin.db}()}
+}
+\concept{access codebook functions}

@@ -19,3 +19,9 @@ This functions summarises the results and fixes the
 inability for confront() to detect NAs with grepl.
 See create.rules() for more details.
 }
+\seealso{
+Other validation functions: 
+\code{\link{create.rules}()},
+\code{\link{validate_colnames}()}
+}
+\concept{validation functions}

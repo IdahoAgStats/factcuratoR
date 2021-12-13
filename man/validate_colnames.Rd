@@ -17,3 +17,9 @@ names against e.g. "trial_data", "trials_metadata"}
 \description{
 Validate column names
 }
+\seealso{
+Other validation functions: 
+\code{\link{confront_data}()},
+\code{\link{create.rules}()}
+}
+\concept{validation functions}

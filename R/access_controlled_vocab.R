@@ -6,6 +6,7 @@
 #' @import readr
 #' @import purrr
 #' @export
+#' @family access codebook functions
 readin.db <- function(db_folder){
 
   db <- readin_db_init(db_folder)
@@ -39,6 +40,8 @@ readin_db_init <- function(db_folder){
 
 #' List the names of the codebooks in the database
 #' @inheritParams readin.db
+#' @export
+#' @family access codebook functions
 list.db_books <- function(db_folder){
 
   db <- readin.db(db_folder)
@@ -51,6 +54,8 @@ list.db_books <- function(db_folder){
 #' @inheritParams readin.db
 #' @param codebook_name A string denoting the book name
 #' Use list.db_books() to see options
+#' @export
+#' @family access codebook functions
 list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 
   db <- readin.db(db_folder)
@@ -88,6 +93,7 @@ list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #' @import purrr
 #' @import stringr
 #' @export
+#' @family access codebook functions
 get.variety_db <- function(db_folder,
                            select_before = "2021-01-01",
                            select_crops = NULL,

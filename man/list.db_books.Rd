@@ -12,3 +12,10 @@ list.db_books(db_folder)
 \description{
 List the names of the codebooks in the database
 }
+\seealso{
+Other access codebook functions: 
+\code{\link{get.variety_db}()},
+\code{\link{list.db_var}()},
+\code{\link{readin.db}()}
+}
+\concept{access codebook functions}

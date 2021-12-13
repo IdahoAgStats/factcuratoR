@@ -12,3 +12,10 @@ readin.db(db_folder)
 \description{
 Read in database control variables and create a combined cultivar file
 }
+\seealso{
+Other access codebook functions: 
+\code{\link{get.variety_db}()},
+\code{\link{list.db_books}()},
+\code{\link{list.db_var}()}
+}
+\concept{access codebook functions}

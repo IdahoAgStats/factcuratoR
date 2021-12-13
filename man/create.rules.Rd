@@ -22,3 +22,9 @@ so NAs are not correctly detected in grepl checks.
 Currently, the validator package does not accept str_detect.
 As a workaround, for date fields, an extra check for NAs is implemented.
 }
+\seealso{
+Other validation functions: 
+\code{\link{confront_data}()},
+\code{\link{validate_colnames}()}
+}
+\concept{validation functions}
