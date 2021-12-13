@@ -2,7 +2,7 @@
 % Please edit documentation in R/confront_data.R
 \name{confront_data}
 \alias{confront_data}
-\title{Wrapper for confront() from the validator package}
+\title{Wrapper for create.rules() and validate::confront()}
 \usage{
 confront_data(df, df_type, db_folder)
 }

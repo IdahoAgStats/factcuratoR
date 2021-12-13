@@ -2,7 +2,7 @@
 % Please edit documentation in R/access_controlled_vocab.R
 \name{readin.db}
 \alias{readin.db}
-\title{Read in database control variables and create a combined cultivar file}
+\title{Read in all control variable codebooks and create a combined cultivar file}
 \usage{
 readin.db(db_folder)
 }
@@ -10,7 +10,7 @@ readin.db(db_folder)
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \description{
-Read in database control variables and create a combined cultivar file
+Read in all control variable codebooks and create a combined cultivar file
 }
 \seealso{
 Other access codebook functions: 

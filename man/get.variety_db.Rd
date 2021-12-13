@@ -2,15 +2,7 @@
 % Please edit documentation in R/access_controlled_vocab.R
 \name{get.variety_db}
 \alias{get.variety_db}
-\title{Get cultivar names from the database for barley and wheat,
-along with unique identifier (no spaces or special characters)
-Filter the cultivar list by the date that the cultivar was added.
-The default value is "2021-01-01" because the original version of this function
-only read in the original set of cultivars, which were added by J. Piaskowski
-in 2020.
-If select_before = NULL, then all dates will be returned.  Recommended usage
-for curation is to use the current date, so that the curation is reproducible
-even as the cultivar list is being continuously updated.}
+\title{Return cultivar names along with unique internal identifier (no spaces or special characters)}
 \usage{
 get.variety_db(
   db_folder,
@@ -28,8 +20,6 @@ cultivars that were added to the datebase before this specified date.}
 \item{select_crops}{A regular expression of crop types separated by |}
 }
 \description{
-Get cultivar names from the database for barley and wheat,
-along with unique identifier (no spaces or special characters)
 Filter the cultivar list by the date that the cultivar was added.
 The default value is "2021-01-01" because the original version of this function
 only read in the original set of cultivars, which were added by J. Piaskowski
@@ -37,6 +27,10 @@ in 2020.
 If select_before = NULL, then all dates will be returned.  Recommended usage
 for curation is to use the current date, so that the curation is reproducible
 even as the cultivar list is being continuously updated.
+}
+\details{
+Cultivar names are stored by crop_type, this function will return all the requested
+crop_types.
 }
 \seealso{
 Other access codebook functions: 

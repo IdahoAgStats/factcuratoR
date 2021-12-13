@@ -2,7 +2,7 @@
 % Please edit documentation in R/create.rules.R
 \name{create.rules}
 \alias{create.rules}
-\title{Create rules using validator function from the validate package}
+\title{Create rules from the codebook using validate::validator()}
 \usage{
 create.rules(df_type, db_folder)
 }

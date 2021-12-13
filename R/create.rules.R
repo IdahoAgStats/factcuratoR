@@ -1,4 +1,4 @@
-#' Create rules using validator function from the validate package
+#' Create rules from the codebook using validate::validator()
 #'
 #' This functions reads in codebooks_all_db.csv and generates rules from the
 #' information provided in this main codebook

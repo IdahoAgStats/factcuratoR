@@ -44,15 +44,15 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="confront_data.html">confront_data()</a></code> </p>
         </td>
-        <td><p>Wrapper for confront() from the validator package</p></td>
+        <td><p>Wrapper for create.rules() and validate::confront()</p></td>
       </tr><tr><td>
           <p><code><a href="create.rules.html">create.rules()</a></code> </p>
         </td>
-        <td><p>Create rules using validator function from the validate package</p></td>
+        <td><p>Create rules from the codebook using validate::validator()</p></td>
       </tr><tr><td>
           <p><code><a href="validate_colnames.html">validate_colnames()</a></code> </p>
         </td>
-        <td><p>Validate column names</p></td>
+        <td><p>Validate column names against codebook</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="access-codebook-functions">Access codebook functions <a href="#access-codebook-functions" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
@@ -60,15 +60,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="get.variety_db.html">get.variety_db()</a></code> </p>
         </td>
-        <td><p>Get cultivar names from the database for barley and wheat,
-along with unique identifier (no spaces or special characters)
-Filter the cultivar list by the date that the cultivar was added.
-The default value is "2021-01-01" because the original version of this function
-only read in the original set of cultivars, which were added by J. Piaskowski
-in 2020.
-If select_before = NULL, then all dates will be returned.  Recommended usage
-for curation is to use the current date, so that the curation is reproducible
-even as the cultivar list is being continuously updated.</p></td>
+        <td><p>Return cultivar names along with unique internal identifier (no spaces or special characters)</p></td>
       </tr><tr><td>
           <p><code><a href="list.db_books.html">list.db_books()</a></code> </p>
         </td>
@@ -80,7 +72,7 @@ even as the cultivar list is being continuously updated.</p></td>
       </tr><tr><td>
           <p><code><a href="readin.db.html">readin.db()</a></code> </p>
         </td>
-        <td><p>Read in database control variables and create a combined cultivar file</p></td>
+        <td><p>Read in all control variable codebooks and create a combined cultivar file</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

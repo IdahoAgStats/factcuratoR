@@ -2,7 +2,7 @@
 % Please edit documentation in R/validate_colnames.R
 \name{validate_colnames}
 \alias{validate_colnames}
-\title{Validate column names}
+\title{Validate column names against codebook}
 \usage{
 validate_colnames(df, codebook_name, db_folder)
 }
@@ -15,7 +15,7 @@ validate_colnames(df, codebook_name, db_folder)
 names against e.g. "trial_data", "trials_metadata"}
 }
 \description{
-Validate column names
+Validate column names against codebook
 }
 \seealso{
 Other validation functions: 

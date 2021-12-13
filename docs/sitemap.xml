@@ -40,6 +40,9 @@
     <loc>/reference/return_validate_message.html</loc>
   </url>
   <url>
+    <loc>/reference/standardize_cols_by_cb.html</loc>
+  </url>
+  <url>
     <loc>/reference/validate_colnames.html</loc>
   </url>
 </urlset>

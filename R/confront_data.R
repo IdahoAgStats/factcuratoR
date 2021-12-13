@@ -1,4 +1,4 @@
-#' Wrapper for confront() from the validator package
+#' Wrapper for create.rules() and validate::confront()
 #'
 #' This functions summarises the results and fixes the
 #' inability for confront() to detect NAs with grepl.

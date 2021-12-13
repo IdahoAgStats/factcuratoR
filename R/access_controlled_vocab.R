@@ -1,4 +1,4 @@
-#' Read in database control variables and create a combined cultivar file
+#' Read in all control variable codebooks and create a combined cultivar file
 #'
 #' @inheritParams readin_db_init
 #' @import dplyr
@@ -39,6 +39,7 @@ readin_db_init <- function(db_folder){
 }
 
 #' List the names of the codebooks in the database
+#'
 #' @inheritParams readin.db
 #' @export
 #' @family access codebook functions
@@ -75,8 +76,8 @@ list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 }
 
 
-#' Get cultivar names from the database for barley and wheat,
-#' along with unique identifier (no spaces or special characters)
+#' Return cultivar names along with unique internal identifier (no spaces or special characters)
+#'
 #' Filter the cultivar list by the date that the cultivar was added.
 #' The default value is "2021-01-01" because the original version of this function
 #' only read in the original set of cultivars, which were added by J. Piaskowski
@@ -84,7 +85,9 @@ list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #' If select_before = NULL, then all dates will be returned.  Recommended usage
 #' for curation is to use the current date, so that the curation is reproducible
 #' even as the cultivar list is being continuously updated.
-# edit to filter by crop_type
+#'
+#' Cultivar names are stored by crop_type, this function will return all the requested
+#' crop_types.
 #' @inheritParams readin.db
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.

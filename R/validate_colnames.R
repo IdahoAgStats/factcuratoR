@@ -1,5 +1,4 @@
-
-#' Validate column names
+#' Validate column names against codebook
 #'
 #' @param df A data.frame with column names to verify against the codebook
 #' @param codebook A string denoting the name of the codebook to check the column
