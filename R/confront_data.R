@@ -5,13 +5,21 @@
 #' See create.rules() for more details.
 #' @param df A data.frame to be validated
 #' @inheritParams create.rules
-confront_data <- function(df, df_type){
-  db <- readin.db()
-  rules <- create.rules(df_type)
+#' @importFrom validate confront
+confront_data <- function(df, df_type, db_folder){
 
-  validation_output <- confront(df, rules)
+  # The database must be read in order for validate::confront to have access
+  # to the codebook values
+  # The database must be saved to a new environment that is passed to
+  # validate::confront (See ?validate::confront for more details)
+  validation_env <- new.env()
+  validation_env$db <- readin.db(db_folder)
 
-  summary <- summary(validation_output) %>% arrange(error, fails)
+  rules <- create.rules(df_type, db_folder)
+
+  validation_output <- validate::confront(df, rules, validation_env)
+
+  summary <- validate::summary(validation_output) %>% arrange(error, fails)
 
   date_na <- summary %>%
     filter(str_detect(expression, "!is.na(.+date)")) %>%
