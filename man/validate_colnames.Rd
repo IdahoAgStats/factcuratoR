@@ -9,6 +9,8 @@ validate_colnames(df, codebook_name, db_folder)
 \arguments{
 \item{df}{A data.frame with column names to verify against the codebook}
 
+\item{db_folder}{A string path to the database controlled vocabulary folder}
+
 \item{codebook}{A string denoting the name of the codebook to check the column
 names against e.g. "trial_data", "trials_metadata"}
 }

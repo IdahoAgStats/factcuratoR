@@ -9,6 +9,8 @@ create.rules(df_type, db_folder)
 \arguments{
 \item{df_type}{A string "trial_data" or "trials_metadata" denoting the type of validation
 rules to generate}
+
+\item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \description{
 This functions reads in codebooks_all_db.csv and generates rules from the

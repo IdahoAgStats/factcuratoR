@@ -16,7 +16,6 @@ get.variety_db(
   db_folder,
   select_before = "2021-01-01",
   select_crops = NULL,
-  db = NULL,
   for_matching = FALSE
 )
 }
