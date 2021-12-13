@@ -10,10 +10,12 @@
 #'
 #' @param df_type A string "trial_data" or "trials_metadata" denoting the type of validation
 #' rules to generate
-create.rules <- function(df_type){
-  db <- readin.db()
+#' @inheritParams readin.db
+#' @importFrom validate validator
+create.rules <- function(df_type, db_folder){
+  db <- readin.db(db_folder)
 
-  rule_raw <- list.db_var(df_type, required_only = FALSE)
+  rule_raw <- list.db_var(db_folder, df_type, required_only = FALSE)
 
   # For trial data, need to pull the codebooks for trial_data and traits
   if (df_type == "trial_data"){
@@ -76,7 +78,7 @@ create.rules <- function(df_type){
     unite("rule", contains("rule"), na.rm = TRUE, sep = "&") %>%
     mutate(name = variable)
 
-  rules_v <- validator(.data = rule_df3)
+  rules_v <- validate::validator(.data = rule_df3)
 
 
 }
