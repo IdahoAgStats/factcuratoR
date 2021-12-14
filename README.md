@@ -1,12 +1,21 @@
 # factcuratoR Package:
 
-The goal of `factcuratoR` is to provide sets of functions to 
+The purpose of `factcuratoR` is to provide sets of functions to 
 help standardize variety testing data for the FACT program.
-The functions fall into a few different workflows: 
 
-- read-in the controlled vocabulary
-- validate column names and contents according to codebooks
+The goal of the FACT program curation is to generate:
+
+1. trial data
+2. trial metadata
+
+that conform to the controlled vocabulary codebooks.
+
+The `factcuratoR` functions fall into a few different workflows: 
+
+- read-in the controlled vocabulary codebooks
+- validate column names and contents according to the codebooks
 - curate cultivar names
+- standardize/ write out files according to the codebooks
 
 ## Installation
 
@@ -17,7 +26,7 @@ You can install `factcuratoR` from GitHub with:
 remotes::install_github("IdahoAgStats/factcuratoR")
 ```
 
-## Validation and Write functions require codebooks that are standardized
+## factcuratoR functions require codebooks that are standardized
 The main codebook should be named `codebooks_all_db.csv`
 codebooks_all_db.csv contains:  
 - the variables and their descriptions present in each codebook   
