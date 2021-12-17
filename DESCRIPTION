@@ -20,10 +20,10 @@ Depends:
     stringr,
     readr,
     tidyr,
-    lubridate,
-    dm
+    lubridate
 Suggests: 
     testthat (>= 3.0.0)
 Imports:
-    validate
+    validate,
+    dm
 Config/testthat/edition: 3

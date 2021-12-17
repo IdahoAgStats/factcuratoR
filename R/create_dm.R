@@ -5,7 +5,7 @@
 #' the controlled vocabularies are defined)
 #'
 #' @param codebook_main_path A string that is a path to the main codebook
-#' @import dm
+#' @importFrom dm as_dm
 #' @export
 #' @family data model functions
 create_dm <- function(codebook_main_path){
@@ -20,7 +20,6 @@ create_dm <- function(codebook_main_path){
   # The full set of controlled vocabularies is not needed.)
   # need to convert example to numeric if want to/ can color/label the diagram by type
   codebooks_ls <- map(codebook_names, function(x){
-    print(x)
     df <- codebook %>%
       filter(book == 	x) %>%
       arrange(col_num, variable) %>%
@@ -47,25 +46,25 @@ create_dm <- function(codebook_main_path){
     # Remove primary keys
     filter(book != values_defined_in)
 
-  cb_dm <- as_dm(codebooks_ls)
+  cb_dm <- dm::as_dm(codebooks_ls)
 
   # set primary keys
   for(x in 1:nrow(cb_pk)) {
     pk_temp <- cb_pk[x,]
     cb_dm <- cb_dm %>%
-      dm_add_pk(table = !!sym(pk_temp$book), columns = !!sym(pk_temp$variable))
+      dm::dm_add_pk(table = !!sym(pk_temp$book), columns = !!sym(pk_temp$variable))
   }
 
   # set foreign keys
   for(x in 1:nrow(cb_fk)) {
     fk_temp <- cb_fk[x,]
     cb_dm <- cb_dm %>%
-      dm_add_fk(table = !!sym(fk_temp$book),
+      dm::dm_add_fk(table = !!sym(fk_temp$book),
                 columns = !!sym(fk_temp$variable),
                 ref_table = !!sym(fk_temp$values_defined_in))
   }
 
-  dm_draw(cb_dm, view_type = "all")
+  dm::dm_draw(cb_dm, view_type = "all")
 
   # If want to have compound keys
   # for (x in unique(cb_pk$book)){

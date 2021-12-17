@@ -14,3 +14,4 @@ This function creates a data model from the codebook to show
 the relationship between the controlled variables (e.g. where
 the controlled vocabularies are defined)
 }
+\concept{data model functions}
