@@ -1,0 +1,93 @@
+---
+title: "Introduction to the codebook structure"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: 
+rmarkdown::html_vignette:
+  fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Introduction to codebook structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+The purpose of `factcuratoR` is to provide sets of functions to help 
+standardize variety testing data for the FACT program.
+
+The goal of the FACT program curation is to generate:
+
+trial data
+trial metadata
+that conform to the controlled vocabulary codebooks.
+
+## Codebook structure
+
+First, load `factcuratoR` and point to the main codebook (which currently must 
+be named codebooks_all_db.csv for the validation functions)
+
+```{r, message = FALSE}
+library(factcuratoR)
+
+codebook_path <- here::here(
+  "tests/testthat/test_controlled_vocab/codebooks_all_db.csv")
+```
+
+Most importantly, the main codebook contains:
+the variables (columns) for both the trial data and the trial metadata. 
+For example, the trial data should contain the columns:
+trial, variety, entry, plot, etc...
+and the trial metadata should contain the columns:
+trial, nursery, year, location, etc...
+
+Note! Traits are collected for each trial, so conceptually, it would make sense
+for the traits (such as test_weight or height) to be contained in the main codebook
+associated with trial_data. However, because the traits list is 
+expected to get rather long, the traits are stored in a separate file called 
+"traits.csv."  For validating the columns in the trial data, the validation 
+functions pull in the traits and treats each trait as a column in the trial data.
+
+```{r, fig.cap = "Fig. 1 Codebook structure"}
+create_dm(codebook_path)
+```
+
+
+
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side. 
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
