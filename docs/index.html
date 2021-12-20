@@ -42,6 +42,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/intro_codebooks.html">Introduction to the codebook structure</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -55,14 +67,24 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
+<p><a href="https://idahoagstats.github.io/factcuratoR/index.html" class="external-link">factcuratoR docs quick link</a></p>
 <div class="section level1">
 <div class="page-header"><h1 id="factcurator-package">factcuratoR Package:<a class="anchor" aria-label="anchor" href="#factcurator-package"></a>
 </h1></div>
-<p>The goal of <code>factcuratoR</code> is to provide sets of functions to help standardize variety testing data for the FACT program. The functions fall into a few different workflows:</p>
+<p>The purpose of <code>factcuratoR</code> is to provide sets of functions to help standardize variety testing data for the FACT program.</p>
+<p>The goal of the FACT program curation is to generate:</p>
+<ol style="list-style-type: decimal">
+<li>trial data</li>
+<li>trial metadata</li>
+</ol>
+<p>that conform to the controlled vocabulary codebooks.</p>
+<p>The <code>factcuratoR</code> functions fall into a few different workflows:</p>
 <ul>
-<li>read-in the controlled vocabulary</li>
-<li>validate column names and contents according to codebooks</li>
+<li>read-in the controlled vocabulary codebooks</li>
+<li>validate column names and contents according to the codebooks</li>
 <li>curate cultivar names</li>
+<li>standardize/ write out files according to the codebooks</li>
 </ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -73,27 +95,12 @@
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"IdahoAgStats/factcuratoR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="validation-and-write-functions-require-codebooks-that-are-standardized">Validation and Write functions require codebooks that are standardized<a class="anchor" aria-label="anchor" href="#validation-and-write-functions-require-codebooks-that-are-standardized"></a>
+<h2 id="factcurator-functions-require-codebooks-that-are-standardized">factcuratoR functions require codebooks that are standardized<a class="anchor" aria-label="anchor" href="#factcurator-functions-require-codebooks-that-are-standardized"></a>
 </h2>
-<p>The main codebook should be named <code>codebooks_all_db.csv</code> codebooks_all_db.csv contains:<br>
-- the variables and their descriptions present in each codebook<br>
-- the codebook where the accepted values/ controlled vocabularies are defined - see example files in tests/testthat/test_controlled_vocab</p>
-<p>Usage: When updating any codebook, the codebooks_all_db.csv must be updated to reflect the change.<br>
-- A newly added variable column would correspond to a new row in codebooks_all_db.csv.<br>
-- A changed variable column name would correspond to change in variable name in an existing row. Care must be taken as variables may be used in several different codebooks. Renames should be consistent.</p>
-<p>Columns: <strong>value_type</strong>: Denotes the variable type.<br>
-Options: - categorical (acceptable variables must be specified in values_defined_in or value_range)</p>
-<ul>
-<li><p>string (validation function will check to ensure is.character())</p></li>
-<li><p>integer (validation will check %%1 = 0)</p></li>
-<li><p>continuous (acceptable range must be provided in value_range)</p></li>
-<li><p>date (validation will check for yyyy-mm-dd format)</p></li>
-</ul>
-<p><strong>values_defined_in</strong>: If this variable has controlled vocabularies, enter the name of the file that contains the controlled vocabularies<br><strong>value_range</strong>: If this variable does not have controlled vocabularies, enter the accepted values or ranges. This formatting is used in the qc_validate_fns.R to validate the data.<br>
-- Entries should be separated by semi-colons (e.g. TRUE; FALSE or 1; 2; 3) - Strings should be quoted (e.g. “value1”; “value2”)<br>
-- Range should be in the form: min to max (e.g. 0 to 100) - Separate range and values using: | (e.g. 0 to 100 | -9) - Due to Excel formatting issues, negative numbers should be prefaced with ‘ (but without closing quotes) (e.g. ‘-180)</p>
+<p>See the <a href="https://idahoagstats.github.io/factcuratoR/docs/articles/intro_codebooks.html" class="external-link">Introduction to codebooks vignette</a></p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
