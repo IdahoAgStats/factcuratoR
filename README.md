@@ -1,4 +1,4 @@
-[factcuratoR docs quick link](https://idahoagstats.github.io/factcuratoR/index.html)
+[factcuratoR docs quick link](https://idahoagstats.github.io/factcuratoR/)
 
 # factcuratoR Package:
 
