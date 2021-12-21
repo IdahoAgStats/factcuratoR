@@ -10,7 +10,7 @@ list.db_var(db_folder, codebook_name, required_only = FALSE)
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 
 \item{codebook_name}{A string denoting the book name
-Use list.db_books() to see options}
+Use list_db_books() to see options}
 }
 \description{
 List the variables (column names) in a given database codebook
@@ -18,7 +18,7 @@ List the variables (column names) in a given database codebook
 \seealso{
 Other access codebook functions: 
 \code{\link{get.variety_db}()},
-\code{\link{list.db_books}()},
+\code{\link{list_db_books}()},
 \code{\link{readin_db}()}
 }
 \concept{access codebook functions}

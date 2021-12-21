@@ -16,7 +16,7 @@ confront_data <- function(df, df_type, db_folder){
   # to the codebook values
   # Pass the db in as a list (See ?validate::confront for more details)
   # Note: passing in the data in an environment didn't work
-  validation_output <- validate::confront(df, rules, list(db = readin.db(db_folder)))
+  validation_output <- validate::confront(df, rules, list(db = readin_db(db_folder)))
 
   summary <- validate::summary(validation_output) %>% arrange(error, fails)
 

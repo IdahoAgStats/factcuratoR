@@ -12,8 +12,4 @@ reference:
   contents:
   - has_concept("data model functions")
 
-- title: Function rename wrappers
-  contents:
-  - has_concept("function rename wrappers")
-
 
