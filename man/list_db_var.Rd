@@ -23,7 +23,7 @@ A wrapper for list_db_var to maintain backwards compatibility
 }
 \seealso{
 Other access codebook functions: 
-\code{\link{get.variety_db}()},
+\code{\link{get_variety_db}()},
 \code{\link{list_db_books}()},
 \code{\link{readin_db}()}
 }

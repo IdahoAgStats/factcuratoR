@@ -13,7 +13,7 @@ readin_db <- function(db_folder){
 
   # Bind all crop types together to return one cultivar list
   # The variety column = variety_db, which reflects both variety names and aliases
-  variety <- get.variety_db(db_folder,
+  variety <- get_variety_db(db_folder,
                             select_before = NULL,
                             select_crops = NULL) %>%
     rename(variety = variety_db)
@@ -96,9 +96,9 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #' @import lubridate
 #' @import purrr
 #' @import stringr
-#' @export
 #' @family access codebook functions
-get.variety_db <- function(db_folder,
+#' @export
+get_variety_db <- function(db_folder,
                            select_before = "2021-01-01",
                            select_crops = NULL,
                            for_matching = FALSE){

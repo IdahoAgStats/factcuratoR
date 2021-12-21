@@ -15,15 +15,15 @@ test_that("readin_db() reads in correct number of files",{
 
 
 
-test_that("get.variety_db() returns the expected variety names", {
-  test <- get.variety_db(controlled_vocab_folder, select_before = "2021-01-01")
+test_that("get_variety_db() returns the expected variety names", {
+  test <- get_variety_db(controlled_vocab_folder, select_before = "2021-01-01")
   test2 <- test %>% dplyr::select(date_added) %>% unique(.)
 
   expect_equal(nrow(test2), 1)
 })
 
-test_that("get.variety_db() returns the expect crops", {
-  test <- get.variety_db(controlled_vocab_folder, select_crops = "wheat")
+test_that("get_variety_db() returns the expect crops", {
+  test <- get_variety_db(controlled_vocab_folder, select_crops = "wheat")
   test2 <- test %>%
     dplyr::select(crop_db) %>%
     unique(.) %>%
