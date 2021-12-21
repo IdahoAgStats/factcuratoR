@@ -63,3 +63,6 @@ trials_metadata,FALSE,29,s_ppm,continuous,soil test values for sulfur (parts per
 trials_metadata,FALSE,30,free_lime_pct,continuous,soil free lime (%),,0 to 100,,NA,,,
 trials_metadata,TRUE,31,tillage,categorical,tillage regime that the land is managed under,,"""conventional"";""no till"";""conservation""",,,,,
 trials_metadata,FALSE,33,unpublished,logical,a logical denoting whether a trial was published in reports (e.g. if the CV was too high and thus not reported),,TRUE;FALSE,,,,,
+grower_cooperator,FALSE,4,company,categorical,Company the Cooperator is associated with and/or who own the land where the trial was conducted,NA,NA,,,,,
+grower_cooperator,TRUE,1,grower_cooperator,categorical,Name of the cooperator managing a field trial,grower_cooperator,unique values defined by this file,NA,NA,,,
+grower_cooperator,FALSE,3,type,categorical,Farm type,NA,"""university research station""; ""private farm""",NA,NA,,,

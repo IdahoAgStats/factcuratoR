@@ -2,17 +2,15 @@
 % Please edit documentation in R/standardize_cols_by_cb.R
 \name{standardize_cols_by_cb}
 \alias{standardize_cols_by_cb}
-\title{Standardize the columns in the order specified by the codebook
-Contains options to add missing columns or remove unnecessary columns
-The ordering follows the column order specified in the codebook
-Any extra columns will come after, in alphabetical order.}
+\title{Standardize the columns in the order specified by the codebook}
 \usage{
 standardize_cols_by_cb(
   df,
   codebook_name,
   add_missing_cols,
   required_only,
-  codebook_cols_only
+  codebook_cols_only,
+  db_folder
 )
 }
 \arguments{
@@ -28,9 +26,10 @@ If optional columns exist in the df, these columns are retained.}
 \item{codebook_cols_only}{A logical denoting whether to remove any columns
 not specified by the codebook
 Relocate columns in a dataset based on their order in the codebook}
+
+\item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \description{
-Standardize the columns in the order specified by the codebook
 Contains options to add missing columns or remove unnecessary columns
 The ordering follows the column order specified in the codebook
 Any extra columns will come after, in alphabetical order.

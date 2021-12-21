@@ -1,9 +1,10 @@
 #' Standardize the columns in the order specified by the codebook
+#'
 #' Contains options to add missing columns or remove unnecessary columns
 #' The ordering follows the column order specified in the codebook
 #' Any extra columns will come after, in alphabetical order.
 #'
-#' @inheritParams validate_colnames()
+#' @inheritParams validate_colnames
 #' @param add_missing_cols A logical denoting whether to add missing columns
 #' @param required_only A logical denoting whether to add only required columns.
 #' This parameter is only called if add_missing_cols = TRUE.
@@ -15,10 +16,11 @@ standardize_cols_by_cb <- function(df,
                                    codebook_name,
                                    add_missing_cols,
                                    required_only,
-                                   codebook_cols_only){
+                                   codebook_cols_only,
+                                   db_folder){
 
 
-  col_summary <- validate_colnames(df, codebook_name) %>%
+  col_summary <- validate_colnames(df, codebook_name, db_folder) %>%
     select(comment, colname_data, colname_codebook, required, col_num) %>%
     mutate(., colname = coalesce(colname_data, colname_codebook))
 
