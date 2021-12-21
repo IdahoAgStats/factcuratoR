@@ -2,7 +2,7 @@
 % Please edit documentation in R/confront_data.R
 \name{confront_data}
 \alias{confront_data}
-\title{Wrapper for create.rules() and validate::confront()}
+\title{Wrapper for create_rules() and validate::confront()}
 \usage{
 confront_data(df, df_type, db_folder)
 }
@@ -17,11 +17,11 @@ rules to generate}
 \description{
 This functions summarises the results and fixes the
 inability for confront() to detect NAs with grepl.
-See create.rules() for more details.
+See create_rules() for more details.
 }
 \seealso{
 Other validation functions: 
-\code{\link{create.rules}()},
+\code{\link{create_rules}()},
 \code{\link{validate_colnames}()}
 }
 \concept{validation functions}

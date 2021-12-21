@@ -1,16 +1,16 @@
-#' Wrapper for create.rules() and validate::confront()
+#' Wrapper for create_rules() and validate::confront()
 #'
 #' This functions summarises the results and fixes the
 #' inability for confront() to detect NAs with grepl.
-#' See create.rules() for more details.
+#' See create_rules() for more details.
 #' @param df A data.frame to be validated
-#' @inheritParams create.rules
+#' @inheritParams create_rules
 #' @importFrom validate confront
 #' @export
 #' @family validation functions
 confront_data <- function(df, df_type, db_folder){
 
-  rules <- create.rules(df_type, db_folder)
+  rules <- create_rules(df_type, db_folder)
 
   # The database must be read in order for validate::confront to have access
   # to the codebook values

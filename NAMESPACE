@@ -3,6 +3,7 @@
 export(confront_data)
 export(create.rules)
 export(create_dm)
+export(create_rules)
 export(get.variety_db)
 export(get_variety_db)
 export(list.db_books)

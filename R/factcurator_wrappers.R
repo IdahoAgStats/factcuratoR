@@ -60,3 +60,17 @@ get.variety_db <- function(db_folder,
 
 }
 
+
+#' A wrapper for create_rules to maintain backwards compatibility
+#'
+#' @inheritParams create_rules
+#' @rdname create_rules
+#' @export
+create.rules <- function(df_type, db_folder){
+  message("This function name is being retained for backwards compatibility.
+          Please use create_rules()")
+
+  create_rules(df_type = df_type, db_folder = db_folder)
+
+}
+
