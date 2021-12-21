@@ -9,7 +9,7 @@
 validate_colnames <- function(df, codebook_name, db_folder){
   db <- readin_db(db_folder)
 
-  cb <- list.db_var(db_folder, codebook_name, required_only = FALSE) %>%
+  cb <- list_db_var(db_folder, codebook_name, required_only = FALSE) %>%
     rename(colname = variable)
 
   # For trial data, need to pull the codebooks for trial_data and traits

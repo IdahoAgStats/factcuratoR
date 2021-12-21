@@ -21,7 +21,7 @@ A wrapper for readin_db to maintain backwards compatibility
 \seealso{
 Other access codebook functions: 
 \code{\link{get.variety_db}()},
-\code{\link{list.db_var}()},
-\code{\link{list_db_books}()}
+\code{\link{list_db_books}()},
+\code{\link{list_db_var}()}
 }
 \concept{access codebook functions}

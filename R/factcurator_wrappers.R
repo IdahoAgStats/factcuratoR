@@ -24,3 +24,19 @@ list.db_books <- function(db_folder){
   list_db_books(db_folder = db_folder)
 
 }
+
+
+#' A wrapper for list_db_var to maintain backwards compatibility
+#'
+#' @inheritParams list_db_var
+#' @rdname list_db_var
+#' @export
+list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
+  message("This function name is being retained for backwards compatibility.
+          Please use list_db_var()")
+
+  list_db_var(db_folder = db_folder,
+              codebook_name = codebook_name,
+              required_only = FALSE)
+
+}

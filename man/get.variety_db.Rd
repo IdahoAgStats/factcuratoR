@@ -34,8 +34,8 @@ crop_types.
 }
 \seealso{
 Other access codebook functions: 
-\code{\link{list.db_var}()},
 \code{\link{list_db_books}()},
+\code{\link{list_db_var}()},
 \code{\link{readin_db}()}
 }
 \concept{access codebook functions}

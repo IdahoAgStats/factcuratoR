@@ -32,8 +32,8 @@ test_that("get.variety_db() returns the expect crops", {
   expect_equal(all(test2$test), TRUE)
 })
 
-test_that("list.db_var() correctly throws error", {
-  expect_error(list.db_var(controlled_vocab_folder, "loc"),
+test_that("list_db_var() correctly throws error", {
+  expect_error(list_db_var(controlled_vocab_folder, "loc"),
                "'codebook_name' doesn't match a codebook name")
 })
 

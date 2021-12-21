@@ -56,9 +56,9 @@ list_db_books <- function(db_folder){
 #' @inheritParams readin_db
 #' @param codebook_name A string denoting the book name
 #' Use list_db_books() to see options
-#' @export
 #' @family access codebook functions
-list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
+#' @export
+list_db_var <- function(db_folder, codebook_name, required_only = FALSE){
 
   db <- readin_db(db_folder)
 

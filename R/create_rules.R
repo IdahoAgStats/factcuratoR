@@ -17,7 +17,7 @@
 create.rules <- function(df_type, db_folder){
   db <- readin_db(db_folder)
 
-  rule_raw <- list.db_var(db_folder, df_type, required_only = FALSE)
+  rule_raw <- list_db_var(db_folder, df_type, required_only = FALSE)
 
   # For trial data, need to pull the codebooks for trial_data and traits
   if (df_type == "trial_data"){
