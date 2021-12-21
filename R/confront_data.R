@@ -39,6 +39,7 @@ confront_data <- function(df, df_type, db_folder){
 #' Return a message regarding the status of the validation
 #'
 #' @param output_confront An object that is returned by validate::confront()
+#' @keywords internal
 return_validate_message <- function(confront_summary){
 
   temp2 <- confront_summary %>%

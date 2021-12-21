@@ -27,6 +27,7 @@ readin.db <- function(db_folder){
 #'
 #' Note: See read_delim if need to escape backslashes
 #' @param db_folder A string path to the database controlled vocabulary folder
+#' @keywords internal
 readin_db_init <- function(db_folder){
   db_files <- list.files(db_folder, pattern = ".csv")
   db <- as.list(db_files) %>%

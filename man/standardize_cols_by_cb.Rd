@@ -24,8 +24,7 @@ Note: This option refers only to missing columns
 If optional columns exist in the df, these columns are retained.}
 
 \item{codebook_cols_only}{A logical denoting whether to remove any columns
-not specified by the codebook
-Relocate columns in a dataset based on their order in the codebook}
+not specified by the codebook}
 
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 }
@@ -34,3 +33,5 @@ Contains options to add missing columns or remove unnecessary columns
 The ordering follows the column order specified in the codebook
 Any extra columns will come after, in alphabetical order.
 }
+\concept{standardize to codebook functions
+Relocate columns in a dataset based on their order in the codebook}

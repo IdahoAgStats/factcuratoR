@@ -12,6 +12,7 @@
 #' If optional columns exist in the df, these columns are retained.
 #' @param codebook_cols_only A logical denoting whether to remove any columns
 #' not specified by the codebook
+#' @family standardize to codebook functions
 standardize_cols_by_cb <- function(df,
                                    codebook_name,
                                    add_missing_cols,

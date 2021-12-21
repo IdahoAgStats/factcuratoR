@@ -12,3 +12,4 @@ return_validate_message(confront_summary)
 \description{
 Return a message regarding the status of the validation
 }
+\keyword{internal}
