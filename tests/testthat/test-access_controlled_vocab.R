@@ -8,8 +8,8 @@ test_that("readin_db_init() reads in correct number of files",{
 
 })
 
-test_that("readin.db() reads in correct number of files",{
-  test <- readin.db(controlled_vocab_folder)
+test_that("readin_db() reads in correct number of files",{
+  test <- readin_db(controlled_vocab_folder)
   expect_equal(length(test), 11)
 })
 

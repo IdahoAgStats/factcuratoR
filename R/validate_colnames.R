@@ -3,11 +3,11 @@
 #' @param df A data.frame with column names to verify against the codebook
 #' @param codebook A string denoting the name of the codebook to check the column
 #' names against e.g. "trial_data", "trials_metadata"
-#' @inheritParams readin.db
+#' @inheritParams readin_db
 #' @export
 #' @family validation functions
 validate_colnames <- function(df, codebook_name, db_folder){
-  db <- readin.db(db_folder)
+  db <- readin_db(db_folder)
 
   cb <- list.db_var(db_folder, codebook_name, required_only = FALSE) %>%
     rename(colname = variable)

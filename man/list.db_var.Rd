@@ -19,6 +19,6 @@ List the variables (column names) in a given database codebook
 Other access codebook functions: 
 \code{\link{get.variety_db}()},
 \code{\link{list.db_books}()},
-\code{\link{readin.db}()}
+\code{\link{readin_db}()}
 }
 \concept{access codebook functions}

@@ -5,9 +5,10 @@
 #' @import tidyr
 #' @import readr
 #' @import purrr
-#' @export
 #' @family access codebook functions
-readin.db <- function(db_folder){
+#' @seealso \code{\link{readin.db}}
+#' @export
+readin_db <- function(db_folder){
 
   db <- readin_db_init(db_folder)
 
@@ -41,26 +42,26 @@ readin_db_init <- function(db_folder){
 
 #' List the names of the codebooks in the database
 #'
-#' @inheritParams readin.db
+#' @inheritParams readin_db
 #' @export
 #' @family access codebook functions
 list.db_books <- function(db_folder){
 
-  db <- readin.db(db_folder)
+  db <- readin_db(db_folder)
 
   db$codebooks_all_db.csv %>% select(book) %>% unique(.)
 }
 
 #' List the variables (column names) in a given database codebook
 #'
-#' @inheritParams readin.db
+#' @inheritParams readin_db
 #' @param codebook_name A string denoting the book name
 #' Use list.db_books() to see options
 #' @export
 #' @family access codebook functions
 list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 
-  db <- readin.db(db_folder)
+  db <- readin_db(db_folder)
 
   if (!codebook_name %in% list.db_books(db_folder)$book){
     stop("'codebook_name' doesn't match a codebook name")
@@ -89,7 +90,7 @@ list.db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #'
 #' Cultivar names are stored by crop_type, this function will return all the requested
 #' crop_types.
-#' @inheritParams readin.db
+#' @inheritParams readin_db
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.
 #' @param select_crops A regular expression of crop types separated by |

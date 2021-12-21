@@ -10,12 +10,12 @@
 #'
 #' @param df_type A string "trial_data" or "trials_metadata" denoting the type of validation
 #' rules to generate
-#' @inheritParams readin.db
+#' @inheritParams readin_db
 #' @importFrom validate validator
 #' @export
 #' @family validation functions
 create.rules <- function(df_type, db_folder){
-  db <- readin.db(db_folder)
+  db <- readin_db(db_folder)
 
   rule_raw <- list.db_var(db_folder, df_type, required_only = FALSE)
 
