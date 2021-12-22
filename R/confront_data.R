@@ -45,7 +45,7 @@ return_validate_message <- function(confront_summary){
   temp2 <- confront_summary %>%
     select(matches(c("fails", "nNA", "error", "warning"))) %>%
     mutate(across(.cols = where(is.numeric), function(x){ ifelse(x > 0, TRUE, FALSE)})) %>%
-    summarise(across(, .fns = sum))
+    summarise(across(everything(), .fns = sum))
 
   if (any(temp2[1,] > 0)){
     message("Warning: Some issues left to resolve \n",
