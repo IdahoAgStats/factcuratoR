@@ -28,7 +28,13 @@
     <loc>/reference/create_dm.html</loc>
   </url>
   <url>
+    <loc>/reference/create_rules.html</loc>
+  </url>
+  <url>
     <loc>/reference/get.variety_db.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_variety_db.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -41,6 +47,9 @@
   </url>
   <url>
     <loc>/reference/list_db_books.html</loc>
+  </url>
+  <url>
+    <loc>/reference/list_db_var.html</loc>
   </url>
   <url>
     <loc>/reference/readin.db.html</loc>
