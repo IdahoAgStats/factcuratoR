@@ -11,6 +11,17 @@ test_that("standardize_cols_by_cb() adds correct columns", {
   expect_equal(names(result), c("grower_cooperator", "type", "company", "a"))
 })
 
+test_that("standardize_cols_by_cb() adds correct columns", {
+  df <- data.frame(a = NA, company = NA)
+  result <- standardize_cols_by_cb(df, codebook_name = "grower_cooperator",
+                                   add_missing_cols = TRUE,
+                                   required_only = FALSE,
+                                   codebook_cols_only = FALSE,
+                                   db_folder = controlled_vocab_folder,
+                                   new_col_fill = NA)
+  expect_equal(unique(result$grower_cooperator), NA)
+})
+
 test_that("standardize_cols_by_cb() handles 'required_only' = TRUE", {
   df <- data.frame(company = NA, a = NA)
   result <- standardize_cols_by_cb(df, codebook_name = "grower_cooperator",

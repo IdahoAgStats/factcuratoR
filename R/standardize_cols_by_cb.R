@@ -12,13 +12,16 @@
 #' If optional columns exist in the df, these columns are retained.
 #' @param codebook_cols_only A logical denoting whether to remove any columns
 #' not specified by the codebook
+#' @param new_col_fill A value that will be used to fill newly created columns
 #' @family standardize to codebook functions
+#' @export
 standardize_cols_by_cb <- function(df,
                                    codebook_name,
                                    add_missing_cols,
                                    required_only,
                                    codebook_cols_only,
-                                   db_folder){
+                                   db_folder,
+                                   new_col_fill = ""){
 
 
   col_summary <- validate_colnames(df, codebook_name, db_folder) %>%
@@ -34,7 +37,7 @@ standardize_cols_by_cb <- function(df,
     col_add_names <- col_add$colname
 
     message("Adding columns: ", paste(col_add_names, collapse = ", "))
-    df[, col_add_names] <- ""
+    df[, col_add_names] <- new_col_fill
     df_names <- names(df)
   }
 
