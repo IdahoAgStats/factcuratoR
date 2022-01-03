@@ -56,7 +56,7 @@ standardize_cols_by_cb <- function(df,
 
   }
 
-  #' Relocate columns in a dataset based on their order in the codebook
+  # Relocate columns in a dataset based on their order in the codebook
   col_summary_ordered <- col_summary %>% arrange(col_num, colname)
   df <- df %>% select(any_of(col_summary_ordered$colname))
 
