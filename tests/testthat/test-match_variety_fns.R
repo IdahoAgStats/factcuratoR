@@ -1,6 +1,10 @@
 # Objects that are used in multiple tests
 var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
-var <- read_csv(here("tests", "test_example_files", "example_cultivar_matching.csv"))
+#var <- read_csv(here("tests", "test_example_files", "example_cultivar_matching.csv"))
+
+var <- testthat::test_path("test_example_files",
+                                               "example_cultivar_matching.csv")
+#library(magrittr)
 
 df1_mult_tests <- tibble(variety = c(var_names, var_names[2]),
                          intid = c("testvar001", "testvar2", "tv00002"),
@@ -43,7 +47,7 @@ test_that("create_intid generates anticipated ids, separating variety names", {
   ans <- tibble(variety = c(var_names, var_names[2]),
                 type = rep("variety", 3),
                     intid = c("testvar001", "testvar2", "tv00002"),
-                    var_id = c(1,2,2))
+                    var_id = c("1","2","2"))
 
   test <- create_intid(df1, variety, sep_aliases = "//|/|\\(")
   rownames(test)<- NULL
@@ -72,7 +76,7 @@ test_that("create_intid returns supplemental columns", {
                 supp = c("a", "b", "b"),
                 type = rep("variety", 3),
                 intid = c("testvar001", "testvar2", "tv00002"),
-                var_id = c(1,2,2))
+                var_id = c("1","2","2"))
 
   test <- create_intid(df1, variety, sep_aliases = "//|/|\\(", supp)
   rownames(test)<- NULL
