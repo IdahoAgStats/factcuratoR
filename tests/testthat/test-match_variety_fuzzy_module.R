@@ -1,17 +1,15 @@
-source(here::here("R", "dependencies.R"))
-
 df <- data.frame(a = c("a1000", "b000002", "c0101", "d"))
 
 test_that("extract_trail_digits() correctly removes digits", {
   test <- extract_trail_digits(df, a, FALSE)
-  ans <- df %>% mutate(a_traildigits = c("1000", "2", "101", NA)) %>% 
+  ans <- df %>% mutate(a_traildigits = c("1000", "2", "101", NA)) %>%
     select(a_traildigits)
   expect_equal(test, ans)
 })
 
 test_that("extract_trail_digits() correctly removes digits", {
   test <- extract_trail_digits(df, a, TRUE)
-  ans <- df %>% mutate(a_traildigits = c("1000", NA, "101", NA)) %>% 
+  ans <- df %>% mutate(a_traildigits = c("1000", NA, "101", NA)) %>%
     select(a_traildigits)
   expect_equal(test, ans)
 })
