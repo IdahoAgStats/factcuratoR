@@ -1,4 +1,6 @@
 test_that("do_exactmatch() returns the correct groups",{
+  var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
+
   df1 <- tibble(variety = c(var_names, var_names[2]),
                 intid = c("testvar001", "testvar2", "tv00002"),
                 var_id = c(1,2,2))
