@@ -1,0 +1,144 @@
+---
+title: "Example for the Cultivar Matching Process"
+output:
+  minidown::mini_document:
+    code_folding:
+      source: hide
+    results_folding: hide #show, hide or none
+    framework: water
+    theme: light
+    toc: true
+    toc_float: true
+    toc_highlight: true
+    
+---
+
+```{r setup, eval = FALSE, include = FALSE}
+rmarkdown::render(
+  here::here("tests", 
+    "example_cultivar_matching", 
+    "raw",
+     "example_cultivar_matching.Rmd"), 
+  output_dir = here::here("tests",
+                          "example_cultivar_matching",
+                          "raw",
+                          "output"))
+```
+```{r, include = FALSE}
+library(here)
+knitroutputfolder = here("tests", "example_cultivar_matching", "raw", "output")
+source(here("R", "dependencies.R"))
+auxiliary_files <- here("tests", 
+                        "example_cultivar_matching",
+                        "raw",
+                        "auxiliary_files")
+```
+
+# Read in raw variety names
+```{r, results = 'asis', results.folding = 'show'}
+var <- 
+  read_csv(here("tests", 
+                "test_example_files", 
+                "example_cultivar_matching.csv"), 
+            col_types = cols())
+
+kable(var)
+```
+# Cultivar matching 
+## Create unique internal id for names
+Note!: Once the fuzzymatching stage is started, it is important that the 
+var_id doesn't change other it will cause problems with matching up matches
+with the correct names
+```{r, results = 'asis', results.folding = 'show'}
+names_raw <- 
+  create_intid(var, 
+               variety, 
+               sep_aliases = "\\(", 
+               crop_type, 
+               nursery) %>% mutate(var_id = as.character(var_id))#, 
+               #alias_col = alias)
+
+kable(names_raw)
+```
+## Do exact match
+```{r, results = 'asis', results.folding = 'show'}
+results_exactmatch <- 
+  do_exactmatch(data_intid = names_raw,
+                select_before = "2021-11-22",
+                match_type = "raw")
+
+
+
+
+results_rename <- 
+  do_exactmatch(data_intid = results_exactmatch$nomatch, 
+                                match_type = "raw", 
+                                rename_df = TRUE)
+
+kable(results_rename[["match"]])
+kable(results_rename[["nomatch"]])
+```
+## Do fuzzymatch
+The fuzzy matching procedure returns the best fuzzymatches from
+stringdist_join using two methods ("lv" and "jw").  
+The results are filtered for these conditions:
+- crop_type must match (e.g. wheat vs. barley)
+- numbers at the end of a variety name must be an exact match
+
+### Output file to manually match
+Fill the is_truematch column with TRUE if fuzzymatch is a true match, otherwise fill with FALSE
+```{r, results = 'asis', results.folding = 'show'}
+output_fuzzymatch <- 
+  find_fuzzymatch(results_rename$nomatch ,
+                intid_col = "intid",
+                select_before = "2021-05-26",
+                knitroutputfolder = knitroutputfolder)
+
+
+kable(output_fuzzymatch)
+```
+### Process manual matches
+Read in manual check and output names with no match
+Return aliases (same var_id) that had matches in the previous steps.
+These aliases were not in the original database and should be added.
+If no match or aliases, then generate new cultivar entries for the database.
+Write out the new names to be standardized/ checked by collaborators
+```{r, results = 'asis', results.folding = 'show'}
+fuzzy_status <- 
+  read_csv(
+    here(here(auxiliary_files), "fuzzymatch_status.csv")) %>%
+  mutate(var_id = as.character(var_id))
+
+
+results_fuzzymatch <- 
+  process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, 
+                     aux_fuzzy_status = fuzzy_status)
+
+# Go through and standardize the names in standardize_new_names_aux.csv
+# If any names are found to already be in the database, then manually
+# add them to the controlled_vocab/cv_rename.csv file
+# This occurs when the name is not found by fuzzymatching
+results_new_names <- 
+  process_std_new_names(
+    output_nomatch_df = results_fuzzymatch[["nomatch"]], 
+    auxiliary_files = auxiliary_files,  
+    filename = "standardize_new_names_aux.csv")
+
+```
+
+# Collect all the matches from each step
+Once the names from the process_std_new_names() step have been added to
+the cv_rename file, then they should match in the cv_rename step
+```{r, results.folding = NULL, results = 'asis'}
+names_matches <- collect_final_matches(list(exact = results_exactmatch,
+                                            rename = results_rename,
+                                 fuzzy = results_fuzzymatch), names_raw)
+
+kable(names_matches)
+
+```
+# Bind matches with the data
+```{r, eval = FALSE}
+# pseudocode
+# data_cv_names <- left_join(data, names_matches, by = "variety)
+```
