@@ -3,7 +3,11 @@ test_that("do_exactmatch() returns the correct groups",{
                 intid = c("testvar001", "testvar2", "tv00002"),
                 var_id = c(1,2,2))
 
-  result <- do_exactmatch(df1)
+  result <-
+    do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      df1
+    )
 
   ans1 <- tibble(variety = c(var_names, var_names[2]),
                  intid = c("testvar001", "testvar2", "tv00002"),
