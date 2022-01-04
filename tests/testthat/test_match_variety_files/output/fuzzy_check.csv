@@ -1,0 +1,2 @@
+"is_truematch","intid","intid_db","variety","variety_db","var_id","db_id","type","type_db","crop_db","crop_type","crop_type_db","date_added_db","method","nursery","variety_original","n","source","any_match"
+NA,"02w0076w","02w50076w","02W0076W","02W50076W","10","396","variety","alias","Hard White Spring Wheat","wheat","wheat","2020/06/08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","H_S","02W0076W","1","new_fuzzymatch; csv",NA
