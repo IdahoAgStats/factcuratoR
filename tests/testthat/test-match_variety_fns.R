@@ -2,7 +2,7 @@
 library(magrittr)
 var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
 
-var <- read_csv(testthat::test_path("test_match_variety_fns_files",
+var <- read_csv(testthat::test_path("test_match_variety_files",
                                                "example_cultivar_matching.csv"))
 
 df1_mult_tests <- tibble(variety = c(var_names, var_names[2]),
@@ -76,7 +76,7 @@ test_that("create_intid() returns supplemental columns", {
 })
 
 test_that("create_intid() creates the correct number of entries", {
-  test_file <- testthat::test_path("test_match_variety_fns_files",
+  test_file <- testthat::test_path("test_match_variety_files",
                                    "example_cultivar_matching_db.csv")
   var <- read_csv(test_file, col_types = cols())
 
