@@ -2,14 +2,7 @@
 % Please edit documentation in R/match_variety_process_fuzzy_module.R
 \name{process_fuzzymatch}
 \alias{process_fuzzymatch}
-\title{Module to process fuzzymatches given an auxiliary file
-This function writes out:
-\itemize{
-\item fuzzy_check.csv (A file of fuzzy matches to manually check)
-\item add_fuzzy_to_cv_rename.csv (A file to paste into the main cv_rename.csv)
-\item standardize_new_names.csv (A file of names to standardize for
-adding to the database.)
-}}
+\title{Module to process fuzzymatches given an auxiliary file}
 \usage{
 process_fuzzymatch(output_fuzzymatch_df, aux_fuzzy_status, knitroutputfolder)
 }
@@ -21,12 +14,30 @@ process_fuzzymatch(output_fuzzymatch_df, aux_fuzzy_status, knitroutputfolder)
 \item{knitroutputfolder}{A path to send output}
 }
 \description{
-Module to process fuzzymatches given an auxiliary file
 This function writes out:
 \itemize{
 \item fuzzy_check.csv (A file of fuzzy matches to manually check)
-\item add_fuzzy_to_cv_rename.csv (A file to paste into the main cv_rename.csv)
+!Note: Rows for which the source column is only "new_fuzzymatch" must be
+manually pasted into the aux_fuzzy_status file
+Source column containing "csv" denotes that the possible fuzzymatch in
+the aux_fuzzy_status file is blank (or not TRUE or FALSE)
+}
+}
+\details{
+\itemize{
+\item add_fuzzy_to_cv_rename.csv (A file to paste into the main
+controlled_vocab/cv_rename.csv)
+These are names for which is_truematch = TRUE and these names
+should be manually added to controlled_vocab/cv_rename.csv file so they are
+caught using do_exactmatch()
 \item standardize_new_names.csv (A file of names to standardize for
 adding to the database.)
 }
 }
+\seealso{
+Other match variety modules: 
+\code{\link{do_exactmatch}()},
+\code{\link{find_fuzzymatch}()},
+\code{\link{process_std_new_names}()}
+}
+\concept{match variety modules}

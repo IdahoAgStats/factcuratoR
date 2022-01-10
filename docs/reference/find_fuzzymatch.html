@@ -77,7 +77,8 @@ increase and not to a cultivar name)</p>
   <span class="va">intid_col</span>,
   select_before <span class="op">=</span> <span class="st">"2021-01-01"</span>,
   select_crops <span class="op">=</span> <span class="cn">NULL</span>,
-  knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>
+  knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,
+  <span class="va">db_folder</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -96,7 +97,16 @@ used to join the raw data and database</p></dd>
 cultivars that were added to the datebase before this specified date.</p></dd>
 <dt>select_crops</dt>
 <dd><p>A regular expression of crop types separated by |</p></dd>
+<dt>db_folder</dt>
+<dd><p>A string path to the database controlled vocabulary folder</p></dd>
 </dl></div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Other match variety modules: 
+<code><a href="do_exactmatch.html">do_exactmatch</a>()</code>,
+<code><a href="process_fuzzymatch.html">process_fuzzymatch</a>()</code>,
+<code><a href="process_std_new_names.html">process_std_new_names</a>()</code></p></div>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

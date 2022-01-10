@@ -4,7 +4,13 @@
 \alias{process_std_new_names}
 \title{Process standardized new names that were created from process_fuzzymatch()}
 \usage{
-process_std_new_names(output_nomatch_df, auxiliary_files, filename)
+process_std_new_names(
+  output_nomatch_df,
+  auxiliary_files,
+  filename,
+  knitroutputfolder,
+  db_folder
+)
 }
 \arguments{
 \item{output_nomatch_df}{The 'nomatch' data.frame created from process_fuzzymatch}
@@ -25,3 +31,10 @@ but it processes the standardized new names in a way that is unnecessary (finds 
 Also, this function allows for iterations through the matching process.
 }
 }
+\seealso{
+Other match variety modules: 
+\code{\link{do_exactmatch}()},
+\code{\link{find_fuzzymatch}()},
+\code{\link{process_fuzzymatch}()}
+}
+\concept{match variety modules}

@@ -30,11 +30,22 @@ the var_id and is only looking for one match per var_id.  The method "db"
 groups by the intid and is looking to match every entry provided.}
 
 \item{rename_df}{A logical denoting whether to check the rename (misspelling) file
-Otherwise, the matches are pulled from the database list}
+Otherwise, the matches are pulled from the database list
+\itemize{
+\item Currently, all the programs renames are kept in one file, but may want to
+consider putting the renames into different files that are collected together
+See get_cultivar_rename()
+}}
 
 \item{data_suffix}{A character suffix to be appended to the columns related to the original data}
 }
 \description{
 Do the steps in the exact match
+}
+\seealso{
+Other match variety modules: 
+\code{\link{find_fuzzymatch}()},
+\code{\link{process_fuzzymatch}()},
+\code{\link{process_std_new_names}()}
 }
 \concept{match variety modules}

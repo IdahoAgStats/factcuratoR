@@ -80,7 +80,13 @@ Also, this function allows for iterations through the matching process.</p></li>
 </ol></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">process_std_new_names</span><span class="op">(</span><span class="va">output_nomatch_df</span>, <span class="va">auxiliary_files</span>, <span class="va">filename</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">process_std_new_names</span><span class="op">(</span>
+  <span class="va">output_nomatch_df</span>,
+  <span class="va">auxiliary_files</span>,
+  <span class="va">filename</span>,
+  <span class="va">knitroutputfolder</span>,
+  <span class="va">db_folder</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -88,6 +94,13 @@ Also, this function allows for iterations through the matching process.</p></li>
     <dl><dt>output_nomatch_df</dt>
 <dd><p>The 'nomatch' data.frame created from process_fuzzymatch</p></dd>
 </dl></div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Other match variety modules: 
+<code><a href="do_exactmatch.html">do_exactmatch</a>()</code>,
+<code><a href="find_fuzzymatch.html">find_fuzzymatch</a>()</code>,
+<code><a href="process_fuzzymatch.html">process_fuzzymatch</a>()</code></p></div>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -10,7 +10,8 @@ find_fuzzymatch(
   intid_col,
   select_before = "2021-01-01",
   select_crops = NULL,
-  knitroutputfolder = knitroutputfolder
+  knitroutputfolder = knitroutputfolder,
+  db_folder
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ used to join the raw data and database}
 cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crop types separated by |}
+
+\item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \description{
 Note: This function returns the fuzzymatches from stringdist.variety()
@@ -37,3 +40,10 @@ Because of this condition, must be careful when generating var_id from the raw n
 to remove any trailing digits that have no meaning (e.g. +25\% refers to seed
 increase and not to a cultivar name)
 }
+\seealso{
+Other match variety modules: 
+\code{\link{do_exactmatch}()},
+\code{\link{process_fuzzymatch}()},
+\code{\link{process_std_new_names}()}
+}
+\concept{match variety modules}

@@ -104,7 +104,8 @@ create_new_db_entries <- function(auxiliary_files, filename, matches_temp_list, 
 #' but it processes the standardized new names in a way that is unnecessary (finds aliases).
 #' Also, this function allows for iterations through the matching process.
 #' @param output_nomatch_df The 'nomatch' data.frame created from process_fuzzymatch
-#'
+#' @family match variety modules
+#' @export
 process_std_new_names <- function(output_nomatch_df,
                                   auxiliary_files,
                                   filename,

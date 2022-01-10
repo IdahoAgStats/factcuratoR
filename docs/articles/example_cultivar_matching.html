@@ -375,7 +375,8 @@
 <div class="section level2">
 <h2 id="do-exact-match">Do exact match<a class="anchor" aria-label="anchor" href="#do-exact-match"></a>
 </h2>
-<p>The first step is to exact match to the cultivar names in the codebooks The second step is to exact match to the names in the</p>
+<p>The first step is to exact match to the cultivar names in the codebooks</p>
+<p>The second step is to exact match to the names in the cv_rename.csv</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results_exactmatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/do_exactmatch.html">do_exactmatch</a></span><span class="op">(</span>db_folder <span class="op">=</span> <span class="va">codebook_folder</span>,
@@ -547,54 +548,422 @@
 <div class="section level2">
 <h2 id="do-fuzzymatch">Do fuzzymatch<a class="anchor" aria-label="anchor" href="#do-fuzzymatch"></a>
 </h2>
-<p>The fuzzy matching procedure returns the best fuzzymatches from stringdist_join using two methods (“lv” and “jw”).<br>
-The results are filtered for these conditions: - crop_type must match (e.g. wheat vs. barley) - numbers at the end of a variety name must be an exact match</p>
-<div class="section level3">
-<h3 id="output-file-to-manually-match">Output file to manually match<a class="anchor" aria-label="anchor" href="#output-file-to-manually-match"></a>
-</h3>
-<p>Fill the is_truematch column with TRUE if fuzzymatch is a true match, otherwise fill with FALSE</p>
+<p>The fuzzy matching procedure returns the best fuzzymatches from stringdist_join using several methods (e.g. “lv”, “jw”, “lcs”). See ?stringdist for more information about distance metrics.</p>
+<p>The results are filtered for these conditions:</p>
+<ul>
+<li><p>crop_type must match (e.g. wheat vs. barley)</p></li>
+<li><p>numbers at the end of a variety name must be an exact match (only if there is greater than 1 digit, e.g. The trailing “1” in “name1” would not need to match)</p></li>
+</ul>
+<p>The results of find_fuzzymatch() are written to fuzzymatch.csv in the directory provided by the user (via the knitroutputfolder argument)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">output_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/find_fuzzymatch.html">find_fuzzymatch</a></span><span class="op">(</span><span class="va">results_rename</span><span class="op">$</span><span class="va">nomatch</span> ,
                 intid_col <span class="op">=</span> <span class="st">"intid"</span>,
                 select_before <span class="op">=</span> <span class="st">"2021-05-26"</span>,
-                knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span><span class="op">)</span>
+                knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,
+                db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span>
+<span class="co">#&gt; This function name is being retained for backwards compatibility.</span>
+<span class="co">#&gt;           Please use get_variety_db()</span>
+<span class="co">#&gt; Writing out fuzzymatch.csv</span>
 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">output_fuzzymatch</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="4%">
+<col width="4%">
+<col width="6%">
+<col width="11%">
+<col width="6%">
+<col width="2%">
+<col width="2%">
+<col width="3%">
+<col width="3%">
+<col width="9%">
+<col width="3%">
+<col width="4%">
+<col width="5%">
+<col width="23%">
+<col width="3%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">is_truematch</th>
+<th align="left">intid</th>
+<th align="left">intid_db</th>
+<th align="left">variety</th>
+<th align="left">variety_db</th>
+<th align="left">var_id</th>
+<th align="right">db_id</th>
+<th align="left">type</th>
+<th align="left">type_db</th>
+<th align="left">crop_db</th>
+<th align="left">crop_type</th>
+<th align="left">crop_type_db</th>
+<th align="left">date_added_db</th>
+<th align="left">method</th>
+<th align="left">nursery</th>
+<th align="left">wrong_name</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">wa008123</td>
+<td align="left">wa8123</td>
+<td align="left">WA008123</td>
+<td align="left">WA8123</td>
+<td align="left">11</td>
+<td align="right">495</td>
+<td align="left">variety</td>
+<td align="left">alias</td>
+<td align="left">Hard White Spring Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">wildfir</td>
+<td align="left">aacwildfire</td>
+<td align="left">wildfir</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">14</td>
+<td align="right">437</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled</td>
+<td align="left">HRW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101018</td>
+<td align="left">New 101</td>
+<td align="left">LWW10-1018</td>
+<td align="left">6</td>
+<td align="right">584</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
+<td align="left">S_W</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101073</td>
+<td align="left">New 101</td>
+<td align="left">LWW10-1073</td>
+<td align="left">6</td>
+<td align="right">585</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
+<td align="left">S_W</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">xa1101</td>
+<td align="left">New 101</td>
+<td align="left">XA1101</td>
+<td align="left">6</td>
+<td align="right">757</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">lv dist;lv dist_scaled</td>
+<td align="left">S_W</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">aliasname101</td>
+<td align="left">lcsaymeric</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">LCS Aymeric</td>
+<td align="left">7</td>
+<td align="right">795</td>
+<td align="left">alias</td>
+<td align="left">variety</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2021-04-30</td>
+<td align="left">lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">newname101</td>
+<td align="left">beamer</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">Beamer</td>
+<td align="left">7</td>
+<td align="right">462</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">newname101</td>
+<td align="left">xa1101</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">XA1101</td>
+<td align="left">7</td>
+<td align="right">757</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">newname201</td>
+<td align="left">beamer</td>
+<td align="left">new name 201</td>
+<td align="left">Beamer</td>
+<td align="left">8</td>
+<td align="right">462</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">newname201</td>
+<td align="left">syclearstone2cl</td>
+<td align="left">new name 201</td>
+<td align="left">SY Clearstone 2CL</td>
+<td align="left">8</td>
+<td align="right">660</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist_scaled</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101018</td>
+<td align="left">new101</td>
+<td align="left">LWW10-1018</td>
+<td align="left">9</td>
+<td align="right">584</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101073</td>
+<td align="left">new101</td>
+<td align="left">LWW10-1073</td>
+<td align="left">9</td>
+<td align="right">585</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">xa1101</td>
+<td align="left">new101</td>
+<td align="left">XA1101</td>
+<td align="left">9</td>
+<td align="right">757</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">lv dist;lv dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">FALSE</td>
+<td align="left">name201</td>
+<td align="left">NA</td>
+<td align="left">Name 201</td>
+<td align="left">NA</td>
+<td align="left">5</td>
+<td align="right">NA</td>
+<td align="left">variety</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section level3">
-<h3 id="process-manual-matches">Process manual matches<a class="anchor" aria-label="anchor" href="#process-manual-matches"></a>
-</h3>
-<p>Read in manual check and output names with no match Return aliases (same var_id) that had matches in the previous steps. These aliases were not in the original database and should be added. If no match or aliases, then generate new cultivar entries for the database. Write out the new names to be standardized/ checked by collaborators</p>
+<div class="section level2">
+<h2 id="fill-out-the-fuzzymatch-csv">Fill out the fuzzymatch.csv<a class="anchor" aria-label="anchor" href="#fill-out-the-fuzzymatch-csv"></a>
+</h2>
+<p>Move the fuzzymatch.csv to auxiliary_files and fill out the is_truematch column. Fill the is_truematch column with TRUE if fuzzymatch is a true match, otherwise fill with FALSE.</p>
+<p>Sometimes the match may be clear, however, many names will need to be checked.</p>
+<ul>
+<li><p>First, start off with a Google search to determine if there are clear usages of both names (name in the raw data and name in the database). This would suggest that the names refer to different varieties and is_truematch = FALSE.</p></li>
+<li><p>If a Google search doesn’t help clarify whether the name is a true match, check the possible matches with our collaborators.</p></li>
+<li><p>Curator can leave is_truematch blank as the subsequent steps will remind the curator to follow up on these possible matches.</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="process-fuzzymatch-csv-manual-matches">Process fuzzymatch.csv manual matches<a class="anchor" aria-label="anchor" href="#process-fuzzymatch-csv-manual-matches"></a>
+</h2>
+<p>Read in the fuzzymatch.csv that has been manually check Process the file using process_fuzzymatch(), which will write out 3 files containing:</p>
+<ul>
+<li>names that still need to be checked</li>
+<li>names for which is_truematch = TRUE and should be added to cv_rename.csv</li>
+<li>names that have no match and should be standardized to add to the database</li>
+</ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fuzzy_status</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span>
-    <span class="fu">here</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="va">auxiliary_files</span><span class="op">)</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span><span> </span><span style="font-weight: bold;">Column specification</span><span> </span><span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   is_truematch = <span style="color: #BBBB00;">col_logical()</span><span>,</span></span>
+<span class="co">#&gt;   intid = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   intid_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   var_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   db_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   date_added_db = <span style="color: #0000BB;">col_date(format = "")</span><span>,</span></span>
+<span class="co">#&gt;   method = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   nursery = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   wrong_name = <span style="color: #BBBB00;">col_logical()</span></span>
+<span class="co">#&gt; )</span>
 
 
 <span class="va">results_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_fuzzymatch.html">process_fuzzymatch</a></span><span class="op">(</span>output_fuzzymatch_df <span class="op">=</span> <span class="va">output_fuzzymatch</span>, 
-                     aux_fuzzy_status <span class="op">=</span> <span class="va">fuzzy_status</span><span class="op">)</span>
-
-<span class="co"># Go through and standardize the names in standardize_new_names_aux.csv</span>
-<span class="co"># If any names are found to already be in the database, then manually</span>
-<span class="co"># add them to the controlled_vocab/cv_rename.csv file</span>
-<span class="co"># This occurs when the name is not found by fuzzymatching</span>
-<span class="va">results_new_names</span> <span class="op">&lt;-</span> 
+                     aux_fuzzy_status <span class="op">=</span> <span class="va">fuzzy_status</span>,
+                     knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span><span class="op">)</span>
+<span class="co">#&gt; Varieties left to check: 0</span>
+<span class="co">#&gt; Writing out fuzzy_check.csv.  Check these fuzzymatches.</span>
+<span class="co">#&gt;             Add source = new_fuzzymatches to the aux_fuzzy_status file.</span>
+<span class="co">#&gt; Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv</span>
+<span class="co">#&gt; Writing standardize_new_names.csv.</span>
+<span class="co">#&gt;           If a cultivar has more than one spelling or formatting,</span>
+<span class="co">#&gt;           standardize the name in the new_std_name column</span>
+<span class="co">#&gt; match: 2 nomatch: 5 check: 0 not_needed: 0</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="standardize-names-without-a-match">Standardize names without a match<a class="anchor" aria-label="anchor" href="#standardize-names-without-a-match"></a>
+</h2>
+<ul>
+<li>Move standardize_new_names.csv to auxiliary_files (append with ending e.g. "_aux")</li>
+<li>Go through and standardize the names in standardize_new_names_aux.csv by editing the column new_std_name. process_fuzzymatch() makes a first guess by pulling the variety name for the new_std_name. new_std_name can be changed.</li>
+</ul>
+<p>It is especially important that if there are different spellings of the same variety, the name is standardized in this file. e.g. If WA0061 and WA61 are the same variety, the new_std_name should be the same for both entries.</p>
+<p>Note: If any names are found to already be in the database, then manually add them to the controlled_vocab/cv_rename.csv file This occurs when the name is not found by fuzzymatching</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results_new_names</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_std_new_names.html">process_std_new_names</a></span><span class="op">(</span>
     output_nomatch_df <span class="op">=</span> <span class="va">results_fuzzymatch</span><span class="op">[[</span><span class="st">"nomatch"</span><span class="op">]</span><span class="op">]</span>, 
     auxiliary_files <span class="op">=</span> <span class="va">auxiliary_files</span>,  
-    filename <span class="op">=</span> <span class="st">"standardize_new_names_aux.csv"</span><span class="op">)</span></code></pre></div>
-</div>
+    filename <span class="op">=</span> <span class="st">"standardize_new_names_aux.csv"</span>,
+    knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,
+    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span>
+<span class="co">#&gt; Joining, by = c("var_id", "variety", "intid", "type", "crop_type")</span>
+<span class="co">#&gt; Writing add_to_cv_rename.csv  Add these names to the main cv_rename.csv</span>
+<span class="co">#&gt; Joining, by = "comment"</span>
+<span class="co">#&gt; Status: </span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 4</span></span>
+<span class="co">#&gt;   comment                               n required   req</span>
+<span class="co">#&gt;   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                             </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> exists in both data and codebook      1 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> not present in codebook: cultivar    10 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span><span> not present in data                  10 TRUE         2</span></span>
+<span class="co">#&gt; Adding columns: alias, pedigree, year_released, usage, usda_pi_number, pvp, patent, comments, crop, date_added</span>
+<span class="co">#&gt; Writing add_to_db.csv.  Add these entries to the database.</span>
+<span class="co">#&gt;             May need to manually fill in extra information such as crop or alias</span></code></pre></div>
+<p>If the fuzzy_status file is updated (is_truematch is filled in), re-run the entire process (in a clean session) and process_fuzzymatch() and process_std_new_names() will update. The goal is:</p>
+<ol style="list-style-type: decimal">
+<li>get fuzzy_check.csv to be blank</li>
+<li>get all of the add_to_*.csv files to be blank.</li>
+</ol>
+<p>When this has been completed, all of the variety names should be matched and all the necessary information has been moved into the controlled vocabularies.</p>
 </div>
 </div>
 <div class="section level1">
 <h1 id="collect-all-the-matches-from-each-step">Collect all the matches from each step<a class="anchor" aria-label="anchor" href="#collect-all-the-matches-from-each-step"></a>
 </h1>
 <p>Once the names from the process_std_new_names() step have been added to the cv_rename file, then they should match in the cv_rename step</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_final_matches.html">collect_final_matches</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="va">results_exactmatch</span>,
                                             rename <span class="op">=</span> <span class="va">results_rename</span>,
                                  fuzzy <span class="op">=</span> <span class="va">results_fuzzymatch</span><span class="op">)</span>, <span class="va">names_raw</span><span class="op">)</span>
@@ -604,7 +973,7 @@ The results are filtered for these conditions: - crop_type must match (e.g. whe
 <div class="section level1">
 <h1 id="bind-matches-with-the-data">Bind matches with the data<a class="anchor" aria-label="anchor" href="#bind-matches-with-the-data"></a>
 </h1>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># pseudocode</span>
 <span class="co"># data_cv_names &lt;- left_join(data, names_matches, by = "variety)</span></code></pre></div>
 </div>
