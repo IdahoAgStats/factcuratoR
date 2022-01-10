@@ -11,6 +11,9 @@
 #' @inheritParams get_variety_db
 #' @param rename_df A logical denoting whether to check the rename (misspelling) file
 #' Otherwise, the matches are pulled from the database list
+#' * Currently, all the programs renames are kept in one file, but may want to
+#' consider putting the renames into different files that are collected together
+#' See get_cultivar_rename()
 #' @family match variety modules
 #' @export
 do_exactmatch <- function(db_folder,

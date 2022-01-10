@@ -1,26 +1,42 @@
 #' Module to process fuzzymatches given an auxiliary file
+#'
 #' This function writes out:
 #' - fuzzy_check.csv (A file of fuzzy matches to manually check)
-#' - add_fuzzy_to_cv_rename.csv (A file to paste into the main cv_rename.csv)
+#' !Note: Rows for which the source column is only "new_fuzzymatch" must be
+#'  manually pasted into the aux_fuzzy_status file
+#'  Source column containing "csv" denotes that the possible fuzzymatch in
+#'  the aux_fuzzy_status file is blank (or not TRUE or FALSE)
+#'
+#' - add_fuzzy_to_cv_rename.csv (A file to paste into the main
+#' controlled_vocab/cv_rename.csv)
+#' These are names for which is_truematch = TRUE and these names
+#' should be manually added to controlled_vocab/cv_rename.csv file so they are
+#' caught using do_exactmatch()
+#'
 #' - standardize_new_names.csv (A file of names to standardize for
 #' adding to the database.)
 #'
 #' @inheritParams bind_fuzzymatches
 #' @param knitroutputfolder A path to send output
+#' @family match variety modules
+#' @export
 process_fuzzymatch <- function(output_fuzzymatch_df,
                                aux_fuzzy_status,
                                knitroutputfolder){
 
   is_same_var_id <- assure_var_id(output_fuzzymatch_df, aux_fuzzy_status)
   if (is_same_var_id == FALSE){
-    warning("var_id has changed between the two inputs.  Setting aux_fuzzy_status
-            var_id to NA")
+    warning("var_id has changed between the two inputs.
+            Setting aux_fuzzy_status var_id to NA")
     aux_fuzzy_status <- aux_fuzzy_status %>% mutate(var_id = NA)
   }
 
   # Bind the fuzzy_status with the newly generated fuzzymatches
-  # This step means that in this case, the fuzzy_status file does not need to be filled out again
-  # Warning: if intid numbers change, this will cause problems
+  # e.g. if there have been updates to the database codebook or to the
+  # fuzzymatching functions, then new matches may arise in the fuzzymatching stage
+  # This step means that in this case, the new fuzzy_status file does not need
+  # to be filled out from scratch
+  # Warning: if intid numbers (var_id?) change, this will cause problems
   # However, cultivar names may be removed after creating intid after the fuzzy_status file is filled in
   # Note: Can modify to allow is.na(var_id) to pass, if want to be able to add new cultivars at this stage of the matching
   fuzzy_status <-
@@ -87,8 +103,13 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
 
   names_nomatch <- create_names_nomatch(no_match1)
 
-  write.csv(names_nomatch, paste0(knitroutputfolder, "/","standardize_new_names.csv"), row.names = FALSE)
-  message("Writing standardize_new_names.csv.  If a cultivar has more than one spelling or formatting, standardize the name in the new_std_name column")
+  write.csv(names_nomatch,
+            paste0(knitroutputfolder, "/","standardize_new_names.csv"),
+            row.names = FALSE)
+
+  message("Writing standardize_new_names.csv.
+          If a cultivar has more than one spelling or formatting,
+          standardize the name in the new_std_name column")
 
 
   message(paste(c("match:", " nomatch:", " check:", " not_needed:"),
@@ -118,8 +139,6 @@ assure_var_id <- function(output_fuzzymatch_df, aux_fuzzy_status){
     return(is_same_var_id)
 
 }
-
-
 
 ######
 #' Module to process fuzzymatches given an auxiliary file
