@@ -1,3 +1,29 @@
+knitroutputfolder <- testthat::test_path("test_match_variety_files",
+                                         "output")
+
+controlled_vocab_folder <- testthat::test_path("test_controlled_vocab")
+
+test_that("find_fuzzymatch() returns output", {
+
+  df1 <- tibble(variety = c("test1", "bruehlw"),
+                intid = c("test1", "bruehlw"),
+                crop_type = c("wheat", "wheat"),
+                var_id = c(1,2),
+                type = rep("variety", 2))
+
+  output_fuzzymatch <-
+    find_fuzzymatch(df1,
+                    "test_data",
+                    intid_col = "intid",
+                    select_before = "2021-05-26",
+                    knitroutputfolder = knitroutputfolder,
+                    db_folder = controlled_vocab_folder)
+
+  expect_s3_class(output_fuzzymatch, "data.frame")
+})
+
+
+
 df <- data.frame(a = c("a1000", "b000002", "c0101", "d"))
 
 test_that("extract_trail_digits() correctly removes digits", {
