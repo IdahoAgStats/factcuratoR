@@ -26,14 +26,11 @@ test_that("process_fuzzymatch() returns the correct matches", {
 test_that("process_fuzzymatch() detects when var_ids don't match", {
 
   test_aux$var_id[1] <- 0
-
-
   expect_warning(
     process_fuzzymatch(output_fuzzymatch_df = test_output_fuzzymatch,
                        aux_fuzzy_status = test_aux,
                        knitroutputfolder = knitroutputfolder),
-    "var_id has changed between the two inputs.  Setting aux_fuzzy_status
-            var_id to NA")
+    "var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to NA")
 })
 
 

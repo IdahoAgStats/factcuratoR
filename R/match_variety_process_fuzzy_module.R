@@ -26,8 +26,7 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
 
   is_same_var_id <- assure_var_id(output_fuzzymatch_df, aux_fuzzy_status)
   if (is_same_var_id == FALSE){
-    warning("var_id has changed between the two inputs.
-            Setting aux_fuzzy_status var_id to NA")
+    warning("var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to NA")
     aux_fuzzy_status <- aux_fuzzy_status %>% mutate(var_id = NA)
   }
 
