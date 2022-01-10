@@ -65,7 +65,6 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
   results_fuzzymatch <-
     clean_manualfuzzy(match_type = "raw", df = fuzzy_status) # Unsure if match_type = "raw" matters
 
-  if (nrow(results_fuzzymatch[["check"]])>0){
 
     fuzzy_check <- results_fuzzymatch[["check"]] %>%
       relocate(is_truematch,intid, intid_db,
@@ -76,9 +75,9 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
 
     write.csv(fuzzy_check,
               paste(knitroutputfolder, "fuzzy_check.csv", sep = "/"), row.names = FALSE)
+
     message("Writing out fuzzy_check.csv.  Check these fuzzymatches.
             Add source = new_fuzzymatches to the aux_fuzzy_status file.")
-  }
 
 
   ## Create add_fuzzy_to_cv_rename.csv
