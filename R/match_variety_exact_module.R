@@ -11,6 +11,8 @@
 #' @inheritParams get_variety_db
 #' @param rename_df A logical denoting whether to check the rename (misspelling) file
 #' Otherwise, the matches are pulled from the database list
+#' @family match variety modules
+#' @export
 do_exactmatch <- function(db_folder,
                           data_intid,
                           select_before = "2021-01-01",

@@ -20,7 +20,8 @@ Depends:
     stringr,
     readr,
     tidyr,
-    lubridate
+    lubridate,
+    fuzzyjoin
 Suggests: 
     testthat (>= 3.0.0)
 Imports:

@@ -8,7 +8,7 @@
 #' @param variety_col_name A column name denoting the column containing varieties
 #' @param sep_aliases A regex corresponding to the characters that are used to separate variety aliases
 #' @param alias_col A column name denoting the column containing aliases
-#' @family variety matching functions
+#' @family match variety functions
 #' @export
 create_intid <- function(df, variety_col_name, sep_aliases = NULL,..., alias_col = NULL){
 

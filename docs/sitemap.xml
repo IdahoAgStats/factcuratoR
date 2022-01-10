@@ -7,6 +7,9 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/articles/example_cultivar_matching.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -19,6 +22,24 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/assure_var_id.html</loc>
+  </url>
+  <url>
+    <loc>/reference/bind_fuzzymatches.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check.anymatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check.matches.html</loc>
+  </url>
+  <url>
+    <loc>/reference/clean_manualfuzzy.html</loc>
+  </url>
+  <url>
+    <loc>/reference/collect_final_matches.html</loc>
+  </url>
+  <url>
     <loc>/reference/confront_data.html</loc>
   </url>
   <url>
@@ -28,16 +49,46 @@
     <loc>/reference/create_dm.html</loc>
   </url>
   <url>
+    <loc>/reference/create_intid.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_names_nomatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_new_db_entries.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_rules.html</loc>
   </url>
   <url>
+    <loc>/reference/deprecated_process_fuzzymatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/do_exactmatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/extract_trail_digits.html</loc>
+  </url>
+  <url>
+    <loc>/reference/find_entries_raw_names.html</loc>
+  </url>
+  <url>
+    <loc>/reference/find_fuzzymatch.html</loc>
+  </url>
+  <url>
     <loc>/reference/get.variety_db.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_cultivar_rename.html</loc>
   </url>
   <url>
     <loc>/reference/get_variety_db.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_string_overlap.html</loc>
   </url>
   <url>
     <loc>/reference/list.db_books.html</loc>
@@ -52,6 +103,15 @@
     <loc>/reference/list_db_var.html</loc>
   </url>
   <url>
+    <loc>/reference/match_newdb.html</loc>
+  </url>
+  <url>
+    <loc>/reference/process_fuzzymatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/process_std_new_names.html</loc>
+  </url>
+  <url>
     <loc>/reference/readin.db.html</loc>
   </url>
   <url>
@@ -61,10 +121,19 @@
     <loc>/reference/readin_db_init.html</loc>
   </url>
   <url>
+    <loc>/reference/return.matchgroups.html</loc>
+  </url>
+  <url>
     <loc>/reference/return_validate_message.html</loc>
   </url>
   <url>
+    <loc>/reference/rm.alias_dupmatch.html</loc>
+  </url>
+  <url>
     <loc>/reference/standardize_cols_by_cb.html</loc>
+  </url>
+  <url>
+    <loc>/reference/stringdist.variety.html</loc>
   </url>
   <url>
     <loc>/reference/validate_colnames.html</loc>

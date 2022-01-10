@@ -11,5 +11,11 @@ reference:
 - title: Data model (dm) functions
   contents:
   - has_concept("data model functions")
+- title: Match variety modules
+  contents:
+  - has_concept("match variety modules")
+- title: Match variety functions
+  contents:
+  - has_concept("match variety functions")
 
 

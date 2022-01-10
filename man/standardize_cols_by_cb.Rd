@@ -10,7 +10,8 @@ standardize_cols_by_cb(
   add_missing_cols,
   required_only,
   codebook_cols_only,
-  db_folder
+  db_folder,
+  new_col_fill = ""
 )
 }
 \arguments{
@@ -27,11 +28,12 @@ If optional columns exist in the df, these columns are retained.}
 not specified by the codebook}
 
 \item{db_folder}{A string path to the database controlled vocabulary folder}
+
+\item{new_col_fill}{A value that will be used to fill newly created columns}
 }
 \description{
 Contains options to add missing columns or remove unnecessary columns
 The ordering follows the column order specified in the codebook
 Any extra columns will come after, in alphabetical order.
 }
-\concept{standardize to codebook functions
-Relocate columns in a dataset based on their order in the codebook}
+\concept{standardize to codebook functions}
