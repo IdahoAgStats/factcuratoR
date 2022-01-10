@@ -1,0 +1,20 @@
+is_truematch,intid,intid_db,variety,variety_db,var_id,db_id,type,type_db,crop_db,crop_type,crop_type_db,date_added_db,method,nursery,wrong_name
+TRUE,wa008123,wa8123,WA008123,WA8123,11,427,variety,alias,Hard White Spring Wheat,wheat,wheat,2020/06/08,jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled,NA,NA
+TRUE,wildfir,aacwildfire,wildfir,AAC Wildfire,14,369,variety,variety,Hard Red Winter Wheat,wheat,wheat,2020/06/08,jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled,HRW,NA
+FALSE,melbclub,mel,melbclub,Mel,4,529,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist,NA,NA
+FALSE,melbclub,tubbsreselect,melbclub,Tubbs reselect,4,610,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist_scaled,NA,NA
+TRUE,melbclub,melba,melbclub,Melba,4,530,variety,variety,Soft White Spring Club Wheat,wheat,wheat,2020/06/08,lv dist,NA,NA
+FALSE,melbclub,applebycl+,melbclub,Appleby CL+,4,389,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,lv dist_scaled,NA,NA
+FALSE,melbclub,metropolis,melbclub,Metropolis,4,531,variety,variety,Hard Red Winter Wheat,wheat,wheat,2020/06/08,lv dist_scaled,NA,NA
+FALSE,new101,lww101018,New 101,LWW10-1018,6,516,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist;lcs dist_scaled,S_W,NA
+FALSE,new101,lww101073,New 101,LWW10-1073,6,517,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist;lcs dist_scaled,S_W,NA
+FALSE,new101,xa1101,New 101,XA1101,6,689,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,lv dist;lv dist_scaled,S_W,NA
+FALSE,aliasname101,lcsaymeric,new name 101 (alias name101),LCS Aymeric,7,727,alias,variety,Hard Red Winter Wheat,wheat,wheat,2021/04/30,lv dist,SWW,NA
+FALSE,newname101,beamer,new name 101 (alias name101),Beamer,7,394,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist;lv dist,SWW,NA
+FALSE,newname101,xa1101,new name 101 (alias name101),XA1101,7,689,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist;lv dist,SWW,NA
+FALSE,newname201,beamer,new name 201,Beamer,8,394,variety,variety,Soft White Winter Wheat,wheat,wheat,2020/06/08,jw dist,SWW,NA
+FALSE,newname201,syclearstone2cl,new name 201,SY Clearstone 2CL,8,592,variety,variety,Hard Red Winter Wheat,wheat,wheat,2020/06/08,jw dist_scaled,SWW,NA
+FALSE,new101,lww101018,new101,LWW10-1018,9,516,variety,variety,Soft White Winter Wheat,NA,wheat,2020/06/08,jw dist;lcs dist_scaled,NA,NA
+FALSE,new101,lww101073,new101,LWW10-1073,9,517,variety,variety,Soft White Winter Wheat,NA,wheat,2020/06/08,jw dist;lcs dist_scaled,NA,NA
+FALSE,new101,xa1101,new101,XA1101,9,689,variety,variety,Soft White Winter Wheat,NA,wheat,2020/06/08,lv dist;lv dist_scaled,NA,NA
+FALSE,name201,NA,Name 201,NA,5,NA,variety,NA,NA,wheat,NA,NA,NA,SWW,NA

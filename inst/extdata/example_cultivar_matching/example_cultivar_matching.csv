@@ -1,0 +1,16 @@
+﻿variety,crop_type,nursery,behavior_to_test
+Wildfile (W512),wheat,HRW,"main name is misspelled, so do.exactmatch matches the alias"
+wildfir,wheat,HRW,misspelling that won't exact match
+AAC wildfire,wheat,H_W,Exact match
+AAC wildfire (W512),wheat,HRW,"both names will exact match and the alias will be moved to ""not needed"""
+W512,wheat,H_W,exact match with alias
+W512,wheat,HRW,duplicate of W512 with different nursery
+new name 101 (alias name101),wheat,SWW,new name with alias
+New 101,wheat,S_W,duplicate to (new name 1) but very different naming
+new101,,,same internal id as New 1
+new name 201,wheat,SWW,new name
+Name 201,wheat,SWW,duplicate to (new name 2) but slightly different naming
+WA008123,wheat,,test fuzzymatching with numbers and leading zeros
+melbclub,wheat,,test that fuzzymatching returns the correct fuzzymatches
+wb1035cl,wheat,,test fuzzymatching with numbers
+455,wheat,,test fuzzymatching with numbers
