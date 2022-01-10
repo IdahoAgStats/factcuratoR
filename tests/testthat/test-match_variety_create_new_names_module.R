@@ -26,5 +26,5 @@ test_that("process_std_new_names() returns output", {
       knitroutputfolder = outputfolder_test,
       db_folder = controlled_vocab_folder)
 
-  expect_s3_class(output_fuzzymatch, "data.frame")
+  expect_type(test, "list")
 })
