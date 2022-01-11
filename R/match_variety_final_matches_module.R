@@ -1,4 +1,6 @@
-#' Match names with the new db entries
+#' Match names with the new db entries (deprecated)
+#'
+#' As of 2022/01/11, this function is deprecated
 #' Note: It is important that the "id_newvar" column refers to the same
 #' entries between the output created by create_new_db_entries() and the auxiliary
 #' new cultivar controlled vocabulary names.
