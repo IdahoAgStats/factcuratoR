@@ -16,3 +16,4 @@ extract_trail_digits(df, x, rm_single)
 Extract the trailing digits from a column of type character and
 return the digits in a new column (digits are returned as characters)
 }
+\keyword{internal}

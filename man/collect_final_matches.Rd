@@ -20,6 +20,7 @@ Note: If no match has been found, then the returned match == the original name
 }
 \seealso{
 Other match variety functions: 
-\code{\link{create_intid}()}
+\code{\link{create_intid}()},
+\code{\link{find_entries_raw_names}()}
 }
 \concept{match variety functions}

@@ -16,3 +16,4 @@ assure_var_id(output_fuzzymatch_df, aux_fuzzy_status)
 Assure that var_id is the same for the current outputfuzzymatch_df
 and the aux_fuzzy_status that is read in
 }
+\keyword{internal}

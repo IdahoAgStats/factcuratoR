@@ -22,6 +22,7 @@ detectable by a regex provided in sep_aliases
 }
 \seealso{
 Other match variety functions: 
-\code{\link{collect_final_matches}()}
+\code{\link{collect_final_matches}()},
+\code{\link{find_entries_raw_names}()}
 }
 \concept{match variety functions}

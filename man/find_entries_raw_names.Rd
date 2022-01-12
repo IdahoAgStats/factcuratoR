@@ -2,9 +2,7 @@
 % Please edit documentation in R/match_variety_names_check.R
 \name{find_entries_raw_names}
 \alias{find_entries_raw_names}
-\title{Find entries for the cultivar names that need to be checked
-Summarises how many times a cultivar name shows up in the raw
-data per year}
+\title{Find entries for the cultivar names that need to be checked}
 \usage{
 find_entries_raw_names(df_names, data_raw, join_by)
 }
@@ -17,7 +15,12 @@ find_entries_raw_names(df_names, data_raw, join_by)
 to the 'by' parameter in left_join()}
 }
 \description{
-Find entries for the cultivar names that need to be checked
 Summarises how many times a cultivar name shows up in the raw
 data per year
 }
+\seealso{
+Other match variety functions: 
+\code{\link{collect_final_matches}()},
+\code{\link{create_intid}()}
+}
+\concept{match variety functions}

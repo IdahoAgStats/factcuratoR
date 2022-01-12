@@ -140,6 +140,7 @@ find_fuzzymatch <- function(var_noexactmatch,
 #' return the digits in a new column (digits are returned as characters)
 #' @param df A data.frame
 #' @param x The bare variable name of the column to extract digits
+#' @keywords internal
 extract_trail_digits <- function(df, x, rm_single){
 
   x_quo <- enquo(x)
@@ -171,6 +172,7 @@ extract_trail_digits <- function(df, x, rm_single){
 #' @param df A data.frame
 #' @param x1 The bare variable name of the column to compare
 #' @param x2 The bare variable name of the column to compare
+#' @keywords internal
 is_string_overlap <- function(df, x1, x2){
 
   df_test <- df %>%
