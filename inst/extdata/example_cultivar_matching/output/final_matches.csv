@@ -1,0 +1,15 @@
+"variety","crop_type","nursery","type","intid","var_id","n_var_id","variety_db","match_step","intid_matches","intid_db","type_db"
+"455","wheat","NA","variety","455","1",1,"455","exact","455",NA,"variety"
+"AAC wildfire","wheat","H_W","variety","aacwildfire","2",1,"AAC Wildfire","exact","aacwildfire",NA,"variety"
+"AAC wildfire (W512)","wheat","HRW","variety","aacwildfire","3",2,"AAC Wildfire","exact","aacwildfire",NA,"variety"
+"melbclub","wheat","NA","variety","melbclub","4",1,"Melba","rename","melbclub",NA,NA
+"Name 201","wheat","SWW","variety","name201","5",1,"Name 201",NA,NA,NA,NA
+"New 101","wheat","S_W","variety","new101","6",1,"New 101",NA,NA,NA,NA
+"new name 101 (alias name101)","wheat","SWW","variety","newname101","7",2,"new name 101 (alias name101)",NA,NA,NA,NA
+"new name 201","wheat","SWW","variety","newname201","8",1,"new name 201",NA,NA,NA,NA
+"new101",NA,"NA","variety","new101","9",1,"new101",NA,NA,NA,NA
+"W512","wheat","H_W;HRW","variety","w512","10",1,"W512","exact","w512",NA,"alias"
+"WA008123","wheat","NA","variety","wa008123","11",1,"WA8123","fuzzy","wa008123","wa8123","alias"
+"wb1035cl","wheat","NA","variety","wb1035cl","12",1,"WB-1035CL+","rename","wb1035cl",NA,NA
+"Wildfile (W512)","wheat","HRW","variety","wildfile","13",2,"W512","exact","w512",NA,"alias"
+"wildfir","wheat","HRW","variety","wildfir","14",1,"AAC Wildfire","fuzzy","wildfir","aacwildfire","variety"

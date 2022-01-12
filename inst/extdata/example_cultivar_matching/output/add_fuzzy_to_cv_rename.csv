@@ -1,0 +1,3 @@
+"variety_db","intid","crop_type","variety","intid_db","is_truematch","var_id","db_id","type","type_db","crop_db","crop_type_db","date_added_db","method","nursery","wrong_name","source","any_match"
+"WA8123","wa008123","wheat","WA008123","wa8123",TRUE,"11","495; 427","variety","alias","Hard White Spring Wheat","wheat","2020-06-08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","NA","","new_fuzzymatch; csv",TRUE
+"AAC Wildfire","wildfir","wheat","wildfir","aacwildfire",TRUE,"14","437; 369","variety","variety","Hard Red Winter Wheat","wheat","2020-06-08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","HRW","","new_fuzzymatch; csv",TRUE

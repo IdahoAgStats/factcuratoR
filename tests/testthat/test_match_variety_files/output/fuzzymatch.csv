@@ -1,0 +1,5 @@
+"is_truematch","intid","intid_db","variety","variety_db","var_id","db_id","type","type_db","crop_db","crop_type","crop_type_db","date_added_db","method"
+"","test1","norwesttandem","test1","Norwest Tandem",1,611,"variety","variety","Soft White Winter Wheat","wheat","wheat",2020-06-08,"jw dist_scaled"
+"","test1","weston","test1","Weston",1,752,"variety","variety","Hard Red Winter Wheat","wheat","wheat",2020-06-08,"lv dist;lv dist_scaled"
+"","test1","tubbsreselect","test1","Tubbs reselect",1,678,"variety","variety","Soft White Winter Wheat","wheat","wheat",2020-06-08,"lcs dist_scaled"
+"","bruehlw","bruehl","bruehlw","Bruehl",2,471,"variety","variety","Soft White Winter Club Wheat","wheat","wheat",2020-06-08,"jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled"

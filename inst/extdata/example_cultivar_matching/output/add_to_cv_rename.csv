@@ -1,0 +1,6 @@
+"variety","intid","crop_type","var_id","variety_raw","type","nursery","wrong_name","n_var_id","instance","std_name_status","intid_db"
+"Name B","name201","wheat","5","Name 201","variety","SWW","",1,1,"add to db","nameb"
+"Name A","new101","wheat","6","New 101","variety","S_W","",1,1,"add to db","namea"
+"Name A","newname101","wheat","7","new name 101 (alias name101)","variety","SWW","",2,1,"add to db","namea"
+"Name B","newname201","wheat","8","new name 201","variety","SWW","",1,1,"add to db","nameb"
+"Name A","new101","","9","new101","variety","NA","",1,2,"add to db","namea"
