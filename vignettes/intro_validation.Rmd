@@ -164,7 +164,7 @@ knitr::kable(colcontent_violate)
 
 ```
 ## Validate metadata
-The steps in validating the metadata is the same as validating the trial data, except the argument codebook_name = "trails_metadata"
+The steps in validating the metadata is the same as validating the trial data, except the argument codebook_name = "trials_metadata"
 ```{r}
 metadata_validate <- test_data
 ```
