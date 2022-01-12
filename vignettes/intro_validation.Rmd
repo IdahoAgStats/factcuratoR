@@ -1,0 +1,201 @@
+---
+title: "Introduction to the validation functions"
+author: "Jacqueline Tay"
+date: "`r Sys.Date()`"
+output: 
+rmarkdown::html_vignette:
+  fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Introduction to the validation functions}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+  
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Introduction
+The purpose of `factcuratoR` is to provide sets of functions to help 
+standardize variety testing data for the FACT program.
+
+The goal of the FACT program curation is to generate standardized:
+
+1. trial data
+
+2. trial metadata
+
+that conform to the controlled vocabulary codebooks. 
+The codebooks specify the columns required for each file and the accepted values
+for the column contents.
+See the 
+[Introduction to codebooks vignette](https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html)
+for more information on the structure of and formatting for the codebooks.
+
+## Overview of validation functions
+
+The validation functions check that the data conforms to the controlled vocabulary
+codebooks.  There are functions to validate:
+
+1. the column names.  The functions return tables for the curator to check that required columns are present and that names are standardized.
+2. the columns contents.  The functions return tables for the curator to check that column contents match controlled vocabularies or are in the accepted value range)
+
+Finally, [standardize_cols_by_cb()](https://idahoagstats.github.io/factcuratoR/reference/standardize_cols_by_cb.html)
+allows the curator to standardize the files (select and order columns) according
+to the codebooks.
+
+First, load `factcuratoR` and point to the main codebook (which currently must 
+be named codebooks_all_db.csv for the validation functions)
+
+```{r, message = FALSE}
+library(factcuratoR)
+
+codebook_folder <- here::here(
+  "tests/testthat/test_controlled_vocab")
+
+knitroutputfolder <- here::here("inst/extdata/intro_validation", "output")
+```
+## Create some test data
+```{r}
+test_data <- data.frame(location = c("Aberdeen", "Soda Springs", NA, "location_x"),
+                        year = c(rep(2020, 3), NA),
+                        variety = c("variety_1", "AAC Wildfire", "", NA),
+                        rep_temp = 1:4,
+                        sourcefile = "test")
+
+```
+
+## Validate trial data
+It may be easiest to point the most cleaned up version of the data to a new 
+variable (e.g. df_validate below) so that the calls to the validation functions
+don't need to be updated everytime there is a more cleaned up version of the data.
+```{r}
+df_validate <- test_data
+```
+### Check column names
+validate_colnames() will check the column names between the codebook and data.
+The argument codebook_name = "trial_data" (The functions pull the book name from the codebooks_all_db.csv.)
+```{r}
+colname_valid <- validate_colnames(df_validate, 
+                                   "trial_data", 
+                                   db_folder = codebook_folder) %>%
+    select(comment, colname_data, colname_codebook, required, col_num) 
+
+```
+The main goal of validating column names is to get the value in the req(uired) 
+column of row 3 to be 0.  0 would represent that there all the required columns 
+are present in the data.
+
+There may be several ways to fix missing columns:
+
+1. Rename an existing column in the raw data to match the codebook
+See [facthelpeR](https://idahoagstats.github.io/facthelpeR/articles/intro_facthelper.html)
+for functions to help with renaming columns
+2. Collect new data from another source (annual reports or request from collaborator)
+
+The second row in the summary highlights columns that aren't in the codebook.
+Curator should take a look at these to:
+
+1. decide if the column can be captured by current controlled vocabulary. If so,
+standardize to the controlled vocabulary (this is a restatement of point 1 under 
+the main goal of validating column names, above)
+
+2. decide whether a new controlled vocabulary should be added. If so, add 
+to controlled vocabulary using the correct formatting, which is described in the
+[Introduction to codebooks vignette](https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html)
+
+
+#### Full report of validating column names
+Note: To make scanning slightly easier, the output is automatically ordered so 
+that the columns present the data are at the top and that the 
+REQUIRED but missing columns are at the bottom.
+```{r, results.folding = NULL, results = 'asis'}
+knitr::kable(colname_valid)
+```
+
+#### To interact with the column names that still need to be fixed
+```{r}
+colname_valid_check <- colname_valid %>% 
+  filter(comment == "not present in codebook: trial_data")
+
+col_info <- find_col_info(df_validate, 
+                       cols_check = colname_valid_check$colname_data, 
+                       by_col = sourcefile)
+
+knitr::kable(col_info)
+```
+
+### Check column contents
+confront_data() is a wrapper around validate::confront() that checks that column 
+contents match controlled vocabularies or are in the accepted value range
+```{r, results.folding = NULL, results = 'asis'}
+colcontent_valid <- confront_data(df_validate, 
+                                  df_type = "trial_data",
+                                  db_folder = codebook_folder)
+```
+The summary output for validating column contents reports the number of
+columns that have fails (does not match controlled vocabularies or is not within
+the accepted range) and NAs.  A column will return error = TRUE if the column is
+not present in the data. 
+
+The main goal of validating column contents is to get the fails to 0 and to get nNA to 0 (for required columns).
+
+The errors can be fixed by either fixing errors/ standardizing contents in the 
+raw data or adding new controlled vocabularies to the codebooks.  
+(e.g. If the name "variety_1" is a real variety name, then it should be added to the cultivar codebook.)
+
+### Full report of validating column contents
+```{r, results.folding = NULL, results = 'asis'}
+colcontent_summary <- colcontent_valid[["summary"]]
+knitr::kable(colcontent_summary)
+```
+
+#### To check any fails interactively
+```{r}
+var <- c("variety")
+colcontent_violate <- 
+  validate::violating(test_data, colcontent_valid[[2]][var]) %>% 
+  relocate(matches(var))
+
+knitr::kable(colcontent_violate)
+
+```
+## Validate metadata
+The steps in validating the metadata is the same as validating the trial data, except the argument codebook_name = "trails_metadata"
+```{r}
+metadata_validate <- test_data
+```
+### Check column names
+```{r, results.folding = NULL, results = 'asis'}
+metadata_colname_valid <- 
+  validate_colnames(
+    metadata_validate, 
+    "trials_metadata",
+    db_folder = codebook_folder) %>%
+    select(comment, colname_data, colname_codebook, required, col_num) 
+
+knitr::kable(metadata_colname_valid)
+```
+
+### Check column contents
+```{r, results.folding = NULL, results = 'asis'}
+metadata_colcontent_valid <- confront_data(metadata_validate, 
+                                           df_type = "trials_metadata",
+                                           db_folder = codebook_folder)
+
+metadata_colcontent_summary <- metadata_colcontent_valid[["summary"]]
+knitr::kable(metadata_colcontent_summary)
+
+
+# To check any fails interactively:
+metadata_var <- c("location")
+metadata_colcontent_violate <- 
+  validate::violating(test_data, metadata_colcontent_valid[[2]][metadata_var]) %>% 
+  relocate(matches(var))
+
+knitr::kable(metadata_colcontent_violate)
+```
+
