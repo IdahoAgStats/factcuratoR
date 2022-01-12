@@ -29,6 +29,6 @@ remotes::install_github("IdahoAgStats/factcuratoR")
 ```
 
 ## factcuratoR functions require codebooks that are standardized
-See the [Introduction to codebooks vignette](https://idahoagstats.github.io/factcuratoR/docs/articles/intro_codebooks.html)
+See the [Introduction to codebooks vignette](https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html)
 
 
