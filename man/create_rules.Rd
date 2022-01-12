@@ -28,6 +28,7 @@ As a workaround, for date fields, an extra check for NAs is implemented.
 \seealso{
 Other validation functions: 
 \code{\link{confront_data}()},
+\code{\link{find_col_info}()},
 \code{\link{validate_colnames}()}
 }
 \concept{validation functions}

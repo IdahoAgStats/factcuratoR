@@ -37,6 +37,9 @@
     <li>
       <a href="../articles/intro_codebooks.html">Introduction to the codebook structure</a>
     </li>
+    <li>
+      <a href="../articles/intro_validation.html">Introduction to the validation functions</a>
+    </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -57,7 +60,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">collect_final_matches</span><span class="op">(</span><span class="va">match_list</span>, <span class="va">names_raw</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">collect_final_matches</span><span class="op">(</span><span class="va">match_list</span>, <span class="va">names_raw</span>, <span class="va">knitroutputfolder</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,13 +69,16 @@
 <dd><p>A list of the output from each step of the variety matching process</p></dd>
 <dt>names_raw</dt>
 <dd><p>A data.frame of the names created by create_intid()</p></dd>
+<dt>knitroutputfolder</dt>
+<dd><p>A path to the output location</p></dd>
 <dt>csv_suffix</dt>
 <dd><p>A string denoting the suffix for the .csv name</p></dd>
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other match variety functions: 
-<code><a href="create_intid.html">create_intid</a>()</code></p></div>
+<code><a href="create_intid.html">create_intid</a>()</code>,
+<code><a href="find_entries_raw_names.html">find_entries_raw_names</a>()</code></p></div>
     </div>
 
   </div>

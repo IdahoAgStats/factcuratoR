@@ -16,6 +16,9 @@
     <loc>/articles/intro_codebooks.html</loc>
   </url>
   <url>
+    <loc>/articles/intro_validation.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -38,6 +41,9 @@
   </url>
   <url>
     <loc>/reference/collect_final_matches.html</loc>
+  </url>
+  <url>
+    <loc>/reference/collect_matches.html</loc>
   </url>
   <url>
     <loc>/reference/confront_data.html</loc>
@@ -68,6 +74,9 @@
   </url>
   <url>
     <loc>/reference/extract_trail_digits.html</loc>
+  </url>
+  <url>
+    <loc>/reference/find_col_info.html</loc>
   </url>
   <url>
     <loc>/reference/find_entries_raw_names.html</loc>

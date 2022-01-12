@@ -17,6 +17,8 @@ standardize_cols_by_cb(
 \arguments{
 \item{df}{A data.frame with column names to verify against the codebook}
 
+\item{codebook_name}{A string that matches the book name in codebooks_all_db.csv}
+
 \item{add_missing_cols}{A logical denoting whether to add missing columns}
 
 \item{required_only}{A logical denoting whether to add only required columns.

@@ -20,6 +20,7 @@ Validate column names against codebook
 \seealso{
 Other validation functions: 
 \code{\link{confront_data}()},
-\code{\link{create_rules}()}
+\code{\link{create_rules}()},
+\code{\link{find_col_info}()}
 }
 \concept{validation functions}
