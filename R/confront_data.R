@@ -25,15 +25,20 @@ confront_data <- function(df, df_type, db_folder){
     mutate(nNA_temp = fails) %>% select(name, nNA_temp)
 
   # Fix detection of NAs in data columns
-  summary2 <- left_join(summary, date_na) %>%
+  summary2 <- left_join(summary, date_na, by = "name") %>%
     mutate(fails = ifelse(str_detect(expression, "grepl"), fails - nNA_temp, fails)) %>%
     mutate(nNA = ifelse(str_detect(expression, "grepl"), nNA + nNA_temp, nNA)) %>%
     select(-nNA_temp) %>%
     filter(!str_detect(expression, "!is.na(.+date)"))
 
-  return_validate_message(summary2)
+  # Add if column is required
+  is_req <- list_db_var(db_folder, df_type, required_only = FALSE) %>%
+    select(name = variable, required)
+  summary2_req <- left_join(summary2, is_req, by = "name") %>% relocate(required)
 
-  return(list(summary = summary2, validation_output = validation_output))
+  return_validate_message(summary2_req)
+
+  return(list(summary = summary2_req, validation_output = validation_output))
 }
 
 #' Return a message regarding the status of the validation
@@ -43,7 +48,8 @@ confront_data <- function(df, df_type, db_folder){
 return_validate_message <- function(confront_summary){
 
   temp2 <- confront_summary %>%
-    select(matches(c("fails", "nNA", "error", "warning"))) %>%
+    group_by(required) %>%
+    select(required, matches(c("fails", "nNA", "error", "warning"))) %>%
     mutate(across(.cols = where(is.numeric), function(x){ ifelse(x > 0, TRUE, FALSE)})) %>%
     summarise(across(everything(), .fns = sum))
 
