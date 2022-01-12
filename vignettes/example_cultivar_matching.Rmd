@@ -179,9 +179,12 @@ the cv_rename file, then they should match in the cv_rename step
 collect_final_matches() is used to collect all the matches and the stage 
 where they were matched
 ```{r, results.folding = NULL, results = 'asis'}
-names_matches <- collect_final_matches(list(exact = results_exactmatch,
-                                            rename = results_rename,
-                                 fuzzy = results_fuzzymatch), names_raw)
+names_matches <- 
+  collect_final_matches(list(exact = results_exactmatch,
+                             rename = results_rename,
+                             fuzzy = results_fuzzymatch), 
+                        names_raw,
+                        knitroutputfolder = knitroutputfolder)
 
 knitr::kable(names_matches)
 
