@@ -18,3 +18,4 @@ a list of 4 data.frames: the varieties with database matches, the varieties with
 database matches, the varieties that still need to be checked manually (with a collaborator),
 and the duplicate rows of varieties that already have matches
 }
+\keyword{internal}

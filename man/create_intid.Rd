@@ -20,4 +20,8 @@ Note: This function handles aliases passed in as a separate column or aliases
 in the same column as the variety name.  Aliases in the same column must be
 detectable by a regex provided in sep_aliases
 }
+\seealso{
+Other match variety functions: 
+\code{\link{collect_final_matches}()}
+}
 \concept{match variety functions}

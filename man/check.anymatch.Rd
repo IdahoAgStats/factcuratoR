@@ -24,3 +24,4 @@ alternate spellings for one cultivar}
 After a variety name match (exact or fuzzymatch), check whether there are any
 exact or approved matches.
 }
+\keyword{internal}

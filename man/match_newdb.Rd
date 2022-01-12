@@ -2,10 +2,7 @@
 % Please edit documentation in R/match_variety_final_matches_module.R
 \name{match_newdb}
 \alias{match_newdb}
-\title{Match names with the new db entries
-Note: It is important that the "id_newvar" column refers to the same
-entries between the output created by create_new_db_entries() and the auxiliary
-new cultivar controlled vocabulary names.}
+\title{Match names with the new db entries (deprecated)}
 \usage{
 match_newdb(auxiliary_files, filename, names_newvarid, ...)
 }
@@ -19,7 +16,7 @@ is a list element named 'names_newvarid' generated using create_newdbnames()}
 \item{dots}{Bare variables to select from the new cultivar name}
 }
 \description{
-Match names with the new db entries
+As of 2022/01/11, this function is deprecated
 Note: It is important that the "id_newvar" column refers to the same
 entries between the output created by create_new_db_entries() and the auxiliary
 new cultivar controlled vocabulary names.

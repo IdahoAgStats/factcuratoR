@@ -7,7 +7,7 @@ rmarkdown::html_vignette:
   fig_caption: yes
 vignette: >
   %\VignetteIndexEntry{Introduction to codebook structure}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
   
 ---
@@ -175,7 +175,10 @@ all the necessary information has been moved into the controlled vocabularies.
 # Collect all the matches from each step
 Once the names from the process_std_new_names() step have been added to
 the cv_rename file, then they should match in the cv_rename step
-```{r, results.folding = NULL, results = 'asis', eval = FALSE}
+
+collect_final_matches() is used to collect all the matches and the stage 
+where they were matched
+```{r, results.folding = NULL, results = 'asis'}
 names_matches <- collect_final_matches(list(exact = results_exactmatch,
                                             rename = results_rename,
                                  fuzzy = results_fuzzymatch), names_raw)

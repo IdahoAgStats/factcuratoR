@@ -81,6 +81,7 @@ do_exactmatch <- function(db_folder,
 #' Get cultivar rename list to match.  The cv_rename.csv is located
 #' in the controlled vocabularies.
 #' @inheritParams readin_db
+#' @keywords internal
 get_cultivar_rename <- function(db_folder){
   db <- readin.db(db_folder = db_folder)
 

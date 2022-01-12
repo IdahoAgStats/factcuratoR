@@ -13,3 +13,4 @@ check.matches(match_df)
 \description{
 Check that matches have one database match
 }
+\keyword{internal}

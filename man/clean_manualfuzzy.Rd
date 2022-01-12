@@ -20,3 +20,4 @@ and filename}
 Fuzzy matching outputs a file of potential/fuzzy matches.
 A user must go in a assign whether the fuzzy match is a true match.
 }
+\keyword{internal}

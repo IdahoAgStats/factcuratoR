@@ -74,7 +74,7 @@
       <h1 data-toc-skip>Example of the cultivar matching process</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">2022-01-10</h4>
+            <h4 data-toc-skip class="date">2022-01-11</h4>
       
       
       <div class="hidden name"><code>example_cultivar_matching.Rmd</code></div>
@@ -963,12 +963,247 @@
 <h1 id="collect-all-the-matches-from-each-step">Collect all the matches from each step<a class="anchor" aria-label="anchor" href="#collect-all-the-matches-from-each-step"></a>
 </h1>
 <p>Once the names from the process_std_new_names() step have been added to the cv_rename file, then they should match in the cv_rename step</p>
+<p>collect_final_matches() is used to collect all the matches and the stage where they were matched</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_final_matches.html">collect_final_matches</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="va">results_exactmatch</span>,
                                             rename <span class="op">=</span> <span class="va">results_rename</span>,
                                  fuzzy <span class="op">=</span> <span class="va">results_fuzzymatch</span><span class="op">)</span>, <span class="va">names_raw</span><span class="op">)</span>
+<span class="co">#&gt; Warning: Unknown columns: `wrong_name`, `intid_db`, `method`, `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `crop_db`, `crop_type_db`, `intid_db`, `method`,</span>
+<span class="co">#&gt; `source`</span>
+<span class="co">#&gt; Warning:  5 cultivar(s) not yet matched to the database.</span>
+<span class="co">#&gt;                       The raw name is being returned</span>
+<span class="co">#&gt; Writing final_matches.csv</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">names_matches</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="18%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="7%">
+<col width="4%">
+<col width="5%">
+<col width="18%">
+<col width="7%">
+<col width="8%">
+<col width="7%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">variety</th>
+<th align="left">crop_type</th>
+<th align="left">nursery</th>
+<th align="left">type</th>
+<th align="left">intid</th>
+<th align="left">var_id</th>
+<th align="right">n_var_id</th>
+<th align="left">variety_db</th>
+<th align="left">match_step</th>
+<th align="left">intid_matches</th>
+<th align="left">intid_db</th>
+<th align="left">type_db</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">455</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">455</td>
+<td align="left">1</td>
+<td align="right">1</td>
+<td align="left">455</td>
+<td align="left">exact</td>
+<td align="left">455</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+</tr>
+<tr class="even">
+<td align="left">AAC wildfire</td>
+<td align="left">wheat</td>
+<td align="left">H_W</td>
+<td align="left">variety</td>
+<td align="left">aacwildfire</td>
+<td align="left">2</td>
+<td align="right">1</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">exact</td>
+<td align="left">aacwildfire</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+</tr>
+<tr class="odd">
+<td align="left">AAC wildfire (W512)</td>
+<td align="left">wheat</td>
+<td align="left">HRW</td>
+<td align="left">variety</td>
+<td align="left">aacwildfire</td>
+<td align="left">3</td>
+<td align="right">2</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">exact</td>
+<td align="left">aacwildfire</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+</tr>
+<tr class="even">
+<td align="left">melbclub</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">melbclub</td>
+<td align="left">4</td>
+<td align="right">1</td>
+<td align="left">Melba</td>
+<td align="left">rename</td>
+<td align="left">melbclub</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Name 201</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">name201</td>
+<td align="left">5</td>
+<td align="right">1</td>
+<td align="left">Name 201</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">New 101</td>
+<td align="left">wheat</td>
+<td align="left">S_W</td>
+<td align="left">variety</td>
+<td align="left">new101</td>
+<td align="left">6</td>
+<td align="right">1</td>
+<td align="left">New 101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname101</td>
+<td align="left">7</td>
+<td align="right">2</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">new name 201</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname201</td>
+<td align="left">8</td>
+<td align="right">1</td>
+<td align="left">new name 201</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">new101</td>
+<td align="left">9</td>
+<td align="right">1</td>
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">W512</td>
+<td align="left">wheat</td>
+<td align="left">H_W;HRW</td>
+<td align="left">variety</td>
+<td align="left">w512</td>
+<td align="left">10</td>
+<td align="right">1</td>
+<td align="left">W512</td>
+<td align="left">exact</td>
+<td align="left">w512</td>
+<td align="left">NA</td>
+<td align="left">alias</td>
+</tr>
+<tr class="odd">
+<td align="left">WA008123</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">wa008123</td>
+<td align="left">11</td>
+<td align="right">1</td>
+<td align="left">WA8123</td>
+<td align="left">fuzzy</td>
+<td align="left">wa008123</td>
+<td align="left">wa8123</td>
+<td align="left">alias</td>
+</tr>
+<tr class="even">
+<td align="left">wb1035cl</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">wb1035cl</td>
+<td align="left">12</td>
+<td align="right">1</td>
+<td align="left">WB-1035CL+</td>
+<td align="left">rename</td>
+<td align="left">wb1035cl</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Wildfile (W512)</td>
+<td align="left">wheat</td>
+<td align="left">HRW</td>
+<td align="left">variety</td>
+<td align="left">wildfile</td>
+<td align="left">13</td>
+<td align="right">2</td>
+<td align="left">W512</td>
+<td align="left">exact</td>
+<td align="left">w512</td>
+<td align="left">NA</td>
+<td align="left">alias</td>
+</tr>
+<tr class="even">
+<td align="left">wildfir</td>
+<td align="left">wheat</td>
+<td align="left">HRW</td>
+<td align="left">variety</td>
+<td align="left">wildfir</td>
+<td align="left">14</td>
+<td align="right">1</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">fuzzy</td>
+<td align="left">wildfir</td>
+<td align="left">aacwildfire</td>
+<td align="left">variety</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level1">
 <h1 id="bind-matches-with-the-data">Bind matches with the data<a class="anchor" aria-label="anchor" href="#bind-matches-with-the-data"></a>

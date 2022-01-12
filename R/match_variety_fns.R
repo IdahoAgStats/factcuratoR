@@ -18,6 +18,7 @@
 #' @param method A string corresponding to a string metric defined by stringdist
 #'   e.g. "lw", "jw"
 #' @importFrom fuzzyjoin stringdist_join
+#' @keywords internal
 stringdist.variety <- function(raw_data,
                                database,
                                intid_col = "name",
@@ -75,6 +76,7 @@ stringdist.variety <- function(raw_data,
 #' @param match_type A string that is either 'db' or 'raw', which refers to processesing
 #' database entries (only one entry per cultivar) or raw entries which may have many
 #' alternate spellings for one cultivar
+#' @keywords internal
 check.anymatch <- function(df, group, checkfor = NULL, match_type){
 
   quo_checkfor <- enquo(checkfor)
@@ -116,6 +118,7 @@ check.anymatch <- function(df, group, checkfor = NULL, match_type){
 #' database matches, the varieties that still need to be checked manually (with a collaborator),
 #' and the duplicate rows of varieties that already have matches
 #' @param df_any_match A data.frame that has been processed by check.anymatch
+#' @keywords internal
 return.matchgroups <- function(df_any_match){
   df_any_match <- df_any_match %>% mutate(var_id = as.character(var_id))
 
@@ -166,8 +169,10 @@ return.matchgroups <- function(df_any_match){
 
 
 #' Check that matches have one database match
+#'
 #' @param match_df A data.frame with variety names and database matches
 #' (including volumns var_id and db_id)
+#' @keywords internal
 check.matches <- function(match_df){
 
   mult_matches <- match_df %>%
@@ -188,7 +193,9 @@ check.matches <- function(match_df){
 #' both names may match to names in the database.
 #' This function will remove the alias and return the listed variety name
 #'
-#' @param match_df A data.frame that contains var_id, db_id, and type_db ("alias" or "variety")
+#' @param match_df A data.frame that contains var_id, db_id, and type_db
+#' ("alias" or "variety")
+#' @keywords internal
 rm.alias_dupmatch <- function(match_df){
 
   mult_matches <- match_df %>%
@@ -215,6 +222,7 @@ rm.alias_dupmatch <- function(match_df){
 #' @inheritParams return.matchgroups
 #' @param df A data.frame, which can be provided in lieu of the curation_folder
 #' and filename
+#' @keywords internal
 clean_manualfuzzy <- function(match_type = "raw", df){
 
   if (match_type == "raw"){
@@ -243,6 +251,7 @@ clean_manualfuzzy <- function(match_type = "raw", df){
 #' @param variety_col_name A column name containing varieties
 #' @param intid_col_name A column name containing internal identifiers
 #' @param dots Extra columns to select
+#' @keywords internal
 create_names_nomatch <- function(df_nomatch,  ...){
 
   dots <- enquos(...)
@@ -264,9 +273,11 @@ create_names_nomatch <- function(df_nomatch,  ...){
 
 
 
-# Combine all the matches from all of the cultivar matching steps
+#' Combine all the matches from all of the cultivar matching steps
+
 #' @param ls A list of results created with list2 from any of the cultivar matching steps
 #' @param dots Any number of bare variables to be retained in the output of the matches
+#' @keywords internal
 collect_matches <- function(ls, ...){
   #temp_ls <- rlang::list2(...)
   dots <- enquos(...)
@@ -289,6 +300,7 @@ collect_matches <- function(ls, ...){
 #' Note: this function may have to be updated to handle multiple auxiliary fuzzymatch files
 #' @param output_fuzzymatch_df A data.frame with the newly generated fuzzymatches
 #' @param aux_fuzzy_status A data.frame containing the fuzzymatches with is_truematch manually checked
+#' @keywords internal
 bind_fuzzymatches <- function(output_fuzzymatch_df, aux_fuzzy_status){
 
   output_fuzzymatch_status <-

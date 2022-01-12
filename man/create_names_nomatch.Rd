@@ -20,3 +20,4 @@ clean_manualfuzzy().}
 \description{
 Create a data.frame of the names of varieties with no match
 }
+\keyword{internal}

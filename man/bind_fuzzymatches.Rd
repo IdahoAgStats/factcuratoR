@@ -18,3 +18,4 @@ Bind the status of fuzzymatches with the fuzzymatches created in this session
 so that the two stay in sync even if the fuzzymatch function is changed
 Note: this function may have to be updated to handle multiple auxiliary fuzzymatch files
 }
+\keyword{internal}

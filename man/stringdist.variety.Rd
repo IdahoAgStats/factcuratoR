@@ -40,3 +40,4 @@ of the raw distance
 See the effect of these different selection methods in test_match_variety_fns.R
 }
 }
+\keyword{internal}
