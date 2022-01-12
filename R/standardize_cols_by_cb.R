@@ -4,6 +4,7 @@
 #' The ordering follows the column order specified in the codebook
 #' Any extra columns will come after, in alphabetical order.
 #'
+#' @param codebook_name A string that matches the book name in codebooks_all_db.csv
 #' @inheritParams validate_colnames
 #' @param add_missing_cols A logical denoting whether to add missing columns
 #' @param required_only A logical denoting whether to add only required columns.

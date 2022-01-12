@@ -5,6 +5,7 @@
 #' contain non-NA entries (for example if want to search trial, year, or filename),
 #' and return the first non-NA entry as an example
 #'
+#' @param df A data.frame to summarise
 #' @param cols_check A character vector of column names to check
 #' @param by_col A bare variable to summarise
 #' @family validation functions
