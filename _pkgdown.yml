@@ -1,3 +1,7 @@
+home:
+  title:
+  description:  "Curation Functions for Western Small Grains Data"
+
 reference:
 - title: Validation functions
   contents:
@@ -17,5 +21,4 @@ reference:
 - title: Match variety functions
   contents:
   - has_concept("match variety functions")
-
 

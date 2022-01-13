@@ -1,15 +1,17 @@
 ---
 title: "Example of the cultivar matching process"
 author: "Jacqueline Tay"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.Date(), '%b %d, %Y')`"
 output: 
+pkgdown:
+  as_is: true  
 rmarkdown::html_vignette:
   fig_caption: yes
 vignette: >
   %\VignetteIndexEntry{Introduction to codebook structure}
   %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
-  
+
 ---
 
 ```{r setup, include = FALSE}
@@ -38,9 +40,10 @@ knitr::kable(var)
 ```
 # Cultivar matching 
 ## Create unique internal id for names
-Note!: Once the fuzzymatching stage is started, it is important that the 
-var_id doesn't change other it will cause problems with matching up matches
-with the correct names
+
+
+<span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the `var_id` doesn't change other it will cause problems with matching up matches with the correct names. 
+
 ```{r, results = 'asis'}
 names_raw <- 
   create_intid(var, 
