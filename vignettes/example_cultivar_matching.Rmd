@@ -32,15 +32,13 @@ auxiliary_files <- here::here(example_folder, "auxiliary_files")
 
 # Read in raw variety names
 ```{r, results = 'asis', results.folding = 'show'}
-var <- 
-  read_csv(here::here(example_folder, "example_cultivar_matching.csv"), 
-            col_types = cols())
+var <- read_csv(here::here(example_folder, "example_cultivar_matching.csv"), 
+                col_types = cols())
 
 knitr::kable(var)
 ```
 # Cultivar matching 
 ## Create unique internal id for names
-
 
 <span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the `var_id` doesn't change other it will cause problems with matching up matches with the correct names. 
 
@@ -76,62 +74,58 @@ knitr::kable(results_rename[["match"]])
 knitr::kable(results_rename[["nomatch"]])
 ```
 ## Do fuzzymatch
-The fuzzy matching procedure returns the best fuzzymatches from
-stringdist_join using several methods (e.g. "lv", "jw", "lcs"). 
-See ?stringdist for more information about distance metrics.
+
+The fuzzy matching procedure, a wrapper for `fuzzyjoin::stringdist_join()` returns the best fuzzy matches using multiple distance methods (e.g. "lv", "jw", "lcs"). 
+See `??stringdist` for more information about these distance metrics.
 
 The results are filtered for these conditions:
 
-- crop_type must match (e.g. wheat vs. barley)
+* The variable in `crop_type` must match (e.g. "wheat" would not match "barley")
 
-- numbers at the end of a variety name must be an exact match 
-(only if there is greater than 1 digit, e.g. The trailing "1" in
-"name1" would not need to match)
+* Numbers located at the end of a variety name or alias must be an exact match if there is more than one number present. If there is only number at the end of a variety name, the trailing digit does not need to match the rest of the name. For example "myvar1" would still match with "myvar", but "myvar123" would not. 
 
-The results of find_fuzzymatch() are written to fuzzymatch.csv in the
-directory provided by the user (via the knitroutputfolder argument)
+The results of `find_fuzzymatch(`) are written to the file *fuzzymatch.csv* in the
+directory provided by the user in the `knitroutputfolder` argument. 
+
 ```{r, results = 'asis', results.folding = 'show'}
 output_fuzzymatch <- 
-  find_fuzzymatch(results_rename$nomatch ,
+  find_fuzzymatch(results_rename$nomatch,
                 intid_col = "intid",
                 select_before = "2021-05-26",
                 knitroutputfolder = knitroutputfolder,
                 db_folder = codebook_folder)
 
-
 knitr::kable(output_fuzzymatch)
 ```
+
+
 ## Fill out the fuzzymatch.csv
-Move the fuzzymatch.csv to auxiliary_files and fill out the is_truematch column.
-Fill the is_truematch column with TRUE if fuzzymatch is a true match, 
-otherwise fill with FALSE.
 
-Sometimes the match may be clear, however, many names will need to be checked.
+Move *fuzzymatch.csv* to the helper_files/ directory and fill out the `is_truematch` column. Fill the `is_truematch` column with "TRUE" if fuzzymatch is a true match, 
+otherwise fill with "FALSE".
 
-- First, start off with a Google search to determine if there are clear usages 
+Sometimes the match may be clear, however, many matches will need to be manually checked. Some steps for that: 
+
+1. First, start off with a Google search to determine if there are clear usages 
 of both names (name in the raw data and name in the database).  This would suggest
-that the names refer to different varieties and is_truematch = FALSE.
+that the names refer to different varieties and they are not true matches.
 
-- If a Google search doesn't help clarify whether the name is a true match, 
-check the possible matches with our collaborators.
+1. If a Google search doesn't help clarify whether the name is a true match (quite likely, unfortunately), check the possible matches with our collaborators.
 
-- Curator can leave is_truematch blank as the subsequent steps will remind the
-curator to follow up on these possible matches.
+1. If there is no clear answer (or any answer), the curator should leave `is_truematch` blank as the subsequent steps will remind the curator to follow up on these possible matches.
 
-## Process fuzzymatch.csv manual matches
-Read in the fuzzymatch.csv that has been manually check 
-Process the file using process_fuzzymatch(), which will write out 3 files containing:
+## Process *fuzzymatch.csv* manual matches
 
-- names that still need to be checked
-- names for which is_truematch = TRUE and should be added to cv_rename.csv
-- names that have no match and should be standardized to add to the database
+1. Read in the *fuzzymatch.csv* that has been manually check
+1. Process the file using `process_fuzzymatch()`, which will write out 3 files to the working directory containing:  
+  * Variety names that still need to be manually checked for whether they have a match or not.
+  * Variety names for which `is_truematch` is "TRUE" and should be added to *cv_rename.csv*.
+  * Variety names that have no match and should be standardized to add to the database.  
 
 ```{r, results = 'asis', results.folding = 'show'}
 fuzzy_status <- 
-  read_csv(
-    here::here(auxiliary_files, "fuzzymatch_status.csv")) %>%
+  read_csv(here::here(auxiliary_files, "fuzzymatch_status.csv")) %>%
   mutate(var_id = as.character(var_id))
-
 
 results_fuzzymatch <- 
   process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, 
@@ -141,20 +135,14 @@ results_fuzzymatch <-
 
 ## Standardize names without a match
 
-- Move standardize_new_names.csv to auxiliary_files (append with ending e.g. "_aux")
-- Go through and standardize the names in standardize_new_names_aux.csv 
-by editing the column new_std_name. process_fuzzymatch() makes a first guess
-by pulling the variety name for the new_std_name.
-new_std_name can be changed.
+* Move *standardize_new_names.csv* helper_files/ directory (append file with ending "_aux")
+* Go through and standardize the names in *standardize_new_names_aux.csv* 
+by editing the column 'new_std_name'. The function `process_fuzzymatch()` will make an initial guess by comparing the variety name field for the `new_std_name`. The `new_std_name` can be changed [the column header?]. 
 
-It is especially important that if there are different spellings of the 
-same variety, the name is standardized in this file.
-e.g. If WA0061 and WA61 are the same variety, the new_std_name should be the
-same for both entries.
+<span class="important">Note on Duplicate Names: </span> It is especially important that if there are different spellings of the same variety, the name is standardized in this file. For example, if "WA0061" and "WA61" are the same variety (spoiler: they are), the `new_std_name` should be the same for both entries.
 
-Note: If any names are found to already be in the database, then manually
-add them to the controlled_vocab/cv_rename.csv file
-This occurs when the name is not found by fuzzymatching
+If any variety names are already in the database, then manually add them to the *controlled_vocab/cv_rename.csv* file. This occurs when the name is not found by fuzzy matching.
+
 ```{r}
 results_new_names <- 
   process_std_new_names(
@@ -165,22 +153,25 @@ results_new_names <-
     db_folder = codebook_folder)
 
 ```
-If the fuzzy_status file is updated (is_truematch is filled in),
-re-run the entire process (in a clean session) and process_fuzzymatch() and 
-process_std_new_names() will update.  The goal is:
+If the fuzzy_status file is updated (that is, `is_truematch` is filled in), re-run the entire process in a clean R session and `process_fuzzymatch()` and 
+`process_std_new_names()` will update [the files?].  The goals are clean these files until they are empty:
 
-1. get fuzzy_check.csv to be blank
-2. get all of the add_to_*.csv files to be blank.  
+1. *fuzzy_check.csv* 
+1. all *add_to_{{crop_variety_name_table}}.csv* files  
 
 When this has been completed, all of the variety names should be matched and
 all the necessary information has been moved into the controlled vocabularies.
 
-# Collect all the matches from each step
-Once the names from the process_std_new_names() step have been added to
-the cv_rename file, then they should match in the cv_rename step
+Hooray! Make sure you celebrate this achievement! 
 
-collect_final_matches() is used to collect all the matches and the stage 
-where they were matched
+# Collect all the matches from each step
+
+Once the names from the `process_std_new_names()` step have been added to
+the *cv_rename* file, then they should match in the cv_rename step. 
+
+the function` collect_final_matches()` is used to collect all the matches and the stage 
+where they were matched. 
+
 ```{r, results.folding = NULL, results = 'asis'}
 names_matches <- 
   collect_final_matches(list(exact = results_exactmatch,
@@ -192,8 +183,10 @@ names_matches <-
 knitr::kable(names_matches)
 
 ```
+
 # Bind matches with the data
+
 ```{r, eval = FALSE}
-# pseudocode
-# data_cv_names <- left_join(data, names_matches, by = "variety)
+# do not run this code (it's here for example only)
+data_cv_names <- left_join(data, names_matches, by = "variety")
 ```
