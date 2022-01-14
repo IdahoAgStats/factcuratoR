@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Introduction to the validation functions</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">2022-01-13</h4>
+            <h4 data-toc-skip class="date">Jan 14, 2022</h4>
       
       
       <div class="hidden name"><code>intro_validation.Rmd</code></div>
@@ -90,24 +90,20 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The purpose of <code>factcuratoR</code> is to provide sets of functions to help standardize variety testing data for the FACT program.</p>
-<p>The goal of the FACT program curation is to generate standardized:</p>
-<ol style="list-style-type: decimal">
-<li><p>trial data</p></li>
-<li><p>trial metadata</p></li>
-</ol>
-<p>that conform to the controlled vocabulary codebooks. The codebooks specify the columns required for each file and the accepted values for the column contents. See the <a href="https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html" class="external-link">Introduction to codebooks vignette</a> for more information on the structure of and formatting for the codebooks.</p>
+<p>The purpose of <strong>factcuratoR</strong> is to provide sets of functions to help standardize variety testing data for curation of variety testing data sets supporting the WAVE project.</p>
+<p>The goal of the WAVE program curation is to generate <u>trial data</u> <em>and</em> <u>trial metadata</u> that conform to the controlled vocabulary codebooks.</p>
+<p>The codebooks specify the variable required for each file (as a single column in a data frame, matrix, tibble, etc) and the accepted values for the the variable. See the <a href="https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html" class="external-link">Introduction to codebooks vignette</a> for more information on the structure of and formatting for the codebooks.</p>
 </div>
 <div class="section level2">
 <h2 id="overview-of-validation-functions">Overview of validation functions<a class="anchor" aria-label="anchor" href="#overview-of-validation-functions"></a>
 </h2>
 <p>The validation functions check that the data conforms to the controlled vocabulary codebooks. There are functions to validate:</p>
-<ol style="list-style-type: decimal">
-<li>the column names. The functions return tables for the curator to check that required columns are present and that names are standardized.</li>
-<li>the columns contents. The functions return tables for the curator to check that column contents match controlled vocabularies or are in the accepted value range)</li>
-</ol>
-<p>Finally, <a href="https://idahoagstats.github.io/factcuratoR/reference/standardize_cols_by_cb.html" class="external-link">standardize_cols_by_cb()</a> allows the curator to standardize the files (select and order columns) according to the codebooks.</p>
-<p>First, load <code>factcuratoR</code> and point to the main codebook (which currently must be named codebooks_all_db.csv for the validation functions)</p>
+<ul>
+<li>variable names. The functions return tables for the curator to check that required variables are present and that names are standardized.</li>
+<li>variable values. The functions return tables for the curator to check that values for a single variable match controlled vocabularies or are in the accepted value range.</li>
+</ul>
+<p>Finally, <a href="https://idahoagstats.github.io/factcuratoR/reference/standardize_cols_by_cb.html" class="external-link"><code>standardize_cols_by_cb()</code></a> enables curators to standardize the files (select and order columns) according to the standards established in the codebooks.</p>
+<p>First, load <strong>factcuratoR</strong> and point to the main codebook which must be named <em>codebooks_all_db.csv</em> for the validation functions to find it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span>
 <span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.1.2</span>
@@ -134,16 +130,16 @@
 <div class="section level2">
 <h2 id="validate-trial-data">Validate trial data<a class="anchor" aria-label="anchor" href="#validate-trial-data"></a>
 </h2>
-<p>It may be easiest to point the most cleaned up version of the data to a new variable (e.g. df_validate below) so that the calls to the validation functions don’t need to be updated everytime there is a more cleaned up version of the data.</p>
+<p>It may be easiest to point the most cleaned up version of the data to a new variable (e.g. df_validate below) so that the calls to the validation functions don’t need to be updated every time there is a more cleaned up version of the data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_validate</span> <span class="op">&lt;-</span> <span class="va">test_data</span></code></pre></div>
 <div class="section level3">
 <h3 id="check-column-names">Check column names<a class="anchor" aria-label="anchor" href="#check-column-names"></a>
 </h3>
-<p>validate_colnames() will check the column names between the codebook and data. The argument codebook_name = “trial_data” (The functions pull the book name from the codebooks_all_db.csv.)</p>
+<p>The function <code>validate_colnames(</code>) will check the variable names between the codebook and data. The argument <code>codebook_name = "trial_data"</code> indicates what codebook from the <em>codebooks_all_db.csv</em> should be used for this step.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colname_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validate_colnames.html">validate_colnames</a></span><span class="op">(</span><span class="va">df_validate</span>, 
-                                   <span class="st">"trial_data"</span>, 
+                                   codebook_name <span class="op">=</span> <span class="st">"trial_data"</span>, 
                                    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">comment</span>, <span class="va">colname_data</span>, <span class="va">colname_codebook</span>, <span class="va">required</span>, <span class="va">col_num</span><span class="op">)</span> 
 <span class="co">#&gt; Joining, by = "comment"</span>
@@ -154,21 +150,14 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> exists in both data and codebook        1 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> not present in codebook: trial_data     4 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> not present in data                    25 TRUE         6</span></code></pre></div>
-<p>The main goal of validating column names is to get the value in the req(uired) column of row 3 to be 0. 0 would represent that there all the required columns are present in the data.</p>
-<p>There may be several ways to fix missing columns:</p>
-<ol style="list-style-type: decimal">
-<li>Rename an existing column in the raw data to match the codebook See <a href="https://idahoagstats.github.io/facthelpeR/articles/intro_facthelper.html" class="external-link">facthelpeR</a> for functions to help with renaming columns</li>
-<li>Collect new data from another source (annual reports or request from collaborator)</li>
-</ol>
-<p>The second row in the summary highlights columns that aren’t in the codebook. Curator should take a look at these to:</p>
-<ol style="list-style-type: decimal">
-<li><p>decide if the column can be captured by current controlled vocabulary. If so, standardize to the controlled vocabulary (this is a restatement of point 1 under the main goal of validating column names, above)</p></li>
-<li><p>decide whether a new controlled vocabulary should be added. If so, add to controlled vocabulary using the correct formatting, which is described in the <a href="https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html" class="external-link">Introduction to codebooks vignette</a></p></li>
-</ol>
+<p>The main goal of validating column names is to get the value in the required column of row 3 to be zero. A value of zero indicates that all the required columns are present in the data and completely filled out. The second row in the summary highlights columns that are not in the codebook.</p>
+<p>If required columns appear missing in the initial check, it may be present in the data set with a differing name. Often this is the case for many variables; collaborators each have their own unique name for common variables. When this happens, creating a file to rename files en masse is the best solution. See <a href="https://idahoagstats.github.io/facthelpeR/articles/intro_facthelper.html" class="external-link">facthelpeR</a> for functions to help with renaming columns. Determining if a variable is captured by the existing controlled vocabulary is a human decision made based on your own knowledge and when needed, consultation with other project participants. When in doubt, ask.</p>
+<p>If a required variable is truly missing, then you will need to find the data. Looking at annual reports is a good starting point, and you may have to eventually request this information from the collaborator if you cannot find it elsewhere.</p>
+<p>Sometimes, there are also new variables not captured by the existing vocabulary. In that case, we will need to decide if this variable should be added to the database. The answer is usually “yes”, but usually a discussion with project participants is needed for this decision. If there is a decision to add a new variable, add it to controlled vocabulary using the correct formatting described in the <a href="https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html" class="external-link">Introduction to codebooks vignette</a>.</p>
 <div class="section level4">
 <h4 id="full-report-of-validating-column-names">Full report of validating column names<a class="anchor" aria-label="anchor" href="#full-report-of-validating-column-names"></a>
 </h4>
-<p>Note: To make scanning slightly easier, the output is automatically ordered so that the columns present the data are at the top and that the REQUIRED but missing columns are at the bottom.</p>
+<p><strong>Note:</strong> To make human review easier, the output is automatically ordered so that the columns present the data are at the top and that the <em>REQUIRED but missing columns</em> are at the bottom.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">colname_valid</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -394,7 +383,7 @@
 </table>
 </div>
 <div class="section level4">
-<h4 id="to-interact-with-the-column-names-that-still-need-to-be-fixed">To interact with the column names that still need to be fixed<a class="anchor" aria-label="anchor" href="#to-interact-with-the-column-names-that-still-need-to-be-fixed"></a>
+<h4 id="to-interact-with-the-variable-names-that-still-need-to-be-fixed">To interact with the variable names that still need to be fixed<a class="anchor" aria-label="anchor" href="#to-interact-with-the-variable-names-that-still-need-to-be-fixed"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colname_valid_check</span> <span class="op">&lt;-</span> <span class="va">colname_valid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
@@ -444,7 +433,7 @@
 <div class="section level3">
 <h3 id="check-column-contents">Check column contents<a class="anchor" aria-label="anchor" href="#check-column-contents"></a>
 </h3>
-<p>confront_data() is a wrapper around validate::confront() that checks that column contents match controlled vocabularies or are in the accepted value range</p>
+<p>The function <code><a href="../reference/confront_data.html">confront_data()</a></code> is a wrapper around <code><a href="https://rdrr.io/pkg/validate/man/confront.html" class="external-link">validate::confront()</a></code> that checks that column contents match controlled vocabularies or are in the accepted value range.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colcontent_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/confront_data.html">confront_data</a></span><span class="op">(</span><span class="va">df_validate</span>, 
                                   df_type <span class="op">=</span> <span class="st">"trial_data"</span>,
@@ -455,10 +444,9 @@
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> TRUE         1     1     6       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #BB0000;">NA</span>           0     0    19       0</span></code></pre></div>
-<p>The summary output for validating column contents reports the number of columns that have fails (does not match controlled vocabularies or is not within the accepted range) and NAs. A column will return error = TRUE if the column is not present in the data.</p>
-<p>The main goal of validating column contents is to get the fails to 0 and to get nNA to 0 (for required columns).</p>
-<p>The errors can be fixed by either fixing errors/ standardizing contents in the raw data or adding new controlled vocabularies to the codebooks.<br>
-(e.g. If the name “variety_1” is a real variety name, then it should be added to the cultivar codebook.)</p>
+<p>The summary output for validating column contents reports the number of columns that have fails (that is, a column does not match controlled vocabularies or is not within the accepted range) and NA values. A column will return <code>error = TRUE</code> if a column is not present in the data.</p>
+<p>The goal of validating column contents is to achieve zero fails for all columns and for required columns, achieve zero NA values (so that each observation has a value).</p>
+<p>The errors can be fixed by either fixing errors or standardizing contents in the raw data or adding new controlled vocabularies to the codebooks. For example, if the name “variety_1” is a real variety name, then it should be added to the cultivar codebook.</p>
 </div>
 <div class="section level3">
 <h3 id="full-report-of-validating-column-contents">Full report of validating column contents<a class="anchor" aria-label="anchor" href="#full-report-of-validating-column-contents"></a>
@@ -779,7 +767,7 @@
 </tbody>
 </table>
 <div class="section level4">
-<h4 id="to-check-any-fails-interactively">To check any fails interactively<a class="anchor" aria-label="anchor" href="#to-check-any-fails-interactively"></a>
+<h4 id="to-check-for-validation-fails-interactively">To check for validation fails interactively<a class="anchor" aria-label="anchor" href="#to-check-for-validation-fails-interactively"></a>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"variety"</span><span class="op">)</span>
@@ -822,11 +810,11 @@
 <div class="section level2">
 <h2 id="validate-metadata">Validate metadata<a class="anchor" aria-label="anchor" href="#validate-metadata"></a>
 </h2>
-<p>The steps in validating the metadata is the same as validating the trial data, except the argument codebook_name = “trials_metadata”</p>
+<p>The steps in validating the metadata is the same as validating the trial data, except the argument <code>codebook_name = "trials_metadata"</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metadata_validate</span> <span class="op">&lt;-</span> <span class="va">test_data</span></code></pre></div>
 <div class="section level3">
-<h3 id="check-column-names-1">Check column names<a class="anchor" aria-label="anchor" href="#check-column-names-1"></a>
+<h3 id="check-variable-names">Check variable names<a class="anchor" aria-label="anchor" href="#check-variable-names"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metadata_colname_valid</span> <span class="op">&lt;-</span> 
@@ -1068,7 +1056,7 @@
 </table>
 </div>
 <div class="section level3">
-<h3 id="check-column-contents-1">Check column contents<a class="anchor" aria-label="anchor" href="#check-column-contents-1"></a>
+<h3 id="check-variable-values">Check variable values<a class="anchor" aria-label="anchor" href="#check-variable-values"></a>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metadata_colcontent_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/confront_data.html">confront_data</a></span><span class="op">(</span><span class="va">metadata_validate</span>, 
@@ -1083,6 +1071,7 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     2       0</span>
 
 <span class="va">metadata_colcontent_summary</span> <span class="op">&lt;-</span> <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="st">"summary"</span><span class="op">]</span><span class="op">]</span>
+
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">metadata_colcontent_summary</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -1409,8 +1398,8 @@
 </table>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
+<span class="co">#Check for any fails interactively:</span>
 
-<span class="co"># To check any fails interactively:</span>
 <span class="va">metadata_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"location"</span><span class="op">)</span>
 <span class="va">metadata_colcontent_violate</span> <span class="op">&lt;-</span> 
   <span class="fu">validate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/validate/man/satisfying.html" class="external-link">violating</a></span><span class="op">(</span><span class="va">test_data</span>, <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="va">metadata_var</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
@@ -1441,9 +1430,7 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
