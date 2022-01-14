@@ -1,8 +1,10 @@
 ---
 title: "Introduction to the codebook structure"
 author: "Jacqueline Tay"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.Date(), '%b %d, %Y')`"
 output: 
+pkgdown:
+  as_is: true  
 rmarkdown::html_vignette:
   fig_caption: yes
 vignette: >
@@ -20,21 +22,15 @@ knitr::opts_chunk$set(
 ```
 
 ## Introduction
-The purpose of `factcuratoR` is to provide sets of functions to help 
-standardize variety testing data for the FACT program.
 
-The goal of the FACT program curation is to generate:
+The purpose of **factcuratoR** is to provide sets of functions to help standardize variety testing data for curation of variety testing data sets supporting the WAVE project.
 
-1. trial data
-
-2. trial metadata
-
-that conform to the controlled vocabulary codebooks.
+The goal of the WAVE program curation is to generate <u>trial data</u> and <u>trial metadata</u> that conform to the controlled vocabulary codebooks.
 
 ## Overview of codebook structure
 
-First, load `factcuratoR` and point to the main codebook (which currently must 
-be named codebooks_all_db.csv for the validation functions)
+First, load **factcuratoR** and point to the main codebook (which currently must 
+be named *codebooks_all_db.csv* for the validation functions)
 
 ```{r, message = FALSE}
 library(factcuratoR)
@@ -43,74 +39,53 @@ codebook_folder <- here::here(
   "tests/testthat/test_controlled_vocab")
 ```
 
-Most importantly, the main codebook contains:
-the variables (columns) for both the trial data and the trial metadata. 
-For example, the trial data should contain the columns:
-trial, variety, entry, plot, etc...
-and the trial metadata should contain the columns:
-trial, nursery, year, location, etc...
+The main codebook contains the variable names and required status for the trial data and the trial metadata. For example, the trial data should contain the columns trial, variety, entry, and plot. The trial metadata should contain columns for
+trial, nursery, year, location, etc.
 
-Note! Traits are collected for each trial, so conceptually, it would make sense
-for the traits (such as test_weight or height) to be contained in the main codebook
-associated with trial_data. However, because the traits list is 
-expected to get rather long, the traits are stored in a separate file called 
-"traits.csv."  For validating the columns in the trial data, the validation 
+<span class="important"> Note! </span> Traits are collected for each trial, so conceptually, it would make sense for the traits (such as `test_weight` or `height`) to be contained in the main codebook associated with trial_data. However, because the traits list isexpected to get rather long, the traits are stored in a separate file called 
+*traits.csv*.  For validating the columns in the trial data, the validation 
 functions pull in the traits and treats each trait as a column in the trial data.
 
 ```{r, fig.cap = "Fig. 1 Example codebook structure"}
 create_dm(here::here(codebook_folder, "codebooks_all_db.csv"))
 ```
-codebooks_all_db.csv also specifies whether a variable must conform to 
-controlled vocabularies.  If so, the controlled vocabularies are listed
-in another codebook (e.g. allowed levels of nursery in trials_metadata
+
+The file *codebooks_all_db.csv* also specifies whether a variable must conform to 
+controlled vocabularies. If so, the controlled vocabularies are listed
+in another codebook (e.g. allowed levels of nursery in `trials_metadata`
 are defined in the nursery codebook).  Let's call these 'controlled vocabulary
 codebooks' to better distinguish them from the 'main codebook.'
 
 Said another way, the 'main codebook' hold column names and the 'controlled 
 vocabulary codebooks' hold levels that are approved as column contents.
 
-Just as the main codebook defines the columns that are present 
-in the trial_data and trials_metadata, codebooks_all_db.csv also 
-defines the columns that are present in the controlled vocabulary
-codebooks.  For the example (Fig. 1), codebooks_all_db.csv also has information for the column
-names in the cultivar, nursery, location, and crop_market_classes controlled
-vocabular codebooks.
-
+Just as the main codebook defines the columns that are present in the trial_data and trials_metadata,* codebooks_all_db.csv* also defines the columns that are present in the controlled vocabulary codebooks.  For the example (Fig. 1), *codebooks_all_db.csv* also has information for the column names in the cultivar, nursery, location, and crop_market_classes controlled vocabular codebooks.
 
 ## More about codebooks_all_db.csv
+
 The codebooks_all_db.csv has the following (required) columns:
 
-**book**: name of the codebook
-
-**variable**: name of a column in the trial data, metadata, or a codebook
-
-**value_type**: A level matching one of the following options:
-- categorical: type if the variable must conform to controlled vocabularies 
-(acceptable variables must be specified in values_defined_in or value_range)
-
-- string: uncontrolled string 
-(validation function will check to ensure is.character())
-
-- integer (validation will check %%1 = 0)
-
-- continuous (acceptable range must be provided in value_range)
-
-- date (validation will check for yyyy-mm-dd format)
-
-**meaning**: description of the variable, including units or formatting requirements
-
-**values_defined_in**: This is NA if value_type != "categorical." Otherwise, 
+* `book`: name of the codebook  
+* `variable`: name of a column in the trial data, metadata, or a codebook  
+* `value_type`: A level matching one of the following options:  
+  * categorical: type if the variable must conform to controlled vocabularies 
+(acceptable variables must be specified in values_defined_in or value_range)  
+  * string: uncontrolled string (validation function will check to ensure `is.character() == TRUE`)  
+  * integer (validation will check `%%1 == 0`)  
+  * continuous (acceptable range must be provided in `value_range`)  
+  * date (validation will check for yyyy-mm-dd format)  
+* `meaning`: description of the variable, including units or formatting requirements
+* `values_defined_in`: This is NA if value_type != "categorical." Otherwise, 
 this field should be populated with a name that matches a book where the variable
 controlled vocabulary is defined 
 (e.g. for location in trials_metadata, the values_defined_in is "locations")
-
-**value_range**: If this variable does not have controlled vocabularies, enter the accepted values or ranges.  This formatting is used in the qc_validate_fns.R to validate the data.  
-  - Entries should be separated by semi-colons (e.g. TRUE; FALSE or 1; 2; 3)
-  -  Strings should be quoted (e.g. “value1”; “value2”)  
-  -  Range should be in the form: min to max (e.g. 0 to 100) 
-  -  Separate range and values using: | (e.g. 0 to 100 | -9)
-  -  Due to Excel formatting issues, negative numbers should be prefaced with ‘ (but without closing quotes) (e.g. ‘-180)
-primary_key
+  * `value_range`: If this variable does not have controlled vocabularies, enter the accepted values or ranges.  This formatting is used in the *qc_validate_fns.R* to validate the data.   
+    * Entries should be separated by semi-colons (e.g. "TRUE; FALSE" or "1; 2; 3")
+    *Strings should be quoted (e.g. “value1”; “value2”)  
+    * Range should be in the form: min to max (e.g. 0 to 100) 
+    * Separate range and values using: | (e.g. 0 to 100 | -9)
+    * Due to Excel formatting issues, negative numbers should be prefaced with ‘ but without closing quotes (e.g. "‘-180")
+* `primary_key` [??]
 
 
 ```{r, results = 'asis'}
@@ -118,11 +93,12 @@ codebooks_all <- readin.db(codebook_folder)
 
 knitr::kable(codebooks_all$codebooks_all_db.csv %>% filter(book == "trial_data"))
 knitr::kable(codebooks_all$codebooks_all_db.csv %>% filter(book == "locations"))
-
 ```
+
 ## Updating the controlled vocabularies
 
-When updating any codebook, the codebooks_all_db.csv must be updated to reflect the change.   
-- A newly added variable column would correspond to a new row in codebooks_all_db.csv.   
-- A changed variable column name would correspond to change in variable name in an existing row.  Care must be taken as variables may be used in several different codebooks.  Renames should be consistent. 
+When updating any codebook, the *codebooks_all_db.csv* must be updated to reflect the change.    
+
+* A newly added variable column would correspond to a new row in *codebooks_all_db.csv*.  
+* A changed variable column name would correspond to change in variable name in an existing row.  Care must be taken as variables may be used in several different codebooks. Renames should be consistent across codebooks.   
 
