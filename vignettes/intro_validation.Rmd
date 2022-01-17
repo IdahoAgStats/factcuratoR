@@ -79,8 +79,7 @@ The function `validate_colnames(`) will check the variable names between the cod
 ```{r}
 colname_valid <- validate_colnames(df_validate, 
                                    codebook_name = "trial_data", 
-                                   db_folder = codebook_folder) %>%
-    select(comment, colname_data, colname_codebook, required, col_num) 
+                                   db_folder = codebook_folder)
 ```
 
 The main goal of validating column names is to get the value in the required
@@ -96,10 +95,6 @@ Sometimes, there are also new variables not captured by the existing vocabulary.
 [Introduction to codebooks vignette](https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.html). 
 
 #### Full report of validating column names
-
-**Note:** To make human review easier, the output is automatically ordered so 
-that the columns present the data are at the top and that the 
-*REQUIRED but missing columns* are at the bottom.
 
 ```{r, results.folding = NULL, results = 'asis'}
 knitr::kable(colname_valid)

@@ -21,8 +21,10 @@ validate_colnames <- function(df, codebook_name, db_folder){
   # Can add the functionality to filter by whether the column name is required
   # according to the codebook
   cb2 <- cb %>%
-    filter(!is.na(colname))
+    filter(!is.na(colname)) %>%
+    select(colname, required, col_num)
 
+  # Get the names in the data
   colnames_df <- data.frame(colname = names(df))
 
   column_report1 <- full_join(colnames_df, cb2,
@@ -32,10 +34,12 @@ validate_colnames <- function(df, codebook_name, db_folder){
 
   column_report2 <-
     column_report1 %>%
-    mutate(comment = ifelse(is.na(colname_data), "not present in data", NA)) %>%
-    mutate(comment = ifelse(is.na(colname_codebook), paste("not present in codebook:", codebook_name), comment)) %>%
-    mutate(comment = ifelse(is.na(comment), "exists in both data and codebook", comment)) %>%
-    arrange(comment, required)
+    mutate(comment =
+             case_when(is.na(colname_data) ~ "not present in data",
+                       is.na(colname_codebook) ~
+                            paste("not present in codebook:", codebook_name),
+                       TRUE ~ "exists in both data and codebook")) %>%
+    arrange(desc(comment), desc(required))
 
   # Output a message to the user
   report2_message <- column_report2 %>% group_by(comment) %>% summarise(n= n())

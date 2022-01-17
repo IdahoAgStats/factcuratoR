@@ -1,10 +1,10 @@
 book,required,col_num,variable,value_type,meaning,values_defined_in,value_range,notes,type,previous name,max_characters,primary_key
 crop_market_classes,,,crop,categorical,market class for a crop,crop_market_classes,crop,NA,,,,TRUE
 crop_market_classes,,,species,string,species name,crop_market_classes,these values follow the most common taxanomic name used by GRIN Global (https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomyquery.aspx),values defined by this file (duplicates allowed) - an alphabetic string with a maximum of 60 characters,,,,
-locations,,3,county,string,county where city is located,NA,,"currently only counties in Idaho, single entry may include multiple counties when a city straddles multiple counties",NA,,,
-locations,,2,loc_abbr,categorical,location abbreviation,locations,,,NA,,,
-locations,,1,location,categorical,nearest city to a field trial,locations,,,NA,,,TRUE
-locations,,4,state,string,State where city is located,NA,"""ID""; ""OR""; ""WA""",,NA,,,
+locations,FALSE,3,county,string,county where city is located,NA,,"currently only counties in Idaho, single entry may include multiple counties when a city straddles multiple counties",NA,,,
+locations,TRUE,2,loc_abbr,categorical,location abbreviation,locations,,,NA,,,
+locations,TRUE,1,location,categorical,nearest city to a field trial,locations,,,NA,,,TRUE
+locations,TRUE,4,state,string,State where city is located,NA,"""ID""; ""OR""; ""WA""",,NA,,,
 cultivar,TRUE,1,crop,categorical,market class for a crop,crop_market_classes,,,NA,,,
 cultivar,TRUE,2,variety,categorical,Name of germplasm,cultivar,"alpha-numeric string, maximum of 30 characters",,NA,,,TRUE
 cultivar,FALSE,3,alias,categorical,alternative names given to germplasm prior to official release,cultivar,"alpha-numeric string, maximum of 50 characters",,NA,,,
