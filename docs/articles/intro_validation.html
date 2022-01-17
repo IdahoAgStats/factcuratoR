@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Introduction to the validation functions</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Jan 14, 2022</h4>
+            <h4 data-toc-skip class="date">Jan 17, 2022</h4>
       
       
       <div class="hidden name"><code>intro_validation.Rmd</code></div>
@@ -106,16 +106,11 @@
 <p>First, load <strong>factcuratoR</strong> and point to the main codebook which must be named <em>codebooks_all_db.csv</em> for the validation functions to find it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.1.2</span>
-<span class="co">#&gt; Warning: package 'readr' was built under R version 4.1.2</span>
-<span class="co">#&gt; Warning: package 'tidyr' was built under R version 4.1.2</span>
-<span class="co">#&gt; Warning: package 'lubridate' was built under R version 4.1.2</span>
-<span class="co">#&gt; Warning: package 'fuzzyjoin' was built under R version 4.1.2</span>
 
-<span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span>
+<span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span>
   <span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span>
 
-<span class="va">knitroutputfolder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/intro_validation"</span>, <span class="st">"output"</span><span class="op">)</span></code></pre></div>
+<span class="va">knitroutputfolder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/intro_validation"</span>, <span class="st">"output"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-some-test-data">Create some test data<a class="anchor" aria-label="anchor" href="#create-some-test-data"></a>
@@ -140,16 +135,15 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colname_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validate_colnames.html">validate_colnames</a></span><span class="op">(</span><span class="va">df_validate</span>, 
                                    codebook_name <span class="op">=</span> <span class="st">"trial_data"</span>, 
-                                   db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">comment</span>, <span class="va">colname_data</span>, <span class="va">colname_codebook</span>, <span class="va">required</span>, <span class="va">col_num</span><span class="op">)</span> 
+                                   db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span>
 <span class="co">#&gt; Joining, by = "comment"</span>
 <span class="co">#&gt; Status: </span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 4</span></span>
 <span class="co">#&gt;   comment                                 n required   req</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> exists in both data and codebook        1 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> not present in codebook: trial_data     4 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> not present in data                    25 TRUE         6</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                               </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> exists in both data and codebook        1 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> not present in codebook: trial_data     4 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span><span> not present in data                    25 TRUE         6</span></span></code></pre></div>
 <p>The main goal of validating column names is to get the value in the required column of row 3 to be zero. A value of zero indicates that all the required columns are present in the data and completely filled out. The second row in the summary highlights columns that are not in the codebook.</p>
 <p>If required columns appear missing in the initial check, it may be present in the data set with a differing name. Often this is the case for many variables; collaborators each have their own unique name for common variables. When this happens, creating a file to rename files en masse is the best solution. See <a href="https://idahoagstats.github.io/facthelpeR/articles/intro_facthelper.html" class="external-link">facthelpeR</a> for functions to help with renaming columns. Determining if a variable is captured by the existing controlled vocabulary is a human decision made based on your own knowledge and when needed, consultation with other project participants. When in doubt, ask.</p>
 <p>If a required variable is truly missing, then you will need to find the data. Looking at annual reports is a good starting point, and you may have to eventually request this information from the collaborator if you cannot find it elsewhere.</p>
@@ -157,227 +151,226 @@
 <div class="section level4">
 <h4 id="full-report-of-validating-column-names">Full report of validating column names<a class="anchor" aria-label="anchor" href="#full-report-of-validating-column-names"></a>
 </h4>
-<p><strong>Note:</strong> To make human review easier, the output is automatically ordered so that the columns present the data are at the top and that the <em>REQUIRED but missing columns</em> are at the bottom.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">colname_valid</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left">comment</th>
 <th align="left">colname_data</th>
 <th align="left">colname_codebook</th>
 <th align="left">required</th>
 <th align="right">col_num</th>
+<th align="left">comment</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">exists in both data and codebook</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">not present in codebook: trial_data</td>
-<td align="left">location</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in codebook: trial_data</td>
-<td align="left">year</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in codebook: trial_data</td>
-<td align="left">rep_temp</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in codebook: trial_data</td>
-<td align="left">sourcefile</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">heading_date</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_bu_acre</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_lb_plot</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_corrected</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">stand</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">moisture</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">height</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">falling_number</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">grain_protein</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">test_weight</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">test_weight_cleaned</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">lodging</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">plump_percent_6_64</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">thin_percent_5_64</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_g_plot</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_lb_acre</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">yield_kg_ha</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">hessian_fly_percent</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">emergence</td>
-<td align="left">FALSE</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">trial</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
+<td align="left">not present in data</td>
 </tr>
 <tr class="even">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">entry</td>
 <td align="left">TRUE</td>
 <td align="right">3</td>
+<td align="left">not present in data</td>
 </tr>
 <tr class="odd">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">plot</td>
 <td align="left">TRUE</td>
 <td align="right">4</td>
+<td align="left">not present in data</td>
 </tr>
 <tr class="even">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">range</td>
 <td align="left">TRUE</td>
 <td align="right">6</td>
+<td align="left">not present in data</td>
 </tr>
 <tr class="odd">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">rep</td>
 <td align="left">TRUE</td>
 <td align="right">5</td>
+<td align="left">not present in data</td>
 </tr>
 <tr class="even">
-<td align="left">not present in data</td>
 <td align="left">NA</td>
 <td align="left">row</td>
 <td align="left">TRUE</td>
 <td align="right">7</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">heading_date</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">yield_bu_acre</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">yield_lb_plot</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">yield_corrected</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">stand</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">moisture</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">height</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">falling_number</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">grain_protein</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">test_weight</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">test_weight_cleaned</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">lodging</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">plump_percent_6_64</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">thin_percent_5_64</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">yield_g_plot</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">yield_lb_acre</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">yield_kg_ha</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">hessian_fly_percent</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">emergence</td>
+<td align="left">FALSE</td>
+<td align="right">NA</td>
+<td align="left">not present in data</td>
+</tr>
+<tr class="even">
+<td align="left">location</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">not present in codebook: trial_data</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">not present in codebook: trial_data</td>
+</tr>
+<tr class="even">
+<td align="left">rep_temp</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">not present in codebook: trial_data</td>
+</tr>
+<tr class="odd">
+<td align="left">sourcefile</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">not present in codebook: trial_data</td>
+</tr>
+<tr class="even">
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">TRUE</td>
+<td align="right">2</td>
+<td align="left">exists in both data and codebook</td>
 </tr>
 </tbody>
 </table>
@@ -386,8 +379,8 @@
 <h4 id="to-interact-with-the-variable-names-that-still-need-to-be-fixed">To interact with the variable names that still need to be fixed<a class="anchor" aria-label="anchor" href="#to-interact-with-the-variable-names-that-still-need-to-be-fixed"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colname_valid_check</span> <span class="op">&lt;-</span> <span class="va">colname_valid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">comment</span> <span class="op">==</span> <span class="st">"not present in codebook: trial_data"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">colname_valid_check</span> <span class="op">&lt;-</span> <span class="va">colname_valid</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">comment</span> <span class="op">==</span> <span class="st">"not present in codebook: trial_data"</span><span class="op">)</span>
 
 <span class="va">col_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_col_info.html">find_col_info</a></span><span class="op">(</span><span class="va">df_validate</span>, 
                        cols_check <span class="op">=</span> <span class="va">colname_valid_check</span><span class="op">$</span><span class="va">colname_data</span>, 
@@ -441,9 +434,9 @@
 <span class="co">#&gt; Warning: Some issues left to resolve </span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 x 5</span></span>
 <span class="co">#&gt;   required fails   nNA error warning</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> TRUE         1     1     6       0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #BB0000;">NA</span>           0     0    19       0</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">*</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span>   </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> TRUE         1     1     6       0</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> </span><span style="color: #BB0000;">NA</span><span>           0     0    19       0</span></span></code></pre></div>
 <p>The summary output for validating column contents reports the number of columns that have fails (that is, a column does not match controlled vocabularies or is not within the accepted range) and NA values. A column will return <code>error = TRUE</code> if a column is not present in the data.</p>
 <p>The goal of validating column contents is to achieve zero fails for all columns and for required columns, achieve zero NA values (so that each observation has a value).</p>
 <p>The errors can be fixed by either fixing errors or standardizing contents in the raw data or adding new controlled vocabularies to the codebooks. For example, if the name “variety_1” is a real variety name, then it should be added to the cultivar codebook.</p>
@@ -456,15 +449,15 @@
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">colcontent_summary</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="5%">
-<col width="13%">
-<col width="3%">
+<col width="6%">
+<col width="14%">
 <col width="4%">
-<col width="3%">
-<col width="2%">
-<col width="3%">
 <col width="5%">
-<col width="56%">
+<col width="4%">
+<col width="2%">
+<col width="4%">
+<col width="5%">
+<col width="51%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">required</th>
@@ -509,7 +502,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">entry - 0 &gt;= -1e-08 &amp; entry - 500 &lt;= 1e-08 &amp; entry%%1 == 0</td>
+<td align="left">entry &gt;= 0 &amp; entry &lt;= 500 &amp; entry%%1 == 0</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -520,7 +513,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">plot - 1 &gt;= -1e-08 &amp; plot - 1e+06 &lt;= 1e-08 &amp; plot%%1 == 0</td>
+<td align="left">plot &gt;= 1 &amp; plot &lt;= 1e+06 &amp; plot%%1 == 0</td>
 </tr>
 <tr class="odd">
 <td align="left">TRUE</td>
@@ -531,7 +524,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">range - 1 &gt;= -1e-08 &amp; range - 200 &lt;= 1e-08 &amp; range%%1 == 0</td>
+<td align="left">range &gt;= 1 &amp; range &lt;= 200 &amp; range%%1 == 0</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -542,7 +535,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">rep - 1 &gt;= -1e-08 &amp; rep - 20 &lt;= 1e-08 &amp; rep%%1 == 0</td>
+<td align="left">rep &gt;= 1 &amp; rep &lt;= 20 &amp; rep%%1 == 0</td>
 </tr>
 <tr class="odd">
 <td align="left">TRUE</td>
@@ -553,7 +546,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">row - 1 &gt;= -1e-08 &amp; row - 200 &lt;= 1e-08 &amp; row%%1 == 0</td>
+<td align="left">row &gt;= 1 &amp; row &lt;= 200 &amp; row%%1 == 0</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -564,7 +557,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">heading_date - 1 &gt;= -1e-08 &amp; heading_date - 300 &lt;= 1e-08 &amp; heading_date%%1 == 0</td>
+<td align="left">heading_date &gt;= 1 &amp; heading_date &lt;= 300 &amp; heading_date%%1 == 0</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -575,7 +568,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">yield_bu_acre - 0 &gt;= -1e-08 &amp; yield_bu_acre - 500 &lt;= 1e-08</td>
+<td align="left">yield_bu_acre &gt;= 0 &amp; yield_bu_acre &lt;= 500</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -586,7 +579,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">yield_lb_plot - 0 &gt;= -1e-08 &amp; yield_lb_plot - 50 &lt;= 1e-08</td>
+<td align="left">yield_lb_plot &gt;= 0 &amp; yield_lb_plot &lt;= 50</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -597,7 +590,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">yield_corrected - 0 &gt;= -1e-08 &amp; yield_corrected - 500 &lt;= 1e-08</td>
+<td align="left">yield_corrected &gt;= 0 &amp; yield_corrected &lt;= 500</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -608,7 +601,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">stand - 0 &gt;= -1e-08 &amp; stand - 100 &lt;= 1e-08</td>
+<td align="left">stand &gt;= 0 &amp; stand &lt;= 100</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -619,7 +612,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">moisture - 0 &gt;= -1e-08 &amp; moisture - 30 &lt;= 1e-08</td>
+<td align="left">moisture &gt;= 0 &amp; moisture &lt;= 30</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -630,7 +623,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">height - 0 &gt;= -1e-08 &amp; height - 200 &lt;= 1e-08</td>
+<td align="left">height &gt;= 0 &amp; height &lt;= 200</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -641,7 +634,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">falling_number - 0 &gt;= -1e-08 &amp; falling_number - 600 &lt;= 1e-08 &amp; falling_number%%1 == 0</td>
+<td align="left">falling_number &gt;= 0 &amp; falling_number &lt;= 600 &amp; falling_number%%1 == 0</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -652,7 +645,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">grain_protein - 0 &gt;= -1e-08 &amp; grain_protein - 100 &lt;= 1e-08</td>
+<td align="left">grain_protein &gt;= 0 &amp; grain_protein &lt;= 100</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -663,7 +656,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">test_weight - 0 &gt;= -1e-08 &amp; test_weight - 100 &lt;= 1e-08</td>
+<td align="left">test_weight &gt;= 0 &amp; test_weight &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -674,7 +667,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">test_weight_cleaned - 0 &gt;= -1e-08 &amp; test_weight_cleaned - 100 &lt;= 1e-08</td>
+<td align="left">test_weight_cleaned &gt;= 0 &amp; test_weight_cleaned &lt;= 100</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -685,7 +678,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">lodging - 0 &gt;= -1e-08 &amp; lodging - 100 &lt;= 1e-08</td>
+<td align="left">lodging &gt;= 0 &amp; lodging &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -696,7 +689,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">plump_percent_6_64 - 0 &gt;= -1e-08 &amp; plump_percent_6_64 - 100 &lt;= 1e-08</td>
+<td align="left">plump_percent_6_64 &gt;= 0 &amp; plump_percent_6_64 &lt;= 100</td>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
@@ -707,7 +700,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">thin_percent_5_64 - 0 &gt;= -1e-08 &amp; thin_percent_5_64 - 100 &lt;= 1e-08</td>
+<td align="left">thin_percent_5_64 &gt;= 0 &amp; thin_percent_5_64 &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -751,7 +744,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">hessian_fly_percent - 0 &gt;= -1e-08 &amp; hessian_fly_percent - 100 &lt;= 1e-08</td>
+<td align="left">hessian_fly_percent &gt;= 0 &amp; hessian_fly_percent &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
@@ -762,7 +755,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">emergence - 0 &gt;= -1e-08 &amp; emergence - 100 &lt;= 1e-08</td>
+<td align="left">emergence &gt;= 0 &amp; emergence &lt;= 100</td>
 </tr>
 </tbody>
 </table>
@@ -772,8 +765,8 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"variety"</span><span class="op">)</span>
 <span class="va">colcontent_violate</span> <span class="op">&lt;-</span> 
-  <span class="fu">validate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/validate/man/satisfying.html" class="external-link">violating</a></span><span class="op">(</span><span class="va">test_data</span>, <span class="va">colcontent_valid</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="va">var</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">validate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/validate/man/satisfying.html" class="external-link">violating</a></span><span class="op">(</span><span class="va">test_data</span>, <span class="va">colcontent_valid</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="va">var</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">colcontent_violate</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -821,16 +814,16 @@
   <span class="fu"><a href="../reference/validate_colnames.html">validate_colnames</a></span><span class="op">(</span>
     <span class="va">metadata_validate</span>, 
     <span class="st">"trials_metadata"</span>,
-    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">comment</span>, <span class="va">colname_data</span>, <span class="va">colname_codebook</span>, <span class="va">required</span>, <span class="va">col_num</span><span class="op">)</span> 
+    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">comment</span>, <span class="va">colname_data</span>, <span class="va">colname_codebook</span>, <span class="va">required</span>, <span class="va">col_num</span><span class="op">)</span> 
 <span class="co">#&gt; Joining, by = "comment"</span>
 <span class="co">#&gt; Status: </span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 4</span></span>
 <span class="co">#&gt;   comment                                      n required   req</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> exists in both data and codebook             2 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> not present in codebook: trials_metadata     3 <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> not present in data                         25 TRUE        10</span>
+<span class="co">#&gt;   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                                    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> exists in both data and codebook             2 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> not present in codebook: trials_metadata     3 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span><span> not present in data                         25 TRUE        10</span></span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">metadata_colname_valid</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -842,146 +835,6 @@
 <th align="right">col_num</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="left">exists in both data and codebook</td>
-<td align="left">location</td>
-<td align="left">location</td>
-<td align="left">TRUE</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="left">exists in both data and codebook</td>
-<td align="left">year</td>
-<td align="left">year</td>
-<td align="left">TRUE</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in codebook: trials_metadata</td>
-<td align="left">variety</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in codebook: trials_metadata</td>
-<td align="left">rep_temp</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in codebook: trials_metadata</td>
-<td align="left">sourcefile</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">row_spacing_in</td>
-<td align="left">FALSE</td>
-<td align="right">16</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">npks_lb_acre</td>
-<td align="left">FALSE</td>
-<td align="right">17</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">chemical_trts</td>
-<td align="left">FALSE</td>
-<td align="right">18</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">seed_rate_per_acre</td>
-<td align="left">FALSE</td>
-<td align="right">19</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">seed_trt</td>
-<td align="left">FALSE</td>
-<td align="right">20</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">agronomic_notes</td>
-<td align="left">FALSE</td>
-<td align="right">21</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">soil_type</td>
-<td align="left">FALSE</td>
-<td align="right">23</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">soil_om</td>
-<td align="left">FALSE</td>
-<td align="right">24</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">ph</td>
-<td align="left">FALSE</td>
-<td align="right">25</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">n_lbs_acre</td>
-<td align="left">FALSE</td>
-<td align="right">26</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">p_ppm</td>
-<td align="left">FALSE</td>
-<td align="right">27</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">k_ppm</td>
-<td align="left">FALSE</td>
-<td align="right">28</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">s_ppm</td>
-<td align="left">FALSE</td>
-<td align="right">29</td>
-</tr>
-<tr class="odd">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">free_lime_pct</td>
-<td align="left">FALSE</td>
-<td align="right">30</td>
-</tr>
-<tr class="even">
-<td align="left">not present in data</td>
-<td align="left">NA</td>
-<td align="left">unpublished</td>
-<td align="left">FALSE</td>
-<td align="right">33</td>
-</tr>
 <tr class="odd">
 <td align="left">not present in data</td>
 <td align="left">NA</td>
@@ -1052,6 +905,146 @@
 <td align="left">TRUE</td>
 <td align="right">31</td>
 </tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">row_spacing_in</td>
+<td align="left">FALSE</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">npks_lb_acre</td>
+<td align="left">FALSE</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">chemical_trts</td>
+<td align="left">FALSE</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">seed_rate_per_acre</td>
+<td align="left">FALSE</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">seed_trt</td>
+<td align="left">FALSE</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">agronomic_notes</td>
+<td align="left">FALSE</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">soil_type</td>
+<td align="left">FALSE</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">soil_om</td>
+<td align="left">FALSE</td>
+<td align="right">24</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">ph</td>
+<td align="left">FALSE</td>
+<td align="right">25</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">n_lbs_acre</td>
+<td align="left">FALSE</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">p_ppm</td>
+<td align="left">FALSE</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">k_ppm</td>
+<td align="left">FALSE</td>
+<td align="right">28</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">s_ppm</td>
+<td align="left">FALSE</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">free_lime_pct</td>
+<td align="left">FALSE</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in data</td>
+<td align="left">NA</td>
+<td align="left">unpublished</td>
+<td align="left">FALSE</td>
+<td align="right">33</td>
+</tr>
+<tr class="even">
+<td align="left">not present in codebook: trials_metadata</td>
+<td align="left">variety</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">not present in codebook: trials_metadata</td>
+<td align="left">rep_temp</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">not present in codebook: trials_metadata</td>
+<td align="left">sourcefile</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">exists in both data and codebook</td>
+<td align="left">location</td>
+<td align="left">location</td>
+<td align="left">TRUE</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">exists in both data and codebook</td>
+<td align="left">year</td>
+<td align="left">year</td>
+<td align="left">TRUE</td>
+<td align="right">4</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1063,27 +1056,26 @@
                                            df_type <span class="op">=</span> <span class="st">"trials_metadata"</span>,
                                            db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Some issues left to resolve </span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 5</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 x 5</span></span>
 <span class="co">#&gt;   required fails   nNA error warning</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE        0     0    15       0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE         1     2     8       0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     2       0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">*</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span>   </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> FALSE        0     0    15       0</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> TRUE         1     2    10       0</span></span>
 
 <span class="va">metadata_colcontent_summary</span> <span class="op">&lt;-</span> <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="st">"summary"</span><span class="op">]</span><span class="op">]</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">metadata_colcontent_summary</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="5%">
-<col width="11%">
-<col width="3%">
+<col width="6%">
+<col width="13%">
 <col width="4%">
-<col width="3%">
+<col width="4%">
+<col width="4%">
 <col width="2%">
-<col width="3%">
+<col width="4%">
 <col width="5%">
-<col width="59%">
+<col width="54%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">required</th>
@@ -1106,7 +1098,7 @@
 <td align="right">1</td>
 <td align="left">FALSE</td>
 <td align="left">FALSE</td>
-<td align="left">year - 1995 &gt;= -1e-08 &amp; year - 2022 &lt;= 1e-08 &amp; year%%1 == 0</td>
+<td align="left">year &gt;= 1995 &amp; year &lt;= 2022 &amp; year%%1 == 0</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -1150,7 +1142,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">latitude - 42 &gt;= -1e-08 &amp; latitude - 49 &lt;= 1e-08</td>
+<td align="left">latitude &gt;= 42 &amp; latitude &lt;= 49</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -1161,7 +1153,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">longitude - -124.77 &gt;= -1e-08 &amp; longitude - -111.05 &lt;= 1e-08</td>
+<td align="left">longitude &gt;= -124.77 &amp; longitude &lt;= -111.05</td>
 </tr>
 <tr class="odd">
 <td align="left">TRUE</td>
@@ -1175,23 +1167,23 @@
 <td align="left">irrigation %vin% c(“irrigated”, “dryland”)</td>
 </tr>
 <tr class="even">
-<td align="left">NA</td>
-<td align="left">planting_date.1</td>
+<td align="left">TRUE</td>
+<td align="left">planting_date</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 <td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”, planting_date)</td>
 </tr>
 <tr class="odd">
-<td align="left">NA</td>
-<td align="left">harvest_date.1</td>
+<td align="left">TRUE</td>
+<td align="left">harvest_date</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 <td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”, harvest_date)</td>
@@ -1205,7 +1197,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">plot_length - 5 &gt;= -1e-08 &amp; plot_length - 200 &lt;= 1e-08 | plot_length %vin% c(-9)</td>
+<td align="left">plot_length &gt;= 5 &amp; plot_length &lt;= 200 | plot_length %vin% c(-9)</td>
 </tr>
 <tr class="odd">
 <td align="left">TRUE</td>
@@ -1216,7 +1208,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">plot_width - 2 &gt;= -1e-08 &amp; plot_width - 50 &lt;= 1e-08 | plot_width %vin% c(-9)</td>
+<td align="left">plot_width &gt;= 2 &amp; plot_width &lt;= 50 | plot_width %vin% c(-9)</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
@@ -1227,7 +1219,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">row_spacing_in - 1 &gt;= -1e-08 &amp; row_spacing_in - 50 &lt;= 1e-08 | row_spacing_in %vin% c(-9)</td>
+<td align="left">row_spacing_in &gt;= 1 &amp; row_spacing_in &lt;= 50 | row_spacing_in %vin% c(-9)</td>
 </tr>
 <tr class="odd">
 <td align="left">FALSE</td>
@@ -1304,7 +1296,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">soil_om - 0 &gt;= -1e-08 &amp; soil_om - 100 &lt;= 1e-08</td>
+<td align="left">soil_om &gt;= 0 &amp; soil_om &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
@@ -1315,7 +1307,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">ph - 0 &gt;= -1e-08 &amp; ph - 14 &lt;= 1e-08</td>
+<td align="left">ph &gt;= 0 &amp; ph &lt;= 14</td>
 </tr>
 <tr class="odd">
 <td align="left">FALSE</td>
@@ -1326,7 +1318,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">n_lbs_acre - 0 &gt;= -1e-08 &amp; n_lbs_acre - 500 &lt;= 1e-08</td>
+<td align="left">n_lbs_acre &gt;= 0 &amp; n_lbs_acre &lt;= 500</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
@@ -1337,7 +1329,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">p_ppm - 0 &gt;= -1e-08 &amp; p_ppm - 200 &lt;= 1e-08</td>
+<td align="left">p_ppm &gt;= 0 &amp; p_ppm &lt;= 200</td>
 </tr>
 <tr class="odd">
 <td align="left">FALSE</td>
@@ -1348,7 +1340,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">k_ppm - 0 &gt;= -1e-08 &amp; k_ppm - 1000 &lt;= 1e-08</td>
+<td align="left">k_ppm &gt;= 0 &amp; k_ppm &lt;= 1000</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
@@ -1359,7 +1351,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">s_ppm - 0 &gt;= -1e-08 &amp; s_ppm - 200 &lt;= 1e-08</td>
+<td align="left">s_ppm &gt;= 0 &amp; s_ppm &lt;= 200</td>
 </tr>
 <tr class="odd">
 <td align="left">FALSE</td>
@@ -1370,7 +1362,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">free_lime_pct - 0 &gt;= -1e-08 &amp; free_lime_pct - 100 &lt;= 1e-08</td>
+<td align="left">free_lime_pct &gt;= 0 &amp; free_lime_pct &lt;= 100</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -1402,8 +1394,8 @@
 
 <span class="va">metadata_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"location"</span><span class="op">)</span>
 <span class="va">metadata_colcontent_violate</span> <span class="op">&lt;-</span> 
-  <span class="fu">validate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/validate/man/satisfying.html" class="external-link">violating</a></span><span class="op">(</span><span class="va">test_data</span>, <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="va">metadata_var</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">validate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/validate/man/satisfying.html" class="external-link">violating</a></span><span class="op">(</span><span class="va">test_data</span>, <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="va">metadata_var</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/relocate.html" class="external-link">relocate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">metadata_colcontent_violate</span><span class="op">)</span></code></pre></div>
 <table class="table">
