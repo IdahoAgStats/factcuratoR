@@ -82,6 +82,8 @@ controlled vocabulary is defined
     *Strings should be quoted (e.g. “value1”; “value2”)  
     * Range should be in the form: min to max (e.g. 0 to 100) 
     * Separate range and values using: | (e.g. 0 to 100 | -9)
+    Careful! If there is more than one accepted value, make sure to separate those
+    with a semi-colon (e.g. 0 to 100 | -9;-99)
     * Due to Excel formatting issues, negative numbers should be prefaced with ‘ but without closing quotes (e.g. "‘-180")
 * `primary_key` [??]
 
