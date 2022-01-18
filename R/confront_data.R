@@ -43,7 +43,9 @@ confront_data <- function(df, df_type, db_folder){
     is_req <- bind_rows(is_req, traits_cb)
   }
 
-  summary2_req <- left_join(summary2, is_req, by = "name") %>% relocate(required)
+  summary2_req <- left_join(summary2, is_req, by = "name") %>%
+    relocate(required) %>%
+    arrange(desc(required))
 
   return_validate_message(summary2_req)
 
