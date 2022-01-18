@@ -34,6 +34,15 @@ confront_data <- function(df, df_type, db_folder){
   # Add if column is required
   is_req <- list_db_var(db_folder, df_type, required_only = FALSE) %>%
     select(name = variable, required)
+
+  if (df_type == "trial_data"){
+    traits_cb <- readin_db(db_folder)$traits %>%
+                    select(name = trait_name, crop_type) %>%
+                    mutate(required = FALSE)
+
+    is_req <- bind_rows(is_req, traits_cb)
+  }
+
   summary2_req <- left_join(summary2, is_req, by = "name") %>% relocate(required)
 
   return_validate_message(summary2_req)
