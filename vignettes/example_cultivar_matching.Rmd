@@ -3,8 +3,6 @@ title: "Example of the cultivar matching process"
 author: "Jacqueline Tay"
 date: "`r format(Sys.Date(), '%b %d, %Y')`"
 output: 
-pkgdown:
-  as_is: true  
 rmarkdown::html_vignette:
   fig_caption: yes
 vignette: >

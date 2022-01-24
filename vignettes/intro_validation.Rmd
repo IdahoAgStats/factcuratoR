@@ -2,8 +2,6 @@
 title: "Introduction to the validation functions"
 author: "Jacqueline Tay"
 date: "`r format(Sys.Date(), '%b %d, %Y')`"
-pkgdown:
-  as_is: true  
 output: 
 rmarkdown::html_vignette:
   fig_caption: yes
