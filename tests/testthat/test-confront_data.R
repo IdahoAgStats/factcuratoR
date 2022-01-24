@@ -29,5 +29,19 @@ test_that("confront_data() creates required column for trial_data",{
 
 })
 
+test_that("confront_data() checks variety names",{
+  df <- data.frame(variety = c("Bruehl", "wrong name"))
+  test <- confront_data(df, "trial_data", controlled_vocab_folder)
+  expect_equal(test[[1]]$passes[1], 1)
 
+})
 
+test_that("confront_data() checks blends",{
+  df <- data.frame(variety = c("Bruehl;AP Badger",
+                               "AP Badger;wrong name2",
+                               "Bruehl;wrong name",
+                               "wrong name;AP Badger"))
+  test <- confront_data(df, "trial_data", controlled_vocab_folder, blends = TRUE)
+  expect_equal(sum(test[[1]]$passes), 5)
+
+})

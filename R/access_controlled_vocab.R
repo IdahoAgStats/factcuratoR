@@ -99,7 +99,7 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE){
 #' @family access codebook functions
 #' @export
 get_variety_db <- function(db_folder,
-                           select_before = "2021-01-01",
+                           select_before = Sys.Date(),
                            select_crops = NULL,
                            for_matching = FALSE){
 

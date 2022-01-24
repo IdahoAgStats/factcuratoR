@@ -215,6 +215,10 @@
 <div class="section level2">
 <h2 id="create-unique-internal-id-for-names">Create unique internal id for names<a class="anchor" aria-label="anchor" href="#create-unique-internal-id-for-names"></a>
 </h2>
+<p>Extraneous information in the variety name will make the matching process more difficult - the names won’t match by exact matching and it is less certain that the fuzzymatching functions will be able to detect a fuzzymatch.</p>
+<p>Some types of information that may be stored in the variety name column that should be removed includes: parental cross, crop type, agronomic treatments (“fill”, “sprayed”, etc).</p>
+<p>Remove extraneous information stored in the raw variety column by duplicating the name column and removing the extraneous information (which can usually be accomplished by regex). The column is duplicated because the raw variety name should be retained to match database matches back with the data.</p>
+<p>Additionally, if there are blends, they should be separated from the other variety names and matched separately. (The final formatting for blends should be: name1;name2)</p>
 <p><span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the <code>var_id</code> doesn’t change other it will cause problems with matching up matches with the correct names.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_raw</span> <span class="op">&lt;-</span> 

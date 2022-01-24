@@ -22,8 +22,10 @@ test_that("get_variety_db() returns the expected variety names", {
   expect_equal(nrow(test2), 1)
 })
 
-test_that("get_variety_db() returns the expect crops", {
-  test <- get_variety_db(controlled_vocab_folder, select_crops = "wheat")
+test_that("get_variety_db() returns the expected crops", {
+  test <- get_variety_db(controlled_vocab_folder,
+                         select_before = "2021-01-01",
+                         select_crops = "wheat")
   test2 <- test %>%
     dplyr::select(crop_db) %>%
     unique(.) %>%

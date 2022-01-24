@@ -8,9 +8,15 @@
 #' @importFrom validate confront
 #' @export
 #' @family validation functions
-confront_data <- function(df, df_type, db_folder){
+confront_data <- function(df, df_type, db_folder, blends = FALSE){
 
-  rules <- create_rules(df_type, db_folder)
+  rules <- create_rules(df_type, db_folder, blends = blends)
+
+  if (blends){
+    df <- df %>% separate(variety,
+                          into = c("variety", "variety2_blend"),
+                          sep = ";")
+  }
 
   # The database must be read in order for validate::confront to have access
   # to the codebook values
