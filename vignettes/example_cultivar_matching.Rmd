@@ -37,8 +37,24 @@ knitr::kable(var)
 ```
 # Cultivar matching 
 ## Create unique internal id for names
+Extraneous information in the variety name will make the matching process more
+difficult - the names won't match by exact matching and it is less certain 
+that the fuzzymatching functions will be able to detect a fuzzymatch.
 
-<span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the `var_id` doesn't change other it will cause problems with matching up matches with the correct names. 
+Some types of information that may be stored in the variety name column
+that should be removed includes:
+parental cross, crop type, agronomic treatments ("fill", "sprayed", etc).
+
+Remove extraneous information stored in the raw variety column by duplicating the 
+name column and removing the extraneous information (which can usually be
+accomplished by regex).  The column is duplicated because the raw variety name 
+should be retained to match database matches back with the data.
+
+Additionally, if there are blends, they should be separated from the other variety
+names and matched separately.  (The final formatting for blends should be:
+name1;name2)
+
+<span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the `var_id` doesn't change other it will cause problems with matching up matches with the correct names.
 
 ```{r, results = 'asis'}
 names_raw <- 
