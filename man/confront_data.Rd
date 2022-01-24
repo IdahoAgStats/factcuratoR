@@ -4,7 +4,7 @@
 \alias{confront_data}
 \title{Wrapper for create_rules() and validate::confront()}
 \usage{
-confront_data(df, df_type, db_folder)
+confront_data(df, df_type, db_folder, blends = FALSE)
 }
 \arguments{
 \item{df}{A data.frame to be validated}
@@ -13,6 +13,9 @@ confront_data(df, df_type, db_folder)
 rules to generate}
 
 \item{db_folder}{A string path to the database controlled vocabulary folder}
+
+\item{blends}{A logical denoting whether there are blends stored in the
+variety column in df_type = "trial_data"}
 }
 \description{
 This functions summarises the results and fixes the

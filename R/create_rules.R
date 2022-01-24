@@ -11,10 +11,12 @@
 #' @param df_type A string "trial_data" or "trials_metadata" denoting the type of validation
 #' rules to generate
 #' @inheritParams readin_db
+#' @param blends A logical denoting whether there are blends stored in the
+#' variety column in df_type = "trial_data"
 #' @importFrom validate validator
 #' @family validation functions
 #' @export
-create_rules <- function(df_type, db_folder){
+create_rules <- function(df_type, db_folder, blends = FALSE){
   db <- readin_db(db_folder)
 
   rule_raw <- list_db_var(db_folder, df_type, required_only = FALSE)
@@ -79,6 +81,25 @@ create_rules <- function(df_type, db_folder){
     mutate(rule_int = ifelse(value_type == "integer", paste(variable,"%% 1 == 0"), NA)) %>%
     unite("rule", contains("rule"), na.rm = TRUE, sep = "&") %>%
     mutate(name = variable)
+
+  if (df_type == "trial_data" & blends){
+    rule_variety_blend <- rule_df3[which(rule_df3$variable == "variety"),]
+    rule_variety_blend$variable <- "variety2_blend"
+    rule_variety_blend$name <- "variety2_blend"
+    rule_variety_blend$rule <- "variety2_blend %in% db[['cultivar.csv']][['variety']]"
+    rule_df3 <- bind_rows(rule_df3, rule_variety_blend)
+
+
+  }
+
+
+  # For blends, check another column called variety2_blend
+  if (blends){
+    rule_variety_blend <- rule_raw[which(rule_raw$variable == "variety"),]
+    rule_variety_blend$variable <- "variety2_blend"
+    rule_raw <- bind_rows(rule_raw, rule_variety_blend)
+  }
+
 
   rules_v <- validate::validator(.data = rule_df3)
 
