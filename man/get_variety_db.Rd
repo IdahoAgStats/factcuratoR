@@ -8,7 +8,7 @@
 \usage{
 get_variety_db(
   db_folder,
-  select_before = "2021-01-01",
+  select_before = Sys.Date(),
   select_crops = NULL,
   for_matching = FALSE
 )
