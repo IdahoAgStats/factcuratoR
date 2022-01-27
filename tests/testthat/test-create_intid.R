@@ -7,7 +7,7 @@ var <- read_csv(testthat::test_path("test_match_variety_files",
 test_that("create_intid() generates anticipated ids, separating variety names", {
   df1 <- data.frame(variety = var_names)
 
-  ans <- tibble(variety = c(var_names, var_names[2]),
+  ans <- tibble::tibble(variety = c(var_names, var_names[2]),
                 type = rep("variety", 3),
                 intid = c("testvar001", "testvar2", "tv00002"),
                 var_id = c("1","2","2"))
@@ -63,3 +63,13 @@ test_that("create_intid() generates the expected number of internal identifiers"
                         crop_type, nursery)
   expect_equal(nrow(intid), 17)
 })
+
+test_that("create_intid() generates anticipated ids with alias columns", {
+  df1 <- data.frame(variety = var_names, alias = c("alias1", "alias2"))
+
+  test <- create_intid(df1, variety, alias_col = alias)
+
+  expect_equal(test$intid, c("alias1",  "alias2", "testvar001", "testvar2testvar2tv00002"))
+})
+
+
