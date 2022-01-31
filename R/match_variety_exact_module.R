@@ -86,16 +86,24 @@ do_exactmatch <- function(db_folder,
 #' @inheritParams readin_db
 #' @keywords internal
 get_cultivar_rename <- function(db_folder){
-  db <- readin.db(db_folder = db_folder)
+  db <- readin_db(db_folder = db_folder)
 
   cv_rename <- db$cv_rename.csv %>%
     rename(variety_db = correct_variety_name) %>% select(-Program)
 
   cv_rename2 = cv_rename %>%
-    mutate(intid = gsub("[^A-Za-z0-9+]", "", wrong_name)) %>% # will remove all characters not specified , which is needed to remove the \ backslash in one of the names
-    mutate(intid = tolower(intid)) %>%
-    unique(.) %>%
-    mutate(db_id = intid) %>%
+    mutate(intid = tolower(gsub("[^A-Za-z0-9+]", "", wrong_name))) %>% # will remove all characters not specified , which is needed to remove the \ backslash in one of the names
+    mutate(db_id = tolower(gsub("[^A-Za-z0-9+]", "", variety_db))) %>%
+    group_by(intid, db_id) %>%
+    # If more than one entry for the same intid and db_id are listed,
+    # these entries are collapsed
+    # Note: The wrong_name may be slightly different between the two cases,
+    # e.g. "wildfire" versus "Wildfire", but this doesn't matter
+    # since the functions match on the intid (which in the example is is "wildfire" for both)
+    summarize(across(everything(),
+                     ~paste(na.omit(unique(.x)), collapse = ";")),
+              .groups = "drop") %>%
+    mutate(crop_type = ifelse(crop_type == "", NA, crop_type)) %>%
     mutate(crop_type_db = NA) %>%
     mutate(type_db = NA)
 
