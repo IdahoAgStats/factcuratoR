@@ -1,0 +1,4 @@
+﻿variety,crop_type,behavior_to_Test
+wildfire/ altigo,wheat,wildfire won't exact match
+APcoachman/ alpowa,wheat,both should exact match
+coachman/alpwa,wheat,both won't exact match

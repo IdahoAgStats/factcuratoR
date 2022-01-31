@@ -27,13 +27,16 @@
 #' @param variety_col_name A bare column name denoting the column containing varieties
 #' @param sep_aliases A regex corresponding to the characters that are used to separate variety aliases
 #' @param alias_col A bare column name denoting the column containing aliases
+#' @param is_blends A logical that specifies whether the varieties are blends.
+#' Default is FALSE
 #' @family match variety functions
 #' @export
 create_intid <- function(df,
                          variety_col_name,
                          sep_aliases = NULL,
                          ...,
-                         alias_col = NULL){
+                         alias_col = NULL,
+                         is_blends = FALSE){
 
   variety_col_name <- enquo(variety_col_name)
   dots <- enquos(...)
@@ -112,6 +115,11 @@ create_intid <- function(df,
       mutate(var_id = cur_group_id()) %>%
       distinct(var_id, intid, .keep_all = TRUE) %>%
       ungroup()
+  }
+
+  # Change the type column to "blends" for blends
+  if (is_blends){
+    df_variety2 <- df_variety2 %>% mutate(type = "blends")
   }
 
   # Convert the var_id to a character

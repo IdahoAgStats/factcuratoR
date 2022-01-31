@@ -2,23 +2,54 @@
 % Please edit documentation in R/create_intid.R
 \name{create_intid}
 \alias{create_intid}
-\title{Create internal id for variety names}
+\title{Create variety id (var_id) internal id (intid) for variety names}
 \usage{
-create_intid(df, variety_col_name, sep_aliases = NULL, ..., alias_col = NULL)
+create_intid(
+  df,
+  variety_col_name,
+  sep_aliases = NULL,
+  ...,
+  alias_col = NULL,
+  is_blends = FALSE
+)
 }
 \arguments{
 \item{df}{A data.frame to with a column containing variety names}
 
-\item{variety_col_name}{A column name denoting the column containing varieties}
+\item{variety_col_name}{A bare column name denoting the column containing varieties}
 
 \item{sep_aliases}{A regex corresponding to the characters that are used to separate variety aliases}
 
-\item{alias_col}{A column name denoting the column containing aliases}
+\item{alias_col}{A bare column name denoting the column containing aliases}
+
+\item{is_blends}{A logical that specifies whether the varieties are blends.
+Default is FALSE}
 }
 \description{
+Create var_id and intid for variety names.
+A var_id is an id (here, the row number) given to a unique variety name in the
+raw data.
+For example, "Variety 1/Alias 1" would be given a var_id number.
+Let's say the var_id is 1.
+The intid is the identifier for a name that is:
+\itemize{
+\item all lowercase
+\item no spaces
+\item no special characters
+}
+}
+\details{
+This function separates varieties and aliases and creates an intid for each.
+So the resulting intids for the example above are:
+var_id | variety           | intid
+1      | Variety1/Alias 1  | variety1
+1      | Variety1/Alias 1  | alias1
+
 Note: This function handles aliases passed in as a separate column or aliases
 in the same column as the variety name.  Aliases in the same column must be
-detectable by a regex provided in sep_aliases
+detectable by a regex provided in sep_aliases.
+Also, currently, only sep_aliases OR alias_col can be provided.  (The function
+is not written to handle aliases in both the variety column and a separate column.)
 }
 \seealso{
 Other match variety functions: 

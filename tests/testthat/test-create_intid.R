@@ -4,6 +4,9 @@ var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
 var <- read_csv(testthat::test_path("test_match_variety_files",
                                     "example_cultivar_matching.csv"))
 
+blends <- read_csv(testthat::test_path("test_match_variety_files",
+                                    "example_blends.csv"))
+
 test_that("create_intid() generates anticipated ids, separating variety names", {
   df1 <- data.frame(variety = var_names)
 
@@ -77,4 +80,12 @@ test_that("create_intid() generates anticipated ids with alias columns", {
   expect_error(create_intid(df1, variety, sep_aliases = "//|/|\\(", alias_col = alias),
   "create_intid() has not been written to handle both sep_alias and an alias_col.  Please provide one or the other.",
   fixed = TRUE)
+})
+
+test_that("create_intid() generates anticipated ids and fills type with 'blends'", {
+
+  test <- create_intid(blends, variety, sep_aliases = "\\/", is_blends = TRUE)
+  expect_equal(nrow(test), 6)
+  expect_equal(unique(test$type), "blends")
+
 })
