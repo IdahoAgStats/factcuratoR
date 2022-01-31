@@ -117,24 +117,38 @@ check.anymatch <- function(df, group, checkfor = NULL, match_type){
 #' a list of 4 data.frames: the varieties with database matches, the varieties without
 #' database matches, the varieties that still need to be checked manually (with a collaborator),
 #' and the duplicate rows of varieties that already have matches
-#' @param df_any_match A data.frame that has been processed by check.anymatch
+#' @param df_any_match A data.frame that has been processed by check.anymatch()
+#' @param is_blends A logical that specifies whether the varieties are blends.
+#' Default is FALSE
 #' @keywords internal
-return.matchgroups <- function(df_any_match){
+return.matchgroups <- function(df_any_match, is_blends = FALSE){
   df_any_match <- df_any_match %>% mutate(var_id = as.character(var_id))
 
   # Set the group (match, nomatch, check, or not_needed)
-  df_any_match_groups <-
-    df_any_match %>%
-    ungroup() %>%
-    mutate(group = case_when(
-      (is_truematch == "TRUE" & any_match == TRUE) ~ "match",
-      ((is_truematch == "FALSE" | is_truematch == "alias") & any_match == FALSE) ~ "nomatch",
-      (!is_truematch %in% c("TRUE", "FALSE", "alias") & any_match == FALSE) ~ "check",
-      (!is_truematch %in% c("TRUE") & any_match == TRUE) ~ "not_needed",
-    )) %>%
-    mutate(group = case_when(is.na(group) & is.na(is_truematch) ~ "check",
+  if (is_blends){
+    df_any_match_groups <-
+      df_any_match %>%
+      ungroup() %>%
+      mutate(group = case_when(
+        is_truematch == "TRUE" ~ "match",
+        is_truematch == "FALSE"  ~ "nomatch",
+        !is_truematch %in% c("TRUE", "FALSE", "alias") ~ "check"
+      ))
+
+  } else {
+    df_any_match_groups <-
+      df_any_match %>%
+      ungroup() %>%
+      mutate(group = case_when(
+        (is_truematch == "TRUE" & any_match == TRUE) ~ "match",
+        ((is_truematch == "FALSE" | is_truematch == "alias") & any_match == FALSE) ~ "nomatch",
+        (!is_truematch %in% c("TRUE", "FALSE", "alias") & any_match == FALSE) ~ "check",
+        (!is_truematch %in% c("TRUE") & any_match == TRUE) ~ "not_needed"
+      )) %>%
+      mutate(group = case_when(is.na(group) & is.na(is_truematch) ~ "check",
                              is.na(group) & is_truematch == "FALSE" ~ "not_needed",
            TRUE ~ group))
+  }
 
   # Separate groups into individual data.frames
   match <- df_any_match_groups %>% filter(group == "match")
@@ -151,7 +165,9 @@ return.matchgroups <- function(df_any_match){
 
   # Check that only one database entry matches a given var_id
   # This helps to catch duplicate entries in the controlled vocabularies
-  if (all(c("db_id", "var_id") %in% names(match_list[["match"]]))){
+  # Note: if is_blends = TRUE, this is not checked because one entry is supposed
+  # to match multiple db_ids
+  if (!is_blends & all(c("db_id", "var_id") %in% names(match_list[["match"]]))){
 
     test_multmatch <- check.matches(match_list[["match"]])
     if (nrow(test_multmatch > 0)){
@@ -168,7 +184,7 @@ return.matchgroups <- function(df_any_match){
       match_list[["not_needed"]] <- rbind(match_list[["not_needed"]], test_aliasdup[["not_needed"]])
     }
 
-  } else {
+  } else if (!is_blends) {
     message("var_id and db_id do not exist. test_multmatch and test_aliasdup not run")
   }
 

@@ -12,6 +12,14 @@ df2_mult_tests <- tibble(variety = c(var_names[2]),
                          var_id = c(2,2),
                          variety_db = c("testvar", "tv00002"))
 
+blends_df <- tibble(variety = rep(c("a/b","c/d"), each = 2),
+                         intid = c("a", "b", "c", "d"),
+                         var_id = c(1,1,2,2),
+                         variety_db = c("a", "b", "c2", "d"),
+                          db_id = c(10,20,30,40),
+                    type_db = rep("variety", 4),
+                    type = "blends")
+
 #' This is a helper function to test return.matchgroups().
 #' The helper helps standardize input
 #' @param test_df A data.frame to use as input in return.matchgroups()
@@ -122,6 +130,15 @@ test_that("return.matchgroups() returns the correct groups given empty is_truema
   test <- return.matchgroups(df2)
   expect_equal(test_helper2_return.matchgroups(test), c(1, 0, 0, 1))
 })
+
+
+test_that("return.matchgroups() returns the correct groups for blends",{
+  df2 <- test_helper_return.matchgroups(blends_df, c(TRUE, TRUE, FALSE, TRUE))
+  test <- return.matchgroups(df2, is_blends = TRUE)
+  expect_equal(test_helper2_return.matchgroups(test), c(3, 1, 0, 0))
+
+})
+
 
 test_that("stringdist.variety() returns correct number of matches",{
 
