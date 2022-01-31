@@ -171,8 +171,8 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
 
     test_multmatch <- check.matches(match_list[["match"]])
     if (nrow(test_multmatch > 0)){
-      warning(paste0("Warning: var_id matches with more than db_id. Please reconcile potential error in database",
-                   capture.output(test_multmatch), collapse = "\n"))
+      warning(paste("Warning: var_id matches with more than db_id. Please reconcile potential error in database",
+                   paste0(capture.output(test_multmatch), collapse = "\n")))
     }
 
     # Remove alias if there is a match with variety

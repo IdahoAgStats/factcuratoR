@@ -139,7 +139,6 @@ test_that("return.matchgroups() returns the correct groups for blends",{
 
 })
 
-
 test_that("stringdist.variety() returns correct number of matches",{
 
   tempdf <- data.frame(intid = c("hi8", "konnnichiwa", "nihao8"), b = 1:3)
