@@ -27,3 +27,28 @@ test_that("collect_final_matches() returns correct output", {
 
   expect_equal(test$match_step, c("exact", "exact", "rename", NA))
 })
+
+
+
+test_that("collect_final_matches() returns correct output for blends", {
+  # Create test data in the form that collect_final_matches() expects
+  names <-
+    data.frame(
+      variety = rep(c("name1/name2", "name3/name4"), each = 2),
+      var_id = c(1,1,2,2),
+      type = "blends",
+      crop_type = NA) %>%
+    mutate(intid = c("name1", "name2", "name3", "name4"))
+
+  df1 <- names %>%
+    mutate(variety_db = intid, intid_db = intid, type_db = NA)
+
+  df_blank <- data.frame(a = NA, b = NA)
+
+  ls1 <- list(match = df1, nomatch = df_blank)
+
+  test <-
+    collect_final_matches(list(exact = ls1), names, outputfolder_test, is_blends = TRUE)
+
+  expect_equal(nrow(test), 2)
+})
