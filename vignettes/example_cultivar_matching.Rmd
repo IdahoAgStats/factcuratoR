@@ -25,6 +25,7 @@ library(factcuratoR)
 codebook_folder <- here::here("tests/testthat/test_controlled_vocab")
 example_folder <- here::here("inst/extdata/example_cultivar_matching")
 knitroutputfolder = here::here(example_folder, "output")
+knitroutputfolder_blends = here::here(example_folder, "output_blends")
 auxiliary_files <- here::here(example_folder, "auxiliary_files")
 ```
 
@@ -203,4 +204,95 @@ knitr::kable(names_matches)
 ```{r, eval = FALSE}
 # do not run this code (it's here for example only)
 data_cv_names <- left_join(data, names_matches, by = "variety")
+```
+
+# Special instructions for matching blends
+Curate the blends separately from non-blend variety names.
+Below is an example for curating blends.
+
+```{r, results = 'asis'}
+blends <- read_csv(here::here("tests/testthat/test_match_variety_files", 
+                              "example_blends.csv"), 
+                col_types = cols())
+
+knitr::kable(blends)
+```
+## Create unique internal id for names
+<span class="important"> Note! </span> For blends, set the argument
+is_blends = TRUE for each of the variety matching functions.
+
+```{r, results = 'asis'}
+blends_raw <- 
+  create_intid(blends, 
+               variety, 
+               # Although sep_alias is used to separate 
+               # an alias from the variety name, it can also be used here 
+               #to separate two names in a blend
+               sep_aliases = "\\/", 
+               crop_type,
+               is_blends = TRUE) 
+
+knitr::kable(blends_raw)
+```
+
+## Do exact matching step
+```{r, results = 'asis'}
+blends_exactmatch <- 
+  do_exactmatch(db_folder = codebook_folder,
+                data_intid = blends_raw,
+                select_before = "2021-11-22",
+                match_type = "raw",
+                is_blends = TRUE)
+
+knitr::kable(blends_exactmatch[["match"]])
+knitr::kable(blends_exactmatch[["nomatch"]])
+
+```
+```{r, results = 'asis'}
+blends_rename <- 
+  do_exactmatch(db_folder = codebook_folder, 
+                data_intid = blends_exactmatch$nomatch, 
+                match_type = "raw", 
+                rename_df = TRUE, 
+                is_blends = TRUE)
+
+knitr::kable(blends_rename[["match"]])
+knitr::kable(blends_rename[["nomatch"]])
+
+```
+## Do fuzzymatching step
+```{r, results = 'asis'}
+blends_fuzzymatch <- 
+  find_fuzzymatch(blends_rename$nomatch,
+                intid_col = "intid",
+                select_before = "2021-05-26",
+                knitroutputfolder = knitroutputfolder_blends,
+                db_folder = codebook_folder)
+
+knitr::kable(blends_fuzzymatch)
+```
+## Read in and process fuzzymatches
+```{r, results = 'asis'}
+blends_fuzzy_status <- 
+  read_csv(here::here(auxiliary_files, "fuzzymatch_blends_status.csv")) %>%
+  mutate(var_id = as.character(var_id))
+
+blends_results_fuzzymatch <- 
+  process_fuzzymatch(output_fuzzymatch_df = blends_fuzzymatch, 
+                     aux_fuzzy_status = blends_fuzzy_status,
+                     knitroutputfolder = knitroutputfolder_blends)
+
+```
+## Collect all matches
+```{r, results = 'asis'}
+blends_matches <- 
+  collect_final_matches(list(exact = blends_exactmatch,
+                             rename = blends_rename,
+                             fuzzy = blends_results_fuzzymatch), 
+                        blends_raw,
+                        knitroutputfolder = knitroutputfolder_blends,
+                        is_blends = TRUE)
+
+knitr::kable(blends_matches)
+
 ```

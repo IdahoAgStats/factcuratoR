@@ -60,7 +60,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">collect_final_matches</span><span class="op">(</span><span class="va">match_list</span>, <span class="va">names_raw</span>, <span class="va">knitroutputfolder</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">collect_final_matches</span><span class="op">(</span>
+  <span class="va">match_list</span>,
+  <span class="va">names_raw</span>,
+  <span class="va">knitroutputfolder</span>,
+  is_blends <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,6 +76,9 @@
 <dd><p>A data.frame of the names created by create_intid()</p></dd>
 <dt>knitroutputfolder</dt>
 <dd><p>A path to the output location</p></dd>
+<dt>is_blends</dt>
+<dd><p>A logical that specifies whether the varieties are blends.
+Default is FALSE</p></dd>
 <dt>csv_suffix</dt>
 <dd><p>A string denoting the suffix for the .csv name</p></dd>
 </dl></div>

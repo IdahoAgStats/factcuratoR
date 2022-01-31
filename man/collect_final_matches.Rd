@@ -4,7 +4,12 @@
 \alias{collect_final_matches}
 \title{Module to collect all the matches from each stage of the variety matching process}
 \usage{
-collect_final_matches(match_list, names_raw, knitroutputfolder)
+collect_final_matches(
+  match_list,
+  names_raw,
+  knitroutputfolder,
+  is_blends = FALSE
+)
 }
 \arguments{
 \item{match_list}{A list of the output from each step of the variety matching process}
@@ -12,6 +17,9 @@ collect_final_matches(match_list, names_raw, knitroutputfolder)
 \item{names_raw}{A data.frame of the names created by create_intid()}
 
 \item{knitroutputfolder}{A path to the output location}
+
+\item{is_blends}{A logical that specifies whether the varieties are blends.
+Default is FALSE}
 
 \item{csv_suffix}{A string denoting the suffix for the .csv name}
 }
