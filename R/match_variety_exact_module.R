@@ -14,6 +14,7 @@
 #' * Currently, all the programs renames are kept in one file, but may want to
 #' consider putting the renames into different files that are collected together
 #' See get_cultivar_rename()
+#' @inheritParams return.matchgroups
 #' @family match variety modules
 #' @export
 do_exactmatch <- function(db_folder,
@@ -21,7 +22,8 @@ do_exactmatch <- function(db_folder,
                           select_before = "2021-01-01",
                           select_crops = NULL,
                           match_type = "raw",
-                          rename_df = FALSE){
+                          rename_df = FALSE,
+                          is_blends = FALSE){
   if (rename_df) {
     variety_intid_db <-
       get_cultivar_rename(db_folder = db_folder) %>%
@@ -30,7 +32,7 @@ do_exactmatch <- function(db_folder,
   } else {
 
     variety_intid_db <-
-      get.variety_db(db_folder = db_folder,
+      get_variety_db(db_folder = db_folder,
                     select_before = select_before,
                     select_crops = select_crops,
                     for_matching = TRUE)
@@ -58,13 +60,14 @@ do_exactmatch <- function(db_folder,
   }
 
   exact2 <- check.anymatch(exact1, checkfor = variety_db, match_type = match_type)
-  exact <- return.matchgroups(exact2)
+  exact <- return.matchgroups(exact2, is_blends = is_blends)
 
-
-  test_exact <- check.matches(exact[[1]])
-  if (nrow(test_exact) > 0) {
-    warning("There is more that one database match,
-          please resolve in the controlled vocabularies")}
+# This check for >1 match is also in return.matchgroups()
+# Unsure if the following code is needed, so commented out for now
+#  test_exact <- check.matches(exact[[1]])
+#  if (nrow(test_exact) > 0) {
+  #   warning("There is more that one database match,
+  #        please resolve in the controlled vocabularies")}
 
   message(paste(c("match:", " nomatch:", " check:", " not_needed:"),
                 paste(map(exact, ~nrow(.x)), sep = ",")))

@@ -4,10 +4,13 @@
 \alias{return.matchgroups}
 \title{Return the variety names by whether they have a match, no match, or need to be checked}
 \usage{
-return.matchgroups(df_any_match)
+return.matchgroups(df_any_match, is_blends = FALSE)
 }
 \arguments{
-\item{df_any_match}{A data.frame that has been processed by check.anymatch}
+\item{df_any_match}{A data.frame that has been processed by check.anymatch()}
+
+\item{is_blends}{A logical that specifies whether the varieties are blends.
+Default is FALSE}
 }
 \description{
 Return the variety names.  This function takes a data.frame of variety names

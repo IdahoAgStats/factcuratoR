@@ -33,3 +33,22 @@ test_that("do_exactmatch() returns the correct groups",{
 
   expect_equal(result, ans)
 })
+
+
+
+test_that("do_exactmatch() returns the correct groups for blends",{
+  blends_df <- tibble(variety = rep(c("a/b","c/d"), each = 2),
+                      intid = c("a", "b", "c", "d"),
+                      var_id = c(1,1,2,2),
+                      type_db = rep("variety", 4),
+                      type = "blends")
+  result <-
+    do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      blends_df,
+      is_blends = FALSE
+    )
+
+  expect_equal(nrow(result[[2]]), 4)
+})
+

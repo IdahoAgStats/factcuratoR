@@ -2,10 +2,7 @@
 % Please edit documentation in R/match_variety_fns.R
 \name{rm.alias_dupmatch}
 \alias{rm.alias_dupmatch}
-\title{Remove alias if there is a match with variety
-If a variety is listed in the raw data with an alias,
-both names may match to names in the database.
-This function will remove the alias and return the listed variety name}
+\title{Remove alias if there is a match with variety}
 \usage{
 rm.alias_dupmatch(match_df)
 }
@@ -14,7 +11,6 @@ rm.alias_dupmatch(match_df)
 ("alias" or "variety")}
 }
 \description{
-Remove alias if there is a match with variety
 If a variety is listed in the raw data with an alias,
 both names may match to names in the database.
 This function will remove the alias and return the listed variety name

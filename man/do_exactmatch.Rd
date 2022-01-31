@@ -10,7 +10,8 @@ do_exactmatch(
   select_before = "2021-01-01",
   select_crops = NULL,
   match_type = "raw",
-  rename_df = FALSE
+  rename_df = FALSE,
+  is_blends = FALSE
 )
 }
 \arguments{
@@ -36,6 +37,9 @@ Otherwise, the matches are pulled from the database list
 consider putting the renames into different files that are collected together
 See get_cultivar_rename()
 }}
+
+\item{is_blends}{A logical that specifies whether the varieties are blends.
+Default is FALSE}
 
 \item{data_suffix}{A character suffix to be appended to the columns related to the original data}
 }
