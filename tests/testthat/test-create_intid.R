@@ -72,4 +72,9 @@ test_that("create_intid() generates anticipated ids with alias columns", {
   expect_equal(test$intid, c("alias1",  "alias2", "testvar001", "testvar2testvar2tv00002"))
 })
 
-
+test_that("create_intid() generates anticipated ids with alias columns", {
+  df1 <- data.frame(variety = var_names, alias = c("alias1", "alias2"))
+  expect_error(create_intid(df1, variety, sep_aliases = "//|/|\\(", alias_col = alias),
+  "create_intid() has not been written to handle both sep_alias and an alias_col.  Please provide one or the other.",
+  fixed = TRUE)
+})
