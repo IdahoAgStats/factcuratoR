@@ -122,6 +122,7 @@ check.anymatch <- function(df, group, checkfor = NULL, match_type){
 return.matchgroups <- function(df_any_match){
   df_any_match <- df_any_match %>% mutate(var_id = as.character(var_id))
 
+  # Set the group (match, nomatch, check, or not_needed)
   df_any_match_groups <-
     df_any_match %>%
     ungroup() %>%
@@ -135,6 +136,7 @@ return.matchgroups <- function(df_any_match){
                              is.na(group) & is_truematch == "FALSE" ~ "not_needed",
            TRUE ~ group))
 
+  # Separate groups into individual data.frames
   match <- df_any_match_groups %>% filter(group == "match")
   nomatch <- df_any_match_groups %>% filter(group == "nomatch") %>%
                  select(!matches("_db$|db_id|is_truematch|any_match|method")) %>%
@@ -142,9 +144,13 @@ return.matchgroups <- function(df_any_match){
   match_check <- df_any_match_groups %>% filter(group == "check")
   not_needed <- df_any_match_groups %>% filter(group == "not_needed")
 
-  match_list <- list(match, nomatch, match_check, not_needed) %>% map(., ~.x %>% select(-group))
+  # Add the groups into a list
+  match_list <- list(match, nomatch, match_check, not_needed) %>%
+    map(., ~.x %>% select(-group))
   names(match_list) <- c("match", "nomatch", "check", "not_needed")
 
+  # Check that only one database entry matches a given var_id
+  # This helps to catch duplicate entries in the controlled vocabularies
   if (all(c("db_id", "var_id") %in% names(match_list[["match"]]))){
 
     test_multmatch <- check.matches(match_list[["match"]])
@@ -153,7 +159,9 @@ return.matchgroups <- function(df_any_match){
                    capture.output(test_multmatch), collapse = "\n"))
     }
 
+    # Remove alias if there is a match with variety
     test_aliasdup <- rm.alias_dupmatch(match_list[["match"]])
+
     if (nrow(test_aliasdup[["not_needed"]] > 0)){
       match_list[["match"]] <- test_aliasdup[["match"]]
 
@@ -189,6 +197,7 @@ check.matches <- function(match_df){
 }
 
 #' Remove alias if there is a match with variety
+#'
 #' If a variety is listed in the raw data with an alias,
 #' both names may match to names in the database.
 #' This function will remove the alias and return the listed variety name
