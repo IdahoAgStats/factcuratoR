@@ -13,7 +13,7 @@
 #' the data.frame should contain a column for variety and internal id (intid)
 #' @param data_name A string denoting the name of the dataset
 #' @inheritParams stringdist.variety
-#' @inheritParams get.variety_db
+#' @inheritParams get_variety_db
 #' @family match variety modules
 #' @export
 find_fuzzymatch <- function(var_noexactmatch,
@@ -33,7 +33,7 @@ find_fuzzymatch <- function(var_noexactmatch,
   }
 
   quo_intid_col <- sym(intid_col)
-  variety_intid_db <- get.variety_db(db_folder = db_folder,
+  variety_intid_db <- get_variety_db(db_folder = db_folder,
                                     select_before = select_before,
                                     select_crops = select_crops,
                                     for_matching = TRUE)
