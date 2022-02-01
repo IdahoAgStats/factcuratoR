@@ -14,8 +14,8 @@ rules to generate}
 
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 
-\item{blends}{A logical denoting whether there are blends stored in the
-variety column in df_type = "trial_data"}
+\item{blends}{A logical denoting whether to check for blends in the variety column.
+The default is FALSE}
 }
 \description{
 This functions summarises the results and fixes the

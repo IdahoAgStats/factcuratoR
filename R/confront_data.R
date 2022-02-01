@@ -5,6 +5,8 @@
 #' See create_rules() for more details.
 #' @param df A data.frame to be validated
 #' @inheritParams create_rules
+#' @param blends A logical denoting whether to check for blends in the variety column.
+#' The default is FALSE
 #' @importFrom validate confront
 #' @export
 #' @family validation functions
