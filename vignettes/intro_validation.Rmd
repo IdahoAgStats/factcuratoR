@@ -115,6 +115,8 @@ knitr::kable(col_info)
 
 The function `confront_data()` is a wrapper around `validate::confront()` that checks that column contents match controlled vocabularies or are in the accepted value range.
 
+Note: The argument `blends` = TRUE will check for blends in the variety column
+
 ```{r, results.folding = NULL, results = 'asis'}
 colcontent_valid <- confront_data(df_validate, 
                                   df_type = "trial_data",

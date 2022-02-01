@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Introduction to the validation functions</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Jan 31, 2022</h4>
+            <h4 data-toc-skip class="date">Feb 01, 2022</h4>
       
       
       <div class="hidden name"><code>intro_validation.Rmd</code></div>
@@ -427,6 +427,7 @@
 <h3 id="check-column-contents">Check column contents<a class="anchor" aria-label="anchor" href="#check-column-contents"></a>
 </h3>
 <p>The function <code><a href="../reference/confront_data.html">confront_data()</a></code> is a wrapper around <code><a href="https://rdrr.io/pkg/validate/man/confront.html" class="external-link">validate::confront()</a></code> that checks that column contents match controlled vocabularies or are in the accepted value range.</p>
+<p>Note: The argument <code>blends</code> = TRUE will check for blends in the variety column</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colcontent_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/confront_data.html">confront_data</a></span><span class="op">(</span><span class="va">df_validate</span>, 
                                   df_type <span class="op">=</span> <span class="st">"trial_data"</span>,
