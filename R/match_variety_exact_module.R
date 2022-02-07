@@ -89,7 +89,7 @@ get_cultivar_rename <- function(db_folder){
   db <- readin_db(db_folder = db_folder)
 
   cv_rename <- db$cv_rename.csv %>%
-    rename(variety_db = correct_variety_name) %>% select(-Program)
+    rename(variety_db = correct_variety_name) %>% select(-program)
 
   cv_rename2 = cv_rename %>%
     mutate(intid = tolower(gsub("[^A-Za-z0-9+]", "", wrong_name))) %>% # will remove all characters not specified , which is needed to remove the \ backslash in one of the names
