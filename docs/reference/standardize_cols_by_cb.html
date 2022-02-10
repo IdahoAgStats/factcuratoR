@@ -19,7 +19,7 @@ Any extra columns will come after, in alphabetical order."><!-- mathjax --><scri
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -71,7 +71,8 @@ Any extra columns will come after, in alphabetical order.</p>
   <span class="va">required_only</span>,
   <span class="va">codebook_cols_only</span>,
   <span class="va">db_folder</span>,
-  new_col_fill <span class="op">=</span> <span class="st">""</span>
+  new_col_fill <span class="op">=</span> <span class="st">""</span>,
+  cols_keep <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -95,6 +96,10 @@ not specified by the codebook</p></dd>
 <dd><p>A string path to the database controlled vocabulary folder</p></dd>
 <dt>new_col_fill</dt>
 <dd><p>A value that will be used to fill newly created columns</p></dd>
+<dt>cols_keep</dt>
+<dd><p>A vector containing names of columns to keep
+(This is a useful argument to use when codebook_cols_only = TRUE, but the user
+wants to retain a few other columns that aren't in the codebook)</p></dd>
 </dl></div>
 
   </div>
