@@ -14,6 +14,9 @@
 #' @param codebook_cols_only A logical denoting whether to remove any columns
 #' not specified by the codebook
 #' @param new_col_fill A value that will be used to fill newly created columns
+#' @param cols_keep A vector containing names of columns to keep
+#' (This is a useful argument to use when codebook_cols_only = TRUE, but the user
+#' wants to retain a few other columns that aren't in the codebook)
 #' @family standardize to codebook functions
 #' @export
 standardize_cols_by_cb <- function(df,
@@ -22,8 +25,8 @@ standardize_cols_by_cb <- function(df,
                                    required_only,
                                    codebook_cols_only,
                                    db_folder,
-                                   new_col_fill = ""){
-
+                                   new_col_fill = "",
+                                   cols_keep = NULL){
 
   col_summary <- validate_colnames(df, codebook_name, db_folder) %>%
     select(comment, colname_data, colname_codebook, required, col_num) %>%
@@ -45,12 +48,14 @@ standardize_cols_by_cb <- function(df,
   # If codebook_cols_only, remove columns from the dataset
   # that are NOT included in the codebook
   if (codebook_cols_only){
-    cols_rm <- (col_summary %>%
-                  filter(
-                    str_detect(comment, "not present in codebook:")))$colname
+    cols_rm <- col_summary %>%
+                  filter(str_detect(comment, "not present in codebook:")) %>%
+                  filter(!colname %in% cols_keep)
+
+    cols_rm_vec <- cols_rm$colname
 
     if (length(cols_rm)>0){
-      message("Removing cols not in codebook: ", paste(cols_rm, collapse = ", "))
+      message("Removing cols not in codebook: ", paste(cols_rm_vec, collapse = ", "))
       col_summary <- col_summary %>%
         filter(!str_detect(comment, "not present in codebook:"))
     }
@@ -59,7 +64,7 @@ standardize_cols_by_cb <- function(df,
 
   # Relocate columns in a dataset based on their order in the codebook
   col_summary_ordered <- col_summary %>% arrange(col_num, colname)
-  df <- df %>% select(any_of(col_summary_ordered$colname))
+  df <- df %>% select(any_of(c(col_summary_ordered$colname, cols_keep)))
 
   return(df)
 

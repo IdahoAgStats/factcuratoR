@@ -11,7 +11,8 @@ standardize_cols_by_cb(
   required_only,
   codebook_cols_only,
   db_folder,
-  new_col_fill = ""
+  new_col_fill = "",
+  cols_keep = NULL
 )
 }
 \arguments{
@@ -32,6 +33,10 @@ not specified by the codebook}
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 
 \item{new_col_fill}{A value that will be used to fill newly created columns}
+
+\item{cols_keep}{A vector containing names of columns to keep
+(This is a useful argument to use when codebook_cols_only = TRUE, but the user
+wants to retain a few other columns that aren't in the codebook)}
 }
 \description{
 Contains options to add missing columns or remove unnecessary columns

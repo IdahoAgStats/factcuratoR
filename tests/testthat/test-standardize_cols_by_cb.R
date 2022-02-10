@@ -72,3 +72,13 @@ test_that("standardize_cols_by_cb() handles 'add_missing_cols' = FALSE", {
   expect_equal(names(result), c("company", "a"))
 })
 
+test_that("standardize_cols_by_cb() handles selecting extra columns", {
+  df <- data.frame(a = NA, company = NA, extra = NA)
+  result <- standardize_cols_by_cb(df, codebook_name = "grower_cooperator",
+                                   add_missing_cols = FALSE,
+                                   codebook_cols_only = TRUE,
+                                   db_folder = controlled_vocab_folder,
+                                    cols_keep = "extra")
+  expect_equal(names(result), c("company", "extra"))
+})
+
