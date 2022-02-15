@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Introduction to the validation functions</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Feb 10, 2022</h4>
+            <h4 data-toc-skip class="date">Feb 15, 2022</h4>
       
       
       <div class="hidden name"><code>intro_validation.Rmd</code></div>
@@ -1281,7 +1281,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">is.character(chemical_trts)</td>
+<td align="left">nchar(as.character(chemical_trts)) &lt;= 20</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
@@ -1314,7 +1314,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">is.character(agronomic_notes)</td>
+<td align="left">nchar(as.character(agronomic_notes)) &lt;= 500</td>
 </tr>
 <tr class="odd">
 <td align="left">FALSE</td>
@@ -1325,7 +1325,7 @@
 <td align="right">0</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
-<td align="left">is.character(soil_type)</td>
+<td align="left">nchar(as.character(soil_type)) &lt;= 50</td>
 </tr>
 <tr class="even">
 <td align="left">FALSE</td>
