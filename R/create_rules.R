@@ -28,7 +28,7 @@ create_rules <- function(df_type, db_folder, blends = FALSE){
   }
 
   rule_raw <- rule_raw %>%
-    select(variable, value_type, values_defined_in, value_range)
+    select(variable, value_type, values_defined_in, value_range, max_characters)
 
 
   # Format data.frame to write rules
@@ -53,9 +53,15 @@ create_rules <- function(df_type, db_folder, blends = FALSE){
                             NA)) %>%
     mutate(rule_range = ifelse(!is.na(min), paste(variable, ">=", min, "&", variable, "<=", max), NA)) %>%
     mutate(rule_value = ifelse(!is.na(value), paste(variable, "%in%", paste0("c(",value,")")), NA)) %>%
+    mutate(rule_maxlength =
+      ifelse(!is.na(max_characters),
+             paste("nchar(as.character(", variable, ")) <=", max_characters),
+            NA)) %>%
+    # If the rule is na, then check the type
     mutate(rule_is.na = ifelse((is.na(rule_cb) &
                                   is.na(rule_range) &
                                   is.na(rule_value) &
+                                  is.na(rule_maxlength) &
                                   !is.na(is_type)),
                                paste0(is_type, "(", variable, ")"), NA)) %>%
     # grepl returns FALSE for NA, so need to also check for NA to correctly return NAs
@@ -67,13 +73,11 @@ create_rules <- function(df_type, db_folder, blends = FALSE){
     filter(!is.na(variable)) %>%
     unite("rule", contains("rule"), na.rm = TRUE, sep = "|")
 
-
+  # See above.  This code is to ensure grepl returns NA if date is NA
   rule_df2b <- rule_df2 %>%
     filter(value_type == "date") %>%
     mutate(rule = paste0("!is.na(", variable, ")")) %>%
     bind_rows(rule_df2)
-
-  #ifelse(is.na(v1), NA, grepl("test", v1))
 
   # Rules that are in ADDITION to the rules specified by the codebook
   rule_df3 <- rule_df2b %>%

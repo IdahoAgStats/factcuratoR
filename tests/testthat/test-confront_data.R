@@ -45,3 +45,12 @@ test_that("confront_data() checks blends",{
   expect_equal(sum(test[[1]]$passes), 5)
 
 })
+
+
+
+test_that("confront_data() checks string length",{
+  df <- data.frame(chemical_trts = c("short text", paste(rep("very long text", 3), collapse = " ")))
+  test <- confront_data(df, "trials_metadata", controlled_vocab_folder, blends = FALSE)
+  expect_equal(sum(test[[1]]$fails), 1)
+
+})
