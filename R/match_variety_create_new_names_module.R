@@ -169,10 +169,12 @@ process_std_new_names <- function(output_nomatch_df,
     relocate(variety_raw) %>%
     arrange(crop_type, variety)
 
+  write.csv(add_to_db, paste0(knitroutputfolder, "/","add_to_db.csv"), row.names = FALSE)
+
   if (nrow(add_to_db > 0)){
     message("Writing add_to_db.csv.  Add these entries to the database.
             May need to manually fill in extra information such as crop or alias")
-    write.csv(add_to_db, paste0(knitroutputfolder, "/","add_to_db.csv"), row.names = FALSE)
+
   }
 
   return(list(add_to_cv_rename = add_to_cv_rename, add_to_db = add_to_db))
