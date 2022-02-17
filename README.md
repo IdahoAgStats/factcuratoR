@@ -7,8 +7,8 @@ help standardize variety testing data for the FACT program.
 
 The goal of the FACT program curation is to generate:
 
-1. trial data
-2. trial metadata
+1. trial data (multiple entries per trial)
+2. trial metadata (one entry per trial)
 
 that conform to the controlled vocabulary codebooks.
 

@@ -25,6 +25,13 @@ The purpose of **factcuratoR** is to provide sets of functions to help standardi
 
 The goal of the WAVE program curation is to generate <u>trial data</u> and <u>trial metadata</u> that conform to the controlled vocabulary codebooks.
 
+## Trial data and metadata
+
+1. Trial data consists of multiple plot entries per trial. This includes all data 
+applicable at the plot-level, such as plot, variety, entry, and traits like height, stand, and moisture.
+
+2. Metadata consists of one entry per trial. Metadata is trial-level data, such as location, year, program, and nursery.
+
 ## Overview of codebook structure
 
 First, load **factcuratoR** and point to the main codebook (which currently must 
@@ -40,7 +47,7 @@ codebook_folder <- here::here(
 The main codebook contains the variable names and required status for the trial data and the trial metadata. For example, the trial data should contain the columns trial, variety, entry, and plot. The trial metadata should contain columns for
 trial, nursery, year, location, etc.
 
-<span class="important"> Note! </span> Traits are collected for each trial, so conceptually, it would make sense for the traits (such as `test_weight` or `height`) to be contained in the main codebook associated with trial_data. However, because the traits list isexpected to get rather long, the traits are stored in a separate file called 
+<span class="important"> Note! </span> Traits are collected for each trial, so conceptually, it would make sense for the traits (such as `test_weight` or `height`) to be contained in the main codebook associated with trial_data. However, because the traits list is expected to get rather long, the traits are stored in a separate file called 
 *traits.csv*.  For validating the columns in the trial data, the validation 
 functions pull in the traits and treats each trait as a column in the trial data.
 
@@ -57,7 +64,7 @@ codebooks' to better distinguish them from the 'main codebook.'
 Said another way, the 'main codebook' hold column names and the 'controlled 
 vocabulary codebooks' hold levels that are approved as column contents.
 
-Just as the main codebook defines the columns that are present in the trial_data and trials_metadata,* codebooks_all_db.csv* also defines the columns that are present in the controlled vocabulary codebooks.  For the example (Fig. 1), *codebooks_all_db.csv* also has information for the column names in the cultivar, nursery, location, and crop_market_classes controlled vocabular codebooks.
+Just as the main codebook defines the columns that are present in the trial_data and trials_metadata,* codebooks_all_db.csv* also defines the columns that are present in the controlled vocabulary codebooks.  For the example (Fig. 1), *codebooks_all_db.csv* also has information for the column names in the cultivar, nursery, location, and crop_market_classes controlled vocabulary codebooks.
 
 ## More about codebooks_all_db.csv
 
