@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Example of the cultivar matching process</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Feb 15, 2022</h4>
+            <h4 data-toc-skip class="date">Feb 17, 2022</h4>
       
       
       <div class="hidden name"><code>example_cultivar_matching.Rmd</code></div>
@@ -219,7 +219,7 @@
 <p>Extraneous information in the variety name will make the matching process more difficult - the names won’t match by exact matching and it is less certain that the fuzzymatching functions will be able to detect a fuzzymatch.</p>
 <p>Some types of information that may be stored in the variety name column that should be removed includes: parental cross, crop type, agronomic treatments (“fill”, “sprayed”, etc).</p>
 <p>Remove extraneous information stored in the raw variety column by duplicating the name column and removing the extraneous information (which can usually be accomplished by regex). The column is duplicated because the raw variety name should be retained to match database matches back with the data.</p>
-<p>Additionally, if there are blends, they should be separated from the other variety names and matched separately. (The final formatting for blends should be: name1;name2)</p>
+<p>Additionally, if there are blends, they should be separated from the other variety names and matched separately. Many of the variety matching functions have the argument <code>is_blends</code>, which can be set to TRUE to match the blends (See the section below on matching blends). The functions will help standardize the names according to the formatting for blends: name1;name2</p>
 <p><span class="important"> Note! </span> Once the fuzzy matching stage is started, it is important that the <code>var_id</code> doesn’t change other it will cause problems with matching up matches with the correct names.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_raw</span> <span class="op">&lt;-</span> 
@@ -384,7 +384,7 @@
 <h2 id="do-exact-match">Do exact match<a class="anchor" aria-label="anchor" href="#do-exact-match"></a>
 </h2>
 <p>The first step is to exact match to the cultivar names in the codebooks</p>
-<p>The second step is to exact match to the names in the cv_rename.csv</p>
+<p>The second step is to exact match to the names in the cv_rename.csv. cv_rename.csv contains misspellings.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results_exactmatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/do_exactmatch.html">do_exactmatch</a></span><span class="op">(</span>db_folder <span class="op">=</span> <span class="va">codebook_folder</span>,
@@ -556,7 +556,7 @@
 <p>The results are filtered for these conditions:</p>
 <ul>
 <li><p>The variable in <code>crop_type</code> must match (e.g. “wheat” would not match “barley”)</p></li>
-<li><p>Numbers located at the end of a variety name or alias must be an exact match if there is more than one number present. If there is only number at the end of a variety name, the trailing digit does not need to match the rest of the name. For example “myvar1” would still match with “myvar”, but “myvar123” would not.</p></li>
+<li><p>Numbers located at the end of a variety name or alias must be an exact match if there is more than one number present. If there is only number at the end of a variety name, the trailing digit does not need to match the rest of the name. For example “myvar1” would still match with “myvar”, but “myvar123” would not match “myvar”.</p></li>
 </ul>
 <p>The results of <code>find_fuzzymatch(</code>) are written to the file <em>fuzzymatch.csv</em> in the directory provided by the user in the <code>knitroutputfolder</code> argument.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -865,7 +865,7 @@
 <div class="section level2">
 <h2 id="fill-out-the-fuzzymatch-csv">Fill out the fuzzymatch.csv<a class="anchor" aria-label="anchor" href="#fill-out-the-fuzzymatch-csv"></a>
 </h2>
-<p>Move <em>fuzzymatch.csv</em> to the helper_files/ directory and fill out the <code>is_truematch</code> column. Fill the <code>is_truematch</code> column with “TRUE” if fuzzymatch is a true match, otherwise fill with “FALSE”.</p>
+<p>Move <em>fuzzymatch.csv</em> to the helper_files/ directory and fill out the <code>is_truematch</code> column. (You can append the file with the ending "_aux" to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.) Fill the <code>is_truematch</code> column with “TRUE” if fuzzymatch is a true match, otherwise fill with “FALSE”.</p>
 <p>Sometimes the match may be clear, however, many matches will need to be manually checked. Some steps for that:</p>
 <ol style="list-style-type: decimal">
 <li><p>First, start off with a Google search to determine if there are clear usages of both names (name in the raw data and name in the database). This would suggest that the names refer to different varieties and they are not true matches.</p></li>
@@ -874,17 +874,22 @@
 </ol>
 </div>
 <div class="section level2">
-<h2 id="process-fuzzymatch-csv-manual-matches">Process <em>fuzzymatch.csv</em> manual matches<a class="anchor" aria-label="anchor" href="#process-fuzzymatch-csv-manual-matches"></a>
+<h2 id="process-fuzzymatch_aux-csv-manual-matches">Process <em>fuzzymatch_aux.csv</em> manual matches<a class="anchor" aria-label="anchor" href="#process-fuzzymatch_aux-csv-manual-matches"></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Read in the <em>fuzzymatch.csv</em> that has been manually check</li>
-<li>Process the file using <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code>, which will write out 3 files to the working directory containing:<br>
-</li>
+<li>Read in the <em>fuzzymatch_aux.csv</em> that has been manually filled in</li>
+<li>Process the file using <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code>, which will write out 3 files to the working directory:</li>
 </ol>
 <ul>
-<li>Variety names that still need to be manually checked for whether they have a match or not.</li>
-<li>Variety names for which <code>is_truematch</code> is “TRUE” and should be added to <em>cv_rename.csv</em>.</li>
-<li>Variety names that have no match and should be standardized to add to the database.</li>
+<li>
+<em>fuzzy_check.csv</em>, which contains variety names that still need to be manually checked for whether the fuzzy match is a true match. Update is_truematch in the <em>helper_files/fuzzymatch_aux.csv</em> file.</li>
+</ul>
+<p>There may be newly detected fuzzy matches for successive runs of the .Rmd.<br>
+This may occur if there are new names added to the codebook or if the fuzzymatching function is updated.</p>
+<p>Newly detected fuzzy matches need to be added to the <em>helper_files/fuzzymatch_aux.csv</em> file. The new matches have only “new_fuzzymatch” in the source column. (“new_fuzzymatch;csv” in the source column means that this was a match for this run of the .Rmd (“new_fuzzymatch”) and that the name is also already present in the original fuzzymatch.csv (“csv”).)</p>
+<ul>
+<li><p><em>add_fuzzy_to_cv_rename.csv</em>, which contains variety names for which <code>is_truematch</code> is “TRUE.” Manually add the names to <em>cv_rename.csv</em>.</p></li>
+<li><p><em>standardize_new_names.csv</em>, which contains variety names that have no match and need to be standardized before being added to the database. See next section for full details.</p></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fuzzy_status</span> <span class="op">&lt;-</span> 
@@ -927,12 +932,25 @@
 <div class="section level2">
 <h2 id="standardize-names-without-a-match">Standardize names without a match<a class="anchor" aria-label="anchor" href="#standardize-names-without-a-match"></a>
 </h2>
+<ol style="list-style-type: decimal">
+<li><p>Move <em>standardize_new_names.csv</em> to the helper_files/ directory (You can append the file with the ending "_aux" to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.)</p></li>
+<li><p>Go through and standardize the names in <em>standardize_new_names_aux.csv</em> by editing the names in the column <code>new_std_name</code>. The function <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code> will make an initial guess by populating <code>new_std_name</code> with the the raw variety name.</p></li>
+</ol>
+<p><span class="important">Note on duplicate names: </span> It is especially important if there are different spellings of the same variety, the names are standardized in this file. For example, if “WA0061” and “WA61” are the same variety (spoiler: they are), the <code>new_std_name</code> should be the same for both entries.<br>
+If the names are not standardized, processing the names later will create two different entries to add to the database controlled vocabularies.</p>
+<p><span class="important">Note on names missed by fuzzy matching: </span> If any of the names in <em>standardize_new_names_aux.csv</em> match a variety in the database, then manually add the names to the <em>controlled_vocab/cv_rename.csv</em> file. This occurs when the name is not found by fuzzy matching. The fuzzy matching functions have been written to return plausible matches while trying to minimize the number of total returns so to not overwhelm the user (you). This trade off means that some potential matches may be missed.</p>
+<ol style="list-style-type: decimal">
+<li>Read in and process the file using <code><a href="../reference/process_std_new_names.html">process_std_new_names()</a></code>, which will write out files to the /output folder:</li>
+</ol>
 <ul>
-<li>Move <em>standardize_new_names.csv</em> helper_files/ directory (append file with ending "_aux")</li>
-<li>Go through and standardize the names in <em>standardize_new_names_aux.csv</em> by editing the column ‘new_std_name’. The function <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code> will make an initial guess by comparing the variety name field for the <code>new_std_name</code>. The <code>new_std_name</code> can be changed [the column header?].</li>
+<li>
+<em>add_to_new_std_name.csv.</em>, which contains names that have newly passed from the fuzzy matching stage to the name processing stage. If there are entries in this file, add the names to <em>helper_files/standardize_new_names_aux.csv</em> and standardize the <code>std_new_name</code> column as described above.</li>
+<li>
+<em>add_to_cv_rename.csv</em>, which are names that have been updated in <em>standardize_new_names_aux.csv</em> and won’t match by exact_matching (i.e. if the <code>std_new_name</code> was changed from the default value. If there are entries in this file, add the names to <em>controlled_vocab/cv_rename.csv</em>
+</li>
+<li>
+<em>add_to_db.csv</em>, which contains new varieties. Add these entries to the database. May need to manually fill in extra information such as crop or alias</li>
 </ul>
-<p><span class="important">Note on Duplicate Names: </span> It is especially important that if there are different spellings of the same variety, the name is standardized in this file. For example, if “WA0061” and “WA61” are the same variety (spoiler: they are), the <code>new_std_name</code> should be the same for both entries.</p>
-<p>If any variety names are already in the database, then manually add them to the <em>controlled_vocab/cv_rename.csv</em> file. This occurs when the name is not found by fuzzy matching.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results_new_names</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_std_new_names.html">process_std_new_names</a></span><span class="op">(</span>
@@ -954,11 +972,12 @@
 <span class="co">#&gt; Adding columns: crop, date_added, alias, pedigree, year_released, usage, usda_pi_number, pvp, patent, comments</span>
 <span class="co">#&gt; Writing add_to_db.csv.  Add these entries to the database.</span>
 <span class="co">#&gt;             May need to manually fill in extra information such as crop or alias</span></code></pre></div>
-<p>If the fuzzy_status file is updated (that is, <code>is_truematch</code> is filled in), re-run the entire process in a clean R session and <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code> and <code><a href="../reference/process_std_new_names.html">process_std_new_names()</a></code> will update [the files?]. The goals are clean these files until they are empty:</p>
-<ol style="list-style-type: decimal">
-<li><em>fuzzy_check.csv</em></li>
-<li>all <em>add_to_{{crop_variety_name_table}}.csv</em> files</li>
-</ol>
+</div>
+<div class="section level2">
+<h2 id="iterate-through-the-process">Iterate through the process<a class="anchor" aria-label="anchor" href="#iterate-through-the-process"></a>
+</h2>
+<p>If the fuzzy_status file is updated (that is, <code>is_truematch</code> is filled in), re-run the entire process in a clean R session and <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code> and <code><a href="../reference/process_std_new_names.html">process_std_new_names()</a></code> will update the output files.</p>
+<p>The goal is to iterate through the process outlined above until all of the output files (<em>fuzzy_check.csv</em>, <em>add_to_cv_rename.csv</em>, <em>add_to_new_std_name.csv</em>, and <em>add_to_new_std_name.csv</em>) are empty.</p>
 <p>When this has been completed, all of the variety names should be matched and all the necessary information has been moved into the controlled vocabularies.</p>
 <p>Hooray! Make sure you celebrate this achievement!</p>
 </div>
@@ -967,7 +986,7 @@
 <h1 id="collect-all-the-matches-from-each-step">Collect all the matches from each step<a class="anchor" aria-label="anchor" href="#collect-all-the-matches-from-each-step"></a>
 </h1>
 <p>Once the names from the <code><a href="../reference/process_std_new_names.html">process_std_new_names()</a></code> step have been added to the <em>cv_rename</em> file, then they should match in the cv_rename step.</p>
-<p>the function<code><a href="../reference/collect_final_matches.html">collect_final_matches()</a></code> is used to collect all the matches and the stage where they were matched.</p>
+<p>The function<code><a href="../reference/collect_final_matches.html">collect_final_matches()</a></code> is used to collect all the matches and the stage where they were matched.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_matches</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/collect_final_matches.html">collect_final_matches</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="va">results_exactmatch</span>,
