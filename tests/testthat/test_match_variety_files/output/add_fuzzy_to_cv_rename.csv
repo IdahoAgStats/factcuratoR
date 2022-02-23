@@ -1,2 +1,1 @@
 "variety_db","intid","crop_type","variety","intid_db","is_truematch","var_id","db_id","type","type_db","crop_db","crop_type_db","date_added_db","method","nursery","variety_original","n","source","any_match"
-"AAC Synergy","accsynergy","barley","ACC Synergy","aacsynergy",TRUE,"78","2","variety","variety","Two-Row Spring Barley","barley","2020/06/08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","SB2malt","ACC Synergy","1","new_fuzzymatch; csv",TRUE

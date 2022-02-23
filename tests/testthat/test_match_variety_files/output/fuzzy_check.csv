@@ -1,2 +1,6 @@
 "is_truematch","intid","intid_db","variety","variety_db","var_id","db_id","type","type_db","crop_db","crop_type","crop_type_db","date_added_db","method","nursery","variety_original","n","source","any_match"
+NA,"01ab7163",NA,"01Ab7163 ","","2","","variety","","","barley","","","","SB2","01Ab7163 (85Ab2323/FR6503)","","new_fuzzymatch; csv",NA
+NA,"02ab17373",NA,"02Ab17373","","8","","variety","","","barley","","","","SB2","02Ab17373","","new_fuzzymatch; csv",NA
+NA,"02ab17373",NA,"02Ab17373 ","","9","","variety","","","barley","","","","SB2","02Ab17373 (86Ab2626/Merit)","","new_fuzzymatch; csv",NA
 NA,"02w0076w","02w50076w","02W0076W","02W50076W","10","396","variety","alias","Hard White Spring Wheat","wheat","wheat","2020/06/08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","H_S","02W0076W","1","new_fuzzymatch; csv",NA
+NA,"accsynergy","aacsynergy","ACC Synergy","AAC Synergy","78","2","variety","variety","Two-Row Spring Barley","barley","barley","2020/06/08","jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs dist_scaled","SB2malt","ACC Synergy","1","new_fuzzymatch; csv",NA
