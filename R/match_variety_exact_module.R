@@ -46,7 +46,9 @@ do_exactmatch <- function(db_folder,
                      # 'Salute' and it is better not to implement because sometimes
                      # the crop_type is NA and then wouldn't join
                       by = c("intid"),
-                      suffix = c("", "_db"))
+                      suffix = c("", "_db")) %>%
+    # Add intid_db because it is a required column for collect_final_matches()
+    mutate(intid_db = intid)
   # This is a possible start of how to implement filtering out
   # crop_type mismatch (see above), which needs to take into account not
   # removing the entry.  However, if a duplicate entry is created, it does need to be removed
@@ -93,9 +95,9 @@ get_cultivar_rename <- function(db_folder){
 
   cv_rename2 = cv_rename %>%
     mutate(intid = tolower(gsub("[^A-Za-z0-9+]", "", wrong_name))) %>% # will remove all characters not specified , which is needed to remove the \ backslash in one of the names
-    mutate(db_id = tolower(gsub("[^A-Za-z0-9+]", "", variety_db))) %>%
-    group_by(intid, db_id) %>%
-    # If more than one entry for the same intid and db_id are listed,
+    mutate(intid_db = tolower(gsub("[^A-Za-z0-9+]", "", variety_db))) %>%
+    group_by(intid, intid_db) %>%
+    # If more than one entry for the same intid and intid_db are listed,
     # these entries are collapsed
     # Note: The wrong_name may be slightly different between the two cases,
     # e.g. "wildfire" versus "Wildfire", but this doesn't matter

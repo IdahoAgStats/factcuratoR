@@ -88,6 +88,7 @@ results_rename <-
                 match_type = "raw", 
                 rename_df = TRUE)
 
+knitr::kable(results_exactmatch[["match"]])
 knitr::kable(results_rename[["match"]])
 knitr::kable(results_rename[["nomatch"]])
 ```

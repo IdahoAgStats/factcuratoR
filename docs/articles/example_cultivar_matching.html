@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Example of the cultivar matching process</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Feb 17, 2022</h4>
+            <h4 data-toc-skip class="date">Feb 23, 2022</h4>
       
       
       <div class="hidden name"><code>example_cultivar_matching.Rmd</code></div>
@@ -90,17 +90,17 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span>
 
-<span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span>
-<span class="va">example_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/example_cultivar_matching"</span><span class="op">)</span>
-<span class="va">knitroutputfolder</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output"</span><span class="op">)</span>
-<span class="va">knitroutputfolder_blends</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output_blends"</span><span class="op">)</span>
-<span class="va">auxiliary_files</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"auxiliary_files"</span><span class="op">)</span></code></pre></div>
+<span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span>
+<span class="va">example_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/example_cultivar_matching"</span><span class="op">)</span>
+<span class="va">knitroutputfolder</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output"</span><span class="op">)</span>
+<span class="va">knitroutputfolder_blends</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output_blends"</span><span class="op">)</span>
+<span class="va">auxiliary_files</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"auxiliary_files"</span><span class="op">)</span></code></pre></div>
 <div class="section level1">
 <h1 id="read-in-raw-variety-names">Read in raw variety names<a class="anchor" aria-label="anchor" href="#read-in-raw-variety-names"></a>
 </h1>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"example_cultivar_matching.csv"</span><span class="op">)</span>, 
-                col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"example_cultivar_matching.csv"</span><span class="op">)</span>, 
+                col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -227,7 +227,7 @@
                <span class="va">variety</span>, 
                sep_aliases <span class="op">=</span> <span class="st">"\\("</span>, 
                <span class="va">crop_type</span>, 
-               <span class="va">nursery</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span><span class="co">#, </span>
+               <span class="va">nursery</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span><span class="co">#, </span>
                <span class="co">#alias_col = alias)</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">names_raw</span><span class="op">)</span></code></pre></div>
@@ -398,22 +398,149 @@
                 data_intid <span class="op">=</span> <span class="va">results_exactmatch</span><span class="op">$</span><span class="va">nomatch</span>, 
                 match_type <span class="op">=</span> <span class="st">"raw"</span>, 
                 rename_df <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; var_id and db_id do not exist. test_multmatch and test_aliasdup not run</span>
 <span class="co">#&gt; match: 2 nomatch: 8 check: 0 not_needed: 0</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">results_rename</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">results_exactmatch</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="11%">
+<col width="5%">
+<col width="4%">
+<col width="4%">
+<col width="6%">
+<col width="3%">
+<col width="3%">
+<col width="13%">
+<col width="7%">
+<col width="7%">
+<col width="4%">
+<col width="7%">
+<col width="6%">
+<col width="7%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">variety</th>
+<th align="left">crop_type</th>
+<th align="left">nursery</th>
+<th align="left">type</th>
+<th align="left">intid</th>
+<th align="left">var_id</th>
+<th align="right">db_id</th>
+<th align="left">crop_db</th>
+<th align="left">crop_type_db</th>
+<th align="left">date_added_db</th>
+<th align="left">type_db</th>
+<th align="left">variety_db</th>
+<th align="left">intid_db</th>
+<th align="left">is_truematch</th>
+<th align="left">any_match</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">455</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">455</td>
+<td align="left">1</td>
+<td align="right">1141</td>
+<td align="left">Hard White Spring Wheat</td>
+<td align="left">wheat</td>
+<td align="left">2021-09-15</td>
+<td align="left">variety</td>
+<td align="left">455</td>
+<td align="left">455</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">AAC wildfire</td>
+<td align="left">wheat</td>
+<td align="left">H_W</td>
+<td align="left">variety</td>
+<td align="left">aacwildfire</td>
+<td align="left">2</td>
+<td align="right">437</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">variety</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">aacwildfire</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">AAC wildfire (W512)</td>
+<td align="left">wheat</td>
+<td align="left">HRW</td>
+<td align="left">variety</td>
+<td align="left">aacwildfire</td>
+<td align="left">3</td>
+<td align="right">437</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">variety</td>
+<td align="left">AAC Wildfire</td>
+<td align="left">aacwildfire</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">W512</td>
+<td align="left">wheat</td>
+<td align="left">H_W;HRW</td>
+<td align="left">variety</td>
+<td align="left">w512</td>
+<td align="left">10</td>
+<td align="right">437</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">alias</td>
+<td align="left">W512</td>
+<td align="left">w512</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Wildfile (W512)</td>
+<td align="left">wheat</td>
+<td align="left">HRW</td>
+<td align="left">alias</td>
+<td align="left">w512</td>
+<td align="left">13</td>
+<td align="right">437</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">alias</td>
+<td align="left">W512</td>
+<td align="left">w512</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">results_rename</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="7%">
 <col width="8%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
 <col width="6%">
-<col width="8%">
-<col width="9%">
-<col width="9%">
+<col width="6%">
 <col width="7%">
-<col width="11%">
+<col width="5%">
+<col width="9%">
+<col width="8%">
+<col width="8%">
+<col width="6%">
+<col width="7%">
+<col width="10%">
 <col width="8%">
 </colgroup>
 <thead><tr class="header">
@@ -423,10 +550,11 @@
 <th align="left">type</th>
 <th align="left">intid</th>
 <th align="left">var_id</th>
-<th align="left">db_id</th>
+<th align="left">intid_db_db</th>
 <th align="left">variety_db</th>
 <th align="left">wrong_name</th>
 <th align="left">type_db</th>
+<th align="left">intid_db</th>
 <th align="left">is_truematch</th>
 <th align="left">any_match</th>
 </tr></thead>
@@ -442,6 +570,7 @@
 <td align="left">Melba</td>
 <td align="left">melbclub</td>
 <td align="left">NA</td>
+<td align="left">melbclub</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
@@ -456,12 +585,13 @@
 <td align="left">WB-1035CL+</td>
 <td align="left">WB 1035 CL</td>
 <td align="left">NA</td>
+<td align="left">wb1035cl</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">results_rename</span><span class="op">[[</span><span class="st">"nomatch"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -559,7 +689,7 @@
 <li><p>Numbers located at the end of a variety name or alias must be an exact match if there is more than one number present. If there is only number at the end of a variety name, the trailing digit does not need to match the rest of the name. For example “myvar1” would still match with “myvar”, but “myvar123” would not match “myvar”.</p></li>
 </ul>
 <p>The results of <code>find_fuzzymatch(</code>) are written to the file <em>fuzzymatch.csv</em> in the directory provided by the user in the <code>knitroutputfolder</code> argument.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">output_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/find_fuzzymatch.html">find_fuzzymatch</a></span><span class="op">(</span><span class="va">results_rename</span><span class="op">$</span><span class="va">nomatch</span>,
                 intid_col <span class="op">=</span> <span class="st">"intid"</span>,
@@ -865,7 +995,7 @@
 <div class="section level2">
 <h2 id="fill-out-the-fuzzymatch-csv">Fill out the fuzzymatch.csv<a class="anchor" aria-label="anchor" href="#fill-out-the-fuzzymatch-csv"></a>
 </h2>
-<p>Move <em>fuzzymatch.csv</em> to the helper_files/ directory and fill out the <code>is_truematch</code> column. (You can append the file with the ending “_aux” to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.) Fill the <code>is_truematch</code> column with “TRUE” if fuzzymatch is a true match, otherwise fill with “FALSE”.</p>
+<p>Move <em>fuzzymatch.csv</em> to the helper_files/ directory and fill out the <code>is_truematch</code> column. (You can append the file with the ending "_aux" to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.) Fill the <code>is_truematch</code> column with “TRUE” if fuzzymatch is a true match, otherwise fill with “FALSE”.</p>
 <p>Sometimes the match may be clear, however, many matches will need to be manually checked. Some steps for that:</p>
 <ol style="list-style-type: decimal">
 <li><p>First, start off with a Google search to determine if there are clear usages of both names (name in the raw data and name in the database). This would suggest that the names refer to different varieties and they are not true matches.</p></li>
@@ -891,20 +1021,30 @@ This may occur if there are new names added to the codebook or if the fuzzymatch
 <li><p><em>add_fuzzy_to_cv_rename.csv</em>, which contains variety names for which <code>is_truematch</code> is “TRUE.” Manually add the names to <em>cv_rename.csv</em>.</p></li>
 <li><p><em>standardize_new_names.csv</em>, which contains variety names that have no match and need to be standardized before being added to the database. See next section for full details.</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fuzzy_status</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">19</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">16</span></span>
-<span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span>
-<span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span>
-<span class="co">#&gt; <span style="color: #BB0000;">chr</span>  (11): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...</span>
-<span class="co">#&gt; <span style="color: #00BB00;">dbl</span>   (2): var_id, db_id</span>
-<span class="co">#&gt; <span style="color: #BBBB00;">lgl</span>   (2): is_truematch, wrong_name</span>
-<span class="co">#&gt; <span style="color: #0000BB;">date</span>  (1): date_added_db</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span><span> </span><span style="font-weight: bold;">Column specification</span><span> </span><span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   is_truematch = <span style="color: #BBBB00;">col_logical()</span><span>,</span></span>
+<span class="co">#&gt;   intid = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   intid_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   var_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   db_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   date_added_db = <span style="color: #0000BB;">col_date(format = "")</span><span>,</span></span>
+<span class="co">#&gt;   method = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   nursery = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   wrong_name = <span style="color: #BBBB00;">col_logical()</span></span>
+<span class="co">#&gt; )</span>
 
 <span class="va">results_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_fuzzymatch.html">process_fuzzymatch</a></span><span class="op">(</span>output_fuzzymatch_df <span class="op">=</span> <span class="va">output_fuzzymatch</span>, 
@@ -923,7 +1063,7 @@ This may occur if there are new names added to the codebook or if the fuzzymatch
 <h2 id="standardize-names-without-a-match">Standardize names without a match<a class="anchor" aria-label="anchor" href="#standardize-names-without-a-match"></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Move <em>standardize_new_names.csv</em> to the helper_files/ directory (You can append the file with the ending “_aux” to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.)</p></li>
+<li><p>Move <em>standardize_new_names.csv</em> to the helper_files/ directory (You can append the file with the ending "_aux" to clearly differentiate it between the .csv that will be written to the output/ directory for each run of the .Rmd.)</p></li>
 <li><p>Go through and standardize the names in <em>standardize_new_names_aux.csv</em> by editing the names in the column <code>new_std_name</code>. The function <code><a href="../reference/process_fuzzymatch.html">process_fuzzymatch()</a></code> will make an initial guess by populating <code>new_std_name</code> with the the raw variety name.</p></li>
 </ol>
 <p><span class="important">Note on duplicate names: </span> It is especially important if there are different spellings of the same variety, the names are standardized in this file. For example, if “WA0061” and “WA61” are the same variety (spoiler: they are), the <code>new_std_name</code> should be the same for both entries.<br>
@@ -941,7 +1081,7 @@ If the names are not standardized, processing the names later will create two di
 <li>
 <em>add_to_db.csv</em>, which contains new varieties. Add these entries to the database. May need to manually fill in extra information such as crop or alias</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results_new_names</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_std_new_names.html">process_std_new_names</a></span><span class="op">(</span>
     output_nomatch_df <span class="op">=</span> <span class="va">results_fuzzymatch</span><span class="op">[[</span><span class="st">"nomatch"</span><span class="op">]</span><span class="op">]</span>, 
@@ -950,15 +1090,18 @@ If the names are not standardized, processing the names later will create two di
     knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,
     db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span>
 <span class="co">#&gt; Joining, by = c("var_id", "variety", "intid", "type", "crop_type")</span>
-<span class="co">#&gt; Writing add_to_cv_rename.csv Add these names to the main cv_rename.csv</span>
+<span class="co">#&gt; Writing add_to_cv_rename.csv  Add these names to the main cv_rename.csv</span>
 <span class="co">#&gt; Joining, by = "comment"</span>
-<span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 x 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span>
-<span class="co">#&gt; exists in both data and codebook 1 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">2</span> not present in codebook: cultivar 10</span>
-<span class="co">#&gt; <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">3</span> not present in data 10 TRUE 2</span>
-<span class="co">#&gt; Adding columns: crop, date_added, alias, pedigree, year_released, usage,</span>
-<span class="co">#&gt; usda_pi_number, pvp, patent, comments</span>
-<span class="co">#&gt; Writing add_to_db.csv.  Add these entries to the database. May need to manually</span>
-<span class="co">#&gt; fill in extra information such as crop or alias</span></code></pre></div>
+<span class="co">#&gt; Status: </span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 4</span></span>
+<span class="co">#&gt;   comment                               n required   req</span>
+<span class="co">#&gt;   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                             </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;lgl&gt;</span><span>    </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span><span> exists in both data and codebook      1 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span><span> not present in codebook: cultivar    10 </span><span style="color: #BB0000;">NA</span><span>          </span><span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span><span> not present in data                  10 TRUE         2</span></span>
+<span class="co">#&gt; Adding columns: crop, date_added, alias, pedigree, year_released, usage, usda_pi_number, pvp, patent, comments</span>
+<span class="co">#&gt; Writing add_to_db.csv.  Add these entries to the database.</span>
+<span class="co">#&gt;             May need to manually fill in extra information such as crop or alias</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="iterate-through-the-process">Iterate through the process<a class="anchor" aria-label="anchor" href="#iterate-through-the-process"></a>
@@ -974,16 +1117,16 @@ If the names are not standardized, processing the names later will create two di
 </h1>
 <p>Once the names from the <code><a href="../reference/process_std_new_names.html">process_std_new_names()</a></code> step have been added to the <em>cv_rename</em> file, then they should match in the cv_rename step.</p>
 <p>The function<code><a href="../reference/collect_final_matches.html">collect_final_matches()</a></code> is used to collect all the matches and the stage where they were matched.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">names_matches</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/collect_final_matches.html">collect_final_matches</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="va">results_exactmatch</span>,
                              rename <span class="op">=</span> <span class="va">results_rename</span>,
                              fuzzy <span class="op">=</span> <span class="va">results_fuzzymatch</span><span class="op">)</span>, 
                         <span class="va">names_raw</span>,
                         knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Unknown columns: `wrong_name`, `intid_db`, `method`, `source`</span>
-<span class="co">#&gt; Warning: Unknown columns: `crop_db`, `crop_type_db`, `intid_db`, `method`,</span>
-<span class="co">#&gt; `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `crop_db`, `crop_type_db`, `method`, `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `intid_db_db`</span>
 <span class="co">#&gt; Warning:  5 cultivar(s) not yet matched to the database.</span>
 <span class="co">#&gt;                       The raw name is being returned</span>
 <span class="co">#&gt; Writing final_matches.csv</span>
@@ -1030,7 +1173,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">455</td>
 <td align="left">exact</td>
 <td align="left">455</td>
-<td align="left">NA</td>
+<td align="left">455</td>
 <td align="left">variety</td>
 </tr>
 <tr class="even">
@@ -1044,7 +1187,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">AAC Wildfire</td>
 <td align="left">exact</td>
 <td align="left">aacwildfire</td>
-<td align="left">NA</td>
+<td align="left">aacwildfire</td>
 <td align="left">variety</td>
 </tr>
 <tr class="odd">
@@ -1058,7 +1201,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">AAC Wildfire</td>
 <td align="left">exact</td>
 <td align="left">aacwildfire</td>
-<td align="left">NA</td>
+<td align="left">aacwildfire</td>
 <td align="left">variety</td>
 </tr>
 <tr class="even">
@@ -1072,7 +1215,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">Melba</td>
 <td align="left">rename</td>
 <td align="left">melbclub</td>
-<td align="left">NA</td>
+<td align="left">melbclub</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -1156,7 +1299,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">W512</td>
 <td align="left">exact</td>
 <td align="left">w512</td>
-<td align="left">NA</td>
+<td align="left">w512</td>
 <td align="left">alias</td>
 </tr>
 <tr class="odd">
@@ -1184,7 +1327,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">WB-1035CL+</td>
 <td align="left">rename</td>
 <td align="left">wb1035cl</td>
-<td align="left">NA</td>
+<td align="left">wb1035cl</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -1198,7 +1341,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">W512</td>
 <td align="left">exact</td>
 <td align="left">w512</td>
-<td align="left">NA</td>
+<td align="left">w512</td>
 <td align="left">alias</td>
 </tr>
 <tr class="even">
@@ -1221,18 +1364,18 @@ If the names are not standardized, processing the names later will create two di
 <div class="section level1">
 <h1 id="bind-matches-with-the-data">Bind matches with the data<a class="anchor" aria-label="anchor" href="#bind-matches-with-the-data"></a>
 </h1>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># do not run this code (it's here for example only)</span>
-<span class="va">data_cv_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">names_matches</span>, by <span class="op">=</span> <span class="st">"variety"</span><span class="op">)</span></code></pre></div>
+<span class="va">data_cv_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">names_matches</span>, by <span class="op">=</span> <span class="st">"variety"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="special-instructions-for-matching-blends">Special instructions for matching blends<a class="anchor" aria-label="anchor" href="#special-instructions-for-matching-blends"></a>
 </h1>
 <p>Curate the blends separately from non-blend variety names. Below is an example for curating blends.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_match_variety_files"</span>, 
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">blends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_match_variety_files"</span>, 
                               <span class="st">"example_blends.csv"</span><span class="op">)</span>, 
-                col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+                col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -1263,7 +1406,7 @@ If the names are not standardized, processing the names later will create two di
 <h2 id="create-unique-internal-id-for-names-1">Create unique internal id for names<a class="anchor" aria-label="anchor" href="#create-unique-internal-id-for-names-1"></a>
 </h2>
 <p><span class="important"> Note! </span> For blends, set the argument <code>is_blends = TRUE</code> for each of the variety matching functions.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_raw</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/create_intid.html">create_intid</a></span><span class="op">(</span><span class="va">blends</span>, 
                <span class="va">variety</span>, 
@@ -1332,7 +1475,7 @@ If the names are not standardized, processing the names later will create two di
 <div class="section level2">
 <h2 id="do-exact-matching-step">Do exact matching step<a class="anchor" aria-label="anchor" href="#do-exact-matching-step"></a>
 </h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_exactmatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/do_exactmatch.html">do_exactmatch</a></span><span class="op">(</span>db_folder <span class="op">=</span> <span class="va">codebook_folder</span>,
                 data_intid <span class="op">=</span> <span class="va">blends_raw</span>,
@@ -1342,20 +1485,21 @@ If the names are not standardized, processing the names later will create two di
 <span class="co">#&gt; match: 3 nomatch: 3 check: 0 not_needed: 0</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_exactmatch</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="12%">
+<col width="11%">
 <col width="6%">
 <col width="4%">
-<col width="7%">
+<col width="6%">
 <col width="4%">
 <col width="3%">
-<col width="15%">
-<col width="8%">
-<col width="9%">
-<col width="5%">
+<col width="14%">
 <col width="7%">
 <col width="8%">
+<col width="4%">
+<col width="7%">
+<col width="6%">
+<col width="7%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
@@ -1370,6 +1514,7 @@ If the names are not standardized, processing the names later will create two di
 <th align="left">date_added_db</th>
 <th align="left">type_db</th>
 <th align="left">variety_db</th>
+<th align="left">intid_db</th>
 <th align="left">is_truematch</th>
 <th align="left">any_match</th>
 </tr></thead>
@@ -1386,6 +1531,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2020-06-08</td>
 <td align="left">variety</td>
 <td align="left">AP Coachman</td>
+<td align="left">apcoachman</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
@@ -1401,6 +1547,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2020-06-08</td>
 <td align="left">variety</td>
 <td align="left">Alpowa</td>
+<td align="left">alpowa</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
@@ -1416,12 +1563,13 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2020-06-08</td>
 <td align="left">variety</td>
 <td align="left">Altigo</td>
+<td align="left">altigo</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_exactmatch</span><span class="op">[[</span><span class="st">"nomatch"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -1455,7 +1603,7 @@ If the names are not standardized, processing the names later will create two di
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_rename</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/do_exactmatch.html">do_exactmatch</a></span><span class="op">(</span>db_folder <span class="op">=</span> <span class="va">codebook_folder</span>, 
                 data_intid <span class="op">=</span> <span class="va">blends_exactmatch</span><span class="op">$</span><span class="va">nomatch</span>, 
@@ -1465,19 +1613,20 @@ If the names are not standardized, processing the names later will create two di
 <span class="co">#&gt; match: 2 nomatch: 1 check: 0 not_needed: 0</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_rename</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="14%">
-<col width="8%">
+<col width="13%">
+<col width="7%">
 <col width="5%">
 <col width="7%">
 <col width="5%">
-<col width="10%">
-<col width="11%">
 <col width="9%">
-<col width="6%">
-<col width="11%">
+<col width="10%">
 <col width="8%">
+<col width="6%">
+<col width="7%">
+<col width="10%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">variety</th>
@@ -1485,10 +1634,11 @@ If the names are not standardized, processing the names later will create two di
 <th align="left">type</th>
 <th align="left">intid</th>
 <th align="left">var_id</th>
-<th align="left">db_id</th>
+<th align="left">intid_db_db</th>
 <th align="left">variety_db</th>
 <th align="left">wrong_name</th>
 <th align="left">type_db</th>
+<th align="left">intid_db</th>
 <th align="left">is_truematch</th>
 <th align="left">any_match</th>
 </tr></thead>
@@ -1503,6 +1653,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">Alpowa</td>
 <td align="left">alpwa</td>
 <td align="left">NA</td>
+<td align="left">alpwa</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
@@ -1516,12 +1667,13 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">AAC Wildfire</td>
 <td align="left">Wildfire</td>
 <td align="left">NA</td>
+<td align="left">wildfire</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_rename</span><span class="op">[[</span><span class="st">"nomatch"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -1545,7 +1697,7 @@ If the names are not standardized, processing the names later will create two di
 <div class="section level2">
 <h2 id="do-fuzzymatching-step">Do fuzzymatching step<a class="anchor" aria-label="anchor" href="#do-fuzzymatching-step"></a>
 </h2>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/find_fuzzymatch.html">find_fuzzymatch</a></span><span class="op">(</span><span class="va">blends_rename</span><span class="op">$</span><span class="va">nomatch</span>,
                 intid_col <span class="op">=</span> <span class="st">"intid"</span>,
@@ -1612,20 +1764,29 @@ If the names are not standardized, processing the names later will create two di
 <div class="section level2">
 <h2 id="read-in-and-process-fuzzymatches">Read in and process fuzzymatches<a class="anchor" aria-label="anchor" href="#read-in-and-process-fuzzymatches"></a>
 </h2>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_fuzzy_status</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_blends_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">1</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">15</span></span>
-<span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span>
-<span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span>
-<span class="co">#&gt; <span style="color: #BB0000;">chr</span>  (10): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...</span>
-<span class="co">#&gt; <span style="color: #00BB00;">dbl</span>   (2): var_id, db_id</span>
-<span class="co">#&gt; <span style="color: #BBBB00;">lgl</span>   (2): is_truematch, wrong_name</span>
-<span class="co">#&gt; <span style="color: #0000BB;">date</span>  (1): date_added_db</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_blends_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span><span> </span><span style="font-weight: bold;">Column specification</span><span> </span><span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   is_truematch = <span style="color: #BBBB00;">col_logical()</span><span>,</span></span>
+<span class="co">#&gt;   intid = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   intid_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   variety_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   var_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   db_id = <span style="color: #00BB00;">col_double()</span><span>,</span></span>
+<span class="co">#&gt;   type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type_db = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   date_added_db = <span style="color: #0000BB;">col_date(format = "")</span><span>,</span></span>
+<span class="co">#&gt;   method = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   wrong_name = <span style="color: #BBBB00;">col_logical()</span></span>
+<span class="co">#&gt; )</span>
 
 <span class="va">blends_results_fuzzymatch</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/process_fuzzymatch.html">process_fuzzymatch</a></span><span class="op">(</span>output_fuzzymatch_df <span class="op">=</span> <span class="va">blends_fuzzymatch</span>, 
@@ -1643,7 +1804,7 @@ If the names are not standardized, processing the names later will create two di
 <div class="section level2">
 <h2 id="collect-all-matches">Collect all matches<a class="anchor" aria-label="anchor" href="#collect-all-matches"></a>
 </h2>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blends_matches</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/collect_final_matches.html">collect_final_matches</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="va">blends_exactmatch</span>,
                              rename <span class="op">=</span> <span class="va">blends_rename</span>,
@@ -1651,25 +1812,25 @@ If the names are not standardized, processing the names later will create two di
                         <span class="va">blends_raw</span>,
                         knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder_blends</span>,
                         is_blends <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Unknown columns: `wrong_name`, `intid_db`, `method`, `source`</span>
-<span class="co">#&gt; Warning: Unknown columns: `crop_db`, `crop_type_db`, `intid_db`, `method`,</span>
-<span class="co">#&gt; `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `crop_db`, `crop_type_db`, `method`, `source`</span>
+<span class="co">#&gt; Warning: Unknown columns: `intid_db_db`</span>
 <span class="co">#&gt; Warning:  1 cultivar(s) not yet matched to the database.</span>
 <span class="co">#&gt;                       The raw name is being returned</span>
 <span class="co">#&gt; Writing final_matches.csv</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_matches</span><span class="op">)</span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="5%">
-<col width="15%">
-<col width="8%">
+<col width="14%">
+<col width="7%">
 <col width="5%">
+<col width="13%">
+<col width="6%">
 <col width="15%">
-<col width="7%">
-<col width="16%">
 <col width="10%">
-<col width="7%">
+<col width="13%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
@@ -1694,7 +1855,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2</td>
 <td align="left">AP Coachman;Alpowa</td>
 <td align="left">exact</td>
-<td align="left"></td>
+<td align="left">apcoachman;alpowa</td>
 <td align="left">variety</td>
 </tr>
 <tr class="even">
@@ -1706,7 +1867,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2</td>
 <td align="left">coachman;Alpowa</td>
 <td align="left">rename</td>
-<td align="left"></td>
+<td align="left">alpwa</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1718,7 +1879,7 @@ If the names are not standardized, processing the names later will create two di
 <td align="left">2</td>
 <td align="left">AAC Wildfire;Altigo</td>
 <td align="left">rename;exact</td>
-<td align="left"></td>
+<td align="left">wildfire;altigo</td>
 <td align="left">variety</td>
 </tr>
 </tbody>

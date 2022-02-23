@@ -52,3 +52,4 @@ test_that("collect_final_matches() returns correct output for blends", {
 
   expect_equal(nrow(test), 2)
 })
+

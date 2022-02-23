@@ -1,4 +1,4 @@
 "var_id","variety","crop_type","type","intid","n_var_id","variety_db","match_step","intid_db","type_db"
-"1","APcoachman/ alpowa","wheat","blends","apcoachman;alpowa","2","AP Coachman;Alpowa","exact","","variety"
-"2","coachman/alpwa","wheat","blends","coachman;alpwa","2","coachman;Alpowa","rename","",""
-"3","wildfire/ altigo","wheat","blends","wildfire;altigo","2","AAC Wildfire;Altigo","rename;exact","","variety"
+"1","APcoachman/ alpowa","wheat","blends","apcoachman;alpowa","2","AP Coachman;Alpowa","exact","apcoachman;alpowa","variety"
+"2","coachman/alpwa","wheat","blends","coachman;alpwa","2","coachman;Alpowa","rename","alpwa",""
+"3","wildfire/ altigo","wheat","blends","wildfire;altigo","2","AAC Wildfire;Altigo","rename;exact","wildfire;altigo","variety"

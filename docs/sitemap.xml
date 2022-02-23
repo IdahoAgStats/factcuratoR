@@ -4,6 +4,9 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
     <loc>/articles/example_cultivar_matching.html</loc>
   </url>
   <url>
@@ -20,9 +23,6 @@
   </url>
   <url>
     <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
   </url>
   <url>
     <loc>/reference/assure_var_id.html</loc>
