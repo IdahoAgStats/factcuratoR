@@ -1,6 +1,6 @@
 Package: factcuratoR
 Title: Functions to curate FACT data
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: 
     person(given = "Jacqueline",
            family = "Tay",
