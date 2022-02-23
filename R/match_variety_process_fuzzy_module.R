@@ -27,7 +27,7 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
   is_same_var_id <- assure_var_id(output_fuzzymatch_df, aux_fuzzy_status)
   if (is_same_var_id == FALSE){
     warning("var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to NA")
-    aux_fuzzy_status <- aux_fuzzy_status %>% mutate(var_id = NA)
+    aux_fuzzy_status <- aux_fuzzy_status %>% mutate(var_id = NA_character_)
   }
 
   # Bind the fuzzy_status with the newly generated fuzzymatches
@@ -42,11 +42,13 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
     bind_rows(output_fuzzymatch_df %>%
                 mutate(is_truematch = as.logical(is_truematch)) %>%
                 mutate(source = "new_fuzzymatch") %>%
-                mutate(db_id = as.character(db_id)),
+                mutate(db_id = as.character(db_id)) %>%
+                mutate(var_id = as.character(var_id)),
               aux_fuzzy_status %>%
                 mutate(is_truematch = as.logical(is_truematch)) %>%
                 mutate(source = "csv") %>%
-                mutate(db_id = as.character(db_id))) %>%
+                mutate(db_id = as.character(db_id)) %>%
+                mutate(var_id = as.character(var_id))) %>%
     mutate(across(where(is.character), ~ifelse(.=="", NA, .))) %>%
     #group_by(var_id, intid, variety, intid_db) %>%
     group_by(intid, variety, intid_db) %>%
@@ -81,7 +83,8 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
 
   ## Create add_fuzzy_to_cv_rename.csv
   # Need to write out intid as the "wrong name" in order to match the cleaned up intid
-  add_fuzzy_to_cv_rename <- results_fuzzymatch[["match"]] %>% relocate(variety_db, intid, crop_type)
+  add_fuzzy_to_cv_rename <- results_fuzzymatch[["match"]] %>%
+    relocate(variety_db, intid, crop_type)
   write.csv(add_fuzzy_to_cv_rename, paste0(knitroutputfolder, "/","add_fuzzy_to_cv_rename.csv"), row.names = FALSE)
   message("Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv")
 
@@ -89,13 +92,21 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
   # Remove any duplicates caused by adding new rows to the
   # "output_fuzzymatch_status.csv" that may have a different (or updated crop type)
   # Specifically, this was an issue because the cultivar "Fredro" had an unknown type
-  no_match1 <- results_fuzzymatch[["nomatch"]] %>%
-    mutate(across(where(is.character), ~ifelse(.=="", NA, .))) %>%
-    group_by(var_id, variety, intid) %>%
-    summarize(across(everything(), ~paste(na.omit(unique(.x)), collapse = "; "))) %>%
-    ungroup() %>%
-    add_count(var_id, name = "n_var_id") %>%
-    filter(n_var_id < 2 | (n_var_id ==2 & type == "variety"))
+  # Only process the results_fuzzymatch[["nomatch"]] data.frame if there are entries
+  # (This ifelse statement was added because the mutate(across) was causing type problems
+  # if there weren't any entries.  Specifically var_id and other columns were
+  # being converted to logical when they needed to be character.
+  if (nrow(results_fuzzymatch[["nomatch"]]) > 0){
+    no_match1 <- results_fuzzymatch[["nomatch"]] %>%
+      mutate(across(where(is.character), ~ifelse(.=="", NA_character_, .))) %>%
+      group_by(var_id, variety, intid) %>%
+      summarize(across(everything(), ~paste(na.omit(unique(.x)), collapse = "; "))) %>%
+      ungroup() %>%
+      add_count(var_id, name = "n_var_id") %>%
+      filter(n_var_id < 2 | (n_var_id ==2 & type == "variety"))
+  } else {
+    no_match1 <- results_fuzzymatch[["nomatch"]] %>% mutate(n_var_id = NA_integer_)
+  }
 
   results_fuzzymatch[["nomatch"]] <- no_match1
 
