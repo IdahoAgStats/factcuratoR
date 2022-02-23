@@ -77,9 +77,6 @@ do_exactmatch <- function(db_folder,
 
   return(exact)
 
-
-
-
 }
 
 
@@ -106,8 +103,8 @@ get_cultivar_rename <- function(db_folder){
                      ~paste(na.omit(unique(.x)), collapse = ";")),
               .groups = "drop") %>%
     mutate(crop_type = ifelse(crop_type == "", NA, crop_type)) %>%
-    mutate(crop_type_db = NA) %>%
-    mutate(type_db = NA)
+    mutate(crop_type_db = NA_character_) %>%
+    mutate(type_db = NA_character_)
 
   return(cv_rename2)
 }

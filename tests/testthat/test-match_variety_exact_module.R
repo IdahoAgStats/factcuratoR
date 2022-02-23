@@ -79,7 +79,7 @@ test_that("do_exactmatch() with rename_df = TRUE returns the expected column nam
   result <-
     do_exactmatch(
       db_folder = testthat::test_path("test_controlled_vocab"),
-      df1,
+      data_intid = df1,
       rename_df = TRUE
     )
 
