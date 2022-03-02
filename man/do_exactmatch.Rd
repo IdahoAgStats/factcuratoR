@@ -7,7 +7,7 @@
 do_exactmatch(
   db_folder,
   data_intid,
-  select_before = "2021-01-01",
+  select_before = Sys.Date(),
   select_crops = NULL,
   match_type = "raw",
   rename_df = FALSE,
@@ -17,7 +17,11 @@ do_exactmatch(
 \arguments{
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 
-\item{data_intid}{A data.frame created by the function create_intid}
+\item{data_intid}{A data.frame created by the function create_intid().
+If the data.frame has a mix of crop_types, it is best to pass in
+a column with crop_type for each variety.  Then, the function can ensure that
+exact matches are for the correct crop_type.  If varieties for only one crop_type
+are being matched, the select_crops argument can be used}
 
 \item{select_before}{A string in the format of Ymd.  The function returns
 cultivars that were added to the datebase before this specified date.}

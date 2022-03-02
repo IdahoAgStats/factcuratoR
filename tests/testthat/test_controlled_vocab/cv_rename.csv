@@ -1,8 +1,8 @@
 correct_variety_name,wrong_name,program,crop_type
 Menan,01Ab9663,SEIdahoCereals,
 IDN06-03303B,06-03303B,SEIdahoCereals,
-AAC Synergy,ACC Synergy,SEIdahoCereals,
-AAC Wildfire,ACC Wildfire,SEIdahoCereals,
+AAC Synergy,ACC Synergy,SEIdahoCereals,barley
+AAC Wildfire,ACC Wildfire,SEIdahoCereals,wheat
 Agripro Paladin,AgriPro Paladin,SEIdahoCereals,
 Agripro Salute,AgriPro Salute,SEIdahoCereals,
 AP 700 CL,AP 700CL,SEIdahoCereals,

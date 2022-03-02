@@ -1,6 +1,10 @@
 #' Do the steps in the exact match
 #'
-#' @param data_intid A data.frame created by the function create_intid
+#' @param data_intid A data.frame created by the function create_intid().
+#' If the data.frame has a mix of crop_types, it is best to pass in
+#' a column with crop_type for each variety.  Then, the function can ensure that
+#' exact matches are for the correct crop_type.  If varieties for only one crop_type
+#' are being matched, the select_crops argument can be used
 #' @param data_suffix A character suffix to be appended to the columns related to the original data
 #' @param match_type A string, either "raw" or "db, " which denotes the type of
 #' matching procedure to use.  If matching raw variety names, use "raw."
@@ -27,7 +31,7 @@ do_exactmatch <- function(db_folder,
   if (rename_df) {
     variety_intid_db <-
       get_cultivar_rename(db_folder = db_folder) %>%
-        select(-c(crop_type, crop_type_db))
+        select(-c(crop_type))
 
   } else {
 
@@ -40,20 +44,21 @@ do_exactmatch <- function(db_folder,
 
   exact1 <- left_join(data_intid,
                       variety_intid_db,
-                     # It is possible to join by "crop_type" = "crop_type_db"
-                     # to ensure that the crop matches, however,
-                     # this is currently onlyan issue for the cultivar
-                     # 'Salute' and it is better not to implement because sometimes
-                     # the crop_type is NA and then wouldn't join
                       by = c("intid"),
                       suffix = c("", "_db")) %>%
     # Add intid_db because it is a required column for collect_final_matches()
     mutate(intid_db = intid)
-  # This is a possible start of how to implement filtering out
-  # crop_type mismatch (see above), which needs to take into account not
-  # removing the entry.  However, if a duplicate entry is created, it does need to be removed
-  #  mutate(across(contains("db"),
-  #               ~ ifelse(crop_type != crop_type_db, NA,.x)))
+
+  # Cannot join on "crop_type" = "crop_type_db" above because crop_type may
+  # not always be passed in.  If crop_type is NA, then the join will fail.
+  # Instead, filter out crop_type mismatches if crop_type is provided
+  if ("crop_type" %in% names(exact1)){
+
+    exact1 <- exact1 %>%
+                filter(crop_type == crop_type_db | is.na(crop_type == crop_type_db))
+  }
+
+
 
   if (match_type == "raw"){
     return_unique = sym("var_id")
@@ -63,13 +68,6 @@ do_exactmatch <- function(db_folder,
 
   exact2 <- check.anymatch(exact1, checkfor = variety_db, match_type = match_type)
   exact <- return.matchgroups(exact2, is_blends = is_blends)
-
-# This check for >1 match is also in return.matchgroups()
-# Unsure if the following code is needed, so commented out for now
-#  test_exact <- check.matches(exact[[1]])
-#  if (nrow(test_exact) > 0) {
-  #   warning("There is more that one database match,
-  #        please resolve in the controlled vocabularies")}
 
   message(paste(c("match:", " nomatch:", " check:", " not_needed:"),
                 paste(map(exact, ~nrow(.x)), sep = ",")))
@@ -103,7 +101,7 @@ get_cultivar_rename <- function(db_folder){
                      ~paste(na.omit(unique(.x)), collapse = ";")),
               .groups = "drop") %>%
     mutate(crop_type = ifelse(crop_type == "", NA, crop_type)) %>%
-    mutate(crop_type_db = NA_character_) %>%
+    mutate(crop_type_db = crop_type) %>%
     mutate(type_db = NA_character_)
 
   return(cv_rename2)

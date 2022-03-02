@@ -87,3 +87,36 @@ test_that("do_exactmatch() with rename_df = TRUE returns the expected column nam
   expect_true("intid_db" %in% names(result[[1]]))
 })
 
+test_that("do_exactmatch() returns the correct crop_type match",{
+  var_names <- "salute"
+
+  df1 <- tibble(variety = var_names,
+                intid = var_names,
+                var_id = 1)
+
+  result <-
+    do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      df1
+    )
+
+  expect_equal(nrow(result[[1]]), 2)
+
+})
+
+test_that("do_exactmatch() returns the correct crop_type match",{
+  var_names <- "salute"
+
+  df1 <- tibble(variety = var_names,
+                intid = var_names,
+                var_id = 1,
+                crop_type = "wheat")
+
+  result <-
+    do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      df1
+    )
+
+  expect_equal(nrow(result[[1]]), 1)
+})
