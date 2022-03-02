@@ -19,7 +19,7 @@
 #' @export
 do_exactmatch <- function(db_folder,
                           data_intid,
-                          select_before = "2021-01-01",
+                          select_before = Sys.Date(),
                           select_crops = NULL,
                           match_type = "raw",
                           rename_df = FALSE,
