@@ -24,6 +24,20 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
                                aux_fuzzy_status,
                                knitroutputfolder){
 
+  # Standardize the column type (ids must be character, but ids may be read in as numeric from .csvs)
+  output_fuzzymatch_df <- output_fuzzymatch_df %>%
+    mutate(is_truematch = as.logical(is_truematch)) %>%
+    mutate(db_id = as.character(db_id)) %>%
+    mutate(var_id = as.character(var_id)) %>%
+    mutate(source = "new_fuzzymatch")
+
+  aux_fuzzy_status <- aux_fuzzy_status %>%
+    mutate(is_truematch = as.logical(is_truematch)) %>%
+    mutate(db_id = as.character(db_id)) %>%
+    mutate(var_id = as.character(var_id)) %>%
+    mutate(source = "csv")
+
+
   is_same_var_id <- assure_var_id(output_fuzzymatch_df, aux_fuzzy_status)
   if (is_same_var_id == FALSE){
     warning("var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to NA")
@@ -39,16 +53,8 @@ process_fuzzymatch <- function(output_fuzzymatch_df,
   # However, cultivar names may be removed after creating intid after the fuzzy_status file is filled in
   # Note: Can modify to allow is.na(var_id) to pass, if want to be able to add new cultivars at this stage of the matching
   fuzzy_status <-
-    bind_rows(output_fuzzymatch_df %>%
-                mutate(is_truematch = as.logical(is_truematch)) %>%
-                mutate(source = "new_fuzzymatch") %>%
-                mutate(db_id = as.character(db_id)) %>%
-                mutate(var_id = as.character(var_id)),
-              aux_fuzzy_status %>%
-                mutate(is_truematch = as.logical(is_truematch)) %>%
-                mutate(source = "csv") %>%
-                mutate(db_id = as.character(db_id)) %>%
-                mutate(var_id = as.character(var_id))) %>%
+    bind_rows(output_fuzzymatch_df,
+              aux_fuzzy_status) %>%
     mutate(across(where(is.character), ~ifelse(.=="", NA, .))) %>%
     #group_by(var_id, intid, variety, intid_db) %>%
     group_by(intid, variety, intid_db) %>%
