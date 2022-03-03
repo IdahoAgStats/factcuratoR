@@ -19,7 +19,7 @@
 find_fuzzymatch <- function(var_noexactmatch,
                             data_name,
                             intid_col,
-                            select_before = "2021-01-01",
+                            select_before = Sys.Date(),
                             select_crops = NULL,
                             knitroutputfolder = knitroutputfolder,
                             db_folder){
