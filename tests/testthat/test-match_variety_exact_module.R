@@ -80,11 +80,18 @@ test_that("do_exactmatch() with rename_df = TRUE returns the expected column nam
     do_exactmatch(
       db_folder = testthat::test_path("test_controlled_vocab"),
       data_intid = df1,
-      rename_df = TRUE
+      rename_df = TRUE,
+      rename_df_path = testthat::test_path("test_controlled_vocab", "cv_rename.csv")
     )
 
   expect_equal(nrow(result[[1]]), 1)
   expect_true("intid_db" %in% names(result[[1]]))
+  expect_error(do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      data_intid = df1,
+      rename_df = TRUE
+    ))
+
 })
 
 test_that("do_exactmatch() returns the correct crop_type match",{
@@ -120,3 +127,15 @@ test_that("do_exactmatch() returns the correct crop_type match",{
 
   expect_equal(nrow(result[[1]]), 1)
 })
+
+
+
+test_that("get_cultivar_rename() returns the rename file",{
+  result <-
+    get_cultivar_rename(
+      rename_df_path = testthat::test_path("test_controlled_vocab", "cv_rename.csv")
+    )
+
+  expect_equal(names(result), c("intid", "intid_db", "variety_db", "wrong_name", "crop_type", "crop_type_db", "type_db"))
+})
+

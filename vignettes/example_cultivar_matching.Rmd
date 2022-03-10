@@ -86,7 +86,8 @@ results_rename <-
   do_exactmatch(db_folder = codebook_folder, 
                 data_intid = results_exactmatch$nomatch, 
                 match_type = "raw", 
-                rename_df = TRUE)
+                rename_df = TRUE,
+                rename_df_path = here::here(codebook_folder, "cv_rename.csv"))
 
 knitr::kable(results_exactmatch[["match"]])
 knitr::kable(results_rename[["match"]])
@@ -309,7 +310,8 @@ blends_rename <-
                 data_intid = blends_exactmatch$nomatch, 
                 match_type = "raw", 
                 rename_df = TRUE, 
-                is_blends = TRUE)
+                is_blends = TRUE,
+                rename_df_path = here::here(codebook_folder, "cv_rename.csv"))
 
 knitr::kable(blends_rename[["match"]])
 knitr::kable(blends_rename[["nomatch"]])

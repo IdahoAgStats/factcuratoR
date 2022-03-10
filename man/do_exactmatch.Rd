@@ -11,7 +11,8 @@ do_exactmatch(
   select_crops = NULL,
   match_type = "raw",
   rename_df = FALSE,
-  is_blends = FALSE
+  is_blends = FALSE,
+  rename_df_path = NULL
 )
 }
 \arguments{

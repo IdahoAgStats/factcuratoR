@@ -27,10 +27,14 @@ do_exactmatch <- function(db_folder,
                           select_crops = NULL,
                           match_type = "raw",
                           rename_df = FALSE,
-                          is_blends = FALSE){
+                          is_blends = FALSE,
+                          rename_df_path = NULL){
   if (rename_df) {
+
+    if(is.null(rename_df_path)){stop("Please provide path to the rename file using `rename_df_path`")}
+
     variety_intid_db <-
-      get_cultivar_rename(db_folder = db_folder) %>%
+      get_cultivar_rename(rename_df_path = rename_df_path) %>%
         select(-c(crop_type))
 
   } else {
@@ -80,12 +84,11 @@ do_exactmatch <- function(db_folder,
 
 #' Get cultivar rename list to match.  The cv_rename.csv is located
 #' in the controlled vocabularies.
-#' @inheritParams readin_db
+#' @param rename_df_path The path of the file that contains the variety misspellings
 #' @keywords internal
-get_cultivar_rename <- function(db_folder){
-  db <- readin_db(db_folder = db_folder)
+get_cultivar_rename <- function(rename_df_path){
 
-  cv_rename <- db$cv_rename.csv %>%
+  cv_rename <- read_csv(rename_df_path) %>%
     rename(variety_db = correct_variety_name) %>% select(-program)
 
   cv_rename2 = cv_rename %>%

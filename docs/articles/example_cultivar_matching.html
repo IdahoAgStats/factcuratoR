@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1 data-toc-skip>Example of the cultivar matching process</h1>
                         <h4 data-toc-skip class="author">Jacqueline Tay</h4>
             
-            <h4 data-toc-skip class="date">Mar 03, 2022</h4>
+            <h4 data-toc-skip class="date">Mar 10, 2022</h4>
       
       
       <div class="hidden name"><code>example_cultivar_matching.Rmd</code></div>
@@ -397,7 +397,16 @@
   <span class="fu"><a href="../reference/do_exactmatch.html">do_exactmatch</a></span><span class="op">(</span>db_folder <span class="op">=</span> <span class="va">codebook_folder</span>, 
                 data_intid <span class="op">=</span> <span class="va">results_exactmatch</span><span class="op">$</span><span class="va">nomatch</span>, 
                 match_type <span class="op">=</span> <span class="st">"raw"</span>, 
-                rename_df <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+                rename_df <span class="op">=</span> <span class="cn">TRUE</span>,
+                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span><span> </span><span style="font-weight: bold;">Column specification</span><span> </span><span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   correct_variety_name = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   wrong_name = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   program = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type = <span style="color: #BB0000;">col_character()</span></span>
+<span class="co">#&gt; )</span>
 <span class="co">#&gt; var_id and db_id do not exist. test_multmatch and test_aliasdup not run</span>
 <span class="co">#&gt; match: 2 nomatch: 8 check: 0 not_needed: 0</span>
 
@@ -1613,7 +1622,16 @@ If the names are not standardized, processing the names later will create two di
                 data_intid <span class="op">=</span> <span class="va">blends_exactmatch</span><span class="op">$</span><span class="va">nomatch</span>, 
                 match_type <span class="op">=</span> <span class="st">"raw"</span>, 
                 rename_df <span class="op">=</span> <span class="cn">TRUE</span>, 
-                is_blends <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+                is_blends <span class="op">=</span> <span class="cn">TRUE</span>,
+                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/here/man/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; <span style="color: #00BBBB;">──</span><span> </span><span style="font-weight: bold;">Column specification</span><span> </span><span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   correct_variety_name = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   wrong_name = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   program = <span style="color: #BB0000;">col_character()</span><span>,</span></span>
+<span class="co">#&gt;   crop_type = <span style="color: #BB0000;">col_character()</span></span>
+<span class="co">#&gt; )</span>
 <span class="co">#&gt; match: 2 nomatch: 1 check: 0 not_needed: 0</span>
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_rename</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>

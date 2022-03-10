@@ -5,10 +5,10 @@
 \title{Get cultivar rename list to match.  The cv_rename.csv is located
 in the controlled vocabularies.}
 \usage{
-get_cultivar_rename(db_folder)
+get_cultivar_rename(rename_df_path)
 }
 \arguments{
-\item{db_folder}{A string path to the database controlled vocabulary folder}
+\item{rename_df_path}{The path of the file that contains the variety misspellings}
 }
 \description{
 Get cultivar rename list to match.  The cv_rename.csv is located
