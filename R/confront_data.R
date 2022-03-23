@@ -10,9 +10,9 @@
 #' @importFrom validate confront
 #' @export
 #' @family validation functions
-confront_data <- function(df, df_type, db_folder, blends = FALSE){
+confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = NULL){
 
-  rules <- create_rules(df_type, db_folder, blends = blends)
+  rules <- create_rules(df_type, db_folder, blends = blends, crop_types = crop_types)
 
   if (blends){
     df <- df %>% separate(variety,
