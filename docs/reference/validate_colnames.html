@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -65,7 +65,7 @@
   <span class="va">codebook_name</span>,
   <span class="va">db_folder</span>,
   crop_types <span class="op">=</span> <span class="cn">NULL</span>,
-  rm_other_cb <span class="op">=</span> <span class="cn">NULL</span>
+  cb_name_remove <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -73,12 +73,16 @@
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>A data.frame with column names to verify against the codebook</p></dd>
+<dt>codebook_name</dt>
+<dd><p>A string denoting the book name
+Use list_db_books() to see options</p></dd>
 <dt>db_folder</dt>
 <dd><p>A string path to the database controlled vocabulary folder</p></dd>
 <dt>crop_types</dt>
-<dd><p>A vector containing the crop_types.  This is used to select the appropriate traits</p></dd>
-<dt>rm_other_cb</dt>
-<dd><p>A logical denoting whether to remove the other codebook
+<dd><p>A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"</p></dd>
+<dt>cb_name_remove</dt>
+<dd><p>A string denoting the name of the codebook to remove from the data (df)
 For example, if testing "trial_data", remove the names in df that correspond to "trials_metadata"</p></dd>
 <dt>codebook</dt>
 <dd><p>A string denoting the name of the codebook to check the column
