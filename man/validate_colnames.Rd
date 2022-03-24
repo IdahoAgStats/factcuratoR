@@ -4,12 +4,23 @@
 \alias{validate_colnames}
 \title{Validate column names against codebook}
 \usage{
-validate_colnames(df, codebook_name, db_folder)
+validate_colnames(
+  df,
+  codebook_name,
+  db_folder,
+  crop_types = NULL,
+  rm_other_cb = NULL
+)
 }
 \arguments{
 \item{df}{A data.frame with column names to verify against the codebook}
 
 \item{db_folder}{A string path to the database controlled vocabulary folder}
+
+\item{crop_types}{A vector containing the crop_types.  This is used to select the appropriate traits}
+
+\item{rm_other_cb}{A logical denoting whether to remove the other codebook
+For example, if testing "trial_data", remove the names in df that correspond to "trials_metadata"}
 
 \item{codebook}{A string denoting the name of the codebook to check the column
 names against e.g. "trial_data", "trials_metadata"}

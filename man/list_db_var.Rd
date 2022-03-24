@@ -6,7 +6,7 @@
 \alias{list.db_var}
 \title{List the variables (column names) in a given database codebook}
 \usage{
-list_db_var(db_folder, codebook_name, required_only = FALSE)
+list_db_var(db_folder, codebook_name, required_only = FALSE, crop_types)
 
 list.db_var(db_folder, codebook_name, required_only = FALSE)
 }
@@ -15,6 +15,9 @@ list.db_var(db_folder, codebook_name, required_only = FALSE)
 
 \item{codebook_name}{A string denoting the book name
 Use list_db_books() to see options}
+
+\item{crop_types}{A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"}
 }
 \description{
 List the variables (column names) in a given database codebook

@@ -19,7 +19,7 @@ See create_rules() for more details."><!-- mathjax --><script src="https://cdnjs
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@ See create_rules() for more details.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">confront_data</span><span class="op">(</span><span class="va">df</span>, <span class="va">df_type</span>, <span class="va">db_folder</span>, blends <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">confront_data</span><span class="op">(</span><span class="va">df</span>, <span class="va">df_type</span>, <span class="va">db_folder</span>, blends <span class="op">=</span> <span class="cn">FALSE</span>, crop_types <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,6 +79,9 @@ rules to generate</p></dd>
 <dt>blends</dt>
 <dd><p>A logical denoting whether to check for blends in the variety column.
 The default is FALSE</p></dd>
+<dt>crop_types</dt>
+<dd><p>A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"</p></dd>
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>

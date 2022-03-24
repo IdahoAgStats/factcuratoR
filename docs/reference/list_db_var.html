@@ -18,7 +18,7 @@ A wrapper for list_db_var to maintain backwards compatibility"><!-- mathjax --><
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">factcuratoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -62,7 +62,7 @@ A wrapper for list_db_var to maintain backwards compatibility"><!-- mathjax --><
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_db_var</span><span class="op">(</span><span class="va">db_folder</span>, <span class="va">codebook_name</span>, required_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_db_var</span><span class="op">(</span><span class="va">db_folder</span>, <span class="va">codebook_name</span>, required_only <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">crop_types</span><span class="op">)</span>
 
 <span class="fu">list.db_var</span><span class="op">(</span><span class="va">db_folder</span>, <span class="va">codebook_name</span>, required_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
@@ -74,6 +74,9 @@ A wrapper for list_db_var to maintain backwards compatibility"><!-- mathjax --><
 <dt>codebook_name</dt>
 <dd><p>A string denoting the book name
 Use list_db_books() to see options</p></dd>
+<dt>crop_types</dt>
+<dd><p>A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"</p></dd>
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>

@@ -4,7 +4,7 @@
 \alias{confront_data}
 \title{Wrapper for create_rules() and validate::confront()}
 \usage{
-confront_data(df, df_type, db_folder, blends = FALSE)
+confront_data(df, df_type, db_folder, blends = FALSE, crop_types = NULL)
 }
 \arguments{
 \item{df}{A data.frame to be validated}
@@ -16,6 +16,9 @@ rules to generate}
 
 \item{blends}{A logical denoting whether to check for blends in the variety column.
 The default is FALSE}
+
+\item{crop_types}{A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"}
 }
 \description{
 This functions summarises the results and fixes the

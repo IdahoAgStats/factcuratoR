@@ -5,7 +5,7 @@
 \alias{create.rules}
 \title{Create rules from the codebook using validate::validator()}
 \usage{
-create_rules(df_type, db_folder, blends = FALSE)
+create_rules(df_type, db_folder, blends = FALSE, crop_types)
 
 create.rules(df_type, db_folder)
 }
@@ -17,6 +17,9 @@ rules to generate}
 
 \item{blends}{A logical denoting whether there are blends stored in the
 variety column in df_type = "trial_data"}
+
+\item{crop_types}{A vector containing the crop_types.
+This is used to select the appropriate traits if codebook_name = "trial_data"}
 }
 \description{
 This functions reads in codebooks_all_db.csv and generates rules from the
