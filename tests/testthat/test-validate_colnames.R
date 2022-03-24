@@ -24,6 +24,7 @@ test_that("validate_colnames() removes variables from another codebook", {
   test <- validate_colnames(df,
                             codebook_name = "trial_data",
                             controlled_vocab_folder,
-                            rm_other_cb = "trials_metadata")
-  expect_true(all(c("trial", "heading_date") %in% test$colname_codebook))
+                            cb_name_remove = "trials_metadata")
+  expect_false("year" %in% test$colname_data )
+  expect_true("trial" %in% test$colname_data )
 })

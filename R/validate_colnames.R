@@ -5,17 +5,16 @@
 #' names against e.g. "trial_data", "trials_metadata"
 #' @inheritParams readin_db
 #' @inheritParams list_db_var
-#' @param rm_other_cb A logical denoting whether to remove the other codebook
+#' @param cb_name_remove A string denoting the name of the codebook to remove from the data (df)
 #' For example, if testing "trial_data", remove the names in df that correspond to "trials_metadata"
 #' @export
 #' @family validation functions
 validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
-                              rm_other_cb = NULL){
+                              cb_name_remove = NULL){
   db <- readin_db(db_folder)
 
   cb <- list_db_var(db_folder, codebook_name, required_only = FALSE, crop_types = crop_types) %>%
     rename(colname = variable)
-
 
   # Can add the functionality to filter by whether the column name is required
   # according to the codebook, but this is not implemented
@@ -24,6 +23,18 @@ validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
     select(colname, required, col_num)
 
   # Get the names in the data
+  # First, filter out the unwanted names:
+  if (!is.null(cb_name_remove)){
+    cb_remove <-
+      list_db_var(db_folder,
+                  cb_name_remove,
+                  required_only = FALSE,
+                  crop_types = NULL) %>%
+      rename(colname = variable) %>%
+      filter(!colname %in% cb$colname)
+
+    df <- df %>% select(-any_of(cb_remove$colname))
+  }
   colnames_df <- data.frame(colname = names(df))
 
   column_report1 <- full_join(colnames_df, cb2,
