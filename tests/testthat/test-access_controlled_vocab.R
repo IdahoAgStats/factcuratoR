@@ -39,3 +39,11 @@ test_that("list_db_var() correctly throws error", {
                "'codebook_name' doesn't match a codebook name")
 })
 
+test_that("list_db_var() correctly selects crop_types", {
+  test <- list_db_var( controlled_vocab_folder, "trial_data", crop_types = c("barley"))
+  contains_barley_trait <- any(test$variable %in% "plump_percent_6_64")
+  contains_wheat_trait <- any(test$variable %in% "falling_number")
+
+  expect_true(contains_barley_trait & !contains_wheat_trait)
+})
+

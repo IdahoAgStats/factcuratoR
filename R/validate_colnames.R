@@ -4,22 +4,21 @@
 #' @param codebook A string denoting the name of the codebook to check the column
 #' names against e.g. "trial_data", "trials_metadata"
 #' @inheritParams readin_db
+#' @inheritParams list_db_var
+#' @param rm_other_cb A logical denoting whether to remove the other codebook
+#' For example, if testing "trial_data", remove the names in df that correspond to "trials_metadata"
 #' @export
 #' @family validation functions
-validate_colnames <- function(df, codebook_name, db_folder){
+validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
+                              rm_other_cb = NULL){
   db <- readin_db(db_folder)
 
-  cb <- list_db_var(db_folder, codebook_name, required_only = FALSE) %>%
+  cb <- list_db_var(db_folder, codebook_name, required_only = FALSE, crop_types = crop_types) %>%
     rename(colname = variable)
 
-  # For trial data, need to pull the codebooks for trial_data and traits
-  if (codebook_name == "trial_data"){
-    traits_cb <- db$traits.csv %>% mutate(required = FALSE)
-    cb <- bind_rows(cb, traits_cb %>% rename(colname = trait_name))
-  }
 
   # Can add the functionality to filter by whether the column name is required
-  # according to the codebook
+  # according to the codebook, but this is not implemented
   cb2 <- cb %>%
     filter(!is.na(colname)) %>%
     select(colname, required, col_num)

@@ -25,7 +25,7 @@ test_that("confront_data() correctly detects errors in other variables",{
 test_that("confront_data() creates required column for trial_data",{
   df <- data.frame(trial = c("trial1"))
   test <- confront_data(df, "trial_data", controlled_vocab_folder)
-  expect_false(any(is.na(test[["summary"]]$required)))
+  expect_false(all(is.na(test[["summary"]]$required)))
 
 })
 

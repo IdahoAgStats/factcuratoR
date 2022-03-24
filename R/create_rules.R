@@ -11,34 +11,17 @@
 #' @param df_type A string "trial_data" or "trials_metadata" denoting the type of validation
 #' rules to generate
 #' @inheritParams readin_db
+#' @inheritParams list_db_var
 #' @param blends A logical denoting whether there are blends stored in the
 #' variety column in df_type = "trial_data"
-#' @param crop_types A vector containing the crop_types.  This is used to select the appropriate traits
 #' @importFrom validate validator
 #' @family validation functions
 #' @export
 create_rules <- function(df_type, db_folder, blends = FALSE, crop_types){
   db <- readin_db(db_folder)
+  #Note: create_rules() currently cannot handle if there are duplicate names in the traits file
 
-  rule_raw <- list_db_var(db_folder, df_type, required_only = FALSE)
-
-  # For trial data, need to pull the codebooks for trial_data and traits
-  if (df_type == "trial_data"){
-    traits_cb <- db$traits.csv
-
-    if (!is.null(crop_types)){
-      traits_cb <- traits_cb %>%
-        filter(crop_type %in% crop_types)
-    }
-      # collapse traits that have the same name
-     # traits_cb <- traits_cb  %>%
-      #  group_by(trait_name) %>%
-       # summarize(across(everything(), ~paste(na.omit(unique(.)), collapse = "; "))) %>%
-        #ungroup()
-
-
-    rule_raw <- bind_rows(rule_raw, traits_cb %>% rename(variable = trait_name))
-  }
+  rule_raw <- list_db_var(db_folder, df_type, required_only = FALSE, crop_types = crop_types)
 
   rule_raw <- rule_raw %>%
     select(variable, value_type, values_defined_in, value_range, max_characters)

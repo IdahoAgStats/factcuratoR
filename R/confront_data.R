@@ -40,7 +40,7 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
     filter(!str_detect(expression, "!is.na(.+date)"))
 
   # Add if column is required
-  is_req <- list_db_var(db_folder, df_type, required_only = FALSE) %>%
+  is_req <- list_db_var(db_folder, df_type, required_only = FALSE, crop_types = NULL) %>%
     select(name = variable, required)
 
   if (df_type == "trial_data"){

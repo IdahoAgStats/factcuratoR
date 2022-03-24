@@ -57,9 +57,11 @@ list_db_books <- function(db_folder){
 #' @inheritParams readin_db
 #' @param codebook_name A string denoting the book name
 #' Use list_db_books() to see options
+#' @param crop_types A vector containing the crop_types.
+#' This is used to select the appropriate traits if codebook_name = "trial_data"
 #' @family access codebook functions
 #' @export
-list_db_var <- function(db_folder, codebook_name, required_only = FALSE){
+list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_types){
 
   db <- readin_db(db_folder)
 
@@ -71,6 +73,19 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE){
   if (required_only){
     codebook <- codebook %>% filter(required == TRUE)
   }
+
+  # Add traits to trial_data
+  if (codebook_name == "trial_data"){
+    traits_cb <- db$traits.csv
+
+    if (!is.null(crop_types)){
+      traits_cb <- traits_cb %>%
+        filter(crop_type %in% crop_types)
+    }
+
+    codebook <- bind_rows(codebook, traits_cb %>% rename(variable = trait_name))
+  }
+
 
   return(codebook)
 
