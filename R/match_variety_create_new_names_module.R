@@ -114,7 +114,8 @@ process_std_new_names <- function(output_nomatch_df,
                                   knitroutputfolder,
                                   db_folder){
   names_standardized <- read.csv(paste(auxiliary_files, filename, sep = "/"), stringsAsFactors = FALSE) %>%
-    mutate(var_id = as.character(var_id))
+    mutate(var_id = as.character(var_id),
+           variety = as.character(variety))
 
   nomatch_std_name <-
     left_join(output_nomatch_df %>% select(-source, n_var_id),
