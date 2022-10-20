@@ -37,6 +37,27 @@ validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
   }
   colnames_df <- data.frame(colname = names(df))
 
+  # special handling for fdk_rep_xx and inf_spikelet_rep_xx where xx should be replaced
+  # with 2-digit rep number; fdk should validate between 1 and 5, inf_spikelet 1:30
+  if (any(grepl("^fdk_rep_\\d{2}$|^inf_spikelet_rep_\\d{2}$", colnames_df$colname))) {
+
+    name_repl <- colnames_df %>% mutate(variable = colname) %>%
+      filter(str_detect(colname, "fdk_rep|inf_spikelet_rep")) %>%
+      separate(variable, into = c("name", "index"), sep = -2)
+
+    cb2 <- cb2 %>%
+      mutate(colname = str_remove(colname, "xx$")) %>%
+      left_join(name_repl, by = c("colname" = "name")) %>%
+      mutate(colname = ifelse(str_detect(colname, "rep_$"), paste0(colname, "xx"), colname),
+             index = na_if(index, "xx") %>% as.integer,
+             colname = case_when(
+               (str_detect(colname.y, "fdk_rep") & index > 0 & index < 6) |
+                 (str_detect(colname.y, "inf_spikelet_rep") & index > 0 & index <= 30) ~ colname.y,
+               TRUE ~ colname)) %>%
+      select(colname, required, col_num)
+  }
+
+
   column_report1 <- full_join(colnames_df, cb2,
                               by = "colname",
                               keep = TRUE,
@@ -47,7 +68,8 @@ validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
     mutate(comment =
              case_when(is.na(colname_data) ~ "not present in data",
                        is.na(colname_codebook) ~
-                            paste("not present in codebook:", codebook_name),
+                         paste("not present in codebook:", codebook_name),
+                       grepl("_xx$", colname_data) ~ "please replace 'xx' with a valid rep number",
                        TRUE ~ "exists in both data and codebook")) %>%
     arrange(desc(comment), desc(required))
 
