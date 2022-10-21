@@ -10,6 +10,7 @@
 #' @param names_newvarid A data.frame of variety names that do not have matches.  This data.frame
 #'   is a list element named 'names_newvarid' generated using create_newdbnames()
 #' @param dots Bare variables to select from the new cultivar name
+#' @keywords internal
 match_newdb <- function(auxiliary_files, filename, names_newvarid, ...){
 
   dots <- enquos(...)

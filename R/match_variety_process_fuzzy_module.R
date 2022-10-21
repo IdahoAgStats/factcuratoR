@@ -160,6 +160,7 @@ assure_var_id <- function(output_fuzzymatch_df, aux_fuzzy_status){
 #' Module to process fuzzymatches given an auxiliary file
 #'
 #' @inheritParams bind_fuzzymatches
+#' @keywords internal
 deprecated_process_fuzzymatch <- function(output_fuzzymatch_df, aux_fuzzy_status){
 
   output_fuzzymatch_status1 <-

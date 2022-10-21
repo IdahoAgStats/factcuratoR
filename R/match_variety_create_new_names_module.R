@@ -2,6 +2,7 @@
 #'
 #' Need to standardize crop type before the curation process
 #' This function is based on create_newdbnames() and create_newdbnames_db()
+#' @keywords internal
 create_new_db_entries <- function(auxiliary_files, filename, matches_temp_list, data_intid, match_type){
   names_standardized <- read.csv(paste(auxiliary_files, filename, "/"), stringsAsFactors = FALSE) %>%
     mutate(var_id = as.character(var_id))
