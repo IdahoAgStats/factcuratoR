@@ -1,5 +1,4 @@
 # Objects that are used in multiple tests
-library(magrittr)
 var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
 
 df1_mult_tests <- tibble(variety = c(var_names, var_names[2]),
@@ -155,7 +154,7 @@ test_that("stringdist.variety() returns correct number of matches",{
 test_that("stringdist.variety() returns correct number of matches",{
 
   tempdf <- data.frame(intid = c("meredith", "melbclub", "wb1035cl", "meridith"), b = 1:4)
-  variety_intid_db <- get.variety_db(
+  variety_intid_db <- get_variety_db(
     db_folder = testthat::test_path("test_controlled_vocab"),
     select_before = "2021-07-08",
     select_crops = NULL)
