@@ -1,5 +1,4 @@
 controlled_vocab_folder <- testthat::test_path("test_controlled_vocab")
-library(magrittr)
 
 test_that("create_rules() creates a validator object is created",{
   test <- create_rules(df_type = "trial_data",

@@ -1,5 +1,4 @@
 controlled_vocab_folder <- testthat::test_path("test_controlled_vocab")
-library(magrittr)
 
 
 test_that("readin_db_init() reads in correct number of files",{
