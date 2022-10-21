@@ -16,3 +16,4 @@ create_new_db_entries(
 Need to standardize crop type before the curation process
 This function is based on create_newdbnames() and create_newdbnames_db()
 }
+\keyword{internal}

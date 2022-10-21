@@ -16,6 +16,8 @@ list.db_var(db_folder, codebook_name, required_only = FALSE)
 \item{codebook_name}{A string denoting the book name
 Use list_db_books() to see options}
 
+\item{required_only}{A logical, FALSE returns all columns; TRUE returns required columns only}
+
 \item{crop_types}{A vector containing the crop_types.
 This is used to select the appropriate traits if codebook_name = "trial_data"}
 }

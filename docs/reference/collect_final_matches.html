@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -60,27 +60,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">collect_final_matches</span><span class="op">(</span>
-  <span class="va">match_list</span>,
-  <span class="va">names_raw</span>,
-  <span class="va">knitroutputfolder</span>,
-  is_blends <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">collect_final_matches</span><span class="op">(</span></span>
+<span>  <span class="va">match_list</span>,</span>
+<span>  <span class="va">names_raw</span>,</span>
+<span>  <span class="va">knitroutputfolder</span>,</span>
+<span>  is_blends <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>match_list</dt>
 <dd><p>A list of the output from each step of the variety matching process</p></dd>
+
+
 <dt>names_raw</dt>
 <dd><p>A data.frame of the names created by create_intid()</p></dd>
+
+
 <dt>knitroutputfolder</dt>
 <dd><p>A path to the output location</p></dd>
+
+
 <dt>is_blends</dt>
 <dd><p>A logical that specifies whether the varieties are blends.
 Default is FALSE</p></dd>
+
+
 <dt>csv_suffix</dt>
 <dd><p>A string denoting the suffix for the .csv name</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -101,7 +110,7 @@ Default is FALSE</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -27,7 +27,7 @@ exact or approved matches."><!-- mathjax --><script src="https://cdnjs.cloudflar
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -62,24 +62,31 @@ exact or approved matches.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">check.anymatch</span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span>, checkfor <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">match_type</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check.anymatch</span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span>, checkfor <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">match_type</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>A data.frame with variety names matched to database names</p></dd>
+
+
 <dt>group</dt>
 <dd><p>A column name by which to group and search for a match
 (e.g. to determine if there are any matches for the variety column, use: variety)</p></dd>
+
+
 <dt>checkfor</dt>
 <dd><p>A column name to check whether there is a match
 (This parameter is used only for exact matching.  For fuzzymatches, the status of the match
 must be manually entered)</p></dd>
+
+
 <dt>match_type</dt>
 <dd><p>A string that is either 'db' or 'raw', which refers to processesing
 database entries (only one entry per cultivar) or raw entries which may have many
 alternate spellings for one cultivar</p></dd>
+
 </dl></div>
 
   </div>
@@ -94,7 +101,7 @@ alternate spellings for one cultivar</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

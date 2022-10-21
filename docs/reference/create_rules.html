@@ -27,7 +27,7 @@ information provided in this main codebook"><!-- mathjax --><script src="https:/
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -62,9 +62,9 @@ information provided in this main codebook</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_rules</span><span class="op">(</span><span class="va">df_type</span>, <span class="va">db_folder</span>, blends <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">crop_types</span><span class="op">)</span>
-
-<span class="fu">create.rules</span><span class="op">(</span><span class="va">df_type</span>, <span class="va">db_folder</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_rules</span><span class="op">(</span><span class="va">df_type</span>, <span class="va">db_folder</span>, blends <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">crop_types</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">create.rules</span><span class="op">(</span><span class="va">df_type</span>, <span class="va">db_folder</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,14 +72,21 @@ information provided in this main codebook</p>
     <dl><dt>df_type</dt>
 <dd><p>A string "trial_data" or "trials_metadata" denoting the type of validation
 rules to generate</p></dd>
+
+
 <dt>db_folder</dt>
 <dd><p>A string path to the database controlled vocabulary folder</p></dd>
+
+
 <dt>blends</dt>
 <dd><p>A logical denoting whether there are blends stored in the
 variety column in df_type = "trial_data"</p></dd>
+
+
 <dt>crop_types</dt>
 <dd><p>A vector containing the crop_types.
 This is used to select the appropriate traits if codebook_name = "trial_data"</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -108,7 +115,7 @@ As a workaround, for date fields, an extra check for NAs is implemented.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

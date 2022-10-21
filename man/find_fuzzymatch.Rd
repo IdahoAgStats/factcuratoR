@@ -28,6 +28,8 @@ cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crop types separated by |}
 
+\item{knitroutputfolder}{A folder path to send output}
+
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \description{

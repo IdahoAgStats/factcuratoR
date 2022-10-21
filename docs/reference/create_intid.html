@@ -36,7 +36,7 @@ no special characters
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -77,29 +77,42 @@ The intid is the identifier for a name that is:</p><ul><li><p>all lowercase</p><
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_intid</span><span class="op">(</span>
-  <span class="va">df</span>,
-  <span class="va">variety_col_name</span>,
-  sep_aliases <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>,
-  alias_col <span class="op">=</span> <span class="cn">NULL</span>,
-  is_blends <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_intid</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  <span class="va">variety_col_name</span>,</span>
+<span>  sep_aliases <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  alias_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  is_blends <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>A data.frame to with a column containing variety names</p></dd>
+
+
 <dt>variety_col_name</dt>
 <dd><p>A bare column name denoting the column containing varieties</p></dd>
+
+
 <dt>sep_aliases</dt>
 <dd><p>A regex corresponding to the characters that are used to separate variety aliases</p></dd>
+
+
 <dt>alias_col</dt>
 <dd><p>A bare column name denoting the column containing aliases</p></dd>
+
+
 <dt>is_blends</dt>
 <dd><p>A logical that specifies whether the varieties are blends.
 Default is FALSE</p></dd>
+
+
+<dt>dots</dt>
+<dd><p>Bare additional column name(s) to include such as crop_type or nursery, separated by commas</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -133,7 +146,7 @@ is not written to handle aliases in both the variety column and a separate colum
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

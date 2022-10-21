@@ -33,7 +33,7 @@ increase and not to a cultivar name)"><!-- mathjax --><script src="https://cdnjs
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -74,15 +74,15 @@ increase and not to a cultivar name)</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">find_fuzzymatch</span><span class="op">(</span>
-  <span class="va">var_noexactmatch</span>,
-  <span class="va">data_name</span>,
-  <span class="va">intid_col</span>,
-  select_before <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,
-  select_crops <span class="op">=</span> <span class="cn">NULL</span>,
-  knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,
-  <span class="va">db_folder</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">find_fuzzymatch</span><span class="op">(</span></span>
+<span>  <span class="va">var_noexactmatch</span>,</span>
+<span>  <span class="va">data_name</span>,</span>
+<span>  <span class="va">intid_col</span>,</span>
+<span>  select_before <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  select_crops <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,</span>
+<span>  <span class="va">db_folder</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,18 +90,33 @@ increase and not to a cultivar name)</p>
     <dl><dt>var_noexactmatch</dt>
 <dd><p>A data.frame of the varieties without exact matches -
 the data.frame should contain a column for variety and internal id (intid)</p></dd>
+
+
 <dt>data_name</dt>
 <dd><p>A string denoting the name of the dataset</p></dd>
+
+
 <dt>intid_col</dt>
 <dd><p>A string denoting the name of the internal id column
 used to join the raw data and database</p></dd>
+
+
 <dt>select_before</dt>
 <dd><p>A string in the format of Ymd.  The function returns
 cultivars that were added to the datebase before this specified date.</p></dd>
+
+
 <dt>select_crops</dt>
 <dd><p>A regular expression of crop types separated by |</p></dd>
+
+
+<dt>knitroutputfolder</dt>
+<dd><p>A folder path to send output</p></dd>
+
+
 <dt>db_folder</dt>
 <dd><p>A string path to the database controlled vocabulary folder</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -123,7 +138,7 @@ cultivars that were added to the datebase before this specified date.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

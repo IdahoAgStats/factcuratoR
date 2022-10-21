@@ -24,6 +24,8 @@ create_intid(
 
 \item{is_blends}{A logical that specifies whether the varieties are blends.
 Default is FALSE}
+
+\item{dots}{Bare additional column name(s) to include such as crop_type or nursery, separated by commas}
 }
 \description{
 Create var_id and intid for variety names.

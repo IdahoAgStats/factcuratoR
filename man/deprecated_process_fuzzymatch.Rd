@@ -14,3 +14,4 @@ deprecated_process_fuzzymatch(output_fuzzymatch_df, aux_fuzzy_status)
 \description{
 Module to process fuzzymatches given an auxiliary file
 }
+\keyword{internal}

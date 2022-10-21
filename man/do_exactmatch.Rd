@@ -46,6 +46,8 @@ See get_cultivar_rename()
 \item{is_blends}{A logical that specifies whether the varieties are blends.
 Default is FALSE}
 
+\item{rename_df_path}{The path of the file that contains the variety misspellings}
+
 \item{data_suffix}{A character suffix to be appended to the columns related to the original data}
 }
 \description{
