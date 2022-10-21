@@ -1,4 +1,4 @@
-library(magrittr)
+#library(magrittr)
 var_names <- c("test VAR 001", "test Var 2 (testvar2/ tv00002)")
 
 var <- read_csv(testthat::test_path("test_match_variety_files",
@@ -88,4 +88,18 @@ test_that("create_intid() generates anticipated ids and fills type with 'blends'
   expect_equal(nrow(test), 6)
   expect_equal(unique(test$type), "blends")
 
+})
+
+test_that("create_intid() generates a message when there are duplicate variety names", {
+  df1 <- data.frame(variety = c(var_names, "test VAR 001"),
+                    crop_type = c(rep("wheat", 2), "barley"))
+  expect_message(create_intid(df1, variety, sep_aliases = "//|/|\\(", crop_type, alias_col = NULL),
+                 regexp = "Check variety names for possible duplicates.*")
+})
+
+test_that("create_intid() does not generate a message if variety names are unique", {
+  df1 <- data.frame(variety = c("var 001", "var002", "var_003"),
+                    crop_type = c("wheat", "barley", "wheat"))
+  expect_no_message(create_intid(df1, variety, sep_aliases = NULL, crop_type, alias_col = NULL),
+                    message = "Check variety names for possible duplicates.*", class = NULL)
 })
