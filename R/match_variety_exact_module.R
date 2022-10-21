@@ -18,6 +18,7 @@
 #' * Currently, all the programs renames are kept in one file, but may want to
 #' consider putting the renames into different files that are collected together
 #' See get_cultivar_rename()
+#' @inheritParams get_cultivar_rename
 #' @inheritParams return.matchgroups
 #' @family match variety modules
 #' @export

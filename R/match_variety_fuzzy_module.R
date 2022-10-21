@@ -14,6 +14,7 @@
 #' @param data_name A string denoting the name of the dataset
 #' @inheritParams stringdist.variety
 #' @inheritParams get_variety_db
+#' @param knitroutputfolder A folder path to send output
 #' @family match variety modules
 #' @export
 find_fuzzymatch <- function(var_noexactmatch,

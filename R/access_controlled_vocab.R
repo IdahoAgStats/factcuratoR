@@ -57,6 +57,7 @@ list_db_books <- function(db_folder){
 #' @inheritParams readin_db
 #' @param codebook_name A string denoting the book name
 #' Use list_db_books() to see options
+#' @param required_only A logical, FALSE returns all columns; TRUE returns required columns only
 #' @param crop_types A vector containing the crop_types.
 #' This is used to select the appropriate traits if codebook_name = "trial_data"
 #' @family access codebook functions
