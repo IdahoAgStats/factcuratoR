@@ -1,23 +1,28 @@
 controlled_vocab_folder <- testthat::test_path("test_controlled_vocab")
-library(magrittr)
 
 test_that("confront_data() correctly detects NA and wrong entries in date fields",{
   df <- data.frame(harvest_date = c("2020-10-30", NA, "wrong entry"))
   test <- confront_data(df, "trials_metadata", controlled_vocab_folder)
-  expect_equal(as.numeric((test[["summary"]] %>% filter(name == "harvest_date") %>% select(items:nNA))), c(3,1,1,1))
+  expect_equal((as.numeric(test[["summary"]] %>%
+                            filter(name == "harvest_date") %>%
+                            select(items:nNA))),
+               c(3,1,1,1))
 
   df <- data.frame(harvest_date = c("2020-10-30", NA, "wrong entry", NA, "2020-10-30"))
   test <- confront_data(df, "trials_metadata", controlled_vocab_folder)
-  expect_equal(as.numeric((test[["summary"]] %>% filter(name == "harvest_date") %>% select(items:nNA))), c(5,2,1,2))
+  expect_equal((as.numeric(test[["summary"]] %>%
+                             filter(name == "harvest_date") %>%
+                             select(items:nNA))),
+               c(5,2,1,2))
 })
 
 
 test_that("confront_data() correctly detects errors in other variables",{
   df <- data.frame(nursery = c("SWW", NA, "wrong entry", NA, "HWW"))
   test <- confront_data(df, "trials_metadata", controlled_vocab_folder)
-  expect_equal(as.numeric((test[["summary"]] %>%
+  expect_equal(as.numeric(test[["summary"]] %>%
                              filter(name == "nursery") %>%
-                             select(items:nNA))),
+                             select(items:nNA)),
                c(5,2,1,2))
 })
 
@@ -49,8 +54,8 @@ test_that("confront_data() checks blends",{
 
 
 test_that("confront_data() checks string length",{
-  df <- data.frame(chemical_trts = c("short text", paste(rep("very long text", 3), collapse = " ")))
+  df <- data.frame(chemical_trts = c("short text", paste(rep("very long text", 12), collapse = " ")))
   test <- confront_data(df, "trials_metadata", controlled_vocab_folder, blends = FALSE)
-  expect_equal(sum(test[[1]]$fails), 1)
+  expect_equal(sum(test[[1]] %>% filter(name %in% "chemical_trts") %>% select(fails)), 1)
 
 })
