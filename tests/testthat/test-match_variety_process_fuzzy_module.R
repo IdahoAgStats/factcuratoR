@@ -4,12 +4,12 @@ knitroutputfolder <- testthat::test_path("test_match_variety_files",
 test_output_fuzzymatch <-
   read.csv(
     testthat::test_path("test_match_variety_files",
-                        "test_file_marshall_output_fuzzymatch.csv"))
+                        "test_file_marshall_output_fuzzymatch.csv"), fileEncoding = "UTF-8-BOM")
 
 test_aux <- read.csv(
 testthat::test_path("test_match_variety_files",
                       "test_file_marshall_fuzzy_aux.csv"),
-  stringsAsFactors = FALSE, na.strings = c("NA", ""))
+  stringsAsFactors = FALSE, na.strings = c("NA", ""), fileEncoding = "UTF-8-BOM")
 
 
 test_that("process_fuzzymatch() returns the correct matches", {
