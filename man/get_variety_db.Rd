@@ -27,6 +27,8 @@ get.variety_db(
 cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crop types separated by |}
+
+\item{for_matching}{logical, whether the result will be used for matching. Default is FALSE.}
 }
 \description{
 Filter the cultivar list by the date that the cultivar was added.

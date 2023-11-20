@@ -47,8 +47,6 @@ See get_cultivar_rename()
 Default is FALSE}
 
 \item{rename_df_path}{The path of the file that contains the variety misspellings}
-
-\item{data_suffix}{A character suffix to be appended to the columns related to the original data}
 }
 \description{
 Do the steps in the exact match

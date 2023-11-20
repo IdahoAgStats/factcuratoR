@@ -79,7 +79,7 @@
                         <h4 data-toc-skip class="author">Jacqueline
 Tay</h4>
             
-            <h4 data-toc-skip class="date">Oct 21, 2022</h4>
+            <h4 data-toc-skip class="date">Nov 20, 2023</h4>
       
       
       <div class="hidden name"><code>intro_validation.Rmd</code></div>
@@ -124,13 +124,8 @@ codebook which must be named <em>codebooks_all_db.csv</em> for the
 validation functions to find it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'purrr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'readr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'readxl' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'stringr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'tibble' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'tidyr' was built under R version 4.1.3</span></span>
+<span></span>
+<span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_installed.html" class="external-link">check_installed</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span></span>
 <span>  <span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span></span>
@@ -167,10 +162,10 @@ the <em>codebooks_all_db.csv</em> should be used for this step.</p>
 <code class="sourceCode R"><span><span class="va">colname_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validate_colnames.html">validate_colnames</a></span><span class="op">(</span><span class="va">df_validate</span>, </span>
 <span>                                   codebook_name <span class="op">=</span> <span class="st">"trial_data"</span>, </span>
 <span>                                   db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = "comment"</span></span>
-<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 x 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(comment)`</span></span>
+<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 × 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
 <span><span class="co">#&gt; exists in both data and codebook 1 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">2</span> not present in codebook: trial_data</span></span>
-<span><span class="co">#&gt; 4 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">3</span> not present in data 29 TRUE 6</span></span></code></pre></div>
+<span><span class="co">#&gt; 4 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">3</span> not present in data 27 TRUE 6</span></span></code></pre></div>
 <p>The main goal of validating column names is to get the value in the
 required column of row 3 to be zero. A value of zero indicates that all
 the required columns are present in the data and completely filled out.
@@ -401,20 +396,6 @@ to codebooks vignette</a>.</p>
 </tr>
 <tr class="odd">
 <td align="left">NA</td>
-<td align="left">fdk_rep_xx</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">not present in data</td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">inf_spikelet_rep_xx</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">not present in data</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
 <td align="left">inf_spikelet_rep_xx</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
@@ -519,12 +500,11 @@ in the variety column</p>
 <span>                                  df_type <span class="op">=</span> <span class="st">"trial_data"</span>,</span>
 <span>                                  db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Some issues left to resolve </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 5</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
 <span><span class="co">#&gt;   required fails   nNA error warning</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE        0     0    23       0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE         1     1     6       0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>           0     0    25       0</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> TRUE         1     1     6       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #BB0000;">NA</span>           0     0    21       0</span></span></code></pre></div>
 <p>The summary output for validating column contents reports the number
 of columns that have fails (that is, a column does not match controlled
 vocabularies or is not within the accepted range) and NA values. A
@@ -547,14 +527,14 @@ then it should be added to the cultivar codebook.</p>
 <table class="table">
 <colgroup>
 <col width="5%">
-<col width="13%">
+<col width="12%">
 <col width="3%">
 <col width="4%">
 <col width="3%">
 <col width="2%">
 <col width="3%">
 <col width="4%">
-<col width="52%">
+<col width="53%">
 <col width="6%">
 </colgroup>
 <thead><tr class="header">
@@ -660,302 +640,6 @@ row%%1 == 0</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">FALSE</td>
-<td align="left">heading_date</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">heading_date - 1 &gt;= -1e-08 &amp; heading_date - 300
-&lt;= 1e-08 &amp; heading_date%%1 == 0</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">yield_bu_acre</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">yield_bu_acre - 0 &gt;= -1e-08 &amp; yield_bu_acre -
-500 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">yield_lb_plot</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">yield_lb_plot - 0 &gt;= -1e-08 &amp; yield_lb_plot - 50
-&lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">yield_corrected</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">yield_corrected - 0 &gt;= -1e-08 &amp; yield_corrected
-- 500 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">stand</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">stand - 0 &gt;= -1e-08 &amp; stand - 100 &lt;=
-1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">moisture</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">moisture - 0 &gt;= -1e-08 &amp; moisture - 30 &lt;=
-1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">height</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">height - 0 &gt;= -1e-08 &amp; height - 200 &lt;=
-1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">falling_number</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">falling_number - 0 &gt;= -1e-08 &amp; falling_number -
-600 &lt;= 1e-08 &amp; falling_number%%1 == 0</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">grain_protein</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">grain_protein - 0 &gt;= -1e-08 &amp; grain_protein -
-100 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">test_weight</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">test_weight - 0 &gt;= -1e-08 &amp; test_weight - 100
-&lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">test_weight_cleaned</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">test_weight_cleaned - 0 &gt;= -1e-08 &amp;
-test_weight_cleaned - 100 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">lodging</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">lodging - 0 &gt;= -1e-08 &amp; lodging - 100 &lt;=
-1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">plump_percent_6_64</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">plump_percent_6_64 - 0 &gt;= -1e-08 &amp;
-plump_percent_6_64 - 100 &lt;= 1e-08</td>
-<td align="left">barley</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">thin_percent_5_64</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">thin_percent_5_64 - 0 &gt;= -1e-08 &amp;
-thin_percent_5_64 - 100 &lt;= 1e-08</td>
-<td align="left">barley</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">yield_g_plot</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">is.numeric(yield_g_plot)</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">yield_lb_acre</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">is.numeric(yield_lb_acre)</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">yield_kg_ha</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">is.numeric(yield_kg_ha)</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">hessian_fly_percent</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">hessian_fly_percent - 0 &gt;= -1e-08 &amp;
-hessian_fly_percent - 100 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">emergence</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">emergence - 0 &gt;= -1e-08 &amp; emergence - 100 &lt;=
-1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx - 0 &gt;= -1e-08 &amp; fdk_rep_xx - 100
-&lt;= 1e-08</td>
-<td align="left">barley</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx - 0 &gt;= -1e-08 &amp; fdk_rep_xx - 100
-&lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx - 0 &gt;= -1e-08 &amp;
-inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
-<td align="left">barley</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx - 0 &gt;= -1e-08 &amp;
-inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
-<td align="left">wheat</td>
-</tr>
-<tr class="odd">
 <td align="left">NA</td>
 <td align="left">heading_date</td>
 <td align="right">0</td>
@@ -968,7 +652,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 &lt;= 1e-08 &amp; heading_date%%1 == 0</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">yield_bu_acre</td>
 <td align="right">0</td>
@@ -981,7 +665,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 500 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">yield_lb_plot</td>
 <td align="right">0</td>
@@ -994,7 +678,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">yield_corrected</td>
 <td align="right">0</td>
@@ -1007,7 +691,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 - 500 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">stand</td>
 <td align="right">0</td>
@@ -1020,7 +704,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">moisture</td>
 <td align="right">0</td>
@@ -1033,7 +717,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">height</td>
 <td align="right">0</td>
@@ -1046,7 +730,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">falling_number</td>
 <td align="right">0</td>
@@ -1059,7 +743,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 600 &lt;= 1e-08 &amp; falling_number%%1 == 0</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">grain_protein</td>
 <td align="right">0</td>
@@ -1072,7 +756,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 100 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">test_weight</td>
 <td align="right">0</td>
@@ -1085,7 +769,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">test_weight_cleaned</td>
 <td align="right">0</td>
@@ -1098,7 +782,7 @@ inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
 test_weight_cleaned - 100 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">lodging</td>
 <td align="right">0</td>
@@ -1111,7 +795,7 @@ test_weight_cleaned - 100 &lt;= 1e-08</td>
 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">plump_percent_6_64</td>
 <td align="right">0</td>
@@ -1124,7 +808,7 @@ test_weight_cleaned - 100 &lt;= 1e-08</td>
 plump_percent_6_64 - 100 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">thin_percent_5_64</td>
 <td align="right">0</td>
@@ -1137,7 +821,7 @@ plump_percent_6_64 - 100 &lt;= 1e-08</td>
 thin_percent_5_64 - 100 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">yield_g_plot</td>
 <td align="right">0</td>
@@ -1149,7 +833,7 @@ thin_percent_5_64 - 100 &lt;= 1e-08</td>
 <td align="left">is.numeric(yield_g_plot)</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">yield_lb_acre</td>
 <td align="right">0</td>
@@ -1161,7 +845,7 @@ thin_percent_5_64 - 100 &lt;= 1e-08</td>
 <td align="left">is.numeric(yield_lb_acre)</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">yield_kg_ha</td>
 <td align="right">0</td>
@@ -1173,7 +857,7 @@ thin_percent_5_64 - 100 &lt;= 1e-08</td>
 <td align="left">is.numeric(yield_kg_ha)</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NA</td>
 <td align="left">hessian_fly_percent</td>
 <td align="right">0</td>
@@ -1186,7 +870,7 @@ thin_percent_5_64 - 100 &lt;= 1e-08</td>
 hessian_fly_percent - 100 &lt;= 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA</td>
 <td align="left">emergence</td>
 <td align="right">0</td>
@@ -1199,19 +883,6 @@ hessian_fly_percent - 100 &lt;= 1e-08</td>
 1e-08</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">fdk_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx - 0 &gt;= -1e-08 &amp; fdk_rep_xx - 100
-&lt;= 1e-08</td>
-<td align="left">NA</td>
-</tr>
 <tr class="odd">
 <td align="left">NA</td>
 <td align="left">fdk_rep_xx</td>
@@ -1227,46 +898,7 @@ hessian_fly_percent - 100 &lt;= 1e-08</td>
 </tr>
 <tr class="even">
 <td align="left">NA</td>
-<td align="left">fdk_rep_xx.1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">fdk_rep_xx - 0 &gt;= -1e-08 &amp; fdk_rep_xx - 100
-&lt;= 1e-08</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
 <td align="left">inf_spikelet_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx - 0 &gt;= -1e-08 &amp;
-inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">inf_spikelet_rep_xx</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">inf_spikelet_rep_xx - 0 &gt;= -1e-08 &amp;
-inf_spikelet_rep_xx - 100 &lt;= 1e-08</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">inf_spikelet_rep_xx.1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -1338,8 +970,8 @@ trial data, except the argument
 <span>    <span class="st">"trials_metadata"</span>,</span>
 <span>    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">comment</span>, <span class="va">colname_data</span>, <span class="va">colname_codebook</span>, <span class="va">required</span>, <span class="va">col_num</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Joining, by = "comment"</span></span>
-<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 x 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(comment)`</span></span>
+<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 × 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
 <span><span class="co">#&gt; exists in both data and codebook 2 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">2</span> not present in codebook:</span></span>
 <span><span class="co">#&gt; trials_metadata 3 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">3</span> not present in data 25 TRUE 10</span></span>
 <span></span>
@@ -1581,12 +1213,11 @@ trial data, except the argument
 <span>                                           df_type <span class="op">=</span> <span class="st">"trials_metadata"</span>,</span>
 <span>                                           db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Some issues left to resolve </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 5</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
 <span><span class="co">#&gt;   required fails   nNA error warning</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE        0     0    15       0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE         1     2     8       0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     2       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE         1     2    10       0</span></span>
 <span></span>
 <span><span class="va">metadata_colcontent_summary</span> <span class="op">&lt;-</span> <span class="va">metadata_colcontent_valid</span><span class="op">[[</span><span class="st">"summary"</span><span class="op">]</span><span class="op">]</span></span>
 <span></span>
@@ -1624,7 +1255,7 @@ trial data, except the argument
 <td align="right">1</td>
 <td align="left">FALSE</td>
 <td align="left">FALSE</td>
-<td align="left">year - 1995 &gt;= -1e-08 &amp; year - 2022 &lt;= 1e-08
+<td align="left">year - 1995 &gt;= -1e-08 &amp; year - 2023 &lt;= 1e-08
 &amp; year%%1 == 0</td>
 </tr>
 <tr class="even">
@@ -1694,6 +1325,30 @@ trial data, except the argument
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 <td align="left">irrigation %vin% c(“irrigated”, “dryland”)</td>
+</tr>
+<tr class="even">
+<td align="left">TRUE</td>
+<td align="left">planting_date</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”,
+planting_date)</td>
+</tr>
+<tr class="odd">
+<td align="left">TRUE</td>
+<td align="left">harvest_date</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”,
+harvest_date)</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
@@ -1903,30 +1558,6 @@ trial data, except the argument
 <td align="left">FALSE</td>
 <td align="left">unpublished %vin% c(TRUE, FALSE)</td>
 </tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">planting_date.1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”,
-planting_date)</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">harvest_date.1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">grepl(“[0-9]{4}-|/[0-9]{2}-|/[0-9]{2}”,
-harvest_date)</td>
-</tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -1978,7 +1609,7 @@ harvest_date)</td>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -16,7 +16,8 @@ standardize_cols_by_cb(
 )
 }
 \arguments{
-\item{df}{A data.frame with column names to verify against the codebook}
+\item{df}{A data.frame with column names to verify against the codebook
+names against e.g. "trial_data", "trials_metadata"}
 
 \item{codebook_name}{A string that matches the book name in codebooks_all_db.csv}
 

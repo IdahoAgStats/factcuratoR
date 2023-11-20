@@ -14,6 +14,14 @@ process_std_new_names(
 }
 \arguments{
 \item{output_nomatch_df}{The 'nomatch' data.frame created from process_fuzzymatch}
+
+\item{auxiliary_files}{Path to the folder containing the completed 'standardize_new_names' helper file}
+
+\item{filename}{Name of the 'standardize_new_names' helper file to be read in}
+
+\item{knitroutputfolder}{Path to the output folder}
+
+\item{db_folder}{Path to the codebook folder}
 }
 \description{
 Once the user checks the new names, they can be read in and processed.

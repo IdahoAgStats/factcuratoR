@@ -79,7 +79,7 @@
                         <h4 data-toc-skip class="author">Jacqueline
 Tay</h4>
             
-            <h4 data-toc-skip class="date">Oct 21, 2022</h4>
+            <h4 data-toc-skip class="date">Nov 20, 2023</h4>
       
       
       <div class="hidden name"><code>example_cultivar_matching.Rmd</code></div>
@@ -90,13 +90,8 @@ Tay</h4>
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'purrr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'readr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'readxl' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'stringr' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'tibble' was built under R version 4.1.3</span></span>
-<span><span class="co">#&gt; Warning: package 'tidyr' was built under R version 4.1.3</span></span>
+<span></span>
+<span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_installed.html" class="external-link">check_installed</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span></span>
 <span><span class="va">example_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/example_cultivar_matching"</span><span class="op">)</span></span>
@@ -313,84 +308,36 @@ names.</p>
 <td align="left">3</td>
 </tr>
 <tr class="odd">
-<td align="left">melbclub</td>
-<td align="left">wheat</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">melbclub</td>
-<td align="left">4</td>
-</tr>
-<tr class="even">
 <td align="left">Name 201</td>
 <td align="left">wheat</td>
 <td align="left">SWW</td>
 <td align="left">variety</td>
 <td align="left">name201</td>
-<td align="left">5</td>
+<td align="left">4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">New 101</td>
 <td align="left">wheat</td>
 <td align="left">S_W</td>
 <td align="left">variety</td>
 <td align="left">new101</td>
-<td align="left">6</td>
-</tr>
-<tr class="even">
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname101</td>
-<td align="left">7</td>
+<td align="left">5</td>
 </tr>
 <tr class="odd">
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">alias</td>
-<td align="left">aliasname101</td>
-<td align="left">7</td>
-</tr>
-<tr class="even">
-<td align="left">new name 201</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname201</td>
-<td align="left">8</td>
-</tr>
-<tr class="odd">
-<td align="left">new101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">new101</td>
-<td align="left">9</td>
-</tr>
-<tr class="even">
 <td align="left">W512</td>
 <td align="left">wheat</td>
 <td align="left">H_W;HRW</td>
 <td align="left">variety</td>
 <td align="left">w512</td>
-<td align="left">10</td>
+<td align="left">6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">WA008123</td>
 <td align="left">wheat</td>
 <td align="left">NA</td>
 <td align="left">variety</td>
 <td align="left">wa008123</td>
-<td align="left">11</td>
-</tr>
-<tr class="even">
-<td align="left">wb1035cl</td>
-<td align="left">wheat</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">wb1035cl</td>
-<td align="left">12</td>
+<td align="left">7</td>
 </tr>
 <tr class="odd">
 <td align="left">Wildfile (W512)</td>
@@ -398,7 +345,7 @@ names.</p>
 <td align="left">HRW</td>
 <td align="left">variety</td>
 <td align="left">wildfile</td>
-<td align="left">13</td>
+<td align="left">8</td>
 </tr>
 <tr class="even">
 <td align="left">Wildfile (W512)</td>
@@ -406,6 +353,54 @@ names.</p>
 <td align="left">HRW</td>
 <td align="left">alias</td>
 <td align="left">w512</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">melbclub</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">melbclub</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname101</td>
+<td align="left">10</td>
+</tr>
+<tr class="odd">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">alias</td>
+<td align="left">aliasname101</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td align="left">new name 201</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname201</td>
+<td align="left">11</td>
+</tr>
+<tr class="odd">
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">new101</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">wb1035cl</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">wb1035cl</td>
 <td align="left">13</td>
 </tr>
 <tr class="odd">
@@ -441,12 +436,12 @@ cv_rename.csv contains misspellings.</p>
 <span>                rename_df <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">147</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">chr</span> (4): correct_variety_name, wrong_name, program, crop_type</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span><span class="co">#&gt; var_id and db_id do not exist. test_multmatch and test_aliasdup not run</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; match: 2 nomatch: 8 check: 0 not_needed: 0</span></span>
@@ -545,7 +540,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">H_W;HRW</td>
 <td align="left">variety</td>
 <td align="left">w512</td>
-<td align="left">10</td>
+<td align="left">6</td>
 <td align="right">437</td>
 <td align="left">Hard Red Winter Wheat</td>
 <td align="left">wheat</td>
@@ -562,7 +557,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">HRW</td>
 <td align="left">alias</td>
 <td align="left">w512</td>
-<td align="left">13</td>
+<td align="left">8</td>
 <td align="right">437</td>
 <td align="left">Hard Red Winter Wheat</td>
 <td align="left">wheat</td>
@@ -617,7 +612,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">NA</td>
 <td align="left">variety</td>
 <td align="left">melbclub</td>
-<td align="left">4</td>
+<td align="left">9</td>
 <td align="left">melba</td>
 <td align="left">Melba</td>
 <td align="left">melbclub</td>
@@ -633,7 +628,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">NA</td>
 <td align="left">variety</td>
 <td align="left">wb1035cl</td>
-<td align="left">12</td>
+<td align="left">13</td>
 <td align="left">wb1035cl+</td>
 <td align="left">WB-1035CL+</td>
 <td align="left">WB 1035 CL</td>
@@ -673,7 +668,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">SWW</td>
 <td align="left">variety</td>
 <td align="left">name201</td>
-<td align="left">5</td>
+<td align="left">4</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
@@ -682,43 +677,7 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">S_W</td>
 <td align="left">variety</td>
 <td align="left">new101</td>
-<td align="left">6</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname101</td>
-<td align="left">7</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">alias</td>
-<td align="left">aliasname101</td>
-<td align="left">7</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">new name 201</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname201</td>
-<td align="left">8</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">new101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">new101</td>
-<td align="left">9</td>
+<td align="left">5</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -727,7 +686,43 @@ cv_rename.csv contains misspellings.</p>
 <td align="left">NA</td>
 <td align="left">variety</td>
 <td align="left">wa008123</td>
+<td align="left">7</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname101</td>
+<td align="left">10</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">alias</td>
+<td align="left">aliasname101</td>
+<td align="left">10</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">new name 201</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname201</td>
 <td align="left">11</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">new101</td>
+<td align="left">12</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
@@ -813,24 +808,149 @@ match the rest of the name. For example “myvar1” would still match with
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">wa008123</td>
-<td align="left">wa8123</td>
-<td align="left">WA008123</td>
-<td align="left">WA8123</td>
-<td align="left">11</td>
-<td align="right">495</td>
-<td align="left">variety</td>
+<td align="left">aliasname101</td>
+<td align="left">lcsaymeric</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">LCS Aymeric</td>
+<td align="left">10</td>
+<td align="right">795</td>
 <td align="left">alias</td>
-<td align="left">Hard White Spring Wheat</td>
+<td align="left">variety</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2021-04-30</td>
+<td align="left">lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">newname101</td>
+<td align="left">beamer</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">Beamer</td>
+<td align="left">10</td>
+<td align="right">462</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
 <td align="left">wheat</td>
 <td align="left">wheat</td>
 <td align="left">2020-06-08</td>
-<td align="left">jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs
-dist_scaled</td>
+<td align="left">jw dist;lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">newname101</td>
+<td align="left">xa1101</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">XA1101</td>
+<td align="left">10</td>
+<td align="right">757</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lv dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">newname201</td>
+<td align="left">beamer</td>
+<td align="left">new name 201</td>
+<td align="left">Beamer</td>
+<td align="left">11</td>
+<td align="right">462</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">newname201</td>
+<td align="left">syclearstone2cl</td>
+<td align="left">new name 201</td>
+<td align="left">SY Clearstone 2CL</td>
+<td align="left">11</td>
+<td align="right">660</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Hard Red Winter Wheat</td>
+<td align="left">wheat</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist_scaled</td>
+<td align="left">SWW</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101018</td>
+<td align="left">new101</td>
+<td align="left">LWW10-1018</td>
+<td align="left">12</td>
+<td align="right">584</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">lww101073</td>
+<td align="left">new101</td>
+<td align="left">LWW10-1073</td>
+<td align="left">12</td>
+<td align="right">585</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">jw dist;lcs dist_scaled</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
+<td align="left"></td>
+<td align="left">new101</td>
+<td align="left">xa1101</td>
+<td align="left">new101</td>
+<td align="left">XA1101</td>
+<td align="left">12</td>
+<td align="right">757</td>
+<td align="left">variety</td>
+<td align="left">variety</td>
+<td align="left">Soft White Winter Wheat</td>
+<td align="left">NA</td>
+<td align="left">wheat</td>
+<td align="left">2020-06-08</td>
+<td align="left">lv dist;lv dist_scaled</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
 <td align="left"></td>
 <td align="left">wildfir</td>
 <td align="left">aacwildfire</td>
@@ -849,13 +969,13 @@ dist_scaled</td>
 <td align="left">HRW</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"></td>
 <td align="left">new101</td>
 <td align="left">lww101018</td>
 <td align="left">New 101</td>
 <td align="left">LWW10-1018</td>
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="right">584</td>
 <td align="left">variety</td>
 <td align="left">variety</td>
@@ -867,13 +987,13 @@ dist_scaled</td>
 <td align="left">S_W</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"></td>
 <td align="left">new101</td>
 <td align="left">lww101073</td>
 <td align="left">New 101</td>
 <td align="left">LWW10-1073</td>
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="right">585</td>
 <td align="left">variety</td>
 <td align="left">variety</td>
@@ -885,13 +1005,13 @@ dist_scaled</td>
 <td align="left">S_W</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"></td>
 <td align="left">new101</td>
 <td align="left">xa1101</td>
 <td align="left">New 101</td>
 <td align="left">XA1101</td>
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="right">757</td>
 <td align="left">variety</td>
 <td align="left">variety</td>
@@ -903,147 +1023,22 @@ dist_scaled</td>
 <td align="left">S_W</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"></td>
-<td align="left">aliasname101</td>
-<td align="left">lcsaymeric</td>
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">LCS Aymeric</td>
+<td align="left">wa008123</td>
+<td align="left">wa8123</td>
+<td align="left">WA008123</td>
+<td align="left">WA8123</td>
 <td align="left">7</td>
-<td align="right">795</td>
+<td align="right">495</td>
+<td align="left">variety</td>
 <td align="left">alias</td>
-<td align="left">variety</td>
-<td align="left">Hard Red Winter Wheat</td>
-<td align="left">wheat</td>
-<td align="left">wheat</td>
-<td align="left">2021-04-30</td>
-<td align="left">lv dist</td>
-<td align="left">SWW</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">newname101</td>
-<td align="left">beamer</td>
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">Beamer</td>
-<td align="left">7</td>
-<td align="right">462</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
+<td align="left">Hard White Spring Wheat</td>
 <td align="left">wheat</td>
 <td align="left">wheat</td>
 <td align="left">2020-06-08</td>
-<td align="left">jw dist;lv dist</td>
-<td align="left">SWW</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">newname101</td>
-<td align="left">xa1101</td>
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">XA1101</td>
-<td align="left">7</td>
-<td align="right">757</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
-<td align="left">wheat</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">jw dist;lv dist</td>
-<td align="left">SWW</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">newname201</td>
-<td align="left">beamer</td>
-<td align="left">new name 201</td>
-<td align="left">Beamer</td>
-<td align="left">8</td>
-<td align="right">462</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
-<td align="left">wheat</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">jw dist</td>
-<td align="left">SWW</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">newname201</td>
-<td align="left">syclearstone2cl</td>
-<td align="left">new name 201</td>
-<td align="left">SY Clearstone 2CL</td>
-<td align="left">8</td>
-<td align="right">660</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Hard Red Winter Wheat</td>
-<td align="left">wheat</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">jw dist_scaled</td>
-<td align="left">SWW</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">new101</td>
-<td align="left">lww101018</td>
-<td align="left">new101</td>
-<td align="left">LWW10-1018</td>
-<td align="left">9</td>
-<td align="right">584</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
-<td align="left">NA</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">jw dist;lcs dist_scaled</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">new101</td>
-<td align="left">lww101073</td>
-<td align="left">new101</td>
-<td align="left">LWW10-1073</td>
-<td align="left">9</td>
-<td align="right">585</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
-<td align="left">NA</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">jw dist;lcs dist_scaled</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">new101</td>
-<td align="left">xa1101</td>
-<td align="left">new101</td>
-<td align="left">XA1101</td>
-<td align="left">9</td>
-<td align="right">757</td>
-<td align="left">variety</td>
-<td align="left">variety</td>
-<td align="left">Soft White Winter Wheat</td>
-<td align="left">NA</td>
-<td align="left">wheat</td>
-<td align="left">2020-06-08</td>
-<td align="left">lv dist;lv dist_scaled</td>
+<td align="left">jw dist;jw dist_scaled;lv dist;lv dist_scaled;lcs
+dist_scaled</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
@@ -1053,7 +1048,7 @@ dist_scaled</td>
 <td align="left">NA</td>
 <td align="left">Name 201</td>
 <td align="left">NA</td>
-<td align="left">5</td>
+<td align="left">4</td>
 <td align="right">NA</td>
 <td align="left">variety</td>
 <td align="left">NA</td>
@@ -1131,20 +1126,23 @@ database. See next section for full details.</p></li>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">19</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">16</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">chr</span>  (11): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">dbl</span>   (2): var_id, db_id</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">lgl</span>   (2): is_truematch, wrong_name</span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">date</span>  (1): date_added_db</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span></span>
 <span><span class="va">results_fuzzymatch</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="../reference/process_fuzzymatch.html">process_fuzzymatch</a></span><span class="op">(</span>output_fuzzymatch_df <span class="op">=</span> <span class="va">output_fuzzymatch</span>, </span>
 <span>                     aux_fuzzy_status <span class="op">=</span> <span class="va">fuzzy_status</span>,</span>
 <span>                     knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, :</span></span>
+<span><span class="co">#&gt; var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to</span></span>
+<span><span class="co">#&gt; NA</span></span>
 <span><span class="co">#&gt; Varieties left to check: 0</span></span>
 <span><span class="co">#&gt; Writing out fuzzy_check.csv.  Check these fuzzymatches.</span></span>
 <span><span class="co">#&gt;             Add source = new_fuzzymatches to the aux_fuzzy_status file.</span></span>
@@ -1217,16 +1215,15 @@ such as crop or alias</li>
 <span>    filename <span class="op">=</span> <span class="st">"standardize_new_names_aux.csv"</span>,</span>
 <span>    knitroutputfolder <span class="op">=</span> <span class="va">knitroutputfolder</span>,</span>
 <span>    db_folder <span class="op">=</span> <span class="va">codebook_folder</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = c("var_id", "variety", "intid", "type", "crop_type")</span></span>
-<span><span class="co">#&gt; Writing add_to_cv_rename.csv Add these names to the main cv_rename.csv</span></span>
-<span><span class="co">#&gt; Joining, by = "comment"</span></span>
-<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 x 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(var_id, variety, intid, type, crop_type)`</span></span>
+<span><span class="co">#&gt; Writing add_to_new_std_name.csv. Add these entries to</span></span>
+<span><span class="co">#&gt; auxiliary_files/standardize_new_names*.csv</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(comment)`</span></span>
+<span><span class="co">#&gt; Status: <span style="color: #949494;"># A tibble: 3 × 4</span> comment n required req <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BCBCBC;">1</span></span></span>
 <span><span class="co">#&gt; exists in both data and codebook 1 <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">2</span> not present in codebook: cultivar 10</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span> <span style="color: #BCBCBC;">3</span> not present in data 10 TRUE 2</span></span>
 <span><span class="co">#&gt; Adding columns: crop, date_added, alias, pedigree, year_released, usage,</span></span>
-<span><span class="co">#&gt; usda_pi_number, pvp, patent, comments</span></span>
-<span><span class="co">#&gt; Writing add_to_db.csv.  Add these entries to the database. May need to manually</span></span>
-<span><span class="co">#&gt; fill in extra information such as crop or alias</span></span></code></pre></div>
+<span><span class="co">#&gt; usda_pi_number, pvp, patent, comments</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="iterate-through-the-process">Iterate through the process<a class="anchor" aria-label="anchor" href="#iterate-through-the-process"></a>
@@ -1341,26 +1338,12 @@ all the matches and the stage where they were matched.</p>
 <td align="left">variety</td>
 </tr>
 <tr class="even">
-<td align="left">melbclub</td>
-<td align="left">wheat</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">melbclub</td>
-<td align="left">4</td>
-<td align="right">1</td>
-<td align="left">Melba</td>
-<td align="left">rename</td>
-<td align="left">melbclub</td>
-<td align="left">melbclub</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
 <td align="left">Name 201</td>
 <td align="left">wheat</td>
 <td align="left">SWW</td>
 <td align="left">variety</td>
 <td align="left">name201</td>
-<td align="left">5</td>
+<td align="left">4</td>
 <td align="right">1</td>
 <td align="left">Name 201</td>
 <td align="left">NA</td>
@@ -1368,57 +1351,15 @@ all the matches and the stage where they were matched.</p>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">New 101</td>
 <td align="left">wheat</td>
 <td align="left">S_W</td>
 <td align="left">variety</td>
 <td align="left">new101</td>
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="right">1</td>
 <td align="left">New 101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname101</td>
-<td align="left">7</td>
-<td align="right">2</td>
-<td align="left">new name 101 (alias name101)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">new name 201</td>
-<td align="left">wheat</td>
-<td align="left">SWW</td>
-<td align="left">variety</td>
-<td align="left">newname201</td>
-<td align="left">8</td>
-<td align="right">1</td>
-<td align="left">new name 201</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">new101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">new101</td>
-<td align="left">9</td>
-<td align="right">1</td>
-<td align="left">new101</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -1430,7 +1371,7 @@ all the matches and the stage where they were matched.</p>
 <td align="left">H_W;HRW</td>
 <td align="left">variety</td>
 <td align="left">w512</td>
-<td align="left">10</td>
+<td align="left">6</td>
 <td align="right">1</td>
 <td align="left">W512</td>
 <td align="left">exact</td>
@@ -1444,7 +1385,7 @@ all the matches and the stage where they were matched.</p>
 <td align="left">NA</td>
 <td align="left">variety</td>
 <td align="left">wa008123</td>
-<td align="left">11</td>
+<td align="left">7</td>
 <td align="right">1</td>
 <td align="left">WA8123</td>
 <td align="left">fuzzy</td>
@@ -1453,32 +1394,88 @@ all the matches and the stage where they were matched.</p>
 <td align="left">alias</td>
 </tr>
 <tr class="even">
-<td align="left">wb1035cl</td>
-<td align="left">wheat</td>
-<td align="left">NA</td>
-<td align="left">variety</td>
-<td align="left">wb1035cl</td>
-<td align="left">12</td>
-<td align="right">1</td>
-<td align="left">WB-1035CL+</td>
-<td align="left">rename</td>
-<td align="left">wb1035cl</td>
-<td align="left">wb1035cl</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
 <td align="left">Wildfile (W512)</td>
 <td align="left">wheat</td>
 <td align="left">HRW</td>
 <td align="left">variety</td>
 <td align="left">wildfile</td>
-<td align="left">13</td>
+<td align="left">8</td>
 <td align="right">2</td>
 <td align="left">W512</td>
 <td align="left">exact</td>
 <td align="left">w512</td>
 <td align="left">w512</td>
 <td align="left">alias</td>
+</tr>
+<tr class="odd">
+<td align="left">melbclub</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">melbclub</td>
+<td align="left">9</td>
+<td align="right">1</td>
+<td align="left">Melba</td>
+<td align="left">rename</td>
+<td align="left">melbclub</td>
+<td align="left">melbclub</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname101</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="left">new name 101 (alias name101)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">new name 201</td>
+<td align="left">wheat</td>
+<td align="left">SWW</td>
+<td align="left">variety</td>
+<td align="left">newname201</td>
+<td align="left">11</td>
+<td align="right">1</td>
+<td align="left">new name 201</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">new101</td>
+<td align="left">12</td>
+<td align="right">1</td>
+<td align="left">new101</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">wb1035cl</td>
+<td align="left">wheat</td>
+<td align="left">NA</td>
+<td align="left">variety</td>
+<td align="left">wb1035cl</td>
+<td align="left">13</td>
+<td align="right">1</td>
+<td align="left">WB-1035CL+</td>
+<td align="left">rename</td>
+<td align="left">wb1035cl</td>
+<td align="left">wb1035cl</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">wildfir</td>
@@ -1751,12 +1748,12 @@ functions.</p>
 <span>                is_blends <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">147</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">chr</span> (4): correct_variety_name, wrong_name, program, crop_type</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span><span class="co">#&gt; match: 2 nomatch: 1 check: 0 not_needed: 0</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">blends_rename</span><span class="op">[[</span><span class="st">"match"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
@@ -1921,15 +1918,15 @@ dist_scaled</td>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_blends_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">1</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">15</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">--</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">--------------------------------------------------------</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">chr</span>  (10): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">dbl</span>   (2): var_id, db_id</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">lgl</span>   (2): is_truematch, wrong_name</span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">date</span>  (1): date_added_db</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">i</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span></span>
 <span><span class="va">blends_results_fuzzymatch</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="../reference/process_fuzzymatch.html">process_fuzzymatch</a></span><span class="op">(</span>output_fuzzymatch_df <span class="op">=</span> <span class="va">blends_fuzzymatch</span>, </span>
@@ -2048,7 +2045,7 @@ dist_scaled</td>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

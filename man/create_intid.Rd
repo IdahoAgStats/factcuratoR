@@ -20,12 +20,12 @@ create_intid(
 
 \item{sep_aliases}{A regex corresponding to the characters that are used to separate variety aliases}
 
+\item{...}{Bare additional column name(s) to include such as crop_type or nursery, separated by commas}
+
 \item{alias_col}{A bare column name denoting the column containing aliases}
 
 \item{is_blends}{A logical that specifies whether the varieties are blends.
 Default is FALSE}
-
-\item{dots}{Bare additional column name(s) to include such as crop_type or nursery, separated by commas}
 }
 \description{
 Create var_id and intid for variety names.
