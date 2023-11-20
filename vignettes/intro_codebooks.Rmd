@@ -6,9 +6,10 @@ output:
 rmarkdown::html_vignette:
   fig_caption: yes
 vignette: >
-  %\VignetteIndexEntry{Introduction to codebook structure}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Introduction to the codebook structure}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{here}
   
 ---
 
@@ -39,6 +40,8 @@ be named *codebooks_all_db.csv* for the validation functions)
 
 ```{r, message = FALSE}
 library(factcuratoR)
+
+rlang::check_installed("here")
 
 codebook_folder <- here::here(
   "tests/testthat/test_controlled_vocab")
