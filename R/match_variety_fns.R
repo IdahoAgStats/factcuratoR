@@ -171,7 +171,7 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
 
     test_multmatch <- check.matches(match_list[["match"]])
     if (nrow(test_multmatch > 0)){
-      warning(paste("Warning: var_id matches with more than db_id. Please reconcile potential error in database. Use factcuratoR:::check.matches(result[[1]]) to see the varieties that match more than one database name.",
+      warning(paste("Warning: var_id matches with more than one db_id. Please reconcile potential error in database. Use factcuratoR:::check.matches(result[[1]]) to see the varieties that match more than one database name.",
                    paste0(capture.output(test_multmatch), collapse = "\n")))
     }
 
