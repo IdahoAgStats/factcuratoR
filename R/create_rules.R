@@ -15,6 +15,7 @@
 #' @param blends A logical denoting whether there are blends stored in the
 #' variety column in df_type = "trial_data"
 #' @importFrom validate validator
+#' @importFrom tibble add_row
 #' @family validation functions
 #' @export
 create_rules <- function(df_type, db_folder, blends = FALSE, crop_types){
@@ -29,10 +30,12 @@ create_rules <- function(df_type, db_folder, blends = FALSE, crop_types){
 
   # Format data.frame to write rules
   rule_df1 <- rule_raw %>%
-    separate(value_range, into = c("range", "value"), sep = "\\|", remove = FALSE, fill = "right") %>%
+    separate_wider_delim(value_range, delim = "|", names = c("range", "value"),
+                         too_few = "align_start", cols_remove = FALSE) %>%
     mutate(value = ifelse(str_detect(range, ";"), range, value)) %>%
     mutate(range = ifelse(str_detect(range, "to"), range, NA)) %>%
-    separate(range, sep = "to", into = c("min", "max")) %>%
+    separate_wider_delim(range, delim = "to", names = c("min", "max"),
+                         too_few = "align_start") %>%
     mutate(max = ifelse(max == "", format(Sys.Date(), "%Y"), max)) %>%
     mutate(value = str_replace_all(value, ";", ",")) %>%
     mutate(is_type = case_when(value_type == "string" ~ "is.character",
@@ -87,8 +90,13 @@ create_rules <- function(df_type, db_folder, blends = FALSE, crop_types){
     rule_variety_blend$variable <- "variety2_blend"
     rule_variety_blend$name <- "variety2_blend"
     rule_variety_blend$rule <- "variety2_blend %in% db[['cultivar.csv']][['variety']]"
-    rule_df3 <- bind_rows(rule_df3, rule_variety_blend)
 
+    rule_variety_blend <- rule_variety_blend %>%
+      add_row(variable = "variety3_blend", name = "variety3_blend",
+                     rule = "variety3_blend %in% db[['cultivar.csv']][['variety']]") %>%
+      tidyr::fill(starts_with("value"), .direction = "down")
+
+    rule_df3 <- bind_rows(rule_df3, rule_variety_blend)
 
   }
 
@@ -97,6 +105,11 @@ create_rules <- function(df_type, db_folder, blends = FALSE, crop_types){
   if (blends){
     rule_variety_blend <- rule_raw[which(rule_raw$variable == "variety"),]
     rule_variety_blend$variable <- "variety2_blend"
+
+    rule_variety_blend <- rule_variety_blend %>%
+      add_row(variable = "variety3_blend") %>%
+      tidyr::fill(everything(), .direction = "down")
+
     rule_raw <- bind_rows(rule_raw, rule_variety_blend)
   }
 
