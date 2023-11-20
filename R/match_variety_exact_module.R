@@ -5,7 +5,7 @@
 #' a column with crop_type for each variety.  Then, the function can ensure that
 #' exact matches are for the correct crop_type.  If varieties for only one crop_type
 #' are being matched, the select_crops argument can be used
-#' @param data_suffix A character suffix to be appended to the columns related to the original data
+# @param data_suffix A character suffix to be appended to the columns related to the original data
 #' @param match_type A string, either "raw" or "db, " which denotes the type of
 #' matching procedure to use.  If matching raw variety names, use "raw."
 #' If matching database names, use "db."  The difference is that "raw" groups by
@@ -50,7 +50,7 @@ do_exactmatch <- function(db_folder,
   exact1 <- left_join(data_intid,
                       variety_intid_db,
                       by = c("intid"),
-                      suffix = c("", "_db")) %>%
+                      suffix = c("", "_db"), multiple = "all") %>%
     # Add intid_db because it is a required column for collect_final_matches()
     mutate(intid_db = intid)
 
