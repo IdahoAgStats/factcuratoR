@@ -15,9 +15,9 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
   rules <- create_rules(df_type, db_folder, blends = blends, crop_types = crop_types)
 
   if (blends){
-    df <- df %>% separate(variety,
-                          into = c("variety", "variety2_blend"),
-                          sep = ";")
+    df <- df %>% separate_wider_delim(variety, delim = ";",
+                          names = c("variety", "variety2_blend", "variety3_blend"),
+                          too_few = "align_start")
   }
 
   # The database must be read in order for validate::confront to have access
@@ -33,11 +33,17 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
     mutate(nNA_temp = fails) %>% select(name, nNA_temp)
 
   # Fix detection of NAs in data columns
-  summary2 <- left_join(summary, date_na, by = "name") %>%
+  summary2 <- summary %>%
+    # remove suffix from variables that were indexed due to multiple tests
+    mutate(name = str_remove_all(name, "\\.\\d$")) %>%
+    left_join(date_na, by = "name", multiple = "all") %>%
     mutate(fails = ifelse(str_detect(expression, "grepl"), fails - nNA_temp, fails)) %>%
     mutate(nNA = ifelse(str_detect(expression, "grepl"), nNA + nNA_temp, nNA)) %>%
     select(-nNA_temp) %>%
-    filter(!str_detect(expression, "!is.na(.+date)"))
+    filter(!str_detect(expression, "!is.na(.+date)")) %>%
+    # remove rows that are duplicates after removing suffixes in the first step
+    # this is needed when df_type == "trial_data"
+    unique()
 
   # Add if column is required
   is_req <- list_db_var(db_folder, df_type, required_only = FALSE, crop_types = NULL) %>%
@@ -46,12 +52,14 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
   if (df_type == "trial_data"){
     traits_cb <- readin_db(db_folder)$traits %>%
                     select(name = trait_name, crop_type) %>%
-                    mutate(required = FALSE)
+                    mutate(required = FALSE) %>%
+      filter(crop_type %in% crop_types) # select crops
 
-    is_req <- bind_rows(is_req, traits_cb)
+    is_req <- bind_rows(is_req, traits_cb) %>%
+      filter(!is.na(required))
   }
 
-  summary2_req <- left_join(summary2, is_req, by = "name") %>%
+  summary2_req <- left_join(summary2, is_req, by = "name", multiple = "all") %>%
     relocate(required) %>%
     arrange(desc(required))
 
