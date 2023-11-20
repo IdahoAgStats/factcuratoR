@@ -110,6 +110,7 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_ty
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.
 #' @param select_crops A regular expression of crop types separated by |
+#' @param for_matching logical, whether the result will be used for matching. Default is FALSE.
 #' @import lubridate
 #' @import purrr
 #' @import stringr
