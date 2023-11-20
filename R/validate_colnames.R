@@ -1,7 +1,6 @@
 #' Validate column names against codebook
 #'
 #' @param df A data.frame with column names to verify against the codebook
-#' @param codebook A string denoting the name of the codebook to check the column
 #' names against e.g. "trial_data", "trials_metadata"
 #' @inheritParams readin_db
 #' @inheritParams list_db_var
@@ -20,7 +19,7 @@ validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
   # according to the codebook, but this is not implemented
   cb2 <- cb %>%
     filter(!is.na(colname)) %>%
-    select(colname, required, col_num)
+    select(colname, required, col_num) %>% unique()
 
   # Get the names in the data
   # First, filter out the unwanted names:
@@ -39,20 +38,22 @@ validate_colnames <- function(df, codebook_name, db_folder, crop_types = NULL,
 
   # special handling for fdk_rep_xx and inf_spikelet_rep_xx where xx should be replaced
   # with 2-digit rep number; fdk should validate between 1 and 5, inf_spikelet 1:30
-  if (any(grepl("^fdk_rep_\\d{2}$|^inf_spikelet_rep_\\d{2}$", colnames_df$colname))) {
+  if (any(grepl("^fdk_rep_\\d+$|^inf_spikelet_rep_\\d+$", colnames_df$colname))) {
 
     name_repl <- colnames_df %>% mutate(variable = colname) %>%
       filter(str_detect(colname, "fdk_rep|inf_spikelet_rep")) %>%
-      separate(variable, into = c("name", "index"), sep = -2)
+      separate_wider_regex(variable,
+                           patterns = c(name = ".+", "", index = "\\d{2,}"),
+                           too_few = "align_start")
 
     cb2 <- cb2 %>%
       mutate(colname = str_remove(colname, "xx$")) %>%
-      left_join(name_repl, by = c("colname" = "name")) %>%
+      left_join(name_repl, by = c("colname" = "name"), multiple = "all") %>%
       mutate(colname = ifelse(str_detect(colname, "rep_$"), paste0(colname, "xx"), colname),
-             index = na_if(index, "xx") %>% as.integer,
+             index = as.integer(index),
              colname = case_when(
-               (str_detect(colname.y, "fdk_rep") & index > 0 & index < 6) |
-                 (str_detect(colname.y, "inf_spikelet_rep") & index > 0 & index <= 30) ~ colname.y,
+               (str_detect(colname.y, "fdk_rep") & index >= 1 & index <= 5) |
+                 (str_detect(colname.y, "inf_spikelet_rep") & index >= 1 & index <= 30) ~ colname.y,
                TRUE ~ colname)) %>%
       select(colname, required, col_num)
   }
