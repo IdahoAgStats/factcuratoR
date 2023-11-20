@@ -6,6 +6,7 @@
 #'
 #' @param codebook_main_path A string that is a path to the main codebook
 #' @importFrom dm as_dm
+#' @importFrom DiagrammeR grViz
 #' @export
 #' @family data model functions
 create_dm <- function(codebook_main_path){
@@ -64,7 +65,7 @@ create_dm <- function(codebook_main_path){
                 ref_table = !!sym(fk_temp$values_defined_in))
   }
 
-  dm::dm_draw(cb_dm, view_type = "all")
+  dm::dm_draw(cb_dm, view_type = "all", backend = "DiagrammeR")
 
   # If want to have compound keys
   # for (x in unique(cb_pk$book)){
