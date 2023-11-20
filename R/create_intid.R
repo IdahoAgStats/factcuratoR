@@ -26,7 +26,7 @@
 #' @param df A data.frame to with a column containing variety names
 #' @param variety_col_name A bare column name denoting the column containing varieties
 #' @param sep_aliases A regex corresponding to the characters that are used to separate variety aliases
-#' @param dots Bare additional column name(s) to include such as crop_type or nursery, separated by commas
+#' @param ... Bare additional column name(s) to include such as crop_type or nursery, separated by commas
 #' @param alias_col A bare column name denoting the column containing aliases
 #' @param is_blends A logical that specifies whether the varieties are blends.
 #' Default is FALSE
