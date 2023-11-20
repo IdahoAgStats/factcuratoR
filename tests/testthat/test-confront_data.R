@@ -45,9 +45,10 @@ test_that("confront_data() checks blends",{
   df <- data.frame(variety = c("Bruehl;AP Badger",
                                "AP Badger;wrong name2",
                                "Bruehl;wrong name",
-                               "wrong name;AP Badger"))
+                               "wrong name;AP Badger",
+                               "Bruehl;AP Badger;AP Iliad"))
   test <- confront_data(df, "trial_data", controlled_vocab_folder, blends = TRUE)
-  expect_equal(sum(test[[1]]$passes), 5)
+  expect_equal(sum(test[[1]]$passes), 8)
 
 })
 

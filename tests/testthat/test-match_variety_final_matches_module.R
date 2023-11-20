@@ -23,7 +23,7 @@ test_that("collect_final_matches() returns correct output", {
 
   test <-
     collect_final_matches(list(exact = ls1,
-                               rename = ls2), names, outputfolder_test)
+                               rename = ls2), names, outputfolder_test, "2023")
 
   expect_equal(test$match_step, c("exact", "exact", "rename", NA))
 })

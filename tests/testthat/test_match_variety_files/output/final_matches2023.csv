@@ -1,0 +1,5 @@
+"variety","var_id","type","crop_type","intid","n_var_id","variety_db","match_step","intid_matches","intid_db","type_db"
+"name1",1,NA,NA,"name1",1,"name1","exact","name1","name1",NA
+"name2",2,NA,NA,"name2",1,"name2","exact","name2","name2",NA
+"name3",3,NA,NA,"name3",1,"name3","rename","name3","name3",NA
+"name4",4,NA,NA,"name4",1,"name4",NA,NA,NA,NA

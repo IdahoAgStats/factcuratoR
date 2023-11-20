@@ -94,6 +94,21 @@ test_that("do_exactmatch() with rename_df = TRUE returns the expected column nam
 
 })
 
+test_that("do_exactmatch() throws a warning for multiple matches",{
+  var_names <- "salute"
+
+  df1 <- tibble(variety = var_names,
+                intid = var_names,
+                var_id = 1)
+
+  expect_warning(
+    do_exactmatch(
+      db_folder = testthat::test_path("test_controlled_vocab"),
+      df1
+      ), "var_id matches with")
+
+})
+
 test_that("do_exactmatch() returns the correct crop_type match",{
   var_names <- "salute"
 
@@ -101,11 +116,12 @@ test_that("do_exactmatch() returns the correct crop_type match",{
                 intid = var_names,
                 var_id = 1)
 
+  suppressWarnings(
   result <-
     do_exactmatch(
       db_folder = testthat::test_path("test_controlled_vocab"),
       df1
-    )
+    ))
 
   expect_equal(nrow(result[[1]]), 2)
 
