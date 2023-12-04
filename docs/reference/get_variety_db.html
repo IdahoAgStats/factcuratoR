@@ -99,11 +99,14 @@ cultivars that were added to the datebase before this specified date.</p></dd>
 
 
 <dt>select_crops</dt>
-<dd><p>A regular expression of crop types separated by |</p></dd>
+<dd><p>A regular expression of crops separated by |. Note that this regex
+will filter on the <em>crop</em> column rather than crop_type. For example, there
+are Triticale entries in the cultivar_wheat file, but they will be filtered out and
+not matched if <code>select_crops</code> = "wheat".</p></dd>
 
 
 <dt>for_matching</dt>
-<dd><p>logical, whether the result will be used for matching. Default is FALSE.</p></dd>
+<dd><p>logical, whether the result will be used for matching. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
     <div id="details">

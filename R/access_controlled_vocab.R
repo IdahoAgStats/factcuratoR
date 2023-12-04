@@ -1,10 +1,19 @@
-#' Read in all control variable codebooks and create a combined cultivar file
+#' Read in all codebooks and create a combined cultivar file
 #'
+#' Read in all controlled variable codebooks and create a combined cultivar file
+#' in long format.
 #' @inheritParams readin_db_init
 #' @import dplyr
 #' @import tidyr
 #' @import readr
 #' @import purrr
+#' @returns A list of all \emph{*.csv} files in the controlled vocab folder, as is. Additionally creates
+#' a combined cultivar file, cultivar.csv, selecting \emph{crop, date_added}, and all current
+#' variety/alias names for each \emph{crop_type}.
+#' All variety/alias names are gathered in a single column, linked with a \emph{db_id} number.
+#' The \emph{type_db} column tracks whether the name is an alias or true variety name,
+#' and the \emph{intid_db} column contains the cultivar name in lowercase with all spaces and
+#' punctuation removed, used for matching.
 #' @family access codebook functions
 #' @export
 readin_db <- function(db_folder){
@@ -109,8 +118,11 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_ty
 #' @inheritParams readin_db
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.
-#' @param select_crops A regular expression of crop types separated by |
-#' @param for_matching logical, whether the result will be used for matching. Default is FALSE.
+#' @param select_crops A regular expression of crops separated by |. Note that this regex
+#' will filter on the \emph{crop} column rather than crop_type. For example, there
+#' are Triticale entries in the cultivar_wheat file, but they will be filtered out and
+#' not matched if `select_crops` = "wheat".
+#' @param for_matching logical, whether the result will be used for matching. Default is \code{FALSE}.
 #' @import lubridate
 #' @import purrr
 #' @import stringr

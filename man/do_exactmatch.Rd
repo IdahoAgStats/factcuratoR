@@ -27,7 +27,10 @@ are being matched, the select_crops argument can be used}
 \item{select_before}{A string in the format of Ymd.  The function returns
 cultivars that were added to the datebase before this specified date.}
 
-\item{select_crops}{A regular expression of crop types separated by |}
+\item{select_crops}{A regular expression of crops separated by |. Note that this regex
+will filter on the \emph{crop} column rather than crop_type. For example, there
+are Triticale entries in the cultivar_wheat file, but they will be filtered out and
+not matched if \code{select_crops} = "wheat".}
 
 \item{match_type}{A string, either "raw" or "db, " which denotes the type of
 matching procedure to use.  If matching raw variety names, use "raw."

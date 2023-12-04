@@ -4,7 +4,7 @@
 \name{readin_db}
 \alias{readin_db}
 \alias{readin.db}
-\title{Read in all control variable codebooks and create a combined cultivar file}
+\title{Read in all codebooks and create a combined cultivar file}
 \usage{
 readin_db(db_folder)
 
@@ -13,10 +13,18 @@ readin.db(db_folder)
 \arguments{
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 }
+\value{
+A list of all \emph{*.csv} files in the controlled vocab folder, as is. Additionally creates
+a combined cultivar file, cultivar.csv, selecting \emph{crop, date_added}, and all current
+variety/alias names for each \emph{crop_type}.
+All variety/alias names are gathered in a single column, linked with a \emph{db_id} number.
+The \emph{type_db} column tracks whether the name is an alias or true variety name,
+and the \emph{intid_db} column contains the cultivar name in lowercase with all spaces and
+punctuation removed, used for matching.
+}
 \description{
-Read in all control variable codebooks and create a combined cultivar file
-
-A wrapper for readin_db to maintain backwards compatibility
+Read in all controlled variable codebooks and create a combined cultivar file
+in long format.
 }
 \seealso{
 Other access codebook functions: 
