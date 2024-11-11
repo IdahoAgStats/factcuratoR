@@ -25,7 +25,9 @@ find_fuzzymatch <- function(var_noexactmatch,
                             knitroutputfolder = knitroutputfolder,
                             db_folder){
 
-  if (intid_col != "intid"){
+  if (intid_col != "intid")
+
+    {
     intid_sym <- sym(intid_col)
     var_noexactmatch <- var_noexactmatch %>%
       mutate(intid := !!intid_sym) %>%

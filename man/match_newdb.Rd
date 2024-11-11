@@ -13,7 +13,7 @@ created by create_new_db_entries() and checked and filled in by the collaborator
 \item{names_newvarid}{A data.frame of variety names that do not have matches.  This data.frame
 is a list element named 'names_newvarid' generated using create_newdbnames()}
 
-\item{dots}{Bare variables to select from the new cultivar name}
+\item{...}{Bare variables to select from the new cultivar name}
 }
 \description{
 As of 2022/01/11, this function is deprecated

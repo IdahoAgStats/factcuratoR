@@ -50,14 +50,14 @@ create_dm <- function(codebook_main_path){
   cb_dm <- dm::as_dm(codebooks_ls)
 
   # set primary keys
-  for(x in 1:nrow(cb_pk)) {
+  for (x in 1:nrow(cb_pk)) {
     pk_temp <- cb_pk[x,]
     cb_dm <- cb_dm %>%
       dm::dm_add_pk(table = !!sym(pk_temp$book), columns = !!sym(pk_temp$variable))
   }
 
   # set foreign keys
-  for(x in 1:nrow(cb_fk)) {
+  for (x in 1:nrow(cb_fk)) {
     fk_temp <- cb_fk[x,]
     cb_dm <- cb_dm %>%
       dm::dm_add_fk(table = !!sym(fk_temp$book),

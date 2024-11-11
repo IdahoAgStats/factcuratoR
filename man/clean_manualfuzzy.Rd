@@ -7,14 +7,12 @@
 clean_manualfuzzy(match_type = "raw", df)
 }
 \arguments{
-\item{match_type}{A string that is either 'db' or 'raw', which refers to processesing
+\item{match_type}{A string that is either 'db' or 'raw', which refers to processing
 database entries (only one entry per cultivar) or raw entries which may have many
 alternate spellings for one cultivar}
 
 \item{df}{A data.frame, which can be provided in lieu of the curation_folder
 and filename}
-
-\item{curation_folder}{A path to the curation folder}
 }
 \description{
 Fuzzy matching outputs a file of potential/fuzzy matches.

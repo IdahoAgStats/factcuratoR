@@ -27,17 +27,15 @@ get.variety_db(
 cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crops separated by |. Note that this regex
-will filter on the \emph{crop} column rather than crop_type. For example, there
-are Triticale entries in the cultivar_wheat file, but they will be filtered out and
-not matched if \code{select_crops} = "wheat".}
+will filter on the \code{crop} column rather than \code{crop_type}. For example, there
+are entries in the wheat file with crop Triticale, so to capture both the input
+should be \code{select_crops = "wheat|triticale"}.}
 
 \item{for_matching}{logical, whether the result will be used for matching. Default is \code{FALSE}.}
 }
 \description{
 Filter the cultivar list by the date that the cultivar was added.
-The default value is "2021-01-01" because the original version of this function
-only read in the original set of cultivars, which were added by J. Piaskowski
-in 2020.
+The default value selects before current date.
 If select_before = NULL, then all dates will be returned.  Recommended usage
 for curation is to use the current date, so that the curation is reproducible
 even as the cultivar list is being continuously updated.

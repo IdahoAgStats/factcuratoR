@@ -27,9 +27,9 @@ used to join the raw data and database}
 cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crops separated by |. Note that this regex
-will filter on the \emph{crop} column rather than crop_type. For example, there
-are Triticale entries in the cultivar_wheat file, but they will be filtered out and
-not matched if \code{select_crops} = "wheat".}
+will filter on the \code{crop} column rather than \code{crop_type}. For example, there
+are entries in the wheat file with crop Triticale, so to capture both the input
+should be \code{select_crops = "wheat|triticale"}.}
 
 \item{knitroutputfolder}{A folder path to send output}
 

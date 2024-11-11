@@ -46,14 +46,14 @@ stringdist.variety <- function(raw_data,
     mutate(method = paste(method_stringdist, "dist")) %>%
     mutate(dist_scaled = ifelse(method == "jw",
                                 dist,
-                                dist/ nchar(intid_db))) %>%
+                                dist / nchar(intid_db))) %>%
     slice_min(order_by = dist, n = best_n) %>%
     slice_min(order_by = dist_scaled, n = best_n)
 
   all_stringdist_matches4 <- all_stringdist_matches2 %>%
     group_by(!!quo_initid_col) %>%
     mutate(method = paste(method_stringdist, "dist_scaled")) %>%
-    mutate(dist_scaled = dist/ nchar(intid_db)) %>%
+    mutate(dist_scaled = dist / nchar(intid_db)) %>%
     slice_min(order_by = dist_scaled, n = best_n)
 
   all_stringdist_matches5 <- bind_rows(all_stringdist_matches3, all_stringdist_matches4)
@@ -73,7 +73,7 @@ stringdist.variety <- function(raw_data,
 #' @param checkfor A column name to check whether there is a match
 #' (This parameter is used only for exact matching.  For fuzzymatches, the status of the match
 #' must be manually entered)
-#' @param match_type A string that is either 'db' or 'raw', which refers to processesing
+#' @param match_type A string that is either 'db' or 'raw', which refers to processing
 #' database entries (only one entry per cultivar) or raw entries which may have many
 #' alternate spellings for one cultivar
 #' @keywords internal
@@ -81,20 +81,22 @@ check.anymatch <- function(df, group, checkfor = NULL, match_type){
 
   quo_checkfor <- enquo(checkfor)
 
-  if(!("is_truematch" %in% colnames(df))){
-    df <- df %>% mutate(is_truematch = ifelse(is.na(!!quo_checkfor), FALSE, TRUE))
+  if (!("is_truematch" %in% colnames(df))) {
+    df <- df %>% mutate(is_truematch = ifelse(is.na(!!quo_checkfor),
+                                              FALSE, TRUE))
   }
 
   # Standardize is_truematch to logical
   df <- df %>% mutate(is_truematch =
-                        ifelse(!is_truematch %in% c(TRUE, FALSE), NA, is_truematch)) %>%
+                        ifelse(!is_truematch %in% c(TRUE, FALSE),
+                               NA, is_truematch)) %>%
     mutate(is_truematch = as.logical(is_truematch))
 
-  if (match_type == "raw"){
+  if (match_type == "raw") {
     quo_group = sym("var_id")
     df_check <- df %>%
       group_by(!!quo_group)
-  } else if (match_type == "db"){
+  } else if (match_type == "db") {
 
     quo_group = syms(c("intid", "var_id"))
     df_check <- df %>%
@@ -125,7 +127,7 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
   df_any_match <- df_any_match %>% mutate(var_id = as.character(var_id))
 
   # Set the group (match, nomatch, check, or not_needed)
-  if (is_blends){
+  if (is_blends) {
     df_any_match_groups <-
       df_any_match %>%
       ungroup() %>%
@@ -141,8 +143,10 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
       ungroup() %>%
       mutate(group = case_when(
         (is_truematch == "TRUE" & any_match == TRUE) ~ "match",
-        ((is_truematch == "FALSE" | is_truematch == "alias") & any_match == FALSE) ~ "nomatch",
-        (!is_truematch %in% c("TRUE", "FALSE", "alias") & any_match == FALSE) ~ "check",
+        ((is_truematch == "FALSE" | is_truematch == "alias") &
+           any_match == FALSE) ~ "nomatch",
+        (!is_truematch %in% c("TRUE", "FALSE", "alias") &
+           any_match == FALSE) ~ "check",
         (!is_truematch %in% c("TRUE") & any_match == TRUE) ~ "not_needed"
       )) %>%
       mutate(group = case_when(is.na(group) & is.na(is_truematch) ~ "check",
@@ -167,10 +171,10 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
   # This helps to catch duplicate entries in the controlled vocabularies
   # Note: if is_blends = TRUE, this is not checked because one entry is supposed
   # to match multiple db_ids
-  if (!is_blends & all(c("db_id", "var_id") %in% names(match_list[["match"]]))){
+  if (!is_blends & all(c("db_id", "var_id") %in% names(match_list[["match"]]))) {
 
     test_multmatch <- check.matches(match_list[["match"]])
-    if (nrow(test_multmatch > 0)){
+    if (nrow(test_multmatch > 0)) {
       warning(paste("Warning: var_id matches with more than one db_id. Please reconcile potential error in database. Use factcuratoR:::check.matches(result[[1]]) to see the varieties that match more than one database name.",
                    paste0(capture.output(test_multmatch), collapse = "\n")))
     }
@@ -178,7 +182,7 @@ return.matchgroups <- function(df_any_match, is_blends = FALSE){
     # Remove alias if there is a match with variety
     test_aliasdup <- rm.alias_dupmatch(match_list[["match"]])
 
-    if (nrow(test_aliasdup[["not_needed"]] > 0)){
+    if (nrow(test_aliasdup[["not_needed"]] > 0)) {
       match_list[["match"]] <- test_aliasdup[["match"]]
 
       match_list[["not_needed"]] <- rbind(match_list[["not_needed"]], test_aliasdup[["not_needed"]])
@@ -221,7 +225,7 @@ check.matches <- function(match_df){
 #' @param match_df A data.frame that contains var_id, db_id, and type_db
 #' ("alias" or "variety")
 #' @keywords internal
-rm.alias_dupmatch <- function(match_df){
+rm.alias_dupmatch <- function(match_df) {
 
   mult_matches <- match_df %>%
     select(var_id, db_id, type_db) %>%
@@ -242,7 +246,7 @@ rm.alias_dupmatch <- function(match_df){
 #'
 #' Fuzzy matching outputs a file of potential/fuzzy matches.
 #' A user must go in a assign whether the fuzzy match is a true match.
-#' @param curation_folder A path to the curation folder
+# @param curation_folder A path to the curation folder
 #' @inheritParams check.anymatch
 #' @inheritParams return.matchgroups
 #' @param df A data.frame, which can be provided in lieu of the curation_folder
@@ -250,9 +254,9 @@ rm.alias_dupmatch <- function(match_df){
 #' @keywords internal
 clean_manualfuzzy <- function(match_type = "raw", df){
 
-  if (match_type == "raw"){
+  if (match_type == "raw") {
     return_unique <- sym("var_id")
-  } else if (match_type == "db"){
+  } else if (match_type == "db") {
     return_unique <- sym("intid")
   }
 
@@ -273,26 +277,27 @@ clean_manualfuzzy <- function(match_type = "raw", df){
 #' @param df_nomatch A data.frame of varieties without cultivar matches
 #'   from the database.  This will generally be the output of the function
 #'   clean_manualfuzzy().
-#' @param variety_col_name A column name containing varieties
-#' @param intid_col_name A column name containing internal identifiers
-#' @param dots Extra columns to select
+# @param variety_col_name A column name containing varieties
+# @param intid_col_name A column name containing internal identifiers
+#' @param ... Extra columns to select
 #' @keywords internal
 create_names_nomatch <- function(df_nomatch,  ...){
 
   dots <- enquos(...)
 
   nomatch1 <- df_nomatch %>%
-                select(var_id,
-                      variety,
-                      intid,
-                      crop_type,
-                      type,
-                      !!!dots) %>%
-                unique(.) %>%
-                group_by(var_id)  %>% ungroup() %>%
-                group_by(intid) %>% mutate(instance = row_number()) %>% ungroup() %>%
-                arrange(crop_type, intid) %>%
-                mutate(new_std_name = variety)
+    select(var_id,
+           variety,
+           intid,
+           crop_type,
+           type,
+           !!!dots) %>%
+    unique(.) %>%
+    group_by(var_id)  %>% ungroup() %>%
+    group_by(intid) %>%
+    mutate(instance = row_number()) %>% ungroup() %>%
+    arrange(crop_type, intid) %>%
+    mutate(new_std_name = variety)
 
 }
 
@@ -301,7 +306,7 @@ create_names_nomatch <- function(df_nomatch,  ...){
 #' Combine all the matches from all of the cultivar matching steps
 
 #' @param ls A list of results created with list2 from any of the cultivar matching steps
-#' @param dots Any number of bare variables to be retained in the output of the matches
+#' @param ... Any number of bare variables to be retained in the output of the matches
 #' @keywords internal
 collect_matches <- function(ls, ...){
   #temp_ls <- rlang::list2(...)

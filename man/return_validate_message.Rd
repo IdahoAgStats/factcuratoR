@@ -7,7 +7,7 @@
 return_validate_message(confront_summary)
 }
 \arguments{
-\item{output_confront}{An object that is returned by validate::confront()}
+\item{confront_summary}{A list object that is returned by validate::confront()}
 }
 \description{
 Return a message regarding the status of the validation

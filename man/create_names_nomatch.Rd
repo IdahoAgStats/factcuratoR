@@ -11,11 +11,7 @@ create_names_nomatch(df_nomatch, ...)
 from the database.  This will generally be the output of the function
 clean_manualfuzzy().}
 
-\item{variety_col_name}{A column name containing varieties}
-
-\item{intid_col_name}{A column name containing internal identifiers}
-
-\item{dots}{Extra columns to select}
+\item{...}{Extra columns to select}
 }
 \description{
 Create a data.frame of the names of varieties with no match

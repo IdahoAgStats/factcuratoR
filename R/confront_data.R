@@ -10,11 +10,13 @@
 #' @importFrom validate confront
 #' @export
 #' @family validation functions
-confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = NULL){
+confront_data <- function(df, df_type, db_folder, blends = FALSE,
+                          crop_types = NULL) {
 
-  rules <- create_rules(df_type, db_folder, blends = blends, crop_types = crop_types)
+  rules <- create_rules(df_type, db_folder, blends = blends,
+                        crop_types = crop_types)
 
-  if (blends){
+  if (blends) {
     df <- df %>% separate_wider_delim(variety, delim = ";",
                           names = c("variety", "variety2_blend", "variety3_blend"),
                           too_few = "align_start")
@@ -24,7 +26,9 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
   # to the codebook values
   # Pass the db in as a list (See ?validate::confront for more details)
   # Note: passing in the data in an environment didn't work
-  validation_output <- validate::confront(df, rules, list(db = readin_db(db_folder)))
+  validation_output <- validate::confront(df,
+                                          rules,
+                                          list(db = readin_db(db_folder)))
 
   summary <- validate::summary(validation_output) %>% arrange(error, fails)
 
@@ -37,8 +41,10 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
     # remove suffix from variables that were indexed due to multiple tests
     mutate(name = str_remove_all(name, "\\.\\d$")) %>%
     left_join(date_na, by = "name", multiple = "all") %>%
-    mutate(fails = ifelse(str_detect(expression, "grepl"), fails - nNA_temp, fails)) %>%
-    mutate(nNA = ifelse(str_detect(expression, "grepl"), nNA + nNA_temp, nNA)) %>%
+    mutate(fails = ifelse(str_detect(expression, "grepl"),
+                          fails - nNA_temp, fails)) %>%
+    mutate(nNA = ifelse(str_detect(expression, "grepl"),
+                        nNA + nNA_temp, nNA)) %>%
     select(-nNA_temp) %>%
     filter(!str_detect(expression, "!is.na(.+date)")) %>%
     # remove rows that are duplicates after removing suffixes in the first step
@@ -46,10 +52,11 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
     unique()
 
   # Add if column is required
-  is_req <- list_db_var(db_folder, df_type, required_only = FALSE, crop_types = NULL) %>%
+  is_req <- list_db_var(db_folder, df_type, required_only = FALSE,
+                        crop_types = NULL) %>%
     select(name = variable, required)
 
-  if (df_type == "trial_data"){
+  if (df_type == "trial_data") {
     traits_cb <- readin_db(db_folder)$traits %>%
                     select(name = trait_name, crop_type) %>%
                     mutate(required = FALSE) %>%
@@ -66,21 +73,24 @@ confront_data <- function(df, df_type, db_folder, blends = FALSE, crop_types = N
   return_validate_message(summary2_req)
 
   return(list(summary = summary2_req, validation_output = validation_output))
+
 }
 
 #' Return a message regarding the status of the validation
 #'
-#' @param output_confront An object that is returned by validate::confront()
+#' @param confront_summary A list object that is returned by validate::confront()
 #' @keywords internal
 return_validate_message <- function(confront_summary){
 
   temp2 <- confront_summary %>%
     group_by(required) %>%
     select(required, matches(c("fails", "nNA", "error", "warning"))) %>%
-    mutate(across(.cols = where(is.numeric), function(x){ ifelse(x > 0, TRUE, FALSE)})) %>%
+    mutate(across(.cols = where(is.numeric), function(x) {
+      ifelse(x > 0, TRUE, FALSE) }
+      )) %>%
     summarise(across(everything(), .fns = sum))
 
-  if (any(temp2[1,] > 0)){
+  if (any(temp2[1,] > 0)) {
     message("Warning: Some issues left to resolve \n",
             paste(capture.output(print(temp2)), collapse = "\n"))
   } else {

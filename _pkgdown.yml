@@ -1,5 +1,13 @@
-home:
-  title:
+url: https://idahoagstats.github.io/factcuratoR
+
+template:
+  bootstrap: 5
+  bootswatch: cerulean
+
+deploy:
+  install_metadata: true
+
+  title: "Functions to curate FACT data"
   description:  "Curation Functions for Western Small Grains Data"
 
 reference:

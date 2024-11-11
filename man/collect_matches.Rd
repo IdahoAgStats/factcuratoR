@@ -9,7 +9,7 @@ collect_matches(ls, ...)
 \arguments{
 \item{ls}{A list of results created with list2 from any of the cultivar matching steps}
 
-\item{dots}{Any number of bare variables to be retained in the output of the matches}
+\item{...}{Any number of bare variables to be retained in the output of the matches}
 }
 \description{
 Combine all the matches from all of the cultivar matching steps

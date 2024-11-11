@@ -16,7 +16,7 @@ check.anymatch(df, group, checkfor = NULL, match_type)
 (This parameter is used only for exact matching.  For fuzzymatches, the status of the match
 must be manually entered)}
 
-\item{match_type}{A string that is either 'db' or 'raw', which refers to processesing
+\item{match_type}{A string that is either 'db' or 'raw', which refers to processing
 database entries (only one entry per cultivar) or raw entries which may have many
 alternate spellings for one cultivar}
 }

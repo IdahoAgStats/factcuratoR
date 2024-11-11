@@ -34,7 +34,7 @@ test_that("get_variety_db() returns the expected crops", {
 })
 
 test_that("list_db_var() correctly throws error", {
-  expect_error(list_db_var(controlled_vocab_folder, "loc"),
+  expect_error(list_db_var(controlled_vocab_folder, "loc", crop_types = NULL),
                "'codebook_name' doesn't match a codebook name")
 })
 

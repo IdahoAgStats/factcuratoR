@@ -7,12 +7,13 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jacquelinejtay@gmail.com.com")
 Description: This package contains functions used in the workflow to curate variety testing data.  The functions fall into a few different workflows: read-in the controlled vocabulary, validate according to the codebooks, curate cultivar names.
+URL: https://idahoagstats.github.io/factcuratoR, https://github.com/IdahoAgStats/factcuratoR
 License: GPL (>= 3)
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends:
     dplyr (>= 1.0.4),
     fuzzyjoin (>= 0.1.6),
@@ -28,6 +29,7 @@ Imports:
     validate (>= 1.0.4),
     magrittr,
     DiagrammeR,
+    DiagrammeRsvg,
     rlang,
     stringi,
     stats,

@@ -28,9 +28,9 @@ are being matched, the select_crops argument can be used}
 cultivars that were added to the datebase before this specified date.}
 
 \item{select_crops}{A regular expression of crops separated by |. Note that this regex
-will filter on the \emph{crop} column rather than crop_type. For example, there
-are Triticale entries in the cultivar_wheat file, but they will be filtered out and
-not matched if \code{select_crops} = "wheat".}
+will filter on the \code{crop} column rather than \code{crop_type}. For example, there
+are entries in the wheat file with crop Triticale, so to capture both the input
+should be \code{select_crops = "wheat|triticale"}.}
 
 \item{match_type}{A string, either "raw" or "db, " which denotes the type of
 matching procedure to use.  If matching raw variety names, use "raw."

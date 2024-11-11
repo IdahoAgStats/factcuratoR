@@ -7,8 +7,10 @@
 #' @import tidyr
 #' @import readr
 #' @import purrr
-#' @returns A list of all \emph{*.csv} files in the controlled vocab folder, as is. Additionally creates
-#' a combined cultivar file, cultivar.csv, selecting \emph{crop, date_added}, and all current
+#' @returns A list of data frames;  \emph{*.csv} files in the controlled vocab folder.
+#'
+#' Additionally creates
+#' a combined cultivar file, \emph{cultivar.csv}, selecting \emph{crop, date_added}, and all current
 #' variety/alias names for each \emph{crop_type}.
 #' All variety/alias names are gathered in a single column, linked with a \emph{db_id} number.
 #' The \emph{type_db} column tracks whether the name is an alias or true variety name,
@@ -106,9 +108,7 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_ty
 #' Return cultivar names along with unique internal identifier (no spaces or special characters)
 #'
 #' Filter the cultivar list by the date that the cultivar was added.
-#' The default value is "2021-01-01" because the original version of this function
-#' only read in the original set of cultivars, which were added by J. Piaskowski
-#' in 2020.
+#' The default value selects before current date.
 #' If select_before = NULL, then all dates will be returned.  Recommended usage
 #' for curation is to use the current date, so that the curation is reproducible
 #' even as the cultivar list is being continuously updated.
@@ -119,9 +119,9 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_ty
 #' @param select_before A string in the format of Ymd.  The function returns
 #' cultivars that were added to the datebase before this specified date.
 #' @param select_crops A regular expression of crops separated by |. Note that this regex
-#' will filter on the \emph{crop} column rather than crop_type. For example, there
-#' are Triticale entries in the cultivar_wheat file, but they will be filtered out and
-#' not matched if `select_crops` = "wheat".
+#' will filter on the `crop` column rather than `crop_type`. For example, there
+#' are entries in the wheat file with crop Triticale, so to capture both the input
+#' should be `select_crops = "wheat|triticale"`.
 #' @param for_matching logical, whether the result will be used for matching. Default is \code{FALSE}.
 #' @import lubridate
 #' @import purrr
@@ -152,7 +152,7 @@ get_variety_db <- function(db_folder,
                                                   orders = "ymd",
                                                   quiet = TRUE)
 
-  if (is.na(check_date_format)){
+  if (is.na(check_date_format)) {
     variety <- variety %>%
       dplyr::mutate(date_added = lubridate::parse_date_time(date_added, orders = "mdy"))
 
@@ -162,25 +162,25 @@ get_variety_db <- function(db_folder,
   }
 
 
-  if (!is.null(select_before)){
+  if (!is.null(select_before)) {
     select_before_datetime <- parse_date_time(select_before, orders = "ymd")
     variety <- variety %>% filter(date_added < select_before_datetime)
   }
 
-  if (!is.null(select_crops)){
+  if (!is.null(select_crops)) {
     variety <- variety %>% filter(str_detect(crop, regex(select_crops, ignore_case = T)))
   }
 
   variety_db <- variety %>%
     select(db_id, variety, alias, crop_db = crop, crop_type_db = crop_type, date_added) %>%
-    gather(., type_db, variety_db, -c(db_id, crop_db, crop_type_db, date_added)) %>%
-    filter(!is.na(variety_db)) %>%
-    separate_rows(., variety_db, sep = ";")
+    pivot_longer(c(variety, alias), names_to = "type_db", values_to = "variety_db") %>%
+    separate_longer_delim(variety_db, ";") %>%
+    filter(!is.na(variety_db))
 
   # This was the simplest way to rename
   # because this function and get.db() are recursive, so other functions
   # (e.g. match_variety_fns.R) can use this feature
-  if (for_matching){
+  if (for_matching) {
     variety_db <- variety_db %>% rename(date_added_db = date_added)
   }
 

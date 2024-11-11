@@ -14,8 +14,10 @@ readin.db(db_folder)
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 }
 \value{
-A list of all \emph{*.csv} files in the controlled vocab folder, as is. Additionally creates
-a combined cultivar file, cultivar.csv, selecting \emph{crop, date_added}, and all current
+A list of data frames;  \emph{*.csv} files in the controlled vocab folder.
+
+Additionally creates
+a combined cultivar file, \emph{cultivar.csv}, selecting \emph{crop, date_added}, and all current
 variety/alias names for each \emph{crop_type}.
 All variety/alias names are gathered in a single column, linked with a \emph{db_id} number.
 The \emph{type_db} column tracks whether the name is an alias or true variety name,
