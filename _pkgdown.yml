@@ -3,6 +3,8 @@ url: https://idahoagstats.github.io/factcuratoR/
 template:
   bootstrap: 5
   light-switch: true
+  theme: atom-one-light
+  theme-dark: atom-one-dark
 
 home:
   title: "Curation Functions for Western Small Grains Data"
