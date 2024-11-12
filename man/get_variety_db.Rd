@@ -46,6 +46,7 @@ crop_types.
 }
 \seealso{
 Other access codebook functions: 
+\code{\link{get_col_index}()},
 \code{\link{list_db_books}()},
 \code{\link{list_db_var}()},
 \code{\link{readin_db}()}

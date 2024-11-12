@@ -13,13 +13,13 @@ list.db_var(db_folder, codebook_name, required_only = FALSE)
 \arguments{
 \item{db_folder}{A string path to the database controlled vocabulary folder}
 
-\item{codebook_name}{A string denoting the book name
-Use list_db_books() to see options}
+\item{codebook_name}{A string denoting the book name.
+Use \code{list_db_books()} to see options}
 
 \item{required_only}{A logical, FALSE returns all columns; TRUE returns required columns only}
 
 \item{crop_types}{A vector containing the crop_types.
-This is used to select the appropriate traits if codebook_name = "trial_data"}
+This is used to select the appropriate traits if codebook_name == "trial_data"}
 }
 \description{
 List the variables (column names) in a given database codebook
@@ -28,6 +28,7 @@ A wrapper for list_db_var to maintain backwards compatibility
 }
 \seealso{
 Other access codebook functions: 
+\code{\link{get_col_index}()},
 \code{\link{get_variety_db}()},
 \code{\link{list_db_books}()},
 \code{\link{readin_db}()}

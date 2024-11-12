@@ -30,6 +30,7 @@ in long format.
 }
 \seealso{
 Other access codebook functions: 
+\code{\link{get_col_index}()},
 \code{\link{get_variety_db}()},
 \code{\link{list_db_books}()},
 \code{\link{list_db_var}()}

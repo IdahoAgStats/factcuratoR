@@ -19,7 +19,7 @@ rules to generate}
 variety column in df_type = "trial_data"}
 
 \item{crop_types}{A vector containing the crop_types.
-This is used to select the appropriate traits if codebook_name = "trial_data"}
+This is used to select the appropriate traits if codebook_name == "trial_data"}
 }
 \description{
 This functions reads in codebooks_all_db.csv and generates rules from the

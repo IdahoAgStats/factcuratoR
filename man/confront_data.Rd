@@ -18,7 +18,7 @@ rules to generate}
 The default is FALSE}
 
 \item{crop_types}{A vector containing the crop_types.
-This is used to select the appropriate traits if codebook_name = "trial_data"}
+This is used to select the appropriate traits if codebook_name == "trial_data"}
 }
 \description{
 This functions summarises the results and fixes the

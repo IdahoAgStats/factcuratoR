@@ -289,7 +289,7 @@ code a, pre a {
   color: #375f84;
 }
 
-a.sourceLine:hover {
+.sourceLine:hover {
   text-decoration: none;
 }
 
@@ -363,7 +363,7 @@ mark {
    Added in pandoc 2.11: https://github.com/jgm/pandoc-templates/commit/9904bf71
 */
 
-div.csl-bib-body { }
+.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
@@ -371,14 +371,14 @@ div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
-div.csl-left-margin {
+.csl-left-margin {
   min-width:2em;
   float:left;
 }
-div.csl-right-inline {
+.csl-right-inline {
   margin-left:2em;
   padding-left:1em;
 }
-div.csl-indent {
+.csl-indent {
   margin-left: 2em;
 }

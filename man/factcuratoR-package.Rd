@@ -6,7 +6,15 @@
 \alias{factcuratoR-package}
 \title{factcuratoR: Functions to curate FACT data}
 \description{
-This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows: read-in the controlled vocabulary, validate according to the codebooks, curate cultivar names.
+This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows: read-in the controlled vocabulary, validate according to the codebooks, and standardize cultivar names.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://idahoagstats.github.io/factcuratoR/}
+  \item \url{https://github.com/IdahoAgStats/factcuratoR}
+}
+
 }
 \author{
 \strong{Maintainer}: Jacqueline Tay \email{jacquelinejtay@gmail.com.com}
