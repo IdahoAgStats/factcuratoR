@@ -1,31 +1,35 @@
-url: https://idahoagstats.github.io/factcuratoR
+url: https://idahoagstats.github.io/factcuratoR/
 
 template:
   bootstrap: 5
-  bootswatch: cerulean
+  light-switch: true
 
-deploy:
-  install_metadata: true
-
-  title: "Functions to curate FACT data"
-  description:  "Curation Functions for Western Small Grains Data"
+home:
+  title: "Curation Functions for Western Small Grains Data"
+  description: >
+  This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows:  read-in the controlled vocabulary, validate according to the codebooks, and standardize cultivar names.
 
 reference:
 - title: Validation functions
   contents:
   - has_concept("validation functions")
+
 - title: Standardize data to codebook functions
   contents:
   - has_concept("standardize to codebook functions")
+
 - title: Access codebook functions
   contents:
   - has_concept("access codebook functions")
+
 - title: Data model (dm) functions
   contents:
   - has_concept("data model functions")
+
 - title: Match variety modules
   contents:
   - has_concept("match variety modules")
+
 - title: Match variety functions
   contents:
   - has_concept("match variety functions")
