@@ -15,6 +15,7 @@
 #' @inheritParams stringdist.variety
 #' @inheritParams get_variety_db
 #' @param knitroutputfolder A folder path to send output
+#' @importFrom data.table `:=`
 #' @family match variety modules
 #' @export
 find_fuzzymatch <- function(var_noexactmatch,
@@ -143,6 +144,7 @@ find_fuzzymatch <- function(var_noexactmatch,
 #' return the digits in a new column (digits are returned as characters)
 #' @param df A data.frame
 #' @param x The bare variable name of the column to extract digits
+#' @importFrom data.table `:=`
 #' @keywords internal
 extract_trail_digits <- function(df, x, rm_single){
 

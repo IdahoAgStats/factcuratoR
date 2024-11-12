@@ -30,6 +30,7 @@
 #' @param alias_col A bare column name denoting the column containing aliases
 #' @param is_blends A logical that specifies whether the varieties are blends.
 #' Default is FALSE
+#' @importFrom data.table `:=`
 #' @family match variety functions
 #' @export
 create_intid <- function(df,
