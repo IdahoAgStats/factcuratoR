@@ -24,5 +24,6 @@ find_entries_raw_names <- function(df_names, data_raw, join_by){
                      ~paste(.x, collapse = ";")))
 
   write.csv(fuzzymatch_summary,
-              here(knitroutputfolder, "names_check_summary.csv"), row.names = FALSE)
+              here::here(knitroutputfolder, "names_check_summary.csv"),
+            row.names = FALSE)
 }
