@@ -18,7 +18,7 @@
 #' punctuation removed, used for matching.
 #' @family access codebook functions
 #' @export
-readin_db <- function(db_folder){
+readin_db <- function(db_folder) {
 
   db <- readin_db_init(db_folder)
 
@@ -40,11 +40,11 @@ readin_db <- function(db_folder){
 #' @param db_folder A string path to the database controlled vocabulary folder
 #' @importFrom magrittr `%>%`
 #' @keywords internal
-readin_db_init <- function(db_folder){
+readin_db_init <- function(db_folder) {
   db_files <- list.files(db_folder, pattern = ".csv")
   db <- as.list(db_files) %>%
     purrr::set_names() %>%
-    map(., function(x){
+    map(., function(x) {
       read_csv(paste(db_folder, x, sep = "/"), col_types = cols())
     })
 
@@ -56,7 +56,7 @@ readin_db_init <- function(db_folder){
 #' @inheritParams readin_db
 #' @family access codebook functions
 #' @export
-list_db_books <- function(db_folder){
+list_db_books <- function(db_folder) {
 
   db <- readin_db(db_folder)
 
@@ -66,31 +66,34 @@ list_db_books <- function(db_folder){
 #' List the variables (column names) in a given database codebook
 #'
 #' @inheritParams readin_db
-#' @param codebook_name A string denoting the book name
-#' Use list_db_books() to see options
+#' @param codebook_name A string denoting the book name.
+#' Use \code{list_db_books()} to see options
 #' @param required_only A logical, FALSE returns all columns; TRUE returns required columns only
 #' @param crop_types A vector containing the crop_types.
-#' This is used to select the appropriate traits if codebook_name = "trial_data"
+#' This is used to select the appropriate traits if codebook_name == "trial_data"
 #' @family access codebook functions
 #' @export
-list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_types){
+list_db_var <- function(db_folder,
+                        codebook_name,
+                        required_only = FALSE,
+                        crop_types) {
 
   db <- readin_db(db_folder)
 
-  if (!codebook_name %in% list_db_books(db_folder)$book){
+  if (!codebook_name %in% list_db_books(db_folder)$book) {
     stop("'codebook_name' doesn't match a codebook name")
   }
 
   codebook <- db$codebooks_all_db.csv %>% filter(book == codebook_name)
-  if (required_only){
+  if (required_only) {
     codebook <- codebook %>% filter(required == TRUE)
   }
 
   # Add traits to trial_data
-  if (codebook_name == "trial_data"){
+  if (codebook_name == "trial_data") {
     traits_cb <- db$traits.csv
 
-    if (!is.null(crop_types)){
+    if (!is.null(crop_types)) {
       traits_cb <- traits_cb %>%
         filter(crop_type %in% crop_types)
     }
@@ -131,14 +134,14 @@ list_db_var <- function(db_folder, codebook_name, required_only = FALSE, crop_ty
 get_variety_db <- function(db_folder,
                            select_before = Sys.Date(),
                            select_crops = NULL,
-                           for_matching = FALSE){
+                           for_matching = FALSE) {
 
 
   db <- readin_db_init(db_folder)
 
   variety_df1 <- db %>% keep(str_detect(names(.), "cultivar_"))
 
-  variety_df <- imap(variety_df1, function(x, y){
+  variety_df <- imap(variety_df1, function(x, y) {
     crop_type <- str_replace_all(str_extract(y, "_.*\\."), "[[:punct:]]", "")
     df <- x %>% mutate(crop_type = crop_type)
   })
@@ -188,4 +191,44 @@ get_variety_db <- function(db_folder,
     mutate(intid = gsub("[^A-Za-z0-9+]", "", variety_db)) %>% # will remove all characters not specified , which is needed to remove the \ backslash in one of the names
     mutate(intid = tolower(intid))
   return(variety_db2)
+}
+
+
+#' Get column index for codebook variables in a list of data frames
+#'
+#' This function is used to get the column index numbers for selected columns. The index vectors are used to set column styling for Excel data templates, i.e. highlighting required columns. Invalid codebook_names will throw an error.
+#' @param datalist A list of dataframes with columns that match codebook variables
+#' @inheritParams list_db_var
+#' @returns Returns a list of integer vectors with the same list names as `datalist`.
+#' @family access codebook functions
+#' @export
+get_col_index <- function(datalist,
+                          db_folder,
+                          codebook_name,
+                          required_only = TRUE,
+                          crop_types = NULL) {
+
+  alldb <- list_db_var(db_folder, codebook_name, required_only, crop_types)
+
+  if (codebook_name == "cultivar" && required_only == TRUE) {
+    # vector of required column names in cultivar files
+    colsreq <- c("crop", "variety", "released", "current_germplasm_owner",
+                 "date_added")
+  } else {
+
+    colsreq <- alldb %>% dplyr::pull(variable)
+  }
+
+  getindex <- purrr::map(datalist, # create a df of cultivar colnames
+                         \(x)
+                         data.frame(nms = colnames(x))) |>
+    map(\(x) x %>% # use rowid_to_column to get the col index
+          tibble::rowid_to_column(var = "ind") %>%
+          dplyr::mutate(ind = as.integer(ind)) %>% # set rowid to integer
+          dplyr::filter(nms %in% colsreq)) # filter for required only
+  # get named list of index vectors
+  cv_index <- lapply(getindex, purrr::pluck, 1)
+
+  return(cv_index)
+
 }

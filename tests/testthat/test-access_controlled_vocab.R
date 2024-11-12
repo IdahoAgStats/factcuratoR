@@ -46,3 +46,27 @@ test_that("list_db_var() correctly selects crop_types", {
   expect_true(contains_barley_trait & !contains_wheat_trait)
 })
 
+
+test_that("get_col_index() correctly throws an error", {
+  test <- readin_db(controlled_vocab_folder)
+  expect_error(get_col_index(test, controlled_vocab_folder,
+                             "wrongname", TRUE, crop_types = NULL),
+               "'codebook_name' doesn't match a codebook name")
+})
+
+test_that("get_col_index() returns integer vectors", {
+  test <- readin_db(controlled_vocab_folder)
+  test2 <- test[grep("^cultivar_(?!fill).*$", names(test), perl = TRUE)]
+  ind <- get_col_index(test2, controlled_vocab_folder, "cultivar",
+                       required_only = TRUE, crop_types = NULL)
+  expect_type(ind[[1]], "integer")
+})
+
+
+test_that("get_col_index() returns the correct column indices", {
+  test <- readin_db(controlled_vocab_folder)
+  test2 <- test[grep("^cultivar_(?!fill).*$", names(test), perl = TRUE)]
+  ind <- get_col_index(test2, controlled_vocab_folder, "cultivar",
+                       required_only = TRUE, crop_types = NULL)
+  expect_equal(ind[[1]], c(1, 2, 4, 14))
+})
