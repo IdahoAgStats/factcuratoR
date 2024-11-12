@@ -6,8 +6,8 @@ Authors@R:
            family = "Tay",
            role = c("aut", "cre"),
            email = "jacquelinejtay@gmail.com.com")
-Description: This package contains functions used in the workflow to curate variety testing data.  The functions fall into a few different workflows: read-in the controlled vocabulary, validate according to the codebooks, curate cultivar names.
-URL: https://idahoagstats.github.io/factcuratoR, https://github.com/IdahoAgStats/factcuratoR
+Description: This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows:  read-in the controlled vocabulary, validate according to the codebooks, and standardize cultivar names.
+URL: https://idahoagstats.github.io/factcuratoR/, https://github.com/IdahoAgStats/factcuratoR
 License: GPL (>= 3)
 VignetteBuilder: knitr
 Encoding: UTF-8
@@ -20,7 +20,6 @@ Depends:
     lubridate (>= 1.7.9.2),
     purrr (>= 0.3.4),
     readr (>= 1.4.0),
-    readxl (>= 1.3.1),
     stringr (>= 1.4.0),
     tibble (>= 3.0.6),
     tidyr (>= 1.1.2)
@@ -29,9 +28,9 @@ Imports:
     validate (>= 1.0.4),
     magrittr,
     DiagrammeR,
-    DiagrammeRsvg,
     rlang,
     stringi,
+    data.table,
     stats,
     utils
 Suggests: 
