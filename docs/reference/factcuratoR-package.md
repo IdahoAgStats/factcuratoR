@@ -15,4 +15,8 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Jacqueline Tay <jacquelinejtay@gmail.com.com>
+**Maintainer**: Emily Galvin <egalvin@uidaho.edu> \[contributor\]
+
+Authors:
+
+- Jacqueline Tay <jacquelinejtay@gmail.com>

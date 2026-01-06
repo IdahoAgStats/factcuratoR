@@ -17,7 +17,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jacqueline Tay \email{jacquelinejtay@gmail.com.com}
+\strong{Maintainer}: Emily Galvin \email{egalvin@uidaho.edu} [contributor]
+
+Authors:
+\itemize{
+  \item Jacqueline Tay \email{jacquelinejtay@gmail.com}
+}
 
 }
 \keyword{internal}
