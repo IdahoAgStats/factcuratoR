@@ -1,11 +1,15 @@
 Package: factcuratoR
 Title: Functions to curate FACT data
 Version: 1.2.1
-Authors@R: 
+Authors@R: c(
     person(given = "Jacqueline",
            family = "Tay",
            role = c("aut", "cre"),
-           email = "jacquelinejtay@gmail.com.com")
+           email = "jacquelinejtay@gmail.com"),
+    person(given = "Emily",
+           family = "Galvin",
+           role = c("cre", "ctb"),
+           email = "emilymgalvin@gmail.com"))
 Description: This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows:  read-in the controlled vocabulary, validate according to the codebooks, and standardize cultivar names.
 URL: https://idahoagstats.github.io/factcuratoR/, https://github.com/IdahoAgStats/factcuratoR
 License: GPL (>= 3)
