@@ -4,12 +4,12 @@ Version: 1.2.1
 Authors@R: c(
     person(given = "Jacqueline",
            family = "Tay",
-           role = c("aut", "cre"),
+           role = c("aut"),
            email = "jacquelinejtay@gmail.com"),
     person(given = "Emily",
            family = "Galvin",
            role = c("cre", "ctb"),
-           email = "emilymgalvin@gmail.com"))
+           email = "egalvin@uidaho.edu"))
 Description: This package contains functions used in the workflow to curate variety testing data. The functions fall into a few different workflows:  read-in the controlled vocabulary, validate according to the codebooks, and standardize cultivar names.
 URL: https://idahoagstats.github.io/factcuratoR/, https://github.com/IdahoAgStats/factcuratoR
 License: GPL (>= 3)
