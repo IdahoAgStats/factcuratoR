@@ -45,14 +45,14 @@ find_fuzzymatch <- function(var_noexactmatch,
   # Test that crop_type matches crop_type_db or these will be unnecessarily filtered out
   crop_type_db <- variety_intid_db %>%
     select(crop_type_db) %>%
-    unique(.)
+    unique() # removed dot
 
   test <- var_noexactmatch %>%
     mutate(crop_match =
              ifelse(crop_type %in% c(crop_type_db$crop_type_db, NA),
                     TRUE, FALSE))
 
-  if (!all(test$crop_match)){
+  if (!all(test$crop_match)) {
     warning("Warning: crop_type does not match crop_type_db")
   }
   #
@@ -82,7 +82,7 @@ find_fuzzymatch <- function(var_noexactmatch,
                        intid_col = intid_col,
                        best_n = 1,
                        method_stringdist = "lcs") %>%
-    filter(method == "lcs dist_scaled" & dist_scaled <1)
+    filter(method == "lcs dist_scaled" & dist_scaled < 1)
 
   match <- bind_rows(match_jw, match_lv, match_lcs) %>%
     relocate(method, dist, dist_scaled, var_id, !!quo_intid_col, intid_db) %>%
@@ -93,7 +93,7 @@ find_fuzzymatch <- function(var_noexactmatch,
     group_by(var_id, variety_db) %>%
     mutate(method = paste(unique(method), collapse = ";")) %>%
     select(-c(dist, dist_scaled)) %>%
-    unique(.) %>%
+    unique() %>%
     ungroup()
 
   match_filt2 <-
@@ -181,8 +181,8 @@ extract_trail_digits <- function(df, x, rm_single){
 is_string_overlap <- function(df, x1, x2){
 
   df_test <- df %>%
-    mutate(test1 = str_detect({{x1}}, {{x2}})) %>%
-    mutate(test2 = str_detect({{x2}}, {{x1}})) %>%
+    mutate(test1 = stringi::stri_detect_fixed({{x1}}, {{x2}})) %>%
+    mutate(test2 = stringi::stri_detect_fixed({{x2}}, {{x1}})) %>%
     mutate(is_string_overlap = ifelse(nchar({{x1}}) > nchar({{x2}}), test1, test2)) %>%
     select(is_string_overlap)
 
