@@ -8,8 +8,8 @@
 <title>Example of the cultivar matching process • factcuratoR</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Example of the cultivar matching process">
 </head>
@@ -70,7 +70,7 @@
                         <h4 data-toc-skip class="author">Jacqueline
 Tay</h4>
             
-            <h4 data-toc-skip class="date">Nov 12, 2024</h4>
+            <h4 data-toc-skip class="date">Jan 06, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IdahoAgStats/factcuratoR/blob/HEAD/vignettes/example_cultivar_matching.Rmd" class="external-link"><code>vignettes/example_cultivar_matching.Rmd</code></a></small>
       <div class="d-none name"><code>example_cultivar_matching.Rmd</code></div>
@@ -79,20 +79,20 @@ Tay</h4>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">factcuratoR</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://idahoagstats.github.io/factcuratoR/">factcuratoR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_installed.html" class="external-link">check_installed</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span></span>
-<span><span class="va">example_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/example_cultivar_matching"</span><span class="op">)</span></span>
-<span><span class="va">knitroutputfolder</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output"</span><span class="op">)</span></span>
-<span><span class="va">knitroutputfolder_blends</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output_blends"</span><span class="op">)</span></span>
-<span><span class="va">auxiliary_files</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"auxiliary_files"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">codebook_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_controlled_vocab"</span><span class="op">)</span></span>
+<span><span class="va">example_folder</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst/extdata/example_cultivar_matching"</span><span class="op">)</span></span>
+<span><span class="va">knitroutputfolder</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output"</span><span class="op">)</span></span>
+<span><span class="va">knitroutputfolder_blends</span> <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"output_blends"</span><span class="op">)</span></span>
+<span><span class="va">auxiliary_files</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"auxiliary_files"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="read-in-raw-variety-names">Read in raw variety names<a class="anchor" aria-label="anchor" href="#read-in-raw-variety-names"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"example_cultivar_matching.csv"</span><span class="op">)</span>, </span>
+<code class="sourceCode R"><span><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">example_folder</span>, <span class="st">"example_cultivar_matching.csv"</span><span class="op">)</span>, </span>
 <span>                col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span></span></code></pre></div>
@@ -424,7 +424,7 @@ cv_rename.csv contains misspellings.</p>
 <span>                data_intid <span class="op">=</span> <span class="va">results_exactmatch</span><span class="op">$</span><span class="va">nomatch</span>, </span>
 <span>                match_type <span class="op">=</span> <span class="st">"raw"</span>, </span>
 <span>                rename_df <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">147</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
@@ -1113,7 +1113,7 @@ database. See next section for full details.</p></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fuzzy_status</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">19</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">16</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
@@ -1497,7 +1497,7 @@ all the matches and the stage where they were matched.</p>
 <p>Curate the blends separately from non-blend variety names. Below is
 an example for curating blends.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">blends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_match_variety_files"</span>, </span>
+<code class="sourceCode R"><span><span class="va">blends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tests/testthat/test_match_variety_files"</span>, </span>
 <span>                              <span class="st">"example_blends.csv"</span><span class="op">)</span>, </span>
 <span>                col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html" class="external-link">cols</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1736,7 +1736,7 @@ functions.</p>
 <span>                match_type <span class="op">=</span> <span class="st">"raw"</span>, </span>
 <span>                rename_df <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                is_blends <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                rename_df_path <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">codebook_folder</span>, <span class="st">"cv_rename.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">147</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Delimiter:</span> ","</span></span>
@@ -1905,7 +1905,7 @@ dist_scaled</td>
 </h3>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">blends_fuzzy_status</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_blends_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="va">auxiliary_files</span>, <span class="st">"fuzzymatch_blends_status.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var_id</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">1</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">15</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
@@ -2027,7 +2027,7 @@ dist_scaled</td>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

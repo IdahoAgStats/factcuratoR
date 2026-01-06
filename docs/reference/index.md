@@ -1,0 +1,64 @@
+# Package index
+
+## Validation functions
+
+- [`confront_data()`](https://idahoagstats.github.io/factcuratoR/reference/confront_data.md)
+  : Wrapper for create_rules() and validate::confront()
+- [`create_rules()`](https://idahoagstats.github.io/factcuratoR/reference/create_rules.md)
+  [`create.rules()`](https://idahoagstats.github.io/factcuratoR/reference/create_rules.md)
+  : Create rules from the codebook using validate::validator()
+- [`find_col_info()`](https://idahoagstats.github.io/factcuratoR/reference/find_col_info.md)
+  : Find column information
+- [`validate_colnames()`](https://idahoagstats.github.io/factcuratoR/reference/validate_colnames.md)
+  : Validate column names against codebook
+
+## Standardize data to codebook functions
+
+- [`standardize_cols_by_cb()`](https://idahoagstats.github.io/factcuratoR/reference/standardize_cols_by_cb.md)
+  : Standardize the columns in the order specified by the codebook
+
+## Access codebook functions
+
+- [`get_col_index()`](https://idahoagstats.github.io/factcuratoR/reference/get_col_index.md)
+  : Get column index for codebook variables in a list of data frames
+- [`get_variety_db()`](https://idahoagstats.github.io/factcuratoR/reference/get_variety_db.md)
+  [`get.variety_db()`](https://idahoagstats.github.io/factcuratoR/reference/get_variety_db.md)
+  : Return cultivar names along with unique internal identifier (no
+  spaces or special characters)
+- [`list_db_books()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_books.md)
+  [`list.db_books()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_books.md)
+  : List the names of the codebooks in the database
+- [`list_db_var()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_var.md)
+  [`list.db_var()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_var.md)
+  : List the variables (column names) in a given database codebook
+- [`readin_db()`](https://idahoagstats.github.io/factcuratoR/reference/readin_db.md)
+  [`readin.db()`](https://idahoagstats.github.io/factcuratoR/reference/readin_db.md)
+  : Read in all codebooks and create a combined cultivar file
+
+## Data model (dm) functions
+
+- [`create_dm()`](https://idahoagstats.github.io/factcuratoR/reference/create_dm.md)
+  : Create a data model object from the main codebook
+
+## Match variety modules
+
+- [`do_exactmatch()`](https://idahoagstats.github.io/factcuratoR/reference/do_exactmatch.md)
+  : Do the steps in the exact match
+- [`find_fuzzymatch()`](https://idahoagstats.github.io/factcuratoR/reference/find_fuzzymatch.md)
+  : Find fuzzymatch for variety using stringdist using methods "lv" and
+  "jw"
+- [`process_fuzzymatch()`](https://idahoagstats.github.io/factcuratoR/reference/process_fuzzymatch.md)
+  : Module to process fuzzymatches given an auxiliary file
+- [`process_std_new_names()`](https://idahoagstats.github.io/factcuratoR/reference/process_std_new_names.md)
+  : Process standardized new names that were created from
+  process_fuzzymatch()
+
+## Match variety functions
+
+- [`collect_final_matches()`](https://idahoagstats.github.io/factcuratoR/reference/collect_final_matches.md)
+  : Module to collect all the matches from each stage of the variety
+  matching process
+- [`create_intid()`](https://idahoagstats.github.io/factcuratoR/reference/create_intid.md)
+  : Create variety id (var_id) internal id (intid) for variety names
+- [`find_entries_raw_names()`](https://idahoagstats.github.io/factcuratoR/reference/find_entries_raw_names.md)
+  : Find entries for the cultivar names that need to be checked

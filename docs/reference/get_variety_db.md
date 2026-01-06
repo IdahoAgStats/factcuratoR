@@ -1,0 +1,61 @@
+# Return cultivar names along with unique internal identifier (no spaces or special characters)
+
+Filter the cultivar list by the date that the cultivar was added. The
+default value selects before current date. If select_before = NULL, then
+all dates will be returned. Recommended usage for curation is to use the
+current date, so that the curation is reproducible even as the cultivar
+list is being continuously updated.
+
+## Usage
+
+``` r
+get_variety_db(
+  db_folder,
+  select_before = Sys.Date(),
+  select_crops = NULL,
+  for_matching = FALSE
+)
+
+get.variety_db(
+  db_folder,
+  select_before = "2021-01-01",
+  select_crops = NULL,
+  for_matching = FALSE
+)
+```
+
+## Arguments
+
+- db_folder:
+
+  A string path to the database controlled vocabulary folder
+
+- select_before:
+
+  A string in the format of Ymd. The function returns cultivars that
+  were added to the datebase before this specified date.
+
+- select_crops:
+
+  A regular expression of crops separated by \|. Note that this regex
+  will filter on the `crop` column rather than `crop_type`. For example,
+  there are entries in the wheat file with crop Triticale, so to capture
+  both the input should be `select_crops = "wheat|triticale"`.
+
+- for_matching:
+
+  logical, whether the result will be used for matching. Default is
+  `FALSE`.
+
+## Details
+
+Cultivar names are stored by crop_type, this function will return all
+the requested crop_types.
+
+## See also
+
+Other access codebook functions:
+[`get_col_index()`](https://idahoagstats.github.io/factcuratoR/reference/get_col_index.md),
+[`list_db_books()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_books.md),
+[`list_db_var()`](https://idahoagstats.github.io/factcuratoR/reference/list_db_var.md),
+[`readin_db()`](https://idahoagstats.github.io/factcuratoR/reference/readin_db.md)
