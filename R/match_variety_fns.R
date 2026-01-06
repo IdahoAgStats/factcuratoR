@@ -11,12 +11,12 @@
 #' See the effect of these different selection methods in test_match_variety_fns.R
 #' @param raw_data A data.frame
 #' @param database A data.frame
-#' @param suffix A string denoting the name of the raw data
+# @param suffix A string denoting the name of the raw data
 #' @param intid_col A string denoting the name of the internal id column
 #'   used to join the raw data and database
 #' @param best_n A numeric denoting the number of best matches to select
-#' @param method A string corresponding to a string metric defined by stringdist
-#'   e.g. "lw", "jw"
+#' @param method_stringdist A string corresponding to a string metric defined by stringdist
+#'   e.g., "lw", "jw". See \code{\link[stringdist]{stringdist-metrics}} for details.
 #' @importFrom fuzzyjoin stringdist_join
 #' @keywords internal
 stringdist.variety <- function(raw_data,

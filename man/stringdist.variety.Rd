@@ -22,10 +22,8 @@ used to join the raw data and database}
 
 \item{best_n}{A numeric denoting the number of best matches to select}
 
-\item{suffix}{A string denoting the name of the raw data}
-
-\item{method}{A string corresponding to a string metric defined by stringdist
-e.g. "lw", "jw"}
+\item{method_stringdist}{A string corresponding to a string metric defined by stringdist
+e.g., "lw", "jw". See \code{\link[stringdist]{stringdist-metrics}} for details.}
 }
 \description{
 Fuzzymatch the varieties from the raw data with the database using an internal id.
