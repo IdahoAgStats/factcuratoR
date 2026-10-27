@@ -20,9 +20,9 @@ contain non-NA entries (for example if want to search trial, year, or filename),
 and return the first non-NA entry as an example
 }
 \seealso{
-Other validation functions: 
-\code{\link{confront_data}()},
-\code{\link{create_rules}()},
-\code{\link{validate_colnames}()}
+Other validation functions:
+\code{\link[=confront_data]{confront_data()}},
+\code{\link[=create_rules]{create_rules()}},
+\code{\link[=validate_colnames]{validate_colnames()}}
 }
 \concept{validation functions}

@@ -31,9 +31,9 @@ For example, if testing "trial_data", remove the names in df that correspond to 
 Validate column names against codebook
 }
 \seealso{
-Other validation functions: 
-\code{\link{confront_data}()},
-\code{\link{create_rules}()},
-\code{\link{find_col_info}()}
+Other validation functions:
+\code{\link[=confront_data]{confront_data()}},
+\code{\link[=create_rules]{create_rules()}},
+\code{\link[=find_col_info]{find_col_info()}}
 }
 \concept{validation functions}

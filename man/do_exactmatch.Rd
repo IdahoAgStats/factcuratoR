@@ -55,9 +55,9 @@ Default is FALSE}
 Do the steps in the exact match
 }
 \seealso{
-Other match variety modules: 
-\code{\link{find_fuzzymatch}()},
-\code{\link{process_fuzzymatch}()},
-\code{\link{process_std_new_names}()}
+Other match variety modules:
+\code{\link[=find_fuzzymatch]{find_fuzzymatch()}},
+\code{\link[=process_fuzzymatch]{process_fuzzymatch()}},
+\code{\link[=process_std_new_names]{process_std_new_names()}}
 }
 \concept{match variety modules}

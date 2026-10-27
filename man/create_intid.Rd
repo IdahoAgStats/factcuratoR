@@ -54,8 +54,8 @@ Also, currently, only sep_aliases OR alias_col can be provided.  (The function
 is not written to handle aliases in both the variety column and a separate column.)
 }
 \seealso{
-Other match variety functions: 
-\code{\link{collect_final_matches}()},
-\code{\link{find_entries_raw_names}()}
+Other match variety functions:
+\code{\link[=collect_final_matches]{collect_final_matches()}},
+\code{\link[=find_entries_raw_names]{find_entries_raw_names()}}
 }
 \concept{match variety functions}

@@ -27,10 +27,10 @@ List the variables (column names) in a given database codebook
 A wrapper for list_db_var to maintain backwards compatibility
 }
 \seealso{
-Other access codebook functions: 
-\code{\link{get_col_index}()},
-\code{\link{get_variety_db}()},
-\code{\link{list_db_books}()},
-\code{\link{readin_db}()}
+Other access codebook functions:
+\code{\link[=get_col_index]{get_col_index()}},
+\code{\link[=get_variety_db]{get_variety_db()}},
+\code{\link[=list_db_books]{list_db_books()}},
+\code{\link[=readin_db]{readin_db()}}
 }
 \concept{access codebook functions}

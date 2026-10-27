@@ -26,9 +26,9 @@ inability for confront() to detect NAs with grepl.
 See create_rules() for more details.
 }
 \seealso{
-Other validation functions: 
-\code{\link{create_rules}()},
-\code{\link{find_col_info}()},
-\code{\link{validate_colnames}()}
+Other validation functions:
+\code{\link[=create_rules]{create_rules()}},
+\code{\link[=find_col_info]{find_col_info()}},
+\code{\link[=validate_colnames]{validate_colnames()}}
 }
 \concept{validation functions}

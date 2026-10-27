@@ -32,10 +32,10 @@ Returns a list of integer vectors with the same list names as \code{datalist}.
 This function is used to get the column index numbers for selected columns. The index vectors are used to set column styling for Excel data templates, i.e. highlighting required columns. Invalid codebook_names will throw an error.
 }
 \seealso{
-Other access codebook functions: 
-\code{\link{get_variety_db}()},
-\code{\link{list_db_books}()},
-\code{\link{list_db_var}()},
-\code{\link{readin_db}()}
+Other access codebook functions:
+\code{\link[=get_variety_db]{get_variety_db()}},
+\code{\link[=list_db_books]{list_db_books()}},
+\code{\link[=list_db_var]{list_db_var()}},
+\code{\link[=readin_db]{readin_db()}}
 }
 \concept{access codebook functions}

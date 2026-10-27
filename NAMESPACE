@@ -30,15 +30,21 @@ import(readr)
 import(stringr)
 import(tidyr)
 importFrom(DiagrammeR,grViz)
-importFrom(data.table,`:=`)
+importFrom(data.table,":=")
 importFrom(dm,as_dm)
 importFrom(fuzzyjoin,stringdist_join)
-importFrom(magrittr,`%>%`)
-importFrom(stats,na.omit)
-importFrom(stats,setNames)
+importFrom(magrittr,"%>%")
+importFrom(stats,
+  na.omit,
+  setNames
+)
 importFrom(tibble,add_row)
-importFrom(utils,capture.output)
-importFrom(utils,read.csv)
-importFrom(utils,write.csv)
-importFrom(validate,confront)
-importFrom(validate,validator)
+importFrom(utils,
+  capture.output,
+  read.csv,
+  write.csv
+)
+importFrom(validate,
+  confront,
+  validator
+)

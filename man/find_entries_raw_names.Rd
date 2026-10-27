@@ -19,8 +19,8 @@ Summarises how many times a cultivar name shows up in the raw
 data per year
 }
 \seealso{
-Other match variety functions: 
-\code{\link{collect_final_matches}()},
-\code{\link{create_intid}()}
+Other match variety functions:
+\code{\link[=collect_final_matches]{collect_final_matches()}},
+\code{\link[=create_intid]{create_intid()}}
 }
 \concept{match variety functions}

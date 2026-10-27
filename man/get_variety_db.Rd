@@ -45,10 +45,10 @@ Cultivar names are stored by crop_type, this function will return all the reques
 crop_types.
 }
 \seealso{
-Other access codebook functions: 
-\code{\link{get_col_index}()},
-\code{\link{list_db_books}()},
-\code{\link{list_db_var}()},
-\code{\link{readin_db}()}
+Other access codebook functions:
+\code{\link[=get_col_index]{get_col_index()}},
+\code{\link[=list_db_books]{list_db_books()}},
+\code{\link[=list_db_var]{list_db_var()}},
+\code{\link[=readin_db]{readin_db()}}
 }
 \concept{access codebook functions}

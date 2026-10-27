@@ -1,25 +1,23 @@
 # Example of the cultivar matching process
 
-``` r
-library(factcuratoR)
-
-rlang::check_installed("here")
-
-codebook_folder <- here::here("tests/testthat/test_controlled_vocab")
-example_folder <- here::here("inst/extdata/example_cultivar_matching")
-knitroutputfolder = here::here(example_folder, "output")
-knitroutputfolder_blends = here::here(example_folder, "output_blends")
-auxiliary_files <- here::here(example_folder, "auxiliary_files")
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`factcuratoR`](https://idahoagstats.github.io/factcuratoR/)`)`\
+\
+`rlang``::`[`check_installed`](https://rlang.r-lib.org/reference/is_installed.html)`(``"here"``)`\
+\
+`codebook_folder`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``"tests/testthat/test_controlled_vocab"``)`\
+`example_folder`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``"inst/extdata/example_cultivar_matching"``)`\
+`knitroutputfolder`` ``=`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``example_folder``, ``"output"``)`\
+`knitroutputfolder_blends`` ``=`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``example_folder``, ``"output_blends"``)`\
+`auxiliary_files`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``example_folder``, ``"auxiliary_files"``)`
 
 ## Read in raw variety names
 
-``` r
-var <- read_csv(here::here(example_folder, "example_cultivar_matching.csv"), 
-                col_types = cols())
-
-knitr::kable(var)
-```
+\
+`var`` ``<-`` `[`read_csv`](https://readr.tidyverse.org/reference/read_delim.html)`(``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``example_folder``, ``"example_cultivar_matching.csv"``)``, `\
+`                col_types ``=`` `[`cols`](https://readr.tidyverse.org/reference/cols.html)`(``)``)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``var``)`
 
 | variety | crop_type | nursery | behavior_to_test |
 |:---|:---|:---|:---|
@@ -69,18 +67,17 @@ Note! Once the fuzzy matching stage is started, it is important that the
 `var_id` doesn’t change other it will cause problems with matching up
 matches with the correct names.
 
-``` r
-names_raw <- 
-  create_intid(var, 
-               variety, 
-               sep_aliases = "\\(", 
-               crop_type, 
-               nursery) %>% mutate(var_id = as.character(var_id))#, 
-#> Check variety names for possible duplicates[1] "W512" "W512"
-               #alias_col = alias)
-
-knitr::kable(names_raw)
-```
+\
+`names_raw`` ``<-`` `\
+`  `[`create_intid`](https://idahoagstats.github.io/factcuratoR/reference/create_intid.md)`(``var``, `\
+`               ``variety``, `\
+`               sep_aliases ``=`` ``"\\("``, `\
+`               ``crop_type``, `\
+`               ``nursery``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``var_id ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``var_id``)``)``#, `\
+`#> Check variety names for possible duplicates[1] "W512" "W512"`\
+`               ``#alias_col = alias)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``names_raw``)`
 
 | variety                      | crop_type | nursery | type    | intid        | var_id |
 |:-----------------------------|:----------|:--------|:--------|:-------------|:-------|
@@ -109,33 +106,32 @@ The first step is to exact match to the cultivar names in the codebooks
 The second step is to exact match to the names in the cv_rename.csv.
 cv_rename.csv contains misspellings.
 
-``` r
-results_exactmatch <- 
-  do_exactmatch(db_folder = codebook_folder,
-                data_intid = names_raw,
-                select_before = "2021-11-22",
-                match_type = "raw")
-#> match: 5 nomatch: 10 check: 0 not_needed: 2
-
-results_rename <- 
-  do_exactmatch(db_folder = codebook_folder, 
-                data_intid = results_exactmatch$nomatch, 
-                match_type = "raw", 
-                rename_df = TRUE,
-                rename_df_path = here::here(codebook_folder, "cv_rename.csv"))
-#> Rows: 147 Columns: 4
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr (4): correct_variety_name, wrong_name, program, crop_type
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#> var_id and db_id do not exist. test_multmatch and test_aliasdup not run
-#> 
-#> match: 2 nomatch: 8 check: 0 not_needed: 0
-
-knitr::kable(results_exactmatch[["match"]])
-```
+\
+`results_exactmatch`` ``<-`` `\
+`  `[`do_exactmatch`](https://idahoagstats.github.io/factcuratoR/reference/do_exactmatch.md)`(``db_folder ``=`` ``codebook_folder``,`\
+`                data_intid ``=`` ``names_raw``,`\
+`                select_before ``=`` ``"2021-11-22"``,`\
+`                match_type ``=`` ``"raw"``)`\
+`#> match: 5 nomatch: 10 check: 0 not_needed: 2`\
+\
+`results_rename`` ``<-`` `\
+`  `[`do_exactmatch`](https://idahoagstats.github.io/factcuratoR/reference/do_exactmatch.md)`(``db_folder ``=`` ``codebook_folder``, `\
+`                data_intid ``=`` ``results_exactmatch``$``nomatch``, `\
+`                match_type ``=`` ``"raw"``, `\
+`                rename_df ``=`` ``TRUE``,`\
+`                rename_df_path ``=`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``codebook_folder``, ``"cv_rename.csv"``)``)`\
+`#> ``Rows: ``147`` ``Columns: ``4`\
+`#> ``──`` ``Column specification`` ``────────────────────────────────────────────────────────`\
+`#> ``Delimiter:`` ","`\
+`#> ``chr`` (4): correct_variety_name, wrong_name, program, crop_type`\
+`#> `\
+`#> ``ℹ```  Use `spec()` to retrieve the full column specification for this data. ``\
+`#> ``ℹ```  Specify the column types or set `show_col_types = FALSE` to quiet this message. ``\
+`#> var_id and db_id do not exist. test_multmatch and test_aliasdup not run`\
+`#> `\
+`#> match: 2 nomatch: 8 check: 0 not_needed: 0`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``results_exactmatch``[[``"match"``]``]``)`
 
 | variety | crop_type | nursery | type | intid | var_id | db_id | crop_db | crop_type_db | date_added_db | type_db | variety_db | intid_db | is_truematch | any_match |
 |:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|
@@ -145,18 +141,16 @@ knitr::kable(results_exactmatch[["match"]])
 | W512 | wheat | H_W;HRW | variety | w512 | 6 | 437 | Hard Red Winter Wheat | wheat | 2020-06-08 | alias | W512 | w512 | TRUE | TRUE |
 | Wildfile (W512) | wheat | HRW | alias | w512 | 8 | 437 | Hard Red Winter Wheat | wheat | 2020-06-08 | alias | W512 | w512 | TRUE | TRUE |
 
-``` r
-knitr::kable(results_rename[["match"]])
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``results_rename``[[``"match"``]``]``)`
 
 | variety | crop_type | nursery | type | intid | var_id | intid_db_db | variety_db | wrong_name | crop_type_db | type_db | intid_db | is_truematch | any_match |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | melbclub | wheat | NA | variety | melbclub | 9 | melba | Melba | melbclub | wheat | NA | melbclub | TRUE | TRUE |
 | wb1035cl | wheat | NA | variety | wb1035cl | 13 | wb1035cl+ | WB-1035CL+ | WB 1035 CL | wheat | NA | wb1035cl | TRUE | TRUE |
 
-``` r
-knitr::kable(results_rename[["nomatch"]])
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``results_rename``[[``"nomatch"``]``]``)`
 
 | variety | crop_type | nursery | type | intid | var_id | wrong_name |
 |:---|:---|:---|:---|:---|:---|:---|
@@ -192,17 +186,16 @@ The results of `find_fuzzymatch(`) are written to the file
 *fuzzymatch.csv* in the directory provided by the user in the
 `knitroutputfolder` argument.
 
-``` r
-output_fuzzymatch <- 
-  find_fuzzymatch(results_rename$nomatch,
-                intid_col = "intid",
-                select_before = "2021-05-26",
-                knitroutputfolder = knitroutputfolder,
-                db_folder = codebook_folder)
-#> Writing out fuzzymatch.csv
-
-knitr::kable(output_fuzzymatch)
-```
+\
+`output_fuzzymatch`` ``<-`` `\
+`  `[`find_fuzzymatch`](https://idahoagstats.github.io/factcuratoR/reference/find_fuzzymatch.md)`(``results_rename``$``nomatch``,`\
+`                intid_col ``=`` ``"intid"``,`\
+`                select_before ``=`` ``"2021-05-26"``,`\
+`                knitroutputfolder ``=`` ``knitroutputfolder``,`\
+`                db_folder ``=`` ``codebook_folder``)`\
+`#> Writing out fuzzymatch.csv`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``output_fuzzymatch``)`
 
 | is_truematch | intid | intid_db | variety | variety_db | var_id | db_id | type | type_db | crop_db | crop_type | crop_type_db | date_added_db | method | nursery | wrong_name |
 |:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|:---|
@@ -258,7 +251,7 @@ manually checked. Some steps for that:
   is_truematch in the *helper_files/fuzzymatch_aux.csv* file.
 
 There may be newly detected fuzzy matches for successive runs of the
-.Rmd.  
+.Rmd.\
 This may occur if there are new names added to the codebook or if the
 fuzzymatching function is updated.
 
@@ -276,37 +269,36 @@ original fuzzymatch.csv (“csv”).)
   match and need to be standardized before being added to the database.
   See next section for full details.
 
-``` r
-fuzzy_status <- 
-  read_csv(here::here(auxiliary_files, "fuzzymatch_status.csv")) %>%
-  mutate(var_id = as.character(var_id))
-#> Rows: 19 Columns: 16
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr  (11): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...
-#> dbl   (2): var_id, db_id
-#> lgl   (2): is_truematch, wrong_name
-#> date  (1): date_added_db
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-results_fuzzymatch <- 
-  process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, 
-                     aux_fuzzy_status = fuzzy_status,
-                     knitroutputfolder = knitroutputfolder)
-#> Warning in process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, :
-#> var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to
-#> NA
-#> Varieties left to check: 0
-#> Writing out fuzzy_check.csv.  Check these fuzzymatches.
-#>             Add source = new_fuzzymatches to the aux_fuzzy_status file.
-#> Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv
-#> Writing standardize_new_names.csv.
-#>           If a cultivar has more than one spelling or formatting,
-#>           standardize the name in the new_std_name column
-#> match: 2 nomatch: 5 check: 0 not_needed: 0
-```
+\
+`fuzzy_status`` ``<-`` `\
+`  `[`read_csv`](https://readr.tidyverse.org/reference/read_delim.html)`(``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``auxiliary_files``, ``"fuzzymatch_status.csv"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``var_id ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``var_id``)``)`\
+`#> ``Rows: ``19`` ``Columns: ``16`\
+`#> ``──`` ``Column specification`` ``────────────────────────────────────────────────────────`\
+`#> ``Delimiter:`` ","`\
+`#> ``chr``  (11): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...`\
+`#> ``dbl``   (2): var_id, db_id`\
+`#> ``lgl``   (2): is_truematch, wrong_name`\
+`#> ``date``  (1): date_added_db`\
+`#> `\
+`#> ``ℹ```  Use `spec()` to retrieve the full column specification for this data. ``\
+`#> ``ℹ```  Specify the column types or set `show_col_types = FALSE` to quiet this message. ``\
+\
+`results_fuzzymatch`` ``<-`` `\
+`  `[`process_fuzzymatch`](https://idahoagstats.github.io/factcuratoR/reference/process_fuzzymatch.md)`(``output_fuzzymatch_df ``=`` ``output_fuzzymatch``, `\
+`                     aux_fuzzy_status ``=`` ``fuzzy_status``,`\
+`                     knitroutputfolder ``=`` ``knitroutputfolder``)`\
+`#> Warning in process_fuzzymatch(output_fuzzymatch_df = output_fuzzymatch, :`\
+`#> var_id has changed between the two inputs. Setting aux_fuzzy_status var_id to`\
+`#> NA`\
+`#> Varieties left to check: 0`\
+`#> Writing out fuzzy_check.csv.  Check these fuzzymatches.`\
+`#>             Add source = new_fuzzymatches to the aux_fuzzy_status file.`\
+`#> Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv`\
+`#> Writing standardize_new_names.csv.`\
+`#>           If a cultivar has more than one spelling or formatting,`\
+`#>           standardize the name in the new_std_name column`\
+`#> match: 2 nomatch: 5 check: 0 not_needed: 0`
 
 ### Standardize names without a match
 
@@ -326,7 +318,7 @@ Note on duplicate names: It is especially important if there are
 different spellings of the same variety, the names are standardized in
 this file. For example, if “WA0061” and “WA61” are the same variety
 (spoiler: they are), the `new_std_name` should be the same for both
-entries.  
+entries.\
 If the names are not standardized, processing the names later will
 create two different entries to add to the database controlled
 vocabularies.
@@ -358,24 +350,23 @@ missed.
   the database. May need to manually fill in extra information such as
   crop or alias
 
-``` r
-results_new_names <- 
-  process_std_new_names(
-    output_nomatch_df = results_fuzzymatch[["nomatch"]], 
-    auxiliary_files = auxiliary_files,  
-    filename = "standardize_new_names_aux.csv",
-    knitroutputfolder = knitroutputfolder,
-    db_folder = codebook_folder)
-#> Joining with `by = join_by(var_id, variety, intid, type, crop_type)`
-#> Writing add_to_new_std_name.csv. Add these entries to
-#> auxiliary_files/standardize_new_names*.csv
-#> Joining with `by = join_by(comment)`
-#> Status: # A tibble: 3 × 4 comment n required req <chr> <int> <lgl> <int> 1
-#> exists in both data and codebook 1 NA NA 2 not present in codebook: cultivar 10
-#> NA NA 3 not present in data 10 TRUE 2
-#> Adding columns: crop, date_added, alias, pedigree, year_released, usage,
-#> usda_pi_number, pvp, patent, comments
-```
+\
+`results_new_names`` ``<-`` `\
+`  `[`process_std_new_names`](https://idahoagstats.github.io/factcuratoR/reference/process_std_new_names.md)`(`\
+`    output_nomatch_df ``=`` ``results_fuzzymatch``[[``"nomatch"``]``]``, `\
+`    auxiliary_files ``=`` ``auxiliary_files``,  `\
+`    filename ``=`` ``"standardize_new_names_aux.csv"``,`\
+`    knitroutputfolder ``=`` ``knitroutputfolder``,`\
+`    db_folder ``=`` ``codebook_folder``)`\
+`` #> Joining with `by = join_by(var_id, variety, intid, type, crop_type)` ``\
+`#> Writing add_to_new_std_name.csv. Add these entries to`\
+`#> auxiliary_files/standardize_new_names*.csv`\
+`` #> Joining with `by = join_by(comment)` ``\
+`#> Status: ``# A tibble: 3 × 4`` comment n required req ``<chr>`` ``<int>`` ``<lgl>`` ``<int>`` ``1`\
+`#> exists in both data and codebook 1 ``NA`` ``NA`` ``2`` not present in codebook: cultivar 10`\
+`#> ``NA`` ``NA`` ``3`` not present in data 10 TRUE 2`\
+`#> Adding columns: crop, date_added, alias, pedigree, year_released, usage,`\
+`#> usda_pi_number, pvp, patent, comments`
 
 ### Iterate through the process
 
@@ -408,22 +399,21 @@ function[`collect_final_matches()`](https://idahoagstats.github.io/factcuratoR/r
 is used to collect all the matches and the stage where they were
 matched.
 
-``` r
-names_matches <- 
-  collect_final_matches(list(exact = results_exactmatch,
-                             rename = results_rename,
-                             fuzzy = results_fuzzymatch), 
-                        names_raw,
-                        knitroutputfolder = knitroutputfolder)
-#> Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source`
-#> Warning: Unknown columns: `crop_db`, `method`, `source`
-#> Warning: Unknown columns: `intid_db_db`
-#> Warning:  5 cultivar(s) not yet matched to the database.
-#>                       The raw name is being returned
-#> Writing final_matches.csv
-
-knitr::kable(names_matches)
-```
+\
+`names_matches`` ``<-`` `\
+`  `[`collect_final_matches`](https://idahoagstats.github.io/factcuratoR/reference/collect_final_matches.md)`(`[`list`](https://rdrr.io/r/base/list.html)`(``exact ``=`` ``results_exactmatch``,`\
+`                             rename ``=`` ``results_rename``,`\
+`                             fuzzy ``=`` ``results_fuzzymatch``)``, `\
+`                        ``names_raw``,`\
+`                        knitroutputfolder ``=`` ``knitroutputfolder``)`\
+`` #> Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source` ``\
+`` #> Warning: Unknown columns: `crop_db`, `method`, `source` ``\
+`` #> Warning: Unknown columns: `intid_db_db` ``\
+`#> Warning:  5 cultivar(s) not yet matched to the database.`\
+`#>                       The raw name is being returned`\
+`#> Writing final_matches.csv`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``names_matches``)`
 
 | variety | crop_type | nursery | type | intid | var_id | n_var_id | variety_db | match_step | intid_matches | intid_db | type_db |
 |:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|
@@ -444,23 +434,21 @@ knitr::kable(names_matches)
 
 ## Bind matches with the data
 
-``` r
-# do not run this code (it's here for example only)
-data_cv_names <- left_join(data, names_matches, by = "variety")
-```
+\
+`# do not run this code (it's here for example only)`\
+`data_cv_names`` ``<-`` `[`left_join`](https://dplyr.tidyverse.org/reference/mutate-joins.html)`(``data``, ``names_matches``, by ``=`` ``"variety"``)`
 
 ## Special instructions for matching blends
 
 Curate the blends separately from non-blend variety names. Below is an
 example for curating blends.
 
-``` r
-blends <- read_csv(here::here("tests/testthat/test_match_variety_files", 
-                              "example_blends.csv"), 
-                col_types = cols())
-
-knitr::kable(blends)
-```
+\
+`blends`` ``<-`` `[`read_csv`](https://readr.tidyverse.org/reference/read_delim.html)`(``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``"tests/testthat/test_match_variety_files"``, `\
+`                              ``"example_blends.csv"``)``, `\
+`                col_types ``=`` `[`cols`](https://readr.tidyverse.org/reference/cols.html)`(``)``)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends``)`
 
 | variety            | crop_type | behavior_to_Test           |
 |:-------------------|:----------|:---------------------------|
@@ -473,19 +461,18 @@ knitr::kable(blends)
 Note! For blends, set the argument `is_blends = TRUE` for each of the
 variety matching functions.
 
-``` r
-blends_raw <- 
-  create_intid(blends, 
-               variety, 
-               # Although sep_alias is used to separate 
-               # an alias from the variety name, it can also be used here 
-               #to separate two names in a blend
-               sep_aliases = "\\/", 
-               crop_type,
-               is_blends = TRUE) 
-
-knitr::kable(blends_raw)
-```
+\
+`blends_raw`` ``<-`` `\
+`  `[`create_intid`](https://idahoagstats.github.io/factcuratoR/reference/create_intid.md)`(``blends``, `\
+`               ``variety``, `\
+`               ``# Although sep_alias is used to separate `\
+`               ``# an alias from the variety name, it can also be used here `\
+`               ``#to separate two names in a blend`\
+`               sep_aliases ``=`` ``"\\/"``, `\
+`               ``crop_type``,`\
+`               is_blends ``=`` ``TRUE``)`` `\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_raw``)`
 
 | variety            | crop_type | type   | intid      | var_id |
 |:-------------------|:----------|:-------|:-----------|:-------|
@@ -498,17 +485,16 @@ knitr::kable(blends_raw)
 
 ### Do exact matching step
 
-``` r
-blends_exactmatch <- 
-  do_exactmatch(db_folder = codebook_folder,
-                data_intid = blends_raw,
-                select_before = "2021-11-22",
-                match_type = "raw",
-                is_blends = TRUE)
-#> match: 3 nomatch: 3 check: 0 not_needed: 0
-
-knitr::kable(blends_exactmatch[["match"]])
-```
+\
+`blends_exactmatch`` ``<-`` `\
+`  `[`do_exactmatch`](https://idahoagstats.github.io/factcuratoR/reference/do_exactmatch.md)`(``db_folder ``=`` ``codebook_folder``,`\
+`                data_intid ``=`` ``blends_raw``,`\
+`                select_before ``=`` ``"2021-11-22"``,`\
+`                match_type ``=`` ``"raw"``,`\
+`                is_blends ``=`` ``TRUE``)`\
+`#> match: 3 nomatch: 3 check: 0 not_needed: 0`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_exactmatch``[[``"match"``]``]``)`
 
 | variety | crop_type | type | intid | var_id | db_id | crop_db | crop_type_db | date_added_db | type_db | variety_db | intid_db | is_truematch | any_match |
 |:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|
@@ -516,9 +502,8 @@ knitr::kable(blends_exactmatch[["match"]])
 | APcoachman/ alpowa | wheat | blends | alpowa | 1 | 442 | Soft White Spring Wheat | wheat | 2020-06-08 | variety | Alpowa | alpowa | TRUE | TRUE |
 | wildfire/ altigo | wheat | blends | altigo | 3 | 443 | Hard Red Winter Wheat | wheat | 2020-06-08 | variety | Altigo | altigo | TRUE | TRUE |
 
-``` r
-knitr::kable(blends_exactmatch[["nomatch"]])
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_exactmatch``[[``"nomatch"``]``]``)`
 
 | variety          | crop_type | type   | intid    | var_id |
 |:-----------------|:----------|:-------|:---------|:-------|
@@ -526,34 +511,32 @@ knitr::kable(blends_exactmatch[["nomatch"]])
 | coachman/alpwa   | wheat     | blends | alpwa    | 2      |
 | wildfire/ altigo | wheat     | blends | wildfire | 3      |
 
-``` r
-blends_rename <- 
-  do_exactmatch(db_folder = codebook_folder, 
-                data_intid = blends_exactmatch$nomatch, 
-                match_type = "raw", 
-                rename_df = TRUE, 
-                is_blends = TRUE,
-                rename_df_path = here::here(codebook_folder, "cv_rename.csv"))
-#> Rows: 147 Columns: 4
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr (4): correct_variety_name, wrong_name, program, crop_type
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#> match: 2 nomatch: 1 check: 0 not_needed: 0
-
-knitr::kable(blends_rename[["match"]])
-```
+\
+`blends_rename`` ``<-`` `\
+`  `[`do_exactmatch`](https://idahoagstats.github.io/factcuratoR/reference/do_exactmatch.md)`(``db_folder ``=`` ``codebook_folder``, `\
+`                data_intid ``=`` ``blends_exactmatch``$``nomatch``, `\
+`                match_type ``=`` ``"raw"``, `\
+`                rename_df ``=`` ``TRUE``, `\
+`                is_blends ``=`` ``TRUE``,`\
+`                rename_df_path ``=`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``codebook_folder``, ``"cv_rename.csv"``)``)`\
+`#> ``Rows: ``147`` ``Columns: ``4`\
+`#> ``──`` ``Column specification`` ``────────────────────────────────────────────────────────`\
+`#> ``Delimiter:`` ","`\
+`#> ``chr`` (4): correct_variety_name, wrong_name, program, crop_type`\
+`#> `\
+`#> ``ℹ```  Use `spec()` to retrieve the full column specification for this data. ``\
+`#> ``ℹ```  Specify the column types or set `show_col_types = FALSE` to quiet this message. ``\
+`#> match: 2 nomatch: 1 check: 0 not_needed: 0`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_rename``[[``"match"``]``]``)`
 
 | variety | crop_type | type | intid | var_id | intid_db_db | variety_db | wrong_name | crop_type_db | type_db | intid_db | is_truematch | any_match |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | coachman/alpwa | wheat | blends | alpwa | 2 | alpowa | Alpowa | alpwa | wheat | NA | alpwa | TRUE | TRUE |
 | wildfire/ altigo | wheat | blends | wildfire | 3 | aacwildfire | AAC Wildfire | Wildfire | NA | NA | wildfire | TRUE | TRUE |
 
-``` r
-knitr::kable(blends_rename[["nomatch"]])
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_rename``[[``"nomatch"``]``]``)`
 
 | variety        | crop_type | type   | intid    | var_id | wrong_name |
 |:---------------|:----------|:-------|:---------|:-------|:-----------|
@@ -561,17 +544,16 @@ knitr::kable(blends_rename[["nomatch"]])
 
 ### Do fuzzymatching step
 
-``` r
-blends_fuzzymatch <- 
-  find_fuzzymatch(blends_rename$nomatch,
-                intid_col = "intid",
-                select_before = "2021-05-26",
-                knitroutputfolder = knitroutputfolder_blends,
-                db_folder = codebook_folder)
-#> Writing out fuzzymatch.csv
-
-knitr::kable(blends_fuzzymatch)
-```
+\
+`blends_fuzzymatch`` ``<-`` `\
+`  `[`find_fuzzymatch`](https://idahoagstats.github.io/factcuratoR/reference/find_fuzzymatch.md)`(``blends_rename``$``nomatch``,`\
+`                intid_col ``=`` ``"intid"``,`\
+`                select_before ``=`` ``"2021-05-26"``,`\
+`                knitroutputfolder ``=`` ``knitroutputfolder_blends``,`\
+`                db_folder ``=`` ``codebook_folder``)`\
+`#> Writing out fuzzymatch.csv`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_fuzzymatch``)`
 
 | is_truematch | intid | intid_db | variety | variety_db | var_id | db_id | type | type_db | crop_db | crop_type | crop_type_db | date_added_db | method | wrong_name |
 |:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|
@@ -579,54 +561,52 @@ knitr::kable(blends_fuzzymatch)
 
 ### Read in and process fuzzymatches
 
-``` r
-blends_fuzzy_status <- 
-  read_csv(here::here(auxiliary_files, "fuzzymatch_blends_status.csv")) %>%
-  mutate(var_id = as.character(var_id))
-#> Rows: 1 Columns: 15
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr  (10): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...
-#> dbl   (2): var_id, db_id
-#> lgl   (2): is_truematch, wrong_name
-#> date  (1): date_added_db
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-blends_results_fuzzymatch <- 
-  process_fuzzymatch(output_fuzzymatch_df = blends_fuzzymatch, 
-                     aux_fuzzy_status = blends_fuzzy_status,
-                     knitroutputfolder = knitroutputfolder_blends)
-#> Varieties left to check: 1
-#> Writing out fuzzy_check.csv.  Check these fuzzymatches.
-#>             Add source = new_fuzzymatches to the aux_fuzzy_status file.
-#> Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv
-#> Writing standardize_new_names.csv.
-#>           If a cultivar has more than one spelling or formatting,
-#>           standardize the name in the new_std_name column
-#> match: 0 nomatch: 0 check: 1 not_needed: 0
-```
+\
+`blends_fuzzy_status`` ``<-`` `\
+`  `[`read_csv`](https://readr.tidyverse.org/reference/read_delim.html)`(``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``auxiliary_files``, ``"fuzzymatch_blends_status.csv"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)\
+`  `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``var_id ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``var_id``)``)`\
+`#> ``Rows: ``1`` ``Columns: ``15`\
+`#> ``──`` ``Column specification`` ``────────────────────────────────────────────────────────`\
+`#> ``Delimiter:`` ","`\
+`#> ``chr``  (10): intid, intid_db, variety, variety_db, type, type_db, crop_db, cro...`\
+`#> ``dbl``   (2): var_id, db_id`\
+`#> ``lgl``   (2): is_truematch, wrong_name`\
+`#> ``date``  (1): date_added_db`\
+`#> `\
+`#> ``ℹ```  Use `spec()` to retrieve the full column specification for this data. ``\
+`#> ``ℹ```  Specify the column types or set `show_col_types = FALSE` to quiet this message. ``\
+\
+`blends_results_fuzzymatch`` ``<-`` `\
+`  `[`process_fuzzymatch`](https://idahoagstats.github.io/factcuratoR/reference/process_fuzzymatch.md)`(``output_fuzzymatch_df ``=`` ``blends_fuzzymatch``, `\
+`                     aux_fuzzy_status ``=`` ``blends_fuzzy_status``,`\
+`                     knitroutputfolder ``=`` ``knitroutputfolder_blends``)`\
+`#> Varieties left to check: 1`\
+`#> Writing out fuzzy_check.csv.  Check these fuzzymatches.`\
+`#>             Add source = new_fuzzymatches to the aux_fuzzy_status file.`\
+`#> Writing add_fuzzy_to_cv_rename.csv  Add these names to the main cv_rename.csv`\
+`#> Writing standardize_new_names.csv.`\
+`#>           If a cultivar has more than one spelling or formatting,`\
+`#>           standardize the name in the new_std_name column`\
+`#> match: 0 nomatch: 0 check: 1 not_needed: 0`
 
 ### Collect all matches
 
-``` r
-blends_matches <- 
-  collect_final_matches(list(exact = blends_exactmatch,
-                             rename = blends_rename,
-                             fuzzy = blends_results_fuzzymatch), 
-                        blends_raw,
-                        knitroutputfolder = knitroutputfolder_blends,
-                        is_blends = TRUE)
-#> Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source`
-#> Warning: Unknown columns: `crop_db`, `method`, `source`
-#> Warning: Unknown columns: `intid_db_db`
-#> Warning:  1 cultivar(s) not yet matched to the database.
-#>                       The raw name is being returned
-#> Writing final_matches.csv
-
-knitr::kable(blends_matches)
-```
+\
+`blends_matches`` ``<-`` `\
+`  `[`collect_final_matches`](https://idahoagstats.github.io/factcuratoR/reference/collect_final_matches.md)`(`[`list`](https://rdrr.io/r/base/list.html)`(``exact ``=`` ``blends_exactmatch``,`\
+`                             rename ``=`` ``blends_rename``,`\
+`                             fuzzy ``=`` ``blends_results_fuzzymatch``)``, `\
+`                        ``blends_raw``,`\
+`                        knitroutputfolder ``=`` ``knitroutputfolder_blends``,`\
+`                        is_blends ``=`` ``TRUE``)`\
+`` #> Warning: Unknown columns: `intid_db_db`, `wrong_name`, `method`, `source` ``\
+`` #> Warning: Unknown columns: `crop_db`, `method`, `source` ``\
+`` #> Warning: Unknown columns: `intid_db_db` ``\
+`#> Warning:  1 cultivar(s) not yet matched to the database.`\
+`#>                       The raw name is being returned`\
+`#> Writing final_matches.csv`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``blends_matches``)`
 
 | var_id | variety | crop_type | type | intid | n_var_id | variety_db | match_step | intid_db | type_db |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|

@@ -35,9 +35,9 @@ adding to the database.)
 }
 }
 \seealso{
-Other match variety modules: 
-\code{\link{do_exactmatch}()},
-\code{\link{find_fuzzymatch}()},
-\code{\link{process_std_new_names}()}
+Other match variety modules:
+\code{\link[=do_exactmatch]{do_exactmatch()}},
+\code{\link[=find_fuzzymatch]{find_fuzzymatch()}},
+\code{\link[=process_std_new_names]{process_std_new_names()}}
 }
 \concept{match variety modules}

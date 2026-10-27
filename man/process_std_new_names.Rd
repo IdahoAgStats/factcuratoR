@@ -40,9 +40,9 @@ Also, this function allows for iterations through the matching process.
 }
 }
 \seealso{
-Other match variety modules: 
-\code{\link{do_exactmatch}()},
-\code{\link{find_fuzzymatch}()},
-\code{\link{process_fuzzymatch}()}
+Other match variety modules:
+\code{\link[=do_exactmatch]{do_exactmatch()}},
+\code{\link[=find_fuzzymatch]{find_fuzzymatch()}},
+\code{\link[=process_fuzzymatch]{process_fuzzymatch()}}
 }
 \concept{match variety modules}

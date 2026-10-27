@@ -29,10 +29,10 @@ Read in all controlled variable codebooks and create a combined cultivar file
 in long format.
 }
 \seealso{
-Other access codebook functions: 
-\code{\link{get_col_index}()},
-\code{\link{get_variety_db}()},
-\code{\link{list_db_books}()},
-\code{\link{list_db_var}()}
+Other access codebook functions:
+\code{\link[=get_col_index]{get_col_index()}},
+\code{\link[=get_variety_db]{get_variety_db()}},
+\code{\link[=list_db_books]{list_db_books()}},
+\code{\link[=list_db_var]{list_db_var()}}
 }
 \concept{access codebook functions}

@@ -24,14 +24,13 @@ First, load **factcuratoR** and point to the main codebook (which
 currently must be named *codebooks_all_db.csv* for the validation
 functions)
 
-``` r
-library(factcuratoR)
-
-rlang::check_installed("here")
-
-codebook_folder <- here::here(
-  "tests/testthat/test_controlled_vocab")
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`factcuratoR`](https://idahoagstats.github.io/factcuratoR/)`)`\
+\
+`rlang``::`[`check_installed`](https://rlang.r-lib.org/reference/is_installed.html)`(``"here"``)`\
+\
+`codebook_folder`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(`\
+`  ``"tests/testthat/test_controlled_vocab"``)`
 
 The main codebook contains the variable names and required status for
 the trial data and the trial metadata. For example, the trial data
@@ -46,9 +45,8 @@ stored in a separate file called *traits.csv*. For validating the
 columns in the trial data, the validation functions pull in the traits
 and treats each trait as a column in the trial data.
 
-``` r
-create_dm(here::here(codebook_folder, "codebooks_all_db.csv"))
-```
+\
+[`create_dm`](https://idahoagstats.github.io/factcuratoR/reference/create_dm.md)`(``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``codebook_folder``, ``"codebooks_all_db.csv"``)``)`
 
 Fig. 1 Example codebook structure
 
@@ -74,18 +72,18 @@ crop_market_classes controlled vocabulary codebooks.
 
 The codebooks_all_db.csv has the following (required) columns:
 
-- `book`: name of the codebook  
+- `book`: name of the codebook\
 - `variable`: name of a column in the trial data, metadata, or a
-  codebook  
+  codebook\
 - `value_type`: A level matching one of the following options:
   - categorical: type if the variable must conform to controlled
     vocabularies (acceptable variables must be specified in
-    values_defined_in or value_range)  
+    values_defined_in or value_range)\
   - string: uncontrolled string (validation function will check to
-    ensure `is.character() == TRUE`)  
-  - integer (validation will check `%%1 == 0`)  
-  - continuous (acceptable range must be provided in `value_range`)  
-  - date (validation will check for yyyy-mm-dd format)  
+    ensure `is.character() == TRUE`)\
+  - integer (validation will check `%%1 == 0`)\
+  - continuous (acceptable range must be provided in `value_range`)\
+  - date (validation will check for yyyy-mm-dd format)\
 - `meaning`: description of the variable, including units or formatting
   requirements
 - `values_defined_in`: This is NA if value_type != “categorical.”
@@ -96,22 +94,21 @@ The codebooks_all_db.csv has the following (required) columns:
     vocabularies, enter the accepted values or ranges. This formatting
     is used in the *qc_validate_fns.R* to validate the data.
     - Entries should be separated by semi-colons (e.g. “TRUE; FALSE” or
-      “1; 2; 3”) \*Strings should be quoted (e.g. “value1”; “value2”)  
+      “1; 2; 3”) \*Strings should be quoted (e.g. “value1”; “value2”)\
     - Range should be in the form: min to max (e.g. 0 to 100)
     - Separate range and values using: \| (e.g. 0 to 100 \| -9) Careful!
       If there is more than one accepted value, make sure to separate
       those with a semi-colon (e.g. 0 to 100 \| -9;-99)
     - Due to Excel formatting issues, negative numbers should be
-      prefaced with ‘ but without closing quotes (e.g. “’-180”)
+      prefaced with ‘ but without closing quotes (e.g. “‘-180”)
 - `primary_key` \[??\]
 
-``` r
-codebooks_all <- readin.db(codebook_folder)
-#> This function name is being retained for backwards compatibility.
-#>           Please use readin_db()
-
-knitr::kable(codebooks_all$codebooks_all_db.csv %>% filter(book == "trial_data"))
-```
+\
+`codebooks_all`` ``<-`` `[`readin.db`](https://idahoagstats.github.io/factcuratoR/reference/readin_db.md)`(``codebook_folder``)`\
+`#> This function name is being retained for backwards compatibility.`\
+`#>           Please use readin_db()`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``codebooks_all``$``codebooks_all_db.csv`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``book`` ``==`` ``"trial_data"``)``)`
 
 | book | required | col_num | variable | value_type | meaning | values_defined_in | value_range | notes | type | previous name | max_characters | primary_key |
 |:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|---:|:---|
@@ -123,9 +120,8 @@ knitr::kable(codebooks_all$codebooks_all_db.csv %>% filter(book == "trial_data")
 | trial_data | TRUE | 5 | rep | integer | identifier for a experimental block within a field trial | NA | 1 to 20 | NA | NA | NA | NA | NA |
 | trial_data | TRUE | 7 | row | integer | what row the plot is found in | NA | 1 to 200 | NA | NA | NA | NA | NA |
 
-``` r
-knitr::kable(codebooks_all$codebooks_all_db.csv %>% filter(book == "locations"))
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``codebooks_all``$``codebooks_all_db.csv`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``book`` ``==`` ``"locations"``)``)`
 
 | book | required | col_num | variable | value_type | meaning | values_defined_in | value_range | notes | type | previous name | max_characters | primary_key |
 |:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|---:|:---|
@@ -140,7 +136,7 @@ When updating any codebook, the *codebooks_all_db.csv* must be updated
 to reflect the change.
 
 - A newly added variable column would correspond to a new row in
-  *codebooks_all_db.csv*.  
+  *codebooks_all_db.csv*.\
 - A changed variable column name would correspond to change in variable
   name in an existing row. Care must be taken as variables may be used
   in several different codebooks. Renames should be consistent across

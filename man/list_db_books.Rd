@@ -19,10 +19,10 @@ List the names of the codebooks in the database
 A wrapper for list_db_books to maintain backwards compatibility
 }
 \seealso{
-Other access codebook functions: 
-\code{\link{get_col_index}()},
-\code{\link{get_variety_db}()},
-\code{\link{list_db_var}()},
-\code{\link{readin_db}()}
+Other access codebook functions:
+\code{\link[=get_col_index]{get_col_index()}},
+\code{\link[=get_variety_db]{get_variety_db()}},
+\code{\link[=list_db_var]{list_db_var()}},
+\code{\link[=readin_db]{readin_db()}}
 }
 \concept{access codebook functions}

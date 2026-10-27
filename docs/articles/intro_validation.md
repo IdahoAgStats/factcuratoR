@@ -35,26 +35,24 @@ according to the standards established in the codebooks.
 First, load **factcuratoR** and point to the main codebook which must be
 named *codebooks_all_db.csv* for the validation functions to find it.
 
-``` r
-library(factcuratoR)
-
-rlang::check_installed("here")
-
-codebook_folder <- here::here(
-  "tests/testthat/test_controlled_vocab")
-
-knitroutputfolder <- here::here("inst/extdata/intro_validation", "output")
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`factcuratoR`](https://idahoagstats.github.io/factcuratoR/)`)`\
+\
+`rlang``::`[`check_installed`](https://rlang.r-lib.org/reference/is_installed.html)`(``"here"``)`\
+\
+`codebook_folder`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(`\
+`  ``"tests/testthat/test_controlled_vocab"``)`\
+\
+`knitroutputfolder`` ``<-`` ``here``::`[`here`](https://here.r-lib.org/reference/here.html)`(``"inst/extdata/intro_validation"``, ``"output"``)`
 
 ## Create some test data
 
-``` r
-test_data <- data.frame(location = c("Aberdeen", "Soda Springs", NA, "location_x"),
-                        year = c(rep(2020, 3), NA),
-                        variety = c("variety_1", "AAC Wildfire", "", NA),
-                        rep_temp = 1:4,
-                        sourcefile = "test")
-```
+\
+`test_data`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(``location ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"Aberdeen"``, ``"Soda Springs"``, ``NA``, ``"location_x"``)``,`\
+`                        year ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``2020``, ``3``)``, ``NA``)``,`\
+`                        variety ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"variety_1"``, ``"AAC Wildfire"``, ``""``, ``NA``)``,`\
+`                        rep_temp ``=`` ``1``:``4``,`\
+`                        sourcefile ``=`` ``"test"``)`
 
 ## Validate trial data
 
@@ -63,9 +61,8 @@ new variable (e.g. df_validate below) so that the calls to the
 validation functions don’t need to be updated every time there is a more
 cleaned up version of the data.
 
-``` r
-df_validate <- test_data
-```
+\
+`df_validate`` ``<-`` ``test_data`
 
 ### Check column names
 
@@ -74,15 +71,14 @@ the codebook and data. The argument `codebook_name = "trial_data"`
 indicates what codebook from the *codebooks_all_db.csv* should be used
 for this step.
 
-``` r
-colname_valid <- validate_colnames(df_validate, 
-                                   codebook_name = "trial_data", 
-                                   db_folder = codebook_folder)
-#> Joining with `by = join_by(comment)`
-#> Status: # A tibble: 3 × 4 comment n required req <chr> <int> <lgl> <int> 1
-#> exists in both data and codebook 1 NA NA 2 not present in codebook: trial_data
-#> 4 NA NA 3 not present in data 27 TRUE 6
-```
+\
+`colname_valid`` ``<-`` `[`validate_colnames`](https://idahoagstats.github.io/factcuratoR/reference/validate_colnames.md)`(``df_validate``, `\
+`                                   codebook_name ``=`` ``"trial_data"``, `\
+`                                   db_folder ``=`` ``codebook_folder``)`\
+`` #> Joining with `by = join_by(comment)` ``\
+`#> Status: ``# A tibble: 3 × 4`` comment n required req ``<chr>`` ``<int>`` ``<lgl>`` ``<int>`` ``1`\
+`#> exists in both data and codebook 1 ``NA`` ``NA`` ``2`` not present in codebook: trial_data`\
+`#> 4 ``NA`` ``NA`` ``3`` not present in data 27 TRUE 6`
 
 The main goal of validating column names is to get the value in the
 required column of row 3 to be zero. A value of zero indicates that all
@@ -117,9 +113,8 @@ vignette](https://idahoagstats.github.io/factcuratoR/articles/intro_codebooks.ht
 
 #### Full report of validating column names
 
-``` r
-knitr::kable(colname_valid)
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``colname_valid``)`
 
 | colname_data | colname_codebook | required | col_num | comment |
 |:---|:---|:---|---:|:---|
@@ -158,16 +153,15 @@ knitr::kable(colname_valid)
 
 #### To interact with the variable names that still need to be fixed
 
-``` r
-colname_valid_check <- colname_valid %>% 
-  filter(comment == "not present in codebook: trial_data")
-
-col_info <- find_col_info(df_validate, 
-                       cols_check = colname_valid_check$colname_data, 
-                       by_col = sourcefile)
-
-knitr::kable(col_info)
-```
+\
+`colname_valid_check`` ``<-`` ``colname_valid`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `\
+`  `[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``comment`` ``==`` ``"not present in codebook: trial_data"``)`\
+\
+`col_info`` ``<-`` `[`find_col_info`](https://idahoagstats.github.io/factcuratoR/reference/find_col_info.md)`(``df_validate``, `\
+`                       cols_check ``=`` ``colname_valid_check``$``colname_data``, `\
+`                       by_col ``=`` ``sourcefile``)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``col_info``)`
 
 |   n | contained_in | variable   | example  |
 |----:|:-------------|:-----------|:---------|
@@ -188,17 +182,16 @@ the accepted value range.
 Note: The argument `blends` = TRUE will check for blends in the variety
 column
 
-``` r
-colcontent_valid <- confront_data(df_validate, 
-                                  df_type = "trial_data",
-                                  db_folder = codebook_folder)
-#> Warning: Some issues left to resolve 
-#> # A tibble: 2 × 5
-#>   required fails   nNA error warning
-#>   <lgl>    <int> <int> <int>   <int>
-#> 1 TRUE         1     1     6       0
-#> 2 NA           0     0    21       0
-```
+\
+`colcontent_valid`` ``<-`` `[`confront_data`](https://idahoagstats.github.io/factcuratoR/reference/confront_data.md)`(``df_validate``, `\
+`                                  df_type ``=`` ``"trial_data"``,`\
+`                                  db_folder ``=`` ``codebook_folder``)`\
+`#> Warning: Some issues left to resolve `\
+`#> ``# A tibble: 2 × 5`\
+`#>   required fails   nNA error warning`\
+`#>   ``<lgl>``    ``<int>`` ``<int>`` ``<int>``   ``<int>`\
+`#> ``1`` TRUE         1     1     6       0`\
+`#> ``2`` ``NA``           0     0    21       0`
 
 The summary output for validating column contents reports the number of
 columns that have fails (that is, a column does not match controlled
@@ -217,10 +210,9 @@ then it should be added to the cultivar codebook.
 
 ### Full report of validating column contents
 
-``` r
-colcontent_summary <- colcontent_valid[["summary"]]
-knitr::kable(colcontent_summary)
-```
+\
+`colcontent_summary`` ``<-`` ``colcontent_valid``[[``"summary"``]``]`\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``colcontent_summary``)`
 
 | required | name | items | passes | fails | nNA | error | warning | expression | crop_type |
 |:---|:---|---:|---:|---:|---:|:---|:---|:---|:---|
@@ -255,14 +247,13 @@ knitr::kable(colcontent_summary)
 
 #### To check for validation fails interactively
 
-``` r
-var <- c("variety")
-colcontent_violate <- 
-  validate::violating(test_data, colcontent_valid[[2]][var]) %>% 
-  relocate(matches(var))
-
-knitr::kable(colcontent_violate)
-```
+\
+`var`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``"variety"``)`\
+`colcontent_violate`` ``<-`` `\
+`  ``validate``::`[`violating`](https://rdrr.io/pkg/validate/man/satisfying.html)`(``test_data``, ``colcontent_valid``[[``2``]``]``[``var``]``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `\
+`  `[`relocate`](https://dplyr.tidyverse.org/reference/relocate.html)`(`[`matches`](https://tidyselect.r-lib.org/reference/starts_with.html)`(``var``)``)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``colcontent_violate``)`
 
 |     | variety   | location | year | rep_temp | sourcefile |
 |:----|:----------|:---------|-----:|---------:|:-----------|
@@ -274,26 +265,24 @@ knitr::kable(colcontent_violate)
 The steps in validating the metadata is the same as validating the trial
 data, except the argument `codebook_name = "trials_metadata"`.
 
-``` r
-metadata_validate <- test_data
-```
+\
+`metadata_validate`` ``<-`` ``test_data`
 
 ### Check variable names
 
-``` r
-metadata_colname_valid <- 
-  validate_colnames(
-    metadata_validate, 
-    "trials_metadata",
-    db_folder = codebook_folder) %>%
-    select(comment, colname_data, colname_codebook, required, col_num) 
-#> Joining with `by = join_by(comment)`
-#> Status: # A tibble: 3 × 4 comment n required req <chr> <int> <lgl> <int> 1
-#> exists in both data and codebook 2 NA NA 2 not present in codebook:
-#> trials_metadata 3 NA NA 3 not present in data 25 TRUE 10
-
-knitr::kable(metadata_colname_valid)
-```
+\
+`metadata_colname_valid`` ``<-`` `\
+`  `[`validate_colnames`](https://idahoagstats.github.io/factcuratoR/reference/validate_colnames.md)`(`\
+`    ``metadata_validate``, `\
+`    ``"trials_metadata"``,`\
+`    db_folder ``=`` ``codebook_folder``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)\
+`    `[`select`](https://dplyr.tidyverse.org/reference/select.html)`(``comment``, ``colname_data``, ``colname_codebook``, ``required``, ``col_num``)`` `\
+`` #> Joining with `by = join_by(comment)` ``\
+`#> Status: ``# A tibble: 3 × 4`` comment n required req ``<chr>`` ``<int>`` ``<lgl>`` ``<int>`` ``1`\
+`#> exists in both data and codebook 2 ``NA`` ``NA`` ``2`` not present in codebook:`\
+`#> trials_metadata 3 ``NA`` ``NA`` ``3`` not present in data 25 TRUE 10`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``metadata_colname_valid``)`
 
 | comment | colname_data | colname_codebook | required | col_num |
 |:---|:---|:---|:---|---:|
@@ -330,21 +319,20 @@ knitr::kable(metadata_colname_valid)
 
 ### Check variable values
 
-``` r
-metadata_colcontent_valid <- confront_data(metadata_validate, 
-                                           df_type = "trials_metadata",
-                                           db_folder = codebook_folder)
-#> Warning: Some issues left to resolve 
-#> # A tibble: 2 × 5
-#>   required fails   nNA error warning
-#>   <lgl>    <int> <int> <int>   <int>
-#> 1 FALSE        0     0    15       0
-#> 2 TRUE         1     2    10       0
-
-metadata_colcontent_summary <- metadata_colcontent_valid[["summary"]]
-
-knitr::kable(metadata_colcontent_summary)
-```
+\
+`metadata_colcontent_valid`` ``<-`` `[`confront_data`](https://idahoagstats.github.io/factcuratoR/reference/confront_data.md)`(``metadata_validate``, `\
+`                                           df_type ``=`` ``"trials_metadata"``,`\
+`                                           db_folder ``=`` ``codebook_folder``)`\
+`#> Warning: Some issues left to resolve `\
+`#> ``# A tibble: 2 × 5`\
+`#>   required fails   nNA error warning`\
+`#>   ``<lgl>``    ``<int>`` ``<int>`` ``<int>``   ``<int>`\
+`#> ``1`` FALSE        0     0    15       0`\
+`#> ``2`` TRUE         1     2    10       0`\
+\
+`metadata_colcontent_summary`` ``<-`` ``metadata_colcontent_valid``[[``"summary"``]``]`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``metadata_colcontent_summary``)`
 
 | required | name | items | passes | fails | nNA | error | warning | expression |
 |:---|:---|---:|---:|---:|---:|:---|:---|:---|
@@ -376,17 +364,16 @@ knitr::kable(metadata_colcontent_summary)
 | FALSE | free_lime_pct | 0 | 0 | 0 | 0 | TRUE | FALSE | free_lime_pct - 0 \>= -1e-08 & free_lime_pct - 100 \<= 1e-08 |
 | FALSE | unpublished | 0 | 0 | 0 | 0 | TRUE | FALSE | unpublished %vin% c(TRUE, FALSE) |
 
-``` r
-
-#Check for any fails interactively:
-
-metadata_var <- c("location")
-metadata_colcontent_violate <- 
-  validate::violating(test_data, metadata_colcontent_valid[[2]][metadata_var]) %>% 
-  relocate(matches(var))
-
-knitr::kable(metadata_colcontent_violate)
-```
+\
+\
+`#Check for any fails interactively:`\
+\
+`metadata_var`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``"location"``)`\
+`metadata_colcontent_violate`` ``<-`` `\
+`  ``validate``::`[`violating`](https://rdrr.io/pkg/validate/man/satisfying.html)`(``test_data``, ``metadata_colcontent_valid``[[``2``]``]``[``metadata_var``]``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `\
+`  `[`relocate`](https://dplyr.tidyverse.org/reference/relocate.html)`(`[`matches`](https://tidyselect.r-lib.org/reference/starts_with.html)`(``var``)``)`\
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(``metadata_colcontent_violate``)`
 
 |     | variety | location   | year | rep_temp | sourcefile |
 |:----|:--------|:-----------|-----:|---------:|:-----------|

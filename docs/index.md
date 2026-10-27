@@ -24,10 +24,9 @@ The `factcuratoR` functions fall into a few different workflows:
 
 You can install `factcuratoR` from GitHub with:
 
-``` r
-# install.packages("remotes")
-remotes::install_github("IdahoAgStats/factcuratoR")
-```
+\
+`# install.packages("remotes")`\
+`remotes``::`[`install_github`](https://remotes.r-lib.org/reference/install_github.html)`(``"IdahoAgStats/factcuratoR"``)`
 
 ## factcuratoR functions require codebooks that are standardized
 

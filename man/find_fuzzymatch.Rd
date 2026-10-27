@@ -46,9 +46,9 @@ to remove any trailing digits that have no meaning (e.g. +25\% refers to seed
 increase and not to a cultivar name)
 }
 \seealso{
-Other match variety modules: 
-\code{\link{do_exactmatch}()},
-\code{\link{process_fuzzymatch}()},
-\code{\link{process_std_new_names}()}
+Other match variety modules:
+\code{\link[=do_exactmatch]{do_exactmatch()}},
+\code{\link[=process_fuzzymatch]{process_fuzzymatch()}},
+\code{\link[=process_std_new_names]{process_std_new_names()}}
 }
 \concept{match variety modules}

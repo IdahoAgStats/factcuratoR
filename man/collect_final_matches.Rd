@@ -34,8 +34,8 @@ An output file, 'final_matches.csv', will be written to the specified output loc
 Note: If no match has been found, then the returned match is the original raw name.
 }
 \seealso{
-Other match variety functions: 
-\code{\link{create_intid}()},
-\code{\link{find_entries_raw_names}()}
+Other match variety functions:
+\code{\link[=create_intid]{create_intid()}},
+\code{\link[=find_entries_raw_names]{find_entries_raw_names()}}
 }
 \concept{match variety functions}
